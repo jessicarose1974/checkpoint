@@ -2,7 +2,7 @@
 widget: hero
 headless: true
 weight: 10
-title: Jessica's World
+title: Jessica's World of Fun Data Analysis
 hero_media: dna.png
 
 design:
@@ -15,4 +15,7 @@ advanced:
 ---
 
 **Welcome to a place where you can find out about VAERS.**
+
+**Feel free to visit youtube to see my findings summarized.**
+https://www.youtube.com/watch?v=bMY2tdFNkRU
 
