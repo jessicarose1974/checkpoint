@@ -16,11 +16,11 @@ advanced:
 
 **Welcome to a place where you can find out about VAERS.**
 
-<font size="3" color = "red"> Feel free to visit my youtube to see my findings summarized.</font>
+<font size="5" color = "pink"> Feel free to visit my youtube to see my findings summarized.</font>
 
 **https://www.youtube.com/watch?v=bMY2tdFNkRU**
 
-OR on Rumble... when they take my youtube.
+<font size="5" color = "pink"> OR on Rumble... when they take my youtube.</font>
 
 **https://rumble.com/vhjgqz-vaers-analysis-summary-of-major-findings.html**
 
