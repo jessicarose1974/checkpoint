@@ -17,5 +17,5 @@ advanced:
 **Welcome to a place where you can find out about VAERS.**
 
 **Feel free to visit youtube to see my findings summarized.**
-https://www.youtube.com/watch?v=bMY2tdFNkRU
+url: https://www.youtube.com/watch?v=bMY2tdFNkRU
 
