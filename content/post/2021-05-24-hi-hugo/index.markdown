@@ -1,5 +1,5 @@
 ---
-title: Hi Hugo
+title: VAERS IDs (absolute count versus date of update)
 author: Admin
 date: '2021-05-24'
 slug: hi-hugo
@@ -18,47 +18,5 @@ projects: []
 ---
 
 
-```r
-library(ggplot2)
-Table_IDs_percent <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21"), "%m/%d/%y"),
-  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559")),
-  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000")),
-  US_population = as.numeric(c("330175152" , "330175733" , "330176314", "330176895", "330177476", "330178057", "330178638", "330179219", "330179800", "330180381", "330193928", "330209443", "330244315", "330239326", "330757983", "332700813")),
-  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015")),
-  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557")), 
-  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641")),
-  SAE = as.numeric(c("625", "1101", "1668", "2977", "4017", "5193", "6648", "8000", "9268", "10350", "10484", "12464", "15713", "21158", "27642", "32277")),
-  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317")), 
-  CV = as.numeric(c("271", "417", "586", "1088", "1794", "2707", "3768", "5049", "6079", "7200", "8194", "9872", "12999", "18834", "25254", "31437")),
-  NEURO = as.numeric(c("157", "223", "307", "538", "963", "1583", "2347", "3370", "4024", "4706", "5303", "6413", "8122", "11693", "15741", "19493")),
-  IMMUNO = as.numeric(c("310", "425", "523", "930", "2360", "4533", "6406", "9150", "11663", "14041", "16480", "21146", "28070", "40021", "54723", "68836")),
-  
-  stringsAsFactors = FALSE
-)
-head(Table_IDs_percent)
-```
 
-```
-##         DATE   IDs       FV US_population DEATH HOSPITAL   ER  SAE COVID   CV
-## 1 2021-01-16  1431  4582089     330175152   137      338  338  625   194  271
-## 2 2021-01-23  2160  7664179     330175733   281      607  576 1101   254  417
-## 3 2021-01-30  2946 11037313     330176314   456      953  847 1668   326  586
-## 4 2021-02-13  5351 18895522     330176895   810     1747 1493 2977   619 1088
-## 5 2021-02-27  9286 27167910     330177476   984     2195 2187 4017   717 1794
-## 6 2021-03-05 14701 31720149     330178057  1162     2676 2980 5193   776 2707
-##   NEURO IMMUNO
-## 1   157    310
-## 2   223    425
-## 3   307    523
-## 4   538    930
-## 5   963   2360
-## 6  1583   4533
-```
-
-```r
-Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Change in N of VAERS IDs - COVID-19-associated AEs ONLY", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) #+ geom_text(aes(label = IDs), color = "white", size = 4)
-Table_IDs_plot
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="Figs/unnamed-chunk-2-1.png" width="672" />

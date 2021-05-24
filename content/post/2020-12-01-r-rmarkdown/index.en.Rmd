@@ -17,6 +17,11 @@ library("reshape2")
 library("data.table")
 library("plotly")
 ```
+SET KNIT CONDITIONS FOR CHUNKS IN MARKDOWN FILE
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
 SYMPTOMS
 ```{r}
 VAERSSYM_2021 <- read_csv("/Users/admin/Downloads/2021VAERSData_14_05_2021_19600kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))

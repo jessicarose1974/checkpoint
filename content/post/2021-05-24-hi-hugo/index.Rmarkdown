@@ -1,5 +1,5 @@
 ---
-title: Hi Hugo
+title: VAERS IDs (absolute count versus date of update)
 author: Admin
 date: '2021-05-24'
 slug: hi-hugo
@@ -17,6 +17,10 @@ image:
 projects: []
 ---
 
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
 ```{r}
 library(ggplot2)
 Table_IDs_percent <- data.frame(
@@ -35,7 +39,6 @@ Table_IDs_percent <- data.frame(
   
   stringsAsFactors = FALSE
 )
-head(Table_IDs_percent)
 ```
 ```{r}
 Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Change in N of VAERS IDs - COVID-19-associated AEs ONLY", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) #+ geom_text(aes(label = IDs), color = "white", size = 4)
