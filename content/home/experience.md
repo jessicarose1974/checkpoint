@@ -24,8 +24,6 @@ date_format: Jan 2006
 experience:
   - title: Outdoor Fitness Instructor
     company: Wingate
-    company_url: ''
-    company_logo: ''
     location: Netanya
     date_start: '2021-01-01'
     date_end: ''
