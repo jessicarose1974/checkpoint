@@ -281,27 +281,27 @@ FIRST CREATE AGE GROUPS FUNCTION
 ```{r}
 AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
   if(AGE_YRS >= 0 & AGE_YRS <10) {
-    AGE_GROUP = "0-10"
+    AGE_GROUP = "A. 0-10"
     } else if(AGE_YRS >= 10 & AGE_YRS <20) {
-      AGE_GROUP = "10-20"
+      AGE_GROUP = "B. 10-20"
       } else if(AGE_YRS >= 20 & AGE_YRS <30) {
-        AGE_GROUP = "20-30"
+        AGE_GROUP = "C. 20-30"
         } else if(AGE_YRS >= 30 & AGE_YRS <40) {
-          AGE_GROUP = "30-40"
+          AGE_GROUP = "D. 30-40"
           } else if(AGE_YRS >= 40 & AGE_YRS <50) {
-            AGE_GROUP = "40-50"
+            AGE_GROUP = "E. 40-50"
             } else if(AGE_YRS >= 50 & AGE_YRS <60) {
-              AGE_GROUP = "50-60"
+              AGE_GROUP = "F. 50-60"
               } else if(AGE_YRS >= 60 & AGE_YRS <70) {
-                AGE_GROUP = "60-70"
+                AGE_GROUP = "G. 60-70"
                 } else if(AGE_YRS >= 70 & AGE_YRS <80) {
-                  AGE_GROUP = "70-80"
+                  AGE_GROUP = "H. 70-80"
                   } else if(AGE_YRS >= 80 & AGE_YRS <90) {
-                    AGE_GROUP = "80-90"
+                    AGE_GROUP = "I. 80-90"
                     } else if(AGE_YRS >= 90 & AGE_YRS <100) {
-                      AGE_GROUP = "90-100"
+                      AGE_GROUP = "J. 90-100"
                       } else if(AGE_YRS >= 100 & AGE_YRS <110) {
-                        AGE_GROUP = "100-110"
+                        AGE_GROUP = "K. 100-110"
                         }
   else {
     AGE_GROUP = "NA"
