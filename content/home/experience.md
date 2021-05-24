@@ -25,18 +25,23 @@ experience:
   - title: Outdoor Fitness Instructor
     company: Wingate
     location: Netanya
-    date_start: '2017-01-01'
+    date_start: '2011-01-01'
     date_end: ''
   - title: Protein Biologist
     company: Technion
     location: Haifa
-    date_start: '2017-01-01'
+    date_start: '2016-01-01'
     date_end: '2020-12-01'
   - title: Molecular Biologist
     company: HUJI
     location: Rehovot
+    date_start: '2013-01-01'
+    date_end: '2015-01-01'  
+  - title: GIS analyst
+    company: EurNegVec
+    location: Naples
     date_start: '2014-01-01'
-    date_end: '2016-01-01'    
+    date_end: '2014-03-01'
 design:
   columns: '2'
 ---
