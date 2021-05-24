@@ -7,7 +7,7 @@ hero_media: dna.png
 
 design:
   background:
-    gradient_end: '#4aa7ff'
+    gradient_end: '#d21976'
     gradient_start: '#004ba0'
     text_color_light: true
 advanced:
