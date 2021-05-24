@@ -4,7 +4,7 @@ author: "Dr. Jessica Rose"
 date: "21 May, 2021"
 output: html_document
 ---
-LOAD APPROPRIATE PACKAGES AND INSTALL
+This is an R Markdown sheet where the plots are generated from for the VAERS data.
 ```{r}
 library("readr")
 library("tidyverse")
