@@ -16,7 +16,7 @@ advanced:
 
 **Welcome to a place where you can find out about VAERS.**
 
-Feel free to visit my youtube to see my findings summarized.
+<font size="3" color = "red"> Feel free to visit my youtube to see my findings summarized.</font>
 
 **https://www.youtube.com/watch?v=bMY2tdFNkRU**
 
