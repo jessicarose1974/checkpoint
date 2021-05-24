@@ -25,9 +25,18 @@ experience:
   - title: Outdoor Fitness Instructor
     company: Wingate
     location: Netanya
-    date_start: '2021-01-01'
+    date_start: '2017-01-01'
     date_end: ''
-
+  - title: Protein Biologist
+    company: Technion
+    location: Haifa
+    date_start: '2017-01-01'
+    date_end: '2020-12-01'
+  - title: Molecular Biologist
+    company: HUJI
+    location: Rehovot
+    date_start: '2014-01-01'
+    date_end: '2016-01-01'    
 design:
   columns: '2'
 ---
