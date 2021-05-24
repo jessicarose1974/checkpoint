@@ -16,7 +16,11 @@ advanced:
 
 **Welcome to a place where you can find out about VAERS.**
 
-**Feel free to visit youtube to see my findings summarized.**
+Feel free to visit my youtube to see my findings summarized.
 
 **https://www.youtube.com/watch?v=bMY2tdFNkRU**
+
+OR on Rumble... when they take my youtube.
+
+**https://rumble.com/vhjgqz-vaers-analysis-summary-of-major-findings.html**
 
