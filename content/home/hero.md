@@ -7,7 +7,7 @@ hero_media: hio.png
 
 design:
   background:
-    gradient_end: '#1a77d3'
+    gradient_end: '#1A1110'
     gradient_start: '#1976d2'
     text_color_light: true
 advanced:
