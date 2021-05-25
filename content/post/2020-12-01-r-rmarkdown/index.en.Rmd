@@ -1,10 +1,10 @@
 ---
-title: "The Knitr/R Markdown document for VAERS analysis"
+title: "The R Markdown document for VAERS analysis"
 author: "Dr. Jessica Rose"
 date: "21 May, 2021"
 output: html_document
 ---
-This is an R Markdown sheet where the plots are generated from for the VAERS data.
+This is an R Markdown sheet where the plots are generated from the VAERS data.
 ```{r}
 library("readr")
 library("tidyverse")
@@ -16,7 +16,7 @@ library("reshape2")
 library("data.table")
 library("plotly")
 ```
-SET KNIT CONDITIONS FOR CHUNKS IN MARKDOWN FILE
+#SET KNIT CONDITIONS FOR CHUNKS IN MARKDOWN FILE
 ```{r global-options, include=FALSE}
 knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
                       echo=FALSE, warning=FALSE, message=FALSE)
