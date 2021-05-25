@@ -37,3 +37,5 @@ Jessica Rose is a researcher.
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
+
+FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
