@@ -2,7 +2,7 @@
 widget: hero
 headless: true
 weight: 10
-title: Jessica's World of Fun Data Analysis
+title: Jessica's World
 hero_media: hio.png
 
 design:
