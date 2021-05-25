@@ -179,8 +179,6 @@ Cardiovascular, neurological and immunological AE counts
 CV <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("CARDIOVASCULAR" = CARDIOVASCULAR_human(SYMPTOM)) %>% filter(CARDIOVASCULAR !="NA")
 NEURO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("NEUROLOGICAL" = NEUROLOGICAL_human(SYMPTOM)) %>% filter(NEUROLOGICAL !="NA")
 IMMUNO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("IMMUNOLOGICAL" = IMMUNOLOGICAL_human(SYMPTOM)) %>% filter(IMMUNOLOGICAL !="NA")
-RENAL <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("RENAL" = RENAL_human(SYMPTOM)) %>% filter(RENAL !="NA")
-GASTRO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("GASTRO" = GASTRO_human(SYMPTOM)) %>% filter(GASTRO !="NA")
 
 nrow(CV)
 nrow(NEURO)
@@ -457,7 +455,7 @@ chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD$OBSERVED)
 ```{r}
 #png("CAUSATION_NEURO_plot", width = 4, height = 4, units = 'in', res = 100)
 
-CAUSATION_NEURO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,50)
+CAUSATION_NEURO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,50)
 CAUSATION_NEURO_plot
 ggsave("CAUSATION_NEURO_plot.png")
 ```
@@ -482,7 +480,7 @@ chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD$OBSERVED)
 ```{r}
 #png("CAUSATION_IMMUNO_plot", width = 4, height = 4, units = 'in', res = 100)
 
-CAUSATION_IMMUNO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED IMMUNO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+CAUSATION_IMMUNO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED IMMUNO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_IMMUNO_plot 
 ggsave("CAUSATION_IMMUNO_plot.png")
 ```
