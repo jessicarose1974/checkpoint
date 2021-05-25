@@ -2,7 +2,7 @@
 widget: hero
 headless: true
 weight: 10
-title: <color = "Purple">Jessica's World</font>
+title: **Jessica's World**
 hero_media: hio.png
 
 design:
