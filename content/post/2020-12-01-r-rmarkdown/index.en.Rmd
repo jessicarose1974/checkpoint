@@ -75,15 +75,6 @@ D_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(VAERS_I
 DEAD_05_21_21_151700kb <- subset(D_05_21_21_151700kb, !duplicated(subset(D_05_21_21_151700kb, select=c(VAERS_ID))))
 nrow(DEAD_05_21_21_151700kb)
 ```
-Hospitalizations and Emergency Room Visit counts
-```{r}
-HOSPITAL_Y_05_21_21_151700kb  <- MERGED_SYM_DAT_VAX_05_21_21_151700kb  %>% group_by(VAERS_ID, HOSPITAL) %>% filter(HOSPITAL == "Y")
-HOSPITAL_05_21_21_151700kb <- subset(HOSPITAL_Y_05_21_21_151700kb, !duplicated(subset(HOSPITAL_Y_05_21_21_151700kb, select=c(VAERS_ID))))
-nrow(HOSPITAL_05_21_21_151700kb)
-ER_ED_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(VAERS_ID, ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
-ER_ED_05_21_21_151700kb <- subset(ER_ED_Y_05_21_21_151700kb, !duplicated(subset(ER_ED_Y_05_21_21_151700kb, select=c(VAERS_ID))))
-nrow(ER_ED_05_21_21_151700kb)
-```
 Severe Adverse Event count and percentage and Mild Adverse Event count
 ```{r}
 DEAD_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(DIED) %>% filter(DIED == "Y")
@@ -94,13 +85,6 @@ SAES_no_dups_05_21_21_151700kb <- subset(SAES_05_21_21_151700kb, !duplicated(sub
 nrow(SAES_no_dups_05_21_21_151700kb)
 Percent = nrow(SAES_no_dups_05_21_21_151700kb)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb)*100
 Percent
-
-DEAD_N_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(DIED) %>% filter(DIED != "Y")
-HOSPITAL_N_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(HOSPITAL) %>% filter(HOSPITAL != "Y")
-ER_ED_N_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(ER_ED_VISIT) %>% filter(ER_ED_VISIT != "Y")
-MAES_05_21_21_151700kb <- rbind(DEAD_N_05_21_21_151700kb, HOSPITAL_N_05_21_21_151700kb, ER_ED_N_05_21_21_151700kb) %>% filter(DIED != "Y" & HOSPITAL != "Y" & ER_ED_VISIT != "Y")
-MAES_no_dups_05_21_21_151700kb <- subset(MAES_05_21_21_151700kb, !duplicated(subset(MAES_05_21_21_151700kb, select=c(VAERS_ID))))
-nrow(MAES_no_dups_05_21_21_151700kb)
 ```
 #BAR PLOT FOR SAE COMPARISON TO STANDARD
 ```{r}
@@ -114,12 +98,6 @@ Table_SAEs_perc <- Table_SAEs %>% mutate("PERC" = round(SAE/(nrow(MERGED_SYM_DAT
 #head(Table_SAEs_perc)
 
 Table_SAEs_perc_plot <- ggplot(Table_SAEs_perc, aes(Percent_SAE, PERC, fill = Percent_SAE)) + geom_bar(stat = 'identity') + geom_text(aes(label = PERC)) + ylab("% VAERS SAE REPORTS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "none") + ggtitle("SAEs -> Comparison of Standard versus actual % reports")
-#Table_SAEs_perc_plot
-#ggsave("Table_SAEs_perc_plot.png")
-```
-```{r}
-#strings_eye <- c("Binocular eye movement disorder", "Conjunctival haemorrhage", "Conjunctival hyperaemia", "Conjunctivitis", "Conjunctivitis allergic", "Eye contusion", "Eye discharge", "Eye disorder", "Eye haemorrhage", "Eye infection", "Eye inflammation", "Eye irritation", "Eye movement disorder", "Eye pain", "Eye paraesthesia", "Eye pruritus", "Eye swelling", "Eyelid contusion", "Eyelid disorder", "Eyelid function disorder", "Eyelid irritation", "Eyelid mrgin crusting", "Eyelid oedema", "Eyelid ptosis", "Eyelid rash", "Eyelid sensory disorder", "Eyelids pruritis", "Nystagmus", "Ocular discomfort", "Ocular hyperaemia", "Ophthalmic herpes simplex", "Ophthalmological examination", "Ophthalmological examination abnormal", "Ocular icterus", "Pupil fixed", "Retinal haemorrhage", "Retinal vein occlusion", "Scleral disorder", "Scleritis", "Swelling of eyelid", "Vision blurred", "Visual acuity reduced", "Visual field defect", "Visual impairment", "Visual tracking test abnormal", "Vitreous detachment", "Vitreous floaters", "Uveitis")
-#strings_eye
 ```
 ```{r}
 strings_heart <- c("Angina pectoris", "Angina unstable", "Acute coronary syndrome", "Angioedema", "Angiogram abnormal", "Angiopathy", "Angiplasty", "Aortic arteriosclerosis", "Aortic valve calcification", "Aortic valve incompetence", "Arrhythmia", "Atelectasis", "Atrial tachycardia", "Arteriogram carotid abnormal", "Arteriogram coronary abnormal", "Arteriospasm coronary", "Arteriovenous fistula aneurysm", "Atrial enlargement", "Atrial flutter", "Atrial tachycardia", "Cardiac ablation", "Cardiac arrest", "Cardiac discomfort", "Cardiac disorder", "Cardiac failure chronic", "Cardiac failure congestive", "Cardiac flutter", "Cardiac monitoring abnormal", "Cardiac murmur", "Cardiac pademaker evaluation", "Cardiac stress test", "Cardiac telemetry abnormal", "Cardio-respiratory arrest", "Cardiogenic shock", "Cardiomegaly", "Cardiomyopathy", "Cardioversion", "Carotid arteriosclerosis", "Chest pain", "Coronary arterial stent insertion", "Coronary artery bypass", "Coronary artery disease", "Coronary artery occlusion", "Coronary artery stenosis", "Echocardiogram abnormal", "Electrocardiogram", "Electrocardiogram abnormal", "Electrocardiogram ambulatory", "Electrocardiogram ambulatory abnormal", "Electrocardiogram change", "Electrocardiogram PR prolongation", "Electrocardiogram PR shortened", "Electrocardiogram Q wave abnormal", "Electrocardiogram QRS complex abnormal", "Electrocardiogram QT prolonged", "Electrocardiogram ST segment abnormal", "Electrocardiogram ST segment depression", "Electrocardiogram ST segment elevation", "Endocarditis", "Electrocardiogram T wave abnormal", "Electrocardiogram T wave inversion", "Electrocardiogram T wave peaked", "Foetal heart rate abnormal", "Heart rate abnormal", "Heart rate decreased", "Heart rate increased", "Heart rate irregular", "Heart sounds abnormal", "Heart valve incompetence", "Hypertension", "Magnetic resonance imaging heart", "Microvascular coronary artery disease", "Myocardial infarction", "Myocardial necrosis marker", "Myocardial necrosis marker increased", "Myocardial strain", "Myocarditis", "Palpitations", "Pericardial effusion", "Pericarditis", "Right atrial dilatation", "Right ventricular dilatation", "Right ventricular dysfunction", "Right ventricular ejection fraction decreased", "Right ventricular hypertrophy", "Right ventricular systolic pressure decreased", "Scan myocardial perfusion", "Sinus arrhythmia", "Supraventricular extrasystoles", "Supraventricular tachycardia", "Tachycardia", "Vascular test", "Vasoconstriction", "Vasodilatation", "Vein discolouration", "Venogram abnormal", "Venous stent insertion", "Ventricular arrhythmia", "Ventricular extrasystoles", "Ventricular fibrillation", "Ventricular tachycardia") 
@@ -142,32 +120,12 @@ strings_cardiovascular <- c(strings_heart, strings_circulation, strings_respirat
 #strings_cardiovascular
 ```
 ```{r}
-strings_anaphylaxis <- c("Anaphylactic reaction", "Anaphylactic shock", "Anaphylactoid reaction")
-#strings_anaphylaxis
-```
-```{r}
 strings_neurological_1 <- c("Acoustic neuritis", "Acute disseminated encephalomyelitis", "Acute motor-sensory axonal neuropathy", "Ageusia", "Agitation", "Anti-neuronal antibody", "Aphasia", "Aphonia", "Areflexia", "Hallucination, auditory", "Autonomic nervous system imbalance", "Balance disorder", "Basal ganglia haemorrhage", "Basal ganglia stroke", "Biopsy brain", "Biopsy brain abnormal", "Brachial plexus injury", "Brain herniation", "Brain injury", "Brain midline shift", "Brain natriuretic peptide", "Brain natriuretic peptide increased", "Brain abscess", "Brain oedema", "Central nervous system inflammation", "Central nervous system lesion", "Cerebral artery occlusion", "Cerebral artery stenosis", "Cerebral atrophy", "Cerebral disorder", "Cerebral haemorrhage", "Cerebral infarction", "Cerebral microangiopathy", "Cerebral small vessel ischaemic disease", "Cerebral venous sinus thrombosis", "Cerebral ventricle dilatation", "Cerebrovascular accident", "Cervical spinal stenosis", "Coma", "Coma scale abnormal", "Computerised tomogram head abnormal", "Confabulation", "Confusional state", "Cranial nerve disorder", "Cranial nerve paralysis", "Deafness neurosensory", "Decompressive craniectomy", "Dementia", "Demyelination", "Demyelinating polyneuropathy", "Dental paraesthesia", "Depressed level of consciousness", "Depression", "Disorientation", "Dissociation", "Dissociative disorder", "Disturbance in attention", "Dysaesthesia", "Dyskinesia", "Electroencephalogram abnormal", "Encephalitis", "Euphoric mood", "Extraocular muscle paresis", "Eye paraesthesia", "Facial paralysis", "Focal dyscognitive seizures", "IVth nerve paralysis", "VIth nerve paralysis", "Gait disturbance", "Gait inability", "Gaze palsy", "Generalised tonic-clonic seizure", "Guillain-Barre syndrome", "Hallucination", "Hallucination, auditory", "Hallucination, visual", "Halo vision", "Hand-eye coordination impaired", "Head discomfort", "Headache", "Hemiparaesthesia", "Hemiparaesthesia teeth", "Herpes zoster infection neurological", "Hyperaesthesia", "Hyperaesthesia teeth", "Hypoaesthesia", "Hypoaesthesia eye", "Hypoaesthesia oral", "Incoherent", "Injected limb mobility decreased", "Injection site hypoaesthesia", "Injection site movement impairment", "Injection site muscle weakness", "Injection site nerve damage", "Injection site pain", "Intranasal hypoaesthesia", "Laryngeal tremor", "Limb immobilisation", "Lumbar puncture abnormal", "Lumbar spinal stenosis", "Magnetic resonance imaging brain", "Magnetic resonance imaging brain abnormal", "Magnetic resonance imaging spinal abnormal", "May-Thurner syndrome", "Memory impairment")
 #strings_neurological_1
 strings_neurological_2 <- c( "Meningioma", "Mononeuropathy", "Motion sickness", "Motor dysfunction", "Multiple sclerosis relapse", "Muscle atrophy",  "Muscle contractions involuntary", "Muscle contracture",  "Muscle disorder", "Muscle spasms", "Muscle spasticity", "Muscle twitching", "Muscular weakness", "Myalgia", "N-terminal prohormone brain natriuretic peptide increased", "Nerve block", "Nerve compression", "Nerve conduction studies abnormal", "Nerve injury", "Nervous system disorder", "Neurologic neglect syndrome", "Neurological examination", "Neurological examination abnormal", "Neurological symptom", "Neuropathy peripheral", "Optic ischaemic neuropathy", "Pain", "Paraesthesia", "Paraesthesia ear", "Paraesthesia oral", "Paralysis", "Partial seizures", "Perfusion brain scan", "Perfusion brain scan abnormal", "Peripheral motor neuropathy", "Peripheral sensorimotor neuropathy", "Peroneal nerve palsy", "Pharyngeal hypoaesthesia", "Pharyngeal paraesthesia", "Phonophobia", "Photopsia", "Polyneuropathy", "Posterior reversible encephalopathy syndrome", "Posturing", "Prohormone brain natriuretic peptide", "Psychogenic seizure", "Pulseless electrical activity", "Pupil fixed", "Scan brain", "Seizure", "Seizure cluster", "Seizure like phenomena", "Self esteem decreased", "Sensation of foreign body", "Sensitive skin", "Sensory disturbance", "Sensory loss", "Sleep apnoea syndrome", "Sleep disorder", "Slow response to stimuli", "Slow speech", "Sluggishness", "Small fibre neuropathy", "Somnolence", "Speech disorder", "Speech sound disorder", "Spinal cord lipoma", "Spinal disorder", "Spinal osteoarthritis", "Spinal nerve stimulator implantation", "Spinal operation", "Spinal pain", "Spinal retrolisthesis", "Spinal stenosis", "Spinal X-ray abnormal", "Staring", "Subarachnoid haemorrhage", "Taste disorder", "Thinking abnormal", "Tinnitus", "Tongue biting", "Tongue movement disturbance", "Tongue spasm", "Tremor", "Tunnel vision", "Unresponsive to stimuli", "Upper motor neurone lesion", "Vertigo", "Vestibular neuronitis", "Vision blurred", "Visual acuity reduced", "Visual impairment", "Visual tracking test abnormal", "White matter lesion")
 #strings_neurological_2
 strings_neurological <- c(strings_neurological_1, strings_neurological_2)
 #strings_neurological
-```
-
-```{r}
-#strings_ear <- c("Acoustic neuritis", "Acoustic stimulation tests", "Acoustic stimulation tests abnormal", "Audiogram", "Audiogram abnormal", "Auditory disorder", "Autonomic nervous system imbalance", "Balance disorder", "Deafness", "Deafness bilateral", "Deafness Neurosensory", "Deafness transitory", "Deafness unilateral", "Dizziness", "Dizziness postural", "Ear congestion", "Ear discomfort", "Ear disorder", "Ear haemorrhage", "Ear infection", "Ear pain", "Ear pruritus", "Ear swelling", "External ear pain", "Hallucination, auditory", "Inner ear disorder", "Middle ear effusion", "Nausea", "Paraesthesia ear", "Paranasal sinus discomfort", "Paranasal sinus hypersecretion", "Sinus congestion", "Sinus disorder", "Sinus headache", "Sinus operation", "Sinus pain", "Sinusitis", "Sudden hearing loss", "Throat clearing", "Tinnitus", "Vertigo")
-#strings_ear
-```
-```{r}
-strings_gastro <- c("Abdominal adhesions", "Abdomen crushing", "Abdominal discomfort", "Abdominal distension", "Abdominal pain", "Abdominal pain lower", "Abdominal pain upper", "Abdominal rebound tenderness", "Abdominal rigidity", "Abdominal tenderness", "Abdominal wall haematoma", "Abdominal wall mass", "Abdominal wall oedema", "Abdominal X-ray", "Acute abdomen", "Bowel movement irregularity", "Choking", "Colitis", "Colonoscopy abnormal", "Colostomy", "Computerised tomogram abdomen", "Computerised tomogram abdomen abnormal", "Diarrhoea", "Diarrhoea haemorrhagic", "Diverticulum intestinal", "Diverticulitis intestinal perforated", "Dysphagia", "Enteritis", "Faeces discoloured", "Faeces pale", "Fasting", "Feeding disorder", "Flatulence", "Fluid intake reduced", "Fluid overload", "Fluid retention", "Food allergy", "Food aversion", "Food craving", "Food refusal", "Food poisoning", "Frequent bowel movements", "Gastric dilatation", "Gastric disorder", "Gastric ulcer", "Gastritis", "Gastroenteritis viral", "Gastrointestinal disorder", "Gastrointestinal haemorrhage", "Gastrointestinal inflammation", "Gastrointestinal oedema", "Gastrointestinal pain", "Gastrointestinal pathogen panel", "Gastrointestinal sounds abnormal", "Gastrointestinal wall thickening", "Gastrooesophageal reflux disease", "Gastrostomy", "Increased appetite", "Intestinal obstruction", "Intestinal resection", "Intra-abdominal haemorrhage", "Large intestine perforation", "Magnetic resonance imaging abdominal abnormal", "Mastication disorder", "Metabolic function test", "Metabolic function test abnormal", "Oesophageal discomfort", "Oesophageal disorder", "Oesophageal pain", "Oesophagogastroduodenoscopy", "Pharyngeal erythema", "Pharyngeal hypoaesthesia", "Pharyngeal oedema", "Pharyngeal paraesthesia", "Pharyngeal swelling", "Pharyngitis", "Rectal haemorrhage", "Regurgitation", "Retching", "Saliva altered", "Salivary hypersecretion", "Small intestinal obstruction", "Ultrasound abdomen", "Ultrasound abdomen abnormal", "Upper gastrointestinal haemorrhage", "Vitamin B12", "Vitamin B12 decreased", "Vitamin D decreased", "Vomiting", "Vomiting projectile", "Weight", "Weight decreased", "Weight increased")
-#strings_gastro
-```
-```{r}
-strings_liver <- c("Acute hepatic failure", "Hepatic cirrhosis", "Hepatic cyst", "Hepatic embolisation", "Hepatic encephalopathy", "Hepatic enzyme", "Hepatic enzyme decreased", "Hepatic enzyme increased", "Hepatic function abnormal", "Hepatic pain", "Hepatic steatosis", "Hepatic vein thrombosis", "Hepatitis", "Hepatitis acute", "Hepatobiliary scan", "Hepatobiliary scan abnormal", "Hepatomegaly", "Ischaemic hepatitis", "Liver abscess", "Liver disorder", "Liver function test", "Liver function test abnormal", "Liver function test increased", "Liver injury", "Metastases to liver")
-```
-```{r}
-strings_excretion <- c("Acute kidney injury", "Albumin urine present", "Bilirubin urine", "Bilirubin urine present", "Bladder catheter replacement", "Bladder catheterisation", "Bladder hypertrophy", "Bladder injury", "Blood urine present", "Chronic kidney disease", "Creatine urine increased", "Crystal urine absent", "Crystal urine present", "Culture urine", "Culture urine positive", "Dehydration", "Escherichia urinary tract infection", "Glomerulonephritis minimal lesion", "Glucose urine present", "Haemorrhage urinary tract", "Kidney infection", "Lower urinary tract symptoms", "Micturition urgency", "Nephrolithiasis", "Nephropathy", "Nitrite urine", "Pyelonephritis", "Protein urine present", "Renal cyst", "Renal disorder", "Renal embolism", "Renal function test", "Renal impairment", "Renal pain", "Renal tubular necrosis", "Ultrasound kidney", "Urethritis", "Urinary assistance device user", "Urinary bladder haemorrhage", "Urinary casts absent", "Urinary incontinence", "Urinary occult blood positive", "Urinary retention", "Urinary sediment present", "Urinary stone analysis", "Urinary system x-ray abnormal", "Urinary tract disorder", "Urinary tract infection", "Urinary tract infection bacterial", "Urine abnormality", "Urine analysis", "Urine analysis abnormal", "Urine bilirubin decreased", "Urine electrophoresis abnormal", "Urine ketone body present", "Urine leukocyte esterase", "Urine leukocyte esterase positive", "Urine output decreased", "Urobilinogen urine", "Urobilinogen urine decreased", "Urobilinogen urine increased", "Urosepsis", "White blood cells urine positive")
-#strings_excretion
 ```
 ```{r}
 strings_immunological_mediators <- c("Allergy test positive", "Allergy to vaccine", "Anaphylactic reaction", "Anaphylactic shock", "Anaphylactoid reaction", "Antibody test abnormal", "Antineutrophil cytoplasmic antibody", "Antineutrophil cytoplasmic antibodyincreased", "Antineutrophil cytoplasmic antibody positive", "Antinuclear antibody positive", "Antiphospholipid antibodies positive", "Autoantibody positive", "Band neutrophil count", "Band neutrophil percentage", "Band neutrophil percentage decreased", "Band neutrophil percentage increased", "Basophil count decreased", "Basophil count increased", "Basophil percentage decreased", "Basophil percentage increased", "Blood immunoglobulin A", "Blood immunoglobulin A decreased", "Blood immunoglobulin A increased", "Blood immunoglobulin E", "Blood immunoglobulin E decreased", "Blood immunoglobulin E increased", "Blood immunoglobulin G", "Blood immunoglobulin G increased", "Blood immunoglobulin M", "Blood immunoglobulin M decreased", "Blood immunoglobulin M increased", "CD4 lymphocyte percentage decreased", "CD4 lymphocytes", "C-reactive protein", "C-reactive protein decreased", "C-reactive protein increased", "Cardiolipin antibody negative", "Complement factor", "Complement factor C4", "CSF immunoglobulin G index", "CSF immunoglobulin increased", "CSF lymphocyte count abnormal", "CSF lymphocyte count increased", "CSF neutrophil count increased", "CSF white blood cell count increased", "Cytokine release syndrome", "Differential white blood cell count abnormal", "Drug hypersensitivity", "Drug reaction with eosinophilia and systemic symptoms", "Eczema", "Eosinophil count", "Eosinophil count decreased", "Eosinophil count increased", "Eosinophil percentage", "Eosinophil percentage decreased", "Eosinophil percentage increased", "Epstein-Barr virus antigen positive", "Haemophagocytic lymphohistiocytosis", "Hepatitis B antigen positive", "Hepatitis B surface antigen", "Hepatitis E antigen positive", "Histamine intolerance", "Histamine level increased", "Immature granulocyte count increased", "Immature granulocyte percentage increased", "Immune complex assay", "Immune system disorder", "Immune thrombocytopenia", "Immunisation", "Immunodeficiency", "Immunoglobulin therapy", "Immunoglobulins", "Immunology test", "Immunosuppression", "Inflammatory marker increased", "Interleukin level", "Leukocytosis", "Lip erythema", "Lymph node pain", "Lymph node palpable", "Lymphocyte count", "Lymphocyte count abnormal", "Lymphocyte count decreased", "Lymphocyte count increased", "Lymphocyte percentage decreased", "Lymphocyte percentage increased", "Monocyte count", "Monocyte count decreased", "Monocyte count increased", "Monocyte percentage decreased", "Monocyte percentage increased", "Neutrophil count", "Neutrophil count decreased", "Neutrophil count increased", "Neutrophil function test abnormal", "Neutrophil percentage decreased", "Neutrophil percentage increased", "Neutrophil toxic granulation present", "Neutrophilia", "Prostatic specific antigen increased", "Sputum abnormal", "Stress", "Systemic inflammatory response syndrome", "T-lymphocyte count", "T-lymphocyte count abnormal", "T-lymphocyte count decreased", "T-lymphocyte count increased", "Vaccine positive rechallenge", "White blood cell count", "White blood cell count abnormal", "White blood cell count decreased", "White blood cell count increased", "White blood cell morphology abnormal", "White blood cells urine positive")
@@ -185,15 +143,6 @@ strings_temperature <- c("Body temperature", "Body temperature abnormal", "Body 
 #strings_temperature
 strings_immunological <- c(strings_immune_effects, strings_skin, strings_temperature)
 #strings_immunological
-```
-```{r}
-string_SAE_1 <- c("Abortion spontaneous", "Acute cardiac event", "Acute coronary syndrome", "Acute disseminated encephalomyelitis", "Acute left ventricular failure", "Acute monocytic leukaemia", "Acute motor-sensory axonal neuropathy", "Acute myeloid leukaemia", "Acute myocardial infarction", "Acute pulmonary oedema", "Acute respiratory distress syndrome", "Acute respiratory failure", "Administration site nerve damage", "Adrenal adenoma", "Adrenocortical insufficiency acute", "Adult failure to thrive", "Allodynia", "Alveolar lung disease", "Amyotrophic lateral sclerosis", "Anaphylactic reaction", "Anaphylactic shock", "Anaphylactoid reaction", "Aneurysm", "Aneurysm ruptured", "Angina pectoris", "Angina unstable", "Anuria", "Aortic aneurysm", "Aortic aneurysm rupture", "Aortic arteriosclerosis", "Aortic stenosis", "Aortic valve incompetence", "Aortic valve stenosis", "Appendicitis perforated", "Apraxia", "Arrhythmia", "Arteriogram carotid abnormal", "Arteriogram coronary abnormal", "Arteriosclerosis coronary artery", "Arteriovenous fistula aneurysm", "Atelectasis", "Atrial fibrillation", "Atrial septal defect", "Atrioventricular block", "Atrioventricular block first degree", "Atrioventricular block second degree", "Atypical pneumonia", "Autoimmune demyelinating disease", "Autopsy", "Axillary mass", "Bacteraemia", "Bacterial sepsis", "Basal ganglia haemorrhage", "Basal ganglia infarction", "Basal ganglia stroke", "Basilar artery occlusion", "Bedridden", "Bicytopenia", "Biopsy bone marrow abnormal", "Biopsy brain abnormal", "Biopsy lung abnormal", "Blindness", "Blood alkaline phosphatase increased", "Blood count abnormal", "Blood disorder", "Bone fragmentation", "Bone pain", "Brachial plexus injury", "Bradycardia", "Bradycardia foetal", "Bradykinesia", "Bradyphrenia", "Brain abscess", "Brain death", "Brain herniation", "Brain injury", "Brain midline shift", "Brain oedema", "Brain stem infarction", "Breath sounds abnormal", "Breath sounds absent", "Bronchial hyperreactivity", "Cardiac ablation", "Cardiac arrest", "Cardiac disorder", "Cardiac failure", "Cardiac failure acute", "Cardiac failure chronic", "Cardiac failure congestive", "Cardiac fibrillation", "Cardiac imaging procedure abnormal", "Cardiac monitoring abnormal", "Cardiac stress test abnormal", "Cardiac telemetry abnormal", "Cardio-respiratory arrest", "Cardio-respiratory distress", "Cardiogenic shock", "Cardiomegaly", "Cardiomyopathy", "Cardiovascular disorder", "Carotid arteriosclerosis", "Carotid artery occlusion", "Carotid pulse abnormal", "Catatonia", "Catheterisation cardiac", "Catheterisation cardiac abnormal", "Catheterisation venous", "Central cord syndrome", "Central nervous system inflammation", "Central nervous system lesion", "Cerebellar ataxia", "Cerebellar haemorrhage", "Cerebellar infarction", "Cerebellar stroke", "Cerebral arteriosclerosis", "Cerebral artery embolism", "Cerebral artery occlusion", "Cerebral artery stenosis", "Cerebral atrophy", "Cerebral disorder", "Cerebral haematoma", "Cerebral haemorrhage", "Cerebral infarction", "Cerebral ischaemia", "Cerebral microangiopathy", "Cerebral microhaemorrhage", "Cerebral small vessel ischaemic disease", "Cerebral venous sinus thrombosis", "Cerebral ventricle dilatation", "Cerebrovascular accident")
-string_SAE_2 <- c("Cholangiocarcinoma", "Chronic obstructive pulmonary disease", "Chronic respiratory disease", "Chronic respiratory failure", "Circulatory collapse", "Colonoscopy abnormal", "Completed suicide", "Complex regional pain syndrome", "Complicated appendicitis", "Congenital anomaly", "Congestive cardiomyopathy", "Consciousness fluctuating", "Cor pulmonale", "Cor pulmonale acute", "Coronary artery thrombosis", "Cranial nerve injury", "Cranial nerve paralysis", "Craniocerebral injury", "Critical illness", "Cyanosis", "Cyclic vomiting syndrome", "Cytokine release syndrome", "Cytokine storm", "Deep vein thrombosis", "Defect conduction intraventricular", "Demyelinating polyneuropathy", "Demyelination", "Dependence on oxygen therapy", "Dependence on respirator", "Depersonalisation/derealisation disorder", "Diarrhoea haemorrhagic", "Diplegia", "Disseminated intravascular coagulation", "Diverticulitis intestinal perforated", "Diverticulum intestinal haemorrhagic", "Drug hypersensitivity", "Dysaesthesia", "Dysentery", "Dyskinesia", "Dyspnoea at rest", "Dyspnoea paroxysmal nocturnal", "Embolic cerebellar infarction", "Embolic cerebral infarction", "Embolic stroke", "Embolism", "Embolism venous", "Encephalitis", "Encephalomyelitis", "Encephalopathy", "End-tidal CO2 decreased", "Endocarditis", "Endotracheal intubation", "Endotracheal intubation complication", "Epidermal necrosis", "Face injury", "Facial neuralgia", "Facial paralysis", "Facial paresis", "Febrile convulsion", "Fine motor skill dysfunction", "Foetal death", "Foetal heart rate abnormal", "Foetal hypokinesia", "Generalised tonic-clonic seizure", "Haemorrhage intracranial", "Haemorrhagic stroke", "Death", "Heart rate abnormal", "Heart sounds abnormal", "Heart valve incompetence", "Hemiparesis", "Hepatic encephalopathy", "Hepatic vein thrombosis", "Hilar lymphadenopathy", "Hypercoagulation", "Hypertensive crisis", "Hypertensive emergency", "Hypertensive encephalopathy", "Hypertensive urgency", "Hypoxia", "Hypoxic-ischaemic encephalopathy", "Idiopathic intracranial hypertension", "Iliac vein occlusion", "Impaired self-care", "Impaired work ability", "Dyspnoea", "Internal haemorrhage", "Intestinal infarction", "Intra-abdominal haemorrhage", "Intracerebral haematoma evacuation", "Intracranial aneurysm", "Intracranial mass", "Intracranial pressure increased", "Intraductal papillary mucinous neoplasm", "Intraventricular haemorrhage", "Ischaemic cardiomyopathy", "Ischaemic stroke", "Lactic acidosis", "Lacunar infarction", "Lacunar stroke", "Left atrial dilatation", "Left atrial enlargement", "Left ventricular dysfunction", "Left ventricular end-diastolic pressure increased", "Left ventricular failure", "Left ventricular hypertrophy", "Leukocytosis", "Leukopenia", "Life support", "Loss of consciousness", "Loss of employment", "Loss of personal independence in daily activities", "Lower respiratory tract infection", "Lumbar puncture abnormal", "Lumbar spinal stenosis", "Lung abscess", "Lung hyperinflation", "Lung hypoinflation", "Lung infiltration", "Lung neoplasm malignant", "Lung opacity", "Magnetic resonance imaging brain abnormal", "Magnetic resonance imaging spinal abnormal", "Malignant nipple neoplasm female", "Mean platelet volume decreased", "Mean platelet volume increased", "Mechanical ventilation", "Medical induction of coma", "Meningioma", "Meningitis", "Meningitis aseptic", "Meningitis viral", "Mesenteric vein thrombosis")
-string_SAE_3 <- c("Metabolic encephalopathy", "Metastases to bone", "Metastases to liver", "Microembolism", "Migraine", "Migraine with aura", "Mitral valve incompetence", "Mobility decreased", "Motor dysfunction", "Movement disorder", "Multiple organ dysfunction syndrome", "Multiple sclerosis relapse", "Muscle atrophy", "Muscle contractions involuntary", "Muscle contracture", "Muscle spasms", "Muscular weakness", "Musculoskeletal chest pain", "COVID-19", "Myelitis", "Myelitis transverse", "Myocardial infarction", "Myocardial ischaemia", "Myocardial necrosis marker increased", "Myocarditis", "Myosclerosis", "Asthenia", "Near death experience", "Necrosis", "Necrotising fasciitis", "Neoplasm malignant", "Nerve conduction studies abnormal", "Nerve injury", "Neuralgia", "Neuritis", "Neurological examination abnormal", "Neurological symptom", "Neuropathy peripheral", "NIH stroke scale abnormal", "Noninfective encephalitis", "Omental necrosis", "Ophthalmic artery thrombosis", "Ovarian necrosis", "Oxygen saturation decreased", "Oxygen therapy", "Packed red blood cell transfusion", "Painful respiration", "Pallor", "Palpitations", "Pancreatitis acute", "Paraesthesia", "Paralysis", "Partial seizures", "PCO2 decreased", "PCO2 increased", "Pelvic haemorrhage", "Pelvic venous thrombosis", "Penile haemorrhage", "Perfusion brain scan abnormal", "Pericarditis", "Peripheral motor neuropathy", "Peripheral nerve injury", "Peripheral nerve palsy", "Peripheral sensorimotor neuropathy", "Peripheral sensory neuropathy", "Peripheral vein occlusion", "Pharyngeal hypoaesthesia", "Pharyngeal paraesthesia", "Platelet aggregation decreased", "Platelet count abnormal", "Platelet count decreased", "Platelet count increased", "Pleural effusion", "Pleural thickening", "Pneumonia", "Pneumonia aspiration", "Pneumonia bacterial", "Pneumonia viral", "Pneumonitis", "Pneumonitis chemical", "Pneumothorax", "Portal vein thrombosis", "Posthaemorrhagic hydrocephalus", "Premature baby", "Premature delivery", "Premature labour", "Premature rupture of membranes", "Premature separation of placenta", "Preterm premature rupture of membranes", "Psychomotor hyperactivity", "Psychomotor skills impaired", "Pulmonary congestion", "Pulmonary embolism", "Pulmonary function test abnormal", "Pulmonary granuloma", "Pulmonary hilar enlargement", "Pulmonary hilum mass", "Pulmonary hypertension", "Pulmonary imaging procedure abnormal", "Pulmonary infarction", "Pulmonary mass", "Pulmonary oedema", "Pulmonary pain", "Pulmonary pneumatocele", "Pulmonary vascular disorder", "Pulse abnormal", "Pulse absent", "Pulseless electrical activity", "Radial pulse abnormal", "Reaction to excipient", "Reaction to preservatives", "Reaction to previous exposure to any vaccine", "Reactogenicity event", "Rectal haemorrhage", "Red blood cell count abnormal", "Renal embolism", "Renal failure", "Renal function test abnormal", "Respiration abnormal", "Respiratory acidosis", "Respiratory arrest", "Respiratory depression", "Respiratory disorder", "Respiratory distress")
-string_SAE_4 <- c("Respiratory failure", "Respiratory rate", "Respiratory rate decreased", "Respiratory rate increased", "Respiratory symptom", "Respiratory tract congestion", "Respiratory tract infection", "Resuscitation", "Retinal artery occlusion", "Retinal artery thrombosis", "Retinal haemorrhage", "Retinal infarction", "Retinal ischaemia", "Retinal oedema", "Retinal tear", "Retinal vascular occlusion", "Retinal vein occlusion", "Retroperitoneal effusion", "Retroperitoneal oedema", "Rhabdomyolysis", "Right atrial dilatation", "Right ventricular dilatation", "Right ventricular dysfunction", "Right ventricular ejection fraction decreased", "Right ventricular hypertrophy", "Right ventricular systolic pressure decreased", "Ruptured cerebral aneurysm", "Sarcoidosis", "Scan with contrast abnormal", "Screaming", "Seizure", "Seizure cluster", "Seizure like phenomena", "Sepsis", "Septic encephalopathy", "Septic shock", "Shock", "Shock symptom", "Shoulder injury related to vaccine administration", "Silent myocardial infarction", "Sinus arrest", "Sinus arrhythmia", "Sinus bradycardia", "Sinus tachycardia", "Slow response to stimuli", "Spinal cord lipoma", "Spinal pain", "Spleen disorder", "Splenic infarction", "Staphylococcal sepsis", "Stiff person syndrome", "Stillbirth", "Subarachnoid haemorrhage", "Subdural haemorrhage", "Sudden cardiac death", "Sudden death", "Sudden hearing loss", "Sudden infant death syndrome", "Sudden visual loss", "Suicidal ideation", "Superinfection", "Superior sagittal sinus thrombosis", "Supraventricular extrasystoles", "Supraventricular tachycardia", "Surgery", "Suspected COVID-19", "Systemic inflammatory response syndrome", "Systemic lupus erythematosus rash", "Systolic hypertension", "Tachyarrhythmia", "Tachycardia", "Tachyphrenia", "Tachypnoea", "Terminal state", "Thalamic infarction", "Thinking abnormal", "Thrombotic stroke", "Tonic convulsion", "Toxic encephalopathy", "Toxic epidermal necrolysis", "Transient ischaemic attack", "Transverse sinus thrombosis", "Traumatic haemorrhage", "Troponin I increased", "Troponin increased", "Troponin T increased", "Type III immune complex mediated reaction", "Type IV hypersensitivity reaction", "Ulnar neuritis", "Ultrasound scan vagina abnormal", "Undifferentiated connective tissue disease", "Unresponsive to stimuli", "Upper motor neurone lesion", "Urinary bladder haemorrhage", "Urosepsis", "Use of accessory respiratory muscles", "Uterine contractions abnormal", "Vagus nerve disorder", "Vein rupture", "Vena cava embolism", "Venous oxygen saturation decreased", "Ventricular arrhythmia", "Ventricular extrasystoles", "Ventricular fibrillation", "Ventricular hypokinesia", "Ventricular tachycardia", "Vertebral artery occlusion", "Vertebral foraminal stenosis", "Vertebral lateral recess stenosis", "VIIIth nerve injury", "Visual impairment", "Vital functions abnormal", "VIth nerve paralysis", "Vitreous detachment", "Vocal cord paralysis", "Walking distance test abnormal", "Wall motion score index abnormal", "White matter lesion", "Withdrawal of life support")
-
-strings_SAEs <- c(string_SAE_1, string_SAE_2, string_SAE_3, string_SAE_4)
-#strings_SAEs
 ```
 #STRINGS FOR CV, NEURO AND IMMUNO and RENAL and GASTRO GROUPINGS
 ```{r}
@@ -224,26 +173,8 @@ IMMUNOLOGICAL_human <- function(SYMPTOM) {
     }
   return(IMMUNO_human)
 }
-RENAL_human <- function(SYMPTOM) {
-  if(str_detect(SYMPTOM, paste(strings_excretion, collapse = "|"))) {
-   RENAL_human = "RENAL"
-    }
-      else {
-        RENAL_human = "NA"
-    }
-  return(RENAL_human)
-}
-GASTRO_human <- function(SYMPTOM) {
-  if(str_detect(SYMPTOM, paste(strings_gastro, collapse = "|"))) {
-   GASTRO_human = "RENAL"
-    }
-      else {
-        GASTRO_human = "NA"
-    }
-  return(GASTRO_human)
-}
 ```
-Cardiovascular, neurological, immunological, renal and gastrological AE counts
+Cardiovascular, neurological and immunological AE counts
 ```{r}
 CV <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("CARDIOVASCULAR" = CARDIOVASCULAR_human(SYMPTOM)) %>% filter(CARDIOVASCULAR !="NA")
 NEURO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("NEUROLOGICAL" = NEUROLOGICAL_human(SYMPTOM)) %>% filter(NEUROLOGICAL !="NA")
@@ -254,8 +185,6 @@ GASTRO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM 
 nrow(CV)
 nrow(NEURO)
 nrow(IMMUNO)
-nrow(RENAL)
-nrow(GASTRO)
 ```
 Breakthrough COVID-19 case count and of those, deaths and percentage deaths
 ```{r}
@@ -312,12 +241,24 @@ AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
   return(AGE_GROUP)
 }
 ```
+DISTRIBUTION OF ALL DATA BY AGE GROUP
+```{r}
+#png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot.png", width = 4, height = 4, units = 'in', res = 100)
+
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG %>% count(AGE_GROUP)
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot <- ggplot(MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot
+ggsave("MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot.png")
+
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count
+```
 #SOME CHARTS FOR BREAKTHROUGH COVID CASES (BCC)
 ```{r}
 BCC_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(SYMPTOM, VAX_MANU) %>% count(SYMPTOM)
-BCC_count_plot <- ggplot(BCC_count, aes(VAX_MANU, n, fill = VAX_MANU)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("ID COUNT (N)") + ylab("COVID DIAGNOSIS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 10)) + ggtitle("COVID CASES AS PER MANUFACTURER") + theme(legend.position = "none") 
-#BCC_count_plot
-#ggsave("BCC_count_plot.png")
+BCC_count_plot <- ggplot(BCC_count, aes(VAX_MANU, n, fill = VAX_MANU)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("ID COUNT (N)") + ylab("COVID DIAGNOSIS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 10)) + ggtitle("COVID CASES AS PER MANUFACTURER") + theme(legend.position = "none")
 ```
 BREAKTHROUGH COVID CASES by manufacturer.
 ```{r}
@@ -367,11 +308,6 @@ pie_Table_DIST_VM_US_percent <- pie_Table_DIST_VM_US_percent %>% layout(title = 
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 #pie_Table_DIST_VM_US_percent 
 ```
-NUMBER OF SPONTANEOUS ABORTIONS
-```{r}
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
-nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA)
-```
 Pie chart for Breakthrough COVID-19 cases by age group
 ```{r}
 AGE_GROUPS_COVID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -385,6 +321,11 @@ pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAK
          xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 #pie_AGE_GROUPS_COVID_dead
+```
+NUMBER OF SPONTANEOUS ABORTIONS
+```{r}
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
+nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA)
 ```
 DISTRIBUTION OF SPONTANEOUS ABORTIONS BY AGE
 ```{r}
@@ -414,6 +355,13 @@ SA_VD_OD_TILE_count_plot <- ggplot(SA_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE
 SA_VD_OD_TILE_count_plot 
 ggsave("SA_VD_OD_TILE_count.png")
 ```
+```{r}
+#png("CAUSATION_SA_plot", width = 4, height = 4, units = 'in', res = 100)
+
+CAUSATION_SA_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED SA AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "SPONTANEOUS ABORTIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+CAUSATION_SA_plot 
+ggsave("CAUSATION_SA_plot.png")
+```
 ****    Symmetric: Values between -0.5 to 0.5
         Moderated Skewed data: Values between -1 and -0.5 or between 0.5 and 1
         Highly Skewed data: Values less than -1 or greater than 1                 *****
@@ -438,68 +386,13 @@ Table_IDs_COVID_percent <- data.frame(
   
   stringsAsFactors = FALSE
 )
-head(datatable(Table_IDs_COVID_percent))
+#head(Table_IDs_COVID_percent)
 
 #png("Table_IDs_COVID_plot.png", width = 4, height = 4, units = 'in', res = 100)
 
 Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
 Table_IDs_COVID_plot
 ggsave("Table_IDs_COVID_plot.png")
-```
-```{r}
-#png("CAUSATION_SA_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_SA_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED SA AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "SPONTANEOUS ABORTIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
-CAUSATION_SA_plot 
-ggsave("CAUSATION_SA_plot.png")
-```
-#AND ANAPYLACTIC EVENTS
-```{r}
-strings_anaphylaxis <- c("Anaphylactic reaction", "Anaphylactic shock", "Anaphylactoid reaction")
-anaphyl <- function(SYMPTOM) {
-  if(str_detect(SYMPTOM, paste(strings_anaphylaxis, collapse = "|"))) {
-      anaphylaxis = "ANAPHYLACTIC_EVENT"
-      } 
-        else {
-          anaphylaxis = "NA"
-      }
-    return(anaphylaxis)
-}
-```
-```{r}
-#png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_plot", width = 4, height = 4, units = 'in', res = 100)
-
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("ANAPHYLACTIC_EVENT" = anaphyl(SYMPTOM)) %>% filter(ANAPHYLACTIC_EVENT != "NA")
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG %>% count(AGE_GROUP)
-nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_plot <- ggplot(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF ANAPHYLACTIC AEs") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ANAPHYLACTIC EVENTS -> VAERS IDs vs AGE GROUPS") 
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_plot
-ggsave("MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_AG_plot.png")
-```
-```{r}
-ANAP <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_VD_OD <- ANAP %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(ANAP)*100)
-head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_VD_OD)
-
-chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_VD_OD$OBSERVED)
-```
-#ANAP HEATMAP
-```{r}
-ANAP_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP %>% group_by(ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
-
-#png("ANAP_VD_OD_TILE_count_plot ", width = 4, height = 4, units = 'in', res = 100)
-
-ANAP_VD_OD_TILE_count_plot <- ggplot(ANAP_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF SPONTANEOUS ABORTION") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "black", size = 14)) + theme(axis.text.y = element_text(colour = "black", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs ANAPHYLAXIS DATE") 
-ANAP_VD_OD_TILE_count_plot 
-ggsave("ANAP_VD_OD_TILE_count_plot.png")
-```
-```{r}
-#png("CAUSATION_ANAP_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_ANAP_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED ANAPHYLACTIC AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ANAP_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "ANAPHYLAXIS EVENTS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
-CAUSATION_ANAP_plot 
-ggsave("CAUSATION_ANAP_plot.png")
 ```
 LET'S count how many days we have between vax and death and hospital and ER...
 ```{r}
@@ -527,56 +420,6 @@ VD_DD_TILE_plot <- ggplot(VD_DD_TILE_count, aes(VAX_DATE, DATEDIED)) + geom_tile
 VD_DD_TILE_plot 
 ggsave("VD_DD_TILE_plot.png")
 ```
-```{r}
-H <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_H_VD_OD <- H %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n)  %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(H)*100)
-head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_H_VD_OD)
-
-chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_H_VD_OD$OBSERVED)
-```
-#NOW I WOULD LIKE TO PLOT Percentage_OBSERVED AGAINST Percentage_EXPECTED
-```{r}
-#png("CAUSATION_HOSP_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_HOSP_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_H_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED HOSPITALIZATIONS") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_H_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "HOSPITALIZATIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-CAUSATION_HOSP_plot
-ggsave("CAUSATION_HOSP_plot.png")
-```
-#HOW ABOUT HEATMAPS?
-```{r}
-H_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(HOSPITAL, ONSET_DATE, VAX_DATE) %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
-
-#png("H_VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
-
-H_VD_DD_TILE_plot <- ggplot(H_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs HOSPITALIZATION DATE") 
-H_VD_DD_TILE_plot 
-ggsave("H_VD_DD_TILE_plot.png")
-```
-```{r}
-ER <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD <- ER %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(ER)*100)
-head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD)
-
-chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD$OBSERVED)
-```
-#NOW I WOULD LIKE TO PLOT Percentage_OBSERVED AGAINST Percentage_EXPECTED
-```{r}
-#png("CAUSATION_ER_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_ER_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED ER VISITS") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_ER_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "ER VISITS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-CAUSATION_ER_plot 
-ggsave("CAUSATION_ER_plot.png")
-```
-#HOW ABOUT HEATMAPS?
-```{r}
-ER_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(ER_ED_VISIT, ONSET_DATE, VAX_DATE) %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
-
-#png("ER_VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
-
-ER_VD_DD_TILE_plot <- ggplot(ER_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs ER visit DATE") 
-ER_VD_DD_TILE_plot 
-ggsave("ER_VD_DD_TILE_plot.png")
-```
 #LET'S count how many days we have between vax and CV AND NEURO AND IMMUNO...
 ```{r}
 CV_new <- data.frame(CV, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
@@ -593,7 +436,7 @@ CAUSATION_CV_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151
 CAUSATION_CV_plot
 ggsave("CAUSATION_CV_plot.png")
 ```
-HOW ABOUT HEATMAPS?
+#HOW ABOUT HEATMAPS?
 ```{r}
 CV_VD_OD_TILE_count <- CV_new %>% group_by(CARDIOVASCULAR, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
@@ -656,8 +499,6 @@ ggsave("IMMUNO_VD_DD_TILE_plot.png")
 NOW YOU CAN IMPLEMENT OUR AGE_GROUPED_BY_DECADE FUNCTION FOR THE SEPARATE MANUFACTURER DATA FRAMES
 ```{r}
 AGE_GROUPS_D <- D %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-AGE_GROUPS_H <- H %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-AGE_GROUPS_ER <- ER %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_CV_new <- CV_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_NEURO_new <- NEURO_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_IMMUNO_new <- IMMUNO_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -672,26 +513,6 @@ AGE_GROUPS_D_ALL_ID_plot
 ggsave("AGE_GROUPS_D_ALL_ID_plot.png")
 AGE_GROUPS_D_ALL_ID_skew <- data.frame(AGE_GROUPS_D_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 AGE_GROUPS_D_ALL_ID_skew
-```
-```{r}
-#png("AGE_GROUPS_H_ALL_ID_plot", width = 4, height = 4, units = 'in', res = 100)
-
-AGE_GROUPS_H_ALL_ID <- AGE_GROUPS_H %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_H_ALL_ID_plot <- ggplot(AGE_GROUPS_H_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF HOSPITALIZATIONS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Hospital -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_H_ALL_ID_plot
-ggsave("AGE_GROUPS_H_ALL_ID_plot.png")
-AGE_GROUPS_H_ALL_ID_skew <- data.frame(AGE_GROUPS_H_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-AGE_GROUPS_H_ALL_ID_skew
-```
-```{r}
-#png("AGE_GROUPS_ER_ALL_ID_plot", width = 4, height = 4, units = 'in', res = 100)
-
-AGE_GROUPS_ER_ALL_ID <- AGE_GROUPS_ER %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_ER_ALL_ID_plot <- ggplot(AGE_GROUPS_ER_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF EMERGENCY DOCTOR VISITS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ER -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_ER_ALL_ID_plot
-ggsave("AGE_GROUPS_ER_ALL_ID_plot.png")
-AGE_GROUPS_ER_ALL_ID_skew <- data.frame(AGE_GROUPS_ER_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-AGE_GROUPS_ER_ALL_ID_skew
 ```
 ```{r}
 #png("AGE_GROUPS_CV_ALL_ID_plot", width = 4, height = 4, units = 'in', res = 100)
@@ -722,27 +543,6 @@ AGE_GROUPS_IMMUNO_ALL_ID_plot
 ggsave("AGE_GROUPS_IMMUNO_ALL_ID_plot.png")
 AGE_GROUPS_IMMUNO_ALL_ID_skew <- data.frame(AGE_GROUPS_IMMUNO_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 AGE_GROUPS_IMMUNO_ALL_ID_skew
-```
-DISTRIBUTION OF ALL DATA BY AGE GROUP
-```{r}
-#png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot.png", width = 4, height = 4, units = 'in', res = 100)
-
-
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG %>% count(AGE_GROUP)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot <- ggplot(MERGED_SYM_DAT_VAX_05_21_21_151700kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot
-ggsave("MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot.png")
-
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count
-```
-```{r}
-#MERGED_SYM_DAT_VAX_05_21_21_151700kb$VAX_DOSE_SERIES <- as.integer(MERGED_SYM_DAT_VAX_05_21_21_151700kb$VAX_DOSE_SERIES) 
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_doses <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(VAX_DOSE_SERIES, VAX_MANU) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2 & VAX_MANU != "UNKNOWN MANUFACTURER") %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n)) 
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_doses_n <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_doses %>% mutate("SUM" = sum(MERGED_SYM_DAT_VAX_05_21_21_151700kb_doses$n)) %>% mutate("PERCENT" = n/SUM*100)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_doses_n
 ```
 #MAKING A TABLE OF THE DATA HERE INSTEAD OF IN EXCEL
 ```{r}
