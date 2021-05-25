@@ -2,7 +2,7 @@
 widget: hero
 headless: true
 weight: 10
-title: Jessica's World
+title: <color = "Purple">Jessica's World</font>
 hero_media: hio.png
 
 design:
@@ -14,7 +14,7 @@ advanced:
   css_class: fullscreen
 ---
 
-<font size ="4">**Welcome to a place where you can find out about VAERS.**</font>
+<font size ="6">**Welcome to a place where you can find out about VAERS.**</font>
 
 <font size="5" color = "black"> Feel free to visit my youtube channel to see my findings summarized.</font>
 
