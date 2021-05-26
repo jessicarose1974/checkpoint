@@ -24,3 +24,7 @@ advanced:
 
 **https://rumble.com/vhjgqz-vaers-analysis-summary-of-major-findings.html**
 
+<font size="5" color = "black"> You can also check out one of many articles on my study by typing "Jessica Rose VAERS" into any search engine.</font> 
+
+**https://www.americasfrontlinedoctors.org/frontline-news/study-analysis-suggests-the-vaccines-are-likely-cause-of-reported-deaths-spontaneous-abortions-anaphylactic-reactions-cardiovascular-neurological-and-immunological-adverse-events** 
+
