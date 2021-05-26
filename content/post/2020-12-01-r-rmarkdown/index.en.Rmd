@@ -288,7 +288,7 @@ SA_VD_OD_TILE_count_plot
 Distribution of all Breakthrough COVID-19 cases by age group
 ```{r}
 #png("AGE_GROUPS_COVID_plot", width = 4, height = 4, units = 'in', res = 100)
-
+AGE_GROUPS_COVID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_count <- AGE_GROUPS_COVID %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
 AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS")
 AGE_GROUPS_COVID_plot
