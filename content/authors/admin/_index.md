@@ -32,7 +32,7 @@ superuser: true
 title: Dr. Jessica Rose
 ---
 
-Jessica Rose is a researcher.
+Jessica Rose is a Research Fellow.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/CV_Dr_Jessica_Rose.pdf" "newtab" >}}resumé{{< /staticref >}}.
 

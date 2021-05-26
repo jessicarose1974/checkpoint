@@ -63,17 +63,14 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb <- subset(MERGED_SYM_DAT_VAX_05_21_21_15170
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_sym <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% count(SYMPTOM) %>% arrange(desc(n))
 #MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_sym
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_female <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SEX) %>% count(SEX) %>% mutate("PERC_FEMALE" = n/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb)*100)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_female
-write_csv(MERGED_SYM_DAT_VAX_05_21_21_151700kb, "/Users/admin/Desktop/MERGED_SYM_DAT_VAX_05_21_21_151700kb.csv")
+#MERGED_SYM_DAT_VAX_05_21_21_151700kb_female
 #MERGED_SYM_DAT_VAX_05_21_21_151700kb
 ```
-Death count
 ```{r}
 D_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
 DEAD_05_21_21_151700kb <- subset(D_05_21_21_151700kb, !duplicated(subset(D_05_21_21_151700kb, select=c(VAERS_ID))))
 #nrow(DEAD_05_21_21_151700kb)
 ```
-Severe Adverse Event count and percentage
 ```{r}
 DEAD_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(DIED) %>% filter(DIED == "Y")
 HOSPITAL_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(HOSPITAL) %>% filter(HOSPITAL == "Y")
@@ -143,7 +140,6 @@ strings_temperature <- c("Body temperature", "Body temperature abnormal", "Body 
 strings_immunological <- c(strings_immune_effects, strings_skin, strings_temperature)
 #strings_immunological
 ```
-STRINGS FOR CV, NEURO AND IMMUNO and RENAL and GASTRO GROUPINGS
 ```{r}
 CARDIOVASCULAR_human <- function(SYMPTOM) {
   if(str_detect(SYMPTOM, paste(strings_cardiovascular, collapse = "|"))) {
@@ -173,7 +169,6 @@ IMMUNOLOGICAL_human <- function(SYMPTOM) {
   return(IMMUNO_human)
 }
 ```
-Cardiovascular, neurological and immunological AE counts
 ```{r}
 CV <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("CARDIOVASCULAR" = CARDIOVASCULAR_human(SYMPTOM)) %>% filter(CARDIOVASCULAR !="NA")
 NEURO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("NEUROLOGICAL" = NEUROLOGICAL_human(SYMPTOM)) %>% filter(NEUROLOGICAL !="NA")
@@ -183,7 +178,6 @@ IMMUNO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM 
 #nrow(NEURO)
 #nrow(IMMUNO)
 ```
-Breakthrough COVID-19 case count and of those, deaths and percentage deaths
 ```{r}
 strings_covid <- c("COVID-19", "Suspected COVID-19", "SARS-CoV-2 test positive", "COVID-19 pneumonia", "Asymptomatic COVID-19")
 COVID_CASES <- function(SYMPTOM) {
@@ -203,7 +197,6 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead <- MERGED_SYM_DAT_VAX_05_2
 Perc_D_BC = (nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases)*100)
 #Perc_D_BC
 ```
-AGE GROUPED DATA ANALYSIS
 ```{r}
 AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
   if(AGE_YRS >= 0 & AGE_YRS <10) {
@@ -535,10 +528,9 @@ Table_IDs_percent <- data.frame(
 SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) %>% mutate("SAE_p_mill_doses" = SAE_p_FV/(2.21)) #cum num of doses/FV population = 279400000/126610000 = 2.21
 #SAE_calculations
 ```
-THIS IS THE PERCENTAGE INCREASE CALCULATION OF ID PER WEEK 
 ```{r}
 IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716"))
-(diff(IDs)/(IDs))*100
+#(diff(IDs)/(IDs))*100
 ```
 ```{r}
 Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DEATH/IDs*100) %>% mutate("H_PERCENT_ID" = HOSPITAL/IDs*100) %>% mutate("ER_PERCENT_ID" = ER/IDs*100) %>% mutate("SAE_PERCENT_ID" = SAE/IDs*100) %>% mutate("COVID_PERCENT_ID" = COVID/IDs*100) %>% mutate("CV_PERCENT_ID" = CV/IDs*100) %>% mutate("NEURO_PERCENT_ID" = NEURO/IDs*100) %>% mutate("IMMUNO_PERCENT_ID" = IMMUNO/IDs*100) %>% mutate("DEATH_PERCENT_FV" = DEATH/FV*100) %>% mutate("H_PERCENT_FV" = HOSPITAL/FV*100) %>% mutate("ER_PERCENT_FV" = ER/FV*100) %>% mutate("SAE_PERCENT_FV" = SAE/FV*100) %>% mutate("COVID_PERCENT_FV" = COVID/FV*100) %>% mutate("CV_PERCENT_FV" = CV/FV*100) %>% mutate("NEURO_PERCENT_FV" = NEURO/FV*100) %>% mutate("IMMUNO_PERCENT_FV" = IMMUNO/FV*100)
@@ -598,4 +590,42 @@ IDS NORMALIZED TO FV PER MILLION
 
 Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("AEs/million") + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, CV_norm_per_million, colour = "CV"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE,NEURO_norm_per_million, colour = "NEURO"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, IMMUNO_norm_per_million, colour = "IMMUNO"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
 Table_IDs_FV_per_million
+```
+```{r}
+strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female sex hormone level", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Female sex hormone level", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
+```
+```{r}
+FRI <- function(SYMPTOM) {
+  if(str_detect(SYMPTOM, paste(strings_FRI, collapse = "|"))) {
+      FRI = "Female_Reprod_Issues"
+      } 
+        else {
+          FRI = "NA"
+      }
+    return(FRI)
+}
+```
+```{r}
+FRI_CASES <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM)) %>% filter(Female_Reprod_Issues != "NA")
+```
+```{r}
+nrow(FRI_CASES)
+```
+```{r}
+FRI_CASES_AG <- FRI_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+FRI_CASES_AG_count <- FRI_CASES_AG %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
+FRI_CASES_AG_plot <- ggplot(FRI_CASES_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF FRI AEs") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Female Reproductive Issues -> VAERS IDs vs AGE GROUPS")
+FRI_CASES_AG_plot
+FRI_CASES_AG_plot_skew <- data.frame(FRI_CASES_AG_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+FRI_CASES_AG_plot_skew
+```
+```{r}
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(SEX == "F") 
+#nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM)
+FRI_CASES_perc <- FRI_CASES %>% count(SYMPTOM) %>% arrange(desc(n)) %>% mutate("PERC" = n/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM)*100)
+FRI_CASES_perc
+```
+```{r}
+FRI_CASES_count_plot <- ggplot(FRI_CASES_perc, aes(n, SYMPTOM, fill = SYMPTOM)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + ylab("SYMPTOM") + xlab("Number of Female Reproductive Disorders") + theme(axis.text.y = element_text(colour = "black", size = 6)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 10)) + theme(legend.position = "none") + ggtitle("Female Reproductive Adverse Events")
+FRI_CASES_count_plot
 ```
