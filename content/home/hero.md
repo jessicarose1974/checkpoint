@@ -22,5 +22,5 @@ advanced:
 <font size ="4">**https://rumble.com/vhjgqz-vaers-analysis-summary-of-major-findings.html**</font>
 
 <font size="5" color = "yellow"> ...or one of many articles on my study by America's Frontline Doctors.</font> 
-<font size ="4">**https://www.americasfrontlinedoctors.org/frontline-news/study-analysis-suggests-the-vaccines-are-likely-cause-of-reported-deaths-spontaneous-abortions-anaphylactic-reactions-cardiovascular-neurological-and-immunological-adverse-events**</font>
+<font size ="1">**https://www.americasfrontlinedoctors.org/frontline-news/study-analysis-suggests-the-vaccines-are-likely-cause-of-reported-deaths-spontaneous-abortions-anaphylactic-reactions-cardiovascular-neurological-and-immunological-adverse-events**</font>
 
