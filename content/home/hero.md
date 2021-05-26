@@ -14,7 +14,7 @@ advanced:
   css_class: fullscreen
 ---
 
-<font size ="6">**Welcome to a place where you can find out about VAERS.**</font>
+<font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
 <font size="5" color = "black"> Feel free to visit my youtube channel to see my findings summarized.</font>
 
