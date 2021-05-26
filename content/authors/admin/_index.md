@@ -34,7 +34,7 @@ title: Dr. Jessica Rose
 
 Jessica Rose is a researcher.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/CV_Dr_Jessica_Rose.pdf" "newtab" >}}resumé{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
 
