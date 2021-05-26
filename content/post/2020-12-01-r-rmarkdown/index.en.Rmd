@@ -7,6 +7,11 @@ output: html_document
 
 This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.
 
+I start by coalescing the .csv files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
 ```{r}
 library("readr")
 library("tidyverse")
@@ -17,11 +22,6 @@ library("DT")
 library("reshape2")
 library("data.table")
 library("plotly")
-```
-I start with coalescing the .csv data files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
-```{r global-options, include=FALSE}
-knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
-                      echo=FALSE, warning=FALSE, message=FALSE)
 ```
 ```{r}
 VAERSSYM_2021_paper <- read_csv("/Users/admin/Downloads/2021VAERSData_05_21_21_151700kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
@@ -71,7 +71,7 @@ Death count
 ```{r}
 D_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
 DEAD_05_21_21_151700kb <- subset(D_05_21_21_151700kb, !duplicated(subset(D_05_21_21_151700kb, select=c(VAERS_ID))))
-nrow(DEAD_05_21_21_151700kb)
+#nrow(DEAD_05_21_21_151700kb)
 ```
 Severe Adverse Event count and percentage
 ```{r}
@@ -80,9 +80,9 @@ HOSPITAL_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_b
 ER_ED_Y_05_21_21_151700kb <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
 SAES_05_21_21_151700kb <- rbind(DEAD_Y_05_21_21_151700kb, HOSPITAL_Y_05_21_21_151700kb, ER_ED_Y_05_21_21_151700kb) 
 SAES_no_dups_05_21_21_151700kb <- subset(SAES_05_21_21_151700kb, !duplicated(subset(SAES_05_21_21_151700kb, select=c(VAERS_ID))))
-nrow(SAES_no_dups_05_21_21_151700kb)
+#nrow(SAES_no_dups_05_21_21_151700kb)
 Percent = nrow(SAES_no_dups_05_21_21_151700kb)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb)*100
-Percent
+#Percent
 ```
 BAR PLOT FOR SAE COMPARISON TO STANDARD (15%)
 ```{r}
@@ -179,9 +179,9 @@ CV <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "
 NEURO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("NEUROLOGICAL" = NEUROLOGICAL_human(SYMPTOM)) %>% filter(NEUROLOGICAL !="NA")
 IMMUNO <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("IMMUNOLOGICAL" = IMMUNOLOGICAL_human(SYMPTOM)) %>% filter(IMMUNOLOGICAL !="NA")
 
-nrow(CV)
-nrow(NEURO)
-nrow(IMMUNO)
+#nrow(CV)
+#nrow(NEURO)
+#nrow(IMMUNO)
 ```
 Breakthrough COVID-19 case count and of those, deaths and percentage deaths
 ```{r}
@@ -197,12 +197,11 @@ COVID_CASES <- function(SYMPTOM) {
 }
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPTOM != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM)) %>% filter(COVID_CASES != "NA")
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases <- replace(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases, "SYMPTOM", "COVID19") 
-nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases)
+#nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases)
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% filter(DIED == "Y") 
-nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead)
-write_csv(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases, "/Users/admin/Desktop/MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases.csv")
+#nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead)
 Perc_D_BC = (nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases_dead)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases)*100)
-Perc_D_BC
+#Perc_D_BC
 ```
 AGE GROUPED DATA ANALYSIS
 ```{r}
@@ -249,6 +248,69 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- MERGED_SYM_DAT_VAX_05_21_21_15
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #MERGED_SYM_DAT_VAX_05_21_21_151700kb_AGE_count
 ```
+NUMBER OF SPONTANEOUS ABORTIONS
+```{r}
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
+nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA)
+```
+DISTRIBUTION OF SPONTANEOUS ABORTIONS BY AGE
+```{r}
+#png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot", width = 4, height = 4, units = 'in', res = 100)
+
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot <- ggplot(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE YEARS") + ylab("NUMBER OF SPONTANEOUS ABORTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("SPONTANEOUS ABORTION -> VAERS IDs vs AGE YEARS")
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot
+```
+```{r}
+SA <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD <- SA %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(SA)*100)
+#head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD)
+
+#chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD$OBSERVED)
+```
+Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Miscarriage Date
+```{r}
+#png("CAUSATION_SA_plot", width = 4, height = 4, units = 'in', res = 100)
+
+CAUSATION_SA_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED SA AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "SPONTANEOUS ABORTIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+CAUSATION_SA_plot
+```
+HEATMAP showing correlation between Vaccine Date and Onset Date for Spontaneous Abortions
+```{r}
+SA_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA %>% group_by(ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+
+#png("SA_VD_OD_TILE_count_plot ", width = 4, height = 4, units = 'in', res = 100)
+
+SA_VD_OD_TILE_count_plot <- ggplot(SA_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF SPONTANEOUS ABORTION") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "black", size = 14)) + theme(axis.text.y = element_text(colour = "black", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs SA DATE") 
+SA_VD_OD_TILE_count_plot
+```
+Distribution of all Breakthrough COVID-19 cases by age group
+```{r}
+#png("AGE_GROUPS_COVID_plot", width = 4, height = 4, units = 'in', res = 100)
+
+AGE_GROUPS_COVID_count <- AGE_GROUPS_COVID %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
+AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS")
+AGE_GROUPS_COVID_plot
+
+AGE_GROUPS_COVID_plot_skew <- data.frame(AGE_GROUPS_COVID_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#AGE_GROUPS_COVID_plot_skew
+```
+Breakthrough COVID-19 Cases by update date
+```{r}
+Table_IDs_COVID_percent <- data.frame(
+  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/12/21", "5/19/21"), "%m/%d/%y"),
+  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742")),
+  
+  stringsAsFactors = FALSE
+)
+#head(Table_IDs_COVID_percent)
+
+#png("Table_IDs_COVID_plot.png", width = 4, height = 4, units = 'in', res = 100)
+
+Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
+Table_IDs_COVID_plot
+```
 SOME CHARTS FOR BREAKTHROUGH COVID CASES (BCC)
 ```{r}
 BCC_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(SYMPTOM, VAX_MANU) %>% count(SYMPTOM)
@@ -258,10 +320,10 @@ BREAKTHROUGH COVID CASES by manufacturer.
 ```{r}
 no_COVID_sym <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(SYMPTOM != "COVID19")
 no_BCC_count_VM <- no_COVID_sym %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb))*100) %>% mutate("Round" = round(PERC, 2))
-no_BCC_count_VM
+#no_BCC_count_VM
 BCC_count_VM <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases))*100) %>% mutate("Round" = round(PERC, 2))
 BCC_count_VM <- data.frame(BCC_count_VM, stringsAsFactors = FALSE) 
-BCC_count_VM
+#BCC_count_VM
 ```
 ```{r}
 pie_VM <- plot_ly(BCC_count_VM, labels = ~VAX_MANU, values = ~Round, type = 'pie')
@@ -302,7 +364,6 @@ pie_Table_DIST_VM_US_percent <- pie_Table_DIST_VM_US_percent %>% layout(title = 
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_Table_DIST_VM_US_percent 
 ```
-Pie chart for Breakthrough COVID-19 cases by age group
 ```{r}
 AGE_GROUPS_COVID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
@@ -316,74 +377,6 @@ pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAK
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_AGE_GROUPS_COVID_dead
 ```
-NUMBER OF SPONTANEOUS ABORTIONS
-```{r}
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
-nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA)
-```
-DISTRIBUTION OF SPONTANEOUS ABORTIONS BY AGE
-```{r}
-#png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot", width = 4, height = 4, units = 'in', res = 100)
-
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot <- ggplot(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE YEARS") + ylab("NUMBER OF SPONTANEOUS ABORTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("SPONTANEOUS ABORTION -> VAERS IDs vs AGE YEARS")
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot
-```
-CHI-SQUARE TEST and CALCULATION OF length of time between VD and OD for spontaneous abortions
-```{r}
-SA <- data.frame(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
-MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD <- SA %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(SA)*100)
-#head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD)
-
-#chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD$OBSERVED)
-```
-HEATMAP showing correlation between VD and OD for spontaneous abortions
-```{r}
-SA_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA %>% group_by(ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
-
-#png("SA_VD_OD_TILE_count_plot ", width = 4, height = 4, units = 'in', res = 100)
-
-SA_VD_OD_TILE_count_plot <- ggplot(SA_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF SPONTANEOUS ABORTION") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "black", size = 14)) + theme(axis.text.y = element_text(colour = "black", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs SA DATE") 
-SA_VD_OD_TILE_count_plot
-```
-```{r}
-#png("CAUSATION_SA_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_SA_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED SA AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "SPONTANEOUS ABORTIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
-CAUSATION_SA_plot
-```
-****    Symmetric: Values between -0.5 to 0.5
-        Moderated Skewed data: Values between -1 and -0.5 or between 0.5 and 1
-        Highly Skewed data: Values less than -1 or greater than 1                 *****
-        
-Distribution of all Breakthrough COVID-19 cases by age group
-```{r}
-#png("AGE_GROUPS_COVID_plot", width = 4, height = 4, units = 'in', res = 100)
-
-AGE_GROUPS_COVID_count <- AGE_GROUPS_COVID %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_COVID_plot
-
-AGE_GROUPS_COVID_plot_skew <- data.frame(AGE_GROUPS_COVID_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#AGE_GROUPS_COVID_plot_skew
-```
-Breakthrough COVID-19 Cases by update date
-```{r}
-Table_IDs_COVID_percent <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/12/21", "5/19/21"), "%m/%d/%y"),
-  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742")),
-  
-  stringsAsFactors = FALSE
-)
-#head(Table_IDs_COVID_percent)
-
-#png("Table_IDs_COVID_plot.png", width = 4, height = 4, units = 'in', res = 100)
-
-Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
-Table_IDs_COVID_plot
-```
-LET'S count how many days we have between vax and death and hospital and ER...
 ```{r}
 D <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
@@ -391,13 +384,14 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_VD_DD <- D %>% mutate("diff_in_days" = diff
 
 #chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_VD_DD$OBSERVED)
 ```
-Percentage_OBSERVED AGAINST Percentage_EXPECTED plots to show causation in grouped AEs
+Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Death Date
 ```{r}
 #png("CAUSATION_DEATH_plot", width = 4, height = 4, units = 'in', res = 100)
 
 CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,15)
 CAUSATION_DEATH_plot
 ```
+HEATMAP showing correlation between Vaccine Date and Onset Date for Deaths
 ```{r}
 VD_DD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
@@ -406,6 +400,7 @@ VD_DD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(DIED, DATE
 VD_DD_TILE_plot <- ggplot(VD_DD_TILE_count, aes(VAX_DATE, DATEDIED)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("DATE OF DEATH") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + ggtitle("VACCINE DATE vs DEATH DATE OF AEs") 
 VD_DD_TILE_plot
 ```
+Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Onset Date of Cardiovascular Adverse Event
 ```{r}
 CV_new <- data.frame(CV, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_CV_VD_OD <- CV_new %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(CV_new)*100)
@@ -419,6 +414,7 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_CV_VD_OD <- CV_new %>% mutate("diff_in_days
 CAUSATION_CV_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_CV_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED CV AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_CV_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "CARDIOVASCULAR AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,60)
 CAUSATION_CV_plot
 ```
+HEATMAP showing correlation between Vaccine Date and Onset Date for Cardiovascular Adverse Events
 ```{r}
 CV_VD_OD_TILE_count <- CV_new %>% group_by(CARDIOVASCULAR, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
@@ -427,6 +423,7 @@ CV_VD_OD_TILE_count <- CV_new %>% group_by(CARDIOVASCULAR, ONSET_DATE, VAX_DATE)
 CV_VD_DD_TILE_plot <- ggplot(CV_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs CARDIOVASCULAR AE ONSET DATE") 
 CV_VD_DD_TILE_plot
 ```
+Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Onset Date of Neurological Adverse Event
 ```{r}
 NEURO_new <- data.frame(NEURO, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD <- NEURO_new %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/nrow(NEURO_new)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(NEURO_new)*100)
@@ -440,6 +437,7 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD <- NEURO_new %>% mutate("diff_i
 CAUSATION_NEURO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_NEURO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,50)
 CAUSATION_NEURO_plot
 ```
+HEATMAP showing correlation between Vaccine Date and Onset Date for Neurological Adverse Events
 ```{r}
 NEURO_VD_OD_TILE_count <- NEURO_new %>% group_by(NEUROLOGICAL, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
@@ -448,6 +446,7 @@ NEURO_VD_OD_TILE_count <- NEURO_new %>% group_by(NEUROLOGICAL, ONSET_DATE, VAX_D
 NEURO_VD_DD_TILE_plot <- ggplot(NEURO_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs NEUROLOGICAL AE ONSET DATE") 
 NEURO_VD_DD_TILE_plot
 ```
+Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Onset Date of Immunological Adverse Event
 ```{r}
 IMMUNO_new <- data.frame(IMMUNO, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD <- IMMUNO_new %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/nrow(IMMUNO_new)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(IMMUNO_new)*100)
@@ -461,6 +460,7 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD <- IMMUNO_new %>% mutate("diff
 CAUSATION_IMMUNO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED IMMUNO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_IMMUNO_plot
 ```
+HEATMAP showing correlation between Vaccine Date and Onset Date for Immunological Adverse Events
 ```{r}
 IMMUNO_VD_OD_TILE_count <- IMMUNO_new %>% group_by(IMMUNOLOGICAL, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
@@ -475,7 +475,7 @@ AGE_GROUPS_CV_new <- CV_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate
 AGE_GROUPS_NEURO_new <- NEURO_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_IMMUNO_new <- IMMUNO_new %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 ```
-Histograms to show distribution by age group in Death, Hospital, ER, CV, Neuro and Immuno AE groups
+Histograms to show distributions by age group in Death, Hospital, ER, CV, Neuro and Immuno AE groups
 ```{r}
 #png("AGE_GROUPS_D_ALL_ID_plot", width = 4, height = 4, units = 'in', res = 100)
 
@@ -573,10 +573,8 @@ Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop
 Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
 #Table_IDs_all_VAERS_plot
 ```
-This is the table of the VAERS ID counts from 1990 to 2021.
 ```{r}
 #png("Table_IDs_all_VAERS_plot_norm_US.png", width = 4, height = 4, units = 'in', res = 100)
-
 
 Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
 Table_IDs_all_VAERS_plot_norm_US
