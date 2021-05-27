@@ -81,7 +81,7 @@ SAES_no_dups_05_21_21_151700kb <- subset(SAES_05_21_21_151700kb, !duplicated(sub
 Percent = nrow(SAES_no_dups_05_21_21_151700kb)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb)*100
 #Percent
 ```
-SEVERE ADVERSE EVENTS (SAE) COMPARED TO VAERS (SAE) STANDARD (15%) - CONSISTENTLY HIGHER
+ACTUAL REPORTED SEVERE ADVERSE EVENTS (SAE) COMPARED TO VAERS STANDARD (15%) - IT IS STILL CONSISTENTLY HIGHER AND PEAKED AT 57%
 ```{r}
 Table_SAEs <- data.frame(
   Percent_SAE = c("Standard", "Actual"),
@@ -415,7 +415,7 @@ CAUSATION_CV_plot
 ```
 HEATMAP showing correlation between Vaccine Date and Onset Date for Cardiovascular Adverse Events
 ```{r}
-CV_VD_OD_TILE_count <- CV_new %>% group_by(CARDIOVASCULAR, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+CV_VD_OD_TILE_count <- CV_new %>% group_by(CARDIOVASCULAR, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
 #png("CV_VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
 
@@ -619,6 +619,17 @@ FRI_CASES <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% rowwise() %>% filter(SYMPT
 ```
 ```{r}
 nrow(FRI_CASES)
+```
+```{r}
+FRI_CASES_count <- FRI_CASES %>% group_by(Female_Reprod_Issues, ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% count(Female_Reprod_Issues) %>% arrange(desc(n))
+FRI_CASES_count_week <- FRI_CASES_count
+FRI_CASES_count_week$week <- week(FRI_CASES_count_week$ONSET_DATE)
+FRI_CASES_count_week_count <- FRI_CASES_count_week %>% group_by(week) %>% arrange(desc(ONSET_DATE))
+FRI_CASES_count_week_count
+```
+```{r}
+FRI_plot <- ggplot(data = FRI_CASES_count_week_count, aes(x = ONSET_DATE, y = n)) + geom_point(data = FRI_CASES_count_week_count, aes(ONSET_DATE, n), colour = "red", size = 5) + ylab("Number of FRIs (N)") + labs(title = "FRIs FOR 2021", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) #+ scale_x_continuous(breaks = round(seq(min(SAE_count_week_count$n), max(SAE_count_week_count$n), by = 1),1))
+FRI_plot 
 ```
 ```{r}
 FRI_CASES_AG <- FRI_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
