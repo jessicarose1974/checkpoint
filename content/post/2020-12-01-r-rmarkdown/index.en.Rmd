@@ -328,19 +328,8 @@ pie_VM <- pie_VM %>% layout(title = 'BREAKTHROUGH COVID-19 CASES BY MANUFACTURER
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_VM
 ```
-BREAKTHROUGH COVID-19 CASES WHO DIED
-```{r}
-BCC_count_VM_dead <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(VAX_MANU, DIED) %>% count(DIED) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER" & DIED == "Y") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases))*100) %>% mutate("Round" = round(PERC, 2))
-BCC_count_VM_dead <- data.frame(BCC_count_VM_dead, stringsAsFactors = FALSE) 
-#BCC_count_VM_dead
-```
-```{r}
-pie_VM_dead <- plot_ly(BCC_count_VM_dead, labels = ~VAX_MANU, values = ~Round, type = 'pie')
-pie_VM_dead <- pie_VM_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES resulting in death BY MANUFACTURER',
-         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-pie_VM_dead
-```
+THE QUESTION OF DISTRIBUTION BY MANUFACTURER SHOULD BE ANSWERED IN ORDER TO ASSESS WHETHER OR NOT PFIZER IS ACTUALLY MORE HIGHLY ASSOCIATED WITH BREAKTHROUGH INFECTIONS - THE PRODUCTS ARE EQUALLY DISTRIBUTED THROUGHOUT THE U.S. POPULATION SO IT APPEARS AS THOUGH PFIZER IS MORE HIGHLY ASSOCIATED WITH BREAKTHROUGH INFECTIONS
+
 Pie chart for distribution of vax manu data in US population (U.S. COVID-19 Vaccine Delivered by Vaccine Type					
 Date generated: CDC | Data as of: May 4, 2021 6:00am ET. Posted: Tuesday, May 25, 2021 6:00 PM ET https://covid.cdc.gov/covid-data-tracker/#vaccinations 
 ```{r}
@@ -360,6 +349,20 @@ pie_Table_DIST_VM_US_percent <- pie_Table_DIST_VM_US_percent %>% layout(title = 
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_Table_DIST_VM_US_percent 
 ```
+BREAKTHROUGH COVID-19 CASES WHO DIED
+```{r}
+BCC_count_VM_dead <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(VAX_MANU, DIED) %>% count(DIED) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER" & DIED == "Y") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases))*100) %>% mutate("Round" = round(PERC, 2))
+BCC_count_VM_dead <- data.frame(BCC_count_VM_dead, stringsAsFactors = FALSE) 
+#BCC_count_VM_dead
+```
+```{r}
+pie_VM_dead <- plot_ly(BCC_count_VM_dead, labels = ~VAX_MANU, values = ~Round, type = 'pie')
+pie_VM_dead <- pie_VM_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES resulting in death BY MANUFACTURER',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+pie_VM_dead
+```
+BUT THANKFULLY, DEATH IS NOT EVENLY DISTRIBUTED BETWEEN MANUFACTURERS
 ```{r}
 AGE_GROUPS_COVID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
@@ -568,35 +571,35 @@ Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop
 Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
 #Table_IDs_all_VAERS_plot
 ```
-VAERS ID counts per year normalized to U.S. population per million people
+VAERS ID COUNTS NORMALIZED TO U.S. POPULATION
 ```{r}
 #png("Table_IDs_all_VAERS_plot_norm_US.png", width = 4, height = 4, units = 'in', res = 100)
 
 Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(title = "VAERS ADVERSE EVENT COUNTS OVER THE YEARS", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
 Table_IDs_all_VAERS_plot_norm_US
 ```
-Absolute number of Adverse Events (cumulative sum)
+CUMULATIVE NUMBER OF ADVERSE EVENTS
 ```{r}
 #png("Table_IDs_plot.png", width = 4, height = 4, units = 'in', res = 100)
 
 Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "CUMULATIVE COVID-19 PRODUCT-RELATED VAERS AES", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot
 ```
-Absolute numbers of Adverse Events as per Category
+CUMULATIVE NUMBER OF ADVERSE EVENTS AS PER AE GROUP
 ```{r}
 #png("Table_IDs_percent_plot", width = 4, height = 4, units = 'in', res = 100)
 
 Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, CV, colour = "CV"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, NEURO, colour = "NEURO"), size = 2) + geom_line(data = Table_IDs_percent, aes(DATE, IMMUNO, colour = "IMMUNO"), size = 2) + labs(title = "CUMULATIVE COVID-19 PRODUCT-RELATED GROUPED AES", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
 Table_IDs_percent_plot
 ```
-Absolute number of Adverse Events by Category normalized to fully-vaxxed population/million
+CUMULATIVE NUMBER OF VAERS IDS AS PER AE GROUP PER MILLION FULLY VAXXED (FV)
 ```{r}
 #png("Table_IDs_FV_per_million", width = 4, height = 4, units = 'in', res = 100)
 
 Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Grouped adverse events per million FV") + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, CV_norm_per_million, colour = "CV"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE,NEURO_norm_per_million, colour = "NEURO"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, IMMUNO_norm_per_million, colour = "IMMUNO"), size = 2) + labs(title = "VAERS AES PER MILLION FULLY VAXXED (FV)", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
 Table_IDs_FV_per_million
 ```
-THE FOLLOWING IS A NEW ADVERSE EVENT GROUP THAT I CREATED BY WRITING A FUNCTION THAT PULLS OUT AES BY KEYWORD. THIS NEW AE GROUP INCLUDED FEMALE REPRODCUTIVE ISSUES THAT OCCURRED IN WOMEN POST-INJECTION.
+THE FOLLOWING IS A NEW ADVERSE EVENT GROUP THAT I CREATED BY WRITING A FUNCTION THAT PULLS OUT AES BY KEYWORD. THIS NEW AE GROUP INCLUDED FEMALE REPRODUCTIVE ISSUES THAT OCCURRED IN WOMEN POST-INJECTION.
 ```{r}
 strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female sex hormone level", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Female sex hormone level", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
 ```
