@@ -81,7 +81,7 @@ SAES_no_dups_05_21_21_151700kb <- subset(SAES_05_21_21_151700kb, !duplicated(sub
 Percent = nrow(SAES_no_dups_05_21_21_151700kb)/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb)*100
 #Percent
 ```
-BAR PLOT FOR SAE COMPARISON TO STANDARD (15%)
+SEVERE ADVERSE EVENTS (SAE) COMPARED TO VAERS (SAE) STANDARD (15%) - CONSISTENTLY HIGHER
 ```{r}
 Table_SAEs <- data.frame(
   Percent_SAE = c("Standard", "Actual"),
@@ -228,7 +228,7 @@ AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
   return(AGE_GROUP)
 }
 ```
-DISTRIBUTION OF ALL DATA BY AGE GROUP
+DISTRIBUTION OF ALL DATA BY AGE GROUP - THE MAJORITY OF INDIVIDUALS ARE BETWEEN THE AGES OF 30 AND 70
 ```{r}
 #png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_count_plot.png", width = 4, height = 4, units = 'in', res = 100)
 
@@ -246,7 +246,7 @@ NUMBER OF SPONTANEOUS ABORTIONS
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% group_by(SYMPTOM) %>% filter(SYMPTOM == "Abortion spontaneous")
 nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_no_dups_SA)
 ```
-DISTRIBUTION OF SPONTANEOUS ABORTIONS BY AGE
+DISTRIBUTION OF SPONTANEOUS ABORTIONS - THIS SUBSET IS GROWING WEEKLY
 ```{r}
 #png("MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_ID_plot", width = 4, height = 4, units = 'in', res = 100)
 
@@ -262,6 +262,8 @@ MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD <- SA %>% mutate("diff_in_days" = 
 
 #chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD$OBSERVED)
 ```
+THE PLOTS SHOWING OBSERVED VERSUS EXPECTED TRAJECTORIES SHOW CLUSTERING OF DATA AROUND '0' - A LARGER PROPORTION OF REPORTS WERE MADE WITHIN 24 HOURS THAT ONE WOULD EXPECT TO SEE IF THERE WAS NO CAUSALITY
+
 Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Miscarriage Date
 ```{r}
 #png("CAUSATION_SA_plot", width = 4, height = 4, units = 'in', res = 100)
@@ -269,6 +271,8 @@ Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific tim
 CAUSATION_SA_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE REPORTED SA AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "SPONTANEOUS ABORTIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
 CAUSATION_SA_plot
 ```
+HEATMAPS ARE BEAUTIFUL WAYS TO ILLUSTRATE A LOT OF INFORMATION IN A SINGLE FIGURE. THESE HEATMAPS SHOW THE INTERSECTIONS OF INJECTION DATES AND ONSET OF ADVERSE EVENT DATES AS PER SPECIFIC AE GROUP. THE COLOR OF THE INTERSECTION 'BLOCK' INDICATES THE NUMBER OF INTERSECTIONS THAT OCCURRED - RED = HIGHEST; BLUE = LOWEST. POINTS LYING ON THE DIAGONAL HAVE A CORRELATION COEFFICIENT WHERE R = 1, INDICATING A 1:1 CORRELATION. 
+
 HEATMAP showing correlation between Vaccine Date and Onset Date for Spontaneous Abortions
 ```{r}
 SA_VD_OD_TILE_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_SA %>% group_by(ONSET_DATE, VAX_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
@@ -289,7 +293,7 @@ AGE_GROUPS_COVID_plot
 AGE_GROUPS_COVID_plot_skew <- data.frame(AGE_GROUPS_COVID_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_COVID_plot_skew
 ```
-Breakthrough COVID-19 Cases by update date
+CUMULATIVE BREAKTHROUGH COVID-19 CASES
 ```{r}
 Table_IDs_COVID_percent <- data.frame(
   DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/12/21", "5/19/21"), "%m/%d/%y"),
@@ -301,15 +305,14 @@ Table_IDs_COVID_percent <- data.frame(
 
 #png("Table_IDs_COVID_plot.png", width = 4, height = 4, units = 'in', res = 100)
 
-Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
+Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(title = "ABSOLUTE NUMBER OF BREAKTHROUGH INFECTIONS (CUMULATIVE)", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
 Table_IDs_COVID_plot
 ```
-SOME CHARTS FOR BREAKTHROUGH COVID CASES (BCC)
 ```{r}
 BCC_count <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(SYMPTOM, VAX_MANU) %>% count(SYMPTOM)
 BCC_count_plot <- ggplot(BCC_count, aes(VAX_MANU, n, fill = VAX_MANU)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("ID COUNT (N)") + ylab("COVID DIAGNOSIS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 10)) + ggtitle("COVID CASES AS PER MANUFACTURER") + theme(legend.position = "none")
 ```
-BREAKTHROUGH COVID CASES by manufacturer.
+BREAKTHROUGH COVID CASES BY MANUFACTURER
 ```{r}
 no_COVID_sym <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(SYMPTOM != "COVID19")
 no_BCC_count_VM <- no_COVID_sym %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb))*100) %>% mutate("Round" = round(PERC, 2))
@@ -325,7 +328,7 @@ pie_VM <- pie_VM %>% layout(title = 'BREAKTHROUGH COVID-19 CASES BY MANUFACTURER
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_VM
 ```
-This is the pie chart for the dead of the breakthrough cases.
+BREAKTHROUGH COVID-19 CASES WHO DIED
 ```{r}
 BCC_count_VM_dead <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% group_by(VAX_MANU, DIED) %>% count(DIED) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER" & DIED == "Y") %>% mutate("PERC" = n/(nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases))*100) %>% mutate("Round" = round(PERC, 2))
 BCC_count_VM_dead <- data.frame(BCC_count_VM_dead, stringsAsFactors = FALSE) 
@@ -362,7 +365,7 @@ AGE_GROUPS_COVID <- MERGED_SYM_DAT_VAX_05_21_21_151700kb_covid_cases %>% rowwise
 AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
 #AGE_GROUPS_COVID_dead
 ```
-Pie chart for Breakthrough COVID-19 cases by age group WHO DIED
+BREAKTHROUGH COVID-19 CASES WHO DIED BY AGE
 ```{r}
 pie_AGE_GROUPS_COVID_dead <- plot_ly(AGE_GROUPS_COVID_dead, labels = ~AGE_GROUP, values = ~Round, type = 'pie')
 pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP',
@@ -565,32 +568,35 @@ Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop
 Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
 #Table_IDs_all_VAERS_plot
 ```
+VAERS ID counts per year normalized to U.S. population per million people
 ```{r}
 #png("Table_IDs_all_VAERS_plot_norm_US.png", width = 4, height = 4, units = 'in', res = 100)
 
-Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
+Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(title = "VAERS ADVERSE EVENT COUNTS OVER THE YEARS", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
 Table_IDs_all_VAERS_plot_norm_US
 ```
+Absolute number of Adverse Events (cumulative sum)
 ```{r}
 #png("Table_IDs_plot.png", width = 4, height = 4, units = 'in', res = 100)
 
-Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "CUMULATIVE COVID-19 PRODUCT-RELATED VAERS AES", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot
 ```
-ABSOLUTE NUMBERS OF AEs
+Absolute numbers of Adverse Events as per Category
 ```{r}
 #png("Table_IDs_percent_plot", width = 4, height = 4, units = 'in', res = 100)
 
-Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, CV, colour = "CV"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, NEURO, colour = "NEURO"), size = 2) + geom_line(data = Table_IDs_percent, aes(DATE, IMMUNO, colour = "IMMUNO"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
+Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, CV, colour = "CV"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, NEURO, colour = "NEURO"), size = 2) + geom_line(data = Table_IDs_percent, aes(DATE, IMMUNO, colour = "IMMUNO"), size = 2) + labs(title = "CUMULATIVE COVID-19 PRODUCT-RELATED GROUPED AES", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
 Table_IDs_percent_plot
 ```
-IDS NORMALIZED TO FV PER MILLION
+Absolute number of Adverse Events by Category normalized to fully-vaxxed population/million
 ```{r}
 #png("Table_IDs_FV_per_million", width = 4, height = 4, units = 'in', res = 100)
 
-Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("AEs/million") + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, CV_norm_per_million, colour = "CV"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE,NEURO_norm_per_million, colour = "NEURO"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, IMMUNO_norm_per_million, colour = "IMMUNO"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
+Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Grouped adverse events per million FV") + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, CV_norm_per_million, colour = "CV"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE,NEURO_norm_per_million, colour = "NEURO"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, IMMUNO_norm_per_million, colour = "IMMUNO"), size = 2) + labs(title = "VAERS AES PER MILLION FULLY VAXXED (FV)", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
 Table_IDs_FV_per_million
 ```
+THE FOLLOWING IS A NEW ADVERSE EVENT GROUP THAT I CREATED BY WRITING A FUNCTION THAT PULLS OUT AES BY KEYWORD. THIS NEW AE GROUP INCLUDED FEMALE REPRODCUTIVE ISSUES THAT OCCURRED IN WOMEN POST-INJECTION.
 ```{r}
 strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female sex hormone level", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Female sex hormone level", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
 ```
@@ -617,15 +623,28 @@ FRI_CASES_AG_count <- FRI_CASES_AG %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP 
 FRI_CASES_AG_plot <- ggplot(FRI_CASES_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF FRI AEs") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Female Reproductive Issues -> VAERS IDs vs AGE GROUPS")
 FRI_CASES_AG_plot
 FRI_CASES_AG_plot_skew <- data.frame(FRI_CASES_AG_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-FRI_CASES_AG_plot_skew
+#FRI_CASES_AG_plot_skew
+```
+```{r}
+FRI_new <- data.frame(FRI_CASES, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
+MERGED_SYM_DAT_VAX_05_21_21_151700kb_FRI_new_VD_OD <- FRI_new %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/nrow(FRI_new)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_new)*100)
+#head(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FRI_new_VD_OD)
+
+#chisq.test(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FRI_new_VD_OD$OBSERVED)
+```
+```{r}
+#png("CAUSATION_IMMUNO_plot", width = 4, height = 4, units = 'in', res = 100)
+
+CAUSATION_FRI_new_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED FRI AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_21_21_151700kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "Female Reproductive Issues post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+CAUSATION_FRI_new_plot
 ```
 ```{r}
 MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM <- MERGED_SYM_DAT_VAX_05_21_21_151700kb %>% filter(SEX == "F") 
 #nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM)
 FRI_CASES_perc <- FRI_CASES %>% count(SYMPTOM) %>% arrange(desc(n)) %>% mutate("PERC" = n/nrow(MERGED_SYM_DAT_VAX_05_21_21_151700kb_FEM)*100)
-FRI_CASES_perc
+#FRI_CASES_perc
 ```
 ```{r}
-FRI_CASES_count_plot <- ggplot(FRI_CASES_perc, aes(n, SYMPTOM, fill = SYMPTOM)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + ylab("SYMPTOM") + xlab("Number of Female Reproductive Disorders") + theme(axis.text.y = element_text(colour = "black", size = 6)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 10)) + theme(legend.position = "none") + ggtitle("Female Reproductive Adverse Events")
+FRI_CASES_count_plot <- ggplot(FRI_CASES_perc, aes(n, SYMPTOM, fill = SYMPTOM)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + ylab("SYMPTOM") + xlab("Number of Female Reproductive Disorders") + theme(axis.text.y = element_text(colour = "black", size = 6)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 10)) + theme(legend.position = "none") + ggtitle("Numbers of Female Reproductive Adverse Event types")
 FRI_CASES_count_plot
 ```

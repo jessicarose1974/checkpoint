@@ -18,36 +18,37 @@ output: html_document
 
 <p>This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.</p>
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
-<p>BAR PLOT FOR SAE COMPARISON TO STANDARD (15%)
+<p>SEVERE ADVERSE EVENTS (SAE) COMPARED TO VAERS (SAE) STANDARD (15%) - CONSISTENTLY HIGHER
 <img src="Figs/unnamed-chunk-10-1.png" width="672" /></p>
-<p>DISTRIBUTION OF ALL DATA BY AGE GROUP
+<p>DISTRIBUTION OF ALL DATA BY AGE GROUP - THE MAJORITY OF INDIVIDUALS ARE BETWEEN THE AGES OF 30 AND 70
 <img src="Figs/unnamed-chunk-23-1.png" width="672" />
 NUMBER OF SPONTANEOUS ABORTIONS</p>
 <pre><code>## [1] 241</code></pre>
-<p>DISTRIBUTION OF SPONTANEOUS ABORTIONS BY AGE
+<p>DISTRIBUTION OF SPONTANEOUS ABORTIONS - THIS SUBSET IS GROWING WEEKLY
 <img src="Figs/unnamed-chunk-25-1.png" width="672" /></p>
+<p>THE PLOTS SHOWING OBSERVED VERSUS EXPECTED TRAJECTORIES SHOW CLUSTERING OF DATA AROUND ‘0’ - A LARGER PROPORTION OF REPORTS WERE MADE WITHIN 24 HOURS THAT ONE WOULD EXPECT TO SEE IF THERE WAS NO CAUSALITY</p>
 <p>Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Miscarriage Date
 <img src="Figs/unnamed-chunk-27-1.png" width="672" />
-HEATMAP showing correlation between Vaccine Date and Onset Date for Spontaneous Abortions
+HEATMAPS ARE BEAUTIFUL WAYS TO ILLUSTRATE A LOT OF INFORMATION IN A SINGLE FIGURE. THESE HEATMAPS SHOW THE INTERSECTIONS OF INJECTION DATES AND ONSET OF ADVERSE EVENT DATES AS PER SPECIFIC AE GROUP. THE COLOR OF THE INTERSECTION ‘BLOCK’ INDICATES THE NUMBER OF INTERSECTIONS THAT OCCURRED - RED = HIGHEST; BLUE = LOWEST. POINTS LYING ON THE DIAGONAL HAVE A CORRELATION COEFFICIENT WHERE R = 1, INDICATING A 1:1 CORRELATION.</p>
+<p>HEATMAP showing correlation between Vaccine Date and Onset Date for Spontaneous Abortions
 <img src="Figs/unnamed-chunk-28-1.png" width="672" />
 Distribution of all Breakthrough COVID-19 cases by age group
 <img src="Figs/unnamed-chunk-29-1.png" width="672" />
-Breakthrough COVID-19 Cases by update date
-<img src="Figs/unnamed-chunk-30-1.png" width="672" />
-SOME CHARTS FOR BREAKTHROUGH COVID CASES (BCC)</p>
-<p>BREAKTHROUGH COVID CASES by manufacturer.</p>
+CUMULATIVE BREAKTHROUGH COVID-19 CASES
+<img src="Figs/unnamed-chunk-30-1.png" width="672" /></p>
+<p>BREAKTHROUGH COVID CASES BY MANUFACTURER</p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"6f8a58bb6a36":["function () ","plotlyVisDat"]},"cur_data":"6f8a58bb6a36","attrs":{"6f8a58bb6a36":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.3,19.05,73.22],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p>This is the pie chart for the dead of the breakthrough cases.</p>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"7b146f16e4cb":["function () ","plotlyVisDat"]},"cur_data":"7b146f16e4cb","attrs":{"7b146f16e4cb":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.3,19.05,73.22],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>BREAKTHROUGH COVID-19 CASES WHO DIED</p>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"6f8a11df3333":["function () ","plotlyVisDat"]},"cur_data":"6f8a11df3333","attrs":{"6f8a11df3333":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES resulting in death BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[0.37,2.3,2.35],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"7b14d2de86a":["function () ","plotlyVisDat"]},"cur_data":"7b14d2de86a","attrs":{"7b14d2de86a":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES resulting in death BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[0.37,2.3,2.35],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Pie chart for distribution of vax manu data in US population (U.S. COVID-19 Vaccine Delivered by Vaccine Type<br />
 Date generated: CDC | Data as of: May 4, 2021 6:00am ET. Posted: Tuesday, May 25, 2021 6:00 PM ET <a href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" class="uri">https://covid.cdc.gov/covid-data-tracker/#vaccinations</a></p>
 <div id="htmlwidget-3" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3">{"x":{"visdat":{"6f8a638eb5de":["function () ","plotlyVisDat"]},"cur_data":"6f8a638eb5de","attrs":{"6f8a638eb5de":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"FULLY-VAXXED U.S. POPULATION BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["PFIZER/BIONTECH","MODERNA","JANSSEN"],"values":[51.65,40.53,7.82],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p>Pie chart for Breakthrough COVID-19 cases by age group WHO DIED</p>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"visdat":{"7b1471cc9197":["function () ","plotlyVisDat"]},"cur_data":"7b1471cc9197","attrs":{"7b1471cc9197":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"FULLY-VAXXED U.S. POPULATION BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["PFIZER/BIONTECH","MODERNA","JANSSEN"],"values":[51.65,40.53,7.82],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>BREAKTHROUGH COVID-19 CASES WHO DIED BY AGE</p>
 <div id="htmlwidget-4" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4">{"x":{"visdat":{"6f8a5315360d":["function () ","plotlyVisDat"]},"cur_data":"6f8a5315360d","attrs":{"6f8a5315360d":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.04,0.09,0.57,0.88,1.99,2.83,1.15,0.13],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"visdat":{"7b1471269654":["function () ","plotlyVisDat"]},"cur_data":"7b1471269654","attrs":{"7b1471269654":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.04,0.09,0.57,0.88,1.99,2.83,1.15,0.13],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Death Date
 <img src="Figs/unnamed-chunk-41-1.png" width="672" />
 HEATMAP showing correlation between Vaccine Date and Onset Date for Deaths
@@ -69,37 +70,16 @@ HEATMAP showing correlation between Vaccine Date and Onset Date for Immunologica
 <img src="Figs/unnamed-chunk-54-1.png" width="672" />
 <img src="Figs/unnamed-chunk-55-1.png" width="672" />
 <img src="Figs/unnamed-chunk-56-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-65-1.png" width="672" />
+<p>VAERS ID counts per year normalized to U.S. population per million people
+<img src="Figs/unnamed-chunk-65-1.png" width="672" />
+Absolute number of Adverse Events (cumulative sum)
 <img src="Figs/unnamed-chunk-66-1.png" width="672" />
-ABSOLUTE NUMBERS OF AEs
+Absolute numbers of Adverse Events as per Category
 <img src="Figs/unnamed-chunk-67-1.png" width="672" />
-IDS NORMALIZED TO FV PER MILLION
-<img src="Figs/unnamed-chunk-68-1.png" width="672" /></p>
+Absolute number of Adverse Events by Category normalized to fully-vaxxed population/million
+<img src="Figs/unnamed-chunk-68-1.png" width="672" />
+THE FOLLOWING IS A NEW ADVERSE EVENT GROUP THAT I CREATED BY WRITING A FUNCTION THAT PULLS OUT AES BY KEYWORD. THIS NEW AE GROUP INCLUDED FEMALE REPRODCUTIVE ISSUES THAT OCCURRED IN WOMEN POST-INJECTION.</p>
 <pre><code>## [1] 774</code></pre>
 <p><img src="Figs/unnamed-chunk-73-1.png" width="672" /></p>
-<pre><code>##   AGE_GROUP   n     skew
-## 1  B. 10-20   4 1.780633
-## 2  C. 20-30 137 1.780633
-## 3  D. 30-40 351 1.780633
-## 4  E. 40-50 171 1.780633
-## 5  F. 50-60  52 1.780633
-## 6  G. 60-70  10 1.780633
-## 7  H. 70-80   1 1.780633
-## 8  I. 80-90   3 1.780633
-## 9 J. 90-100   1 1.780633</code></pre>
-<pre><code>## # A tibble: 51 x 3
-## # Rowwise: 
-##    SYMPTOM                        n   PERC
-##    &lt;chr&gt;                      &lt;int&gt;  &lt;dbl&gt;
-##  1 Abortion spontaneous         241 0.152 
-##  2 Heavy menstrual bleeding     101 0.0639
-##  3 Menstruation irregular        80 0.0506
-##  4 Menstrual disorder            74 0.0468
-##  5 Dysmenorrhoea                 65 0.0411
-##  6 Intermenstrual bleeding       45 0.0285
-##  7 Menstruation delayed          32 0.0202
-##  8 Vaginal haemorrhage           23 0.0145
-##  9 Amenorrhoea                   20 0.0126
-## 10 Postmenopausal haemorrhage    17 0.0108
-## # … with 41 more rows</code></pre>
 <p><img src="Figs/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-77-1.png" width="672" /></p>
