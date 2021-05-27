@@ -13,21 +13,6 @@ education:
   - course: BSc in Applied Mathematics
     institution: Memorial University of Newfoundland
 email: "jessicarose1974@protonmail.com"
-
-<font size ="6">**Here are some links to articles related to what I am doing.**</font>
-
-https://prn.fm/gary-null-show-05-19-21/
-
-https://rumble.com/vhfk97-jessica-rose-phd-author-of-vaers-study-on-mrna-shots.html
-
-https://www.bitchute.com/video/9Ci2jK1yFoOd/?fbclid=IwAR3t31OZLr8STaRlGfng0PnBGB5NneqUfkBIMYPbbj0IdvKrUESy8wgLmM0
-
-https://www.americasfrontlinedoctors.org/frontline-news/study-analysis-suggests-the-vaccines-are-likely-cause-of-reported-deaths-spontaneous-abortions-anaphylactic-reactions-cardiovascular-neurological-and-immunological-adverse-events
-
-https://jameslyonsweiler.com/2021/05/17/study-finds-patterns-in-vaers-data-that-provide-evidence-of-causality/
-
-https://www.facebook.com/watch/live/?v=945296642962613&ref=watch_permalink
-
 highlight_name: false
 interests:
 - Surfing
