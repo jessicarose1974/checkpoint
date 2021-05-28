@@ -38,6 +38,6 @@ Jessica Rose is a Research Fellow.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR SIMONE GOLD.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR SIMONE GOLD.pdf" "newtab" >}}letter to appeal the public{{< /staticref >}}.
 
 FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
