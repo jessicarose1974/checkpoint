@@ -28,3 +28,5 @@ https://www.americasfrontlinedoctors.org/frontline-news/study-analysis-suggests-
 https://jameslyonsweiler.com/2021/05/17/study-finds-patterns-in-vaers-data-that-provide-evidence-of-causality/
 
 https://www.facebook.com/watch/live/?v=945296642962613&ref=watch_permalink
+
+https://www.slideshare.net/enave2609/letter-for-simone-goldjessica-rose
