@@ -390,10 +390,21 @@ MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD <- D %>% mutate("diff_in_days" = diff
 ```
 Plot showing OBSERVED (orange) vs. EXPECTED (yellow) percentages of specific time-frames between Vaccination Date and Death Date
 ```{r}
-#png("CAUSATION_DEATH_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,15)
+CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_DEATH_plot
+CAUSATION_DEATH_plot_closeup <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,6)
+CAUSATION_DEATH_plot_closeup
+
+D_2021 <- MERGED_SYM_DAT_VAX_05_28_21_172100kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
+DEAD_2021 <- subset(D_2021, !duplicated(subset(D_2021, select=c(VAERS_ID))))
+#nrow(DEAD_2021)
+DEAD_2021 <- DEAD_2021 %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= "2021") 
+
+DEAD_2021_count <- DEAD_2021 %>% group_by(DATEDIED, DIED) %>% count(DIED) %>% arrange(desc(DATEDIED)) %>% mutate("US_tot_death_p_mill_day" = 8697/332738974*1000000) %>% mutate("DIED_FV_p_mill_UR_33" = n/126610000*1000000*33) %>% mutate("DIED_FV_p_mill_UR_100" = n/126610000*1000000*100) %>% mutate("DIED_FV_p_mill_UR_200" = n/126610000*1000000*1000)
+#DEAD_2021_count
+
+DEATHS_2021_plot_p_day <- ggplot(data = DEAD_2021_count, aes(x = DATEDIED, y = DIED_FV_p_mill_UR)) + geom_point(data = DEAD_2021_count, aes(DATEDIED, DIED_FV_p_mill_UR_33), colour = "red", size = 5) + geom_point(data = DEAD_2021_count, aes(DATEDIED, DIED_FV_p_mill_UR_200), colour = "blue", size = 5) + geom_point(data = DEAD_2021_count, aes(DATEDIED, DIED_FV_p_mill_UR_100), colour = "purple", size = 5) + geom_line(data = DEAD_2021_count, aes(DATEDIED, US_tot_death_p_mill_day), colour = "yellow", size = 2) + ylab("Number of deaths per million people") + labs(title = "DEATHS FOR 2021", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+DEATHS_2021_plot_p_day
 ```
 HEATMAP showing correlation between Vaccine Date and Onset Date for Deaths
 ```{r}
@@ -413,6 +424,8 @@ MERGED_SYM_DAT_VAX_05_28_21_172100kb_CV_VD_OD <- CV_new %>% mutate("diff_in_days
 ```{r}
 CAUSATION_CV_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_CV_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED CV AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_CV_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "CARDIOVASCULAR AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,60)
 CAUSATION_CV_plot
+CAUSATION_CV_plot_closeup <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_CV_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED CV AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_CV_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "CARDIOVASCULAR AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,4)
+CAUSATION_CV_plot_closeup
 ```
 HEATMAP showing correlation between Vaccine Date and Onset Date for Cardiovascular Adverse Events
 ```{r}
@@ -430,10 +443,10 @@ MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD <- NEURO_new %>% mutate("diff_i
 #chisq.test(MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD$OBSERVED)
 ```
 ```{r}
-#png("CAUSATION_NEURO_plot", width = 4, height = 4, units = 'in', res = 100)
-
-CAUSATION_NEURO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,50)
+CAUSATION_NEURO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_NEURO_plot
+CAUSATION_NEURO_plot_closeup <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED NEURO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_NEURO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "NEUROLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,4)
+CAUSATION_NEURO_plot_closeup
 ```
 HEATMAP showing correlation between Vaccine Date and Onset Date for Neurological Adverse Events
 ```{r}
@@ -453,10 +466,21 @@ MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD <- IMMUNO_new %>% mutate("diff
 #chisq.test(MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD$OBSERVED)
 ```
 ```{r}
-#png("CAUSATION_IMMUNO_plot", width = 4, height = 4, units = 'in', res = 100)
-
 CAUSATION_IMMUNO_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED IMMUNO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_IMMUNO_plot
+CAUSATION_IMMUNO_plot_closeup <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED IMMUNO AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_IMMUNO_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,7)
+
+CAUSATION_IMMUNO_plot_closeup
+
+I_2021 <- subset(IMMUNO, !duplicated(subset(IMMUNO, select=c(VAERS_ID))))
+#nrow(I_2021)
+I_2021 <- I_2021 %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= "2021") 
+
+I_2021_count <- I_2021 %>% group_by(ONSET_DATE, SYMPTOM) %>% count(SYMPTOM) %>% arrange(desc(ONSET_DATE)) %>% mutate("immuno_FV_p_mill" = n/126610000*1000000) %>% mutate("US_tot_immuno_p_mill_day" = 8697/332738974*1000000) %>% mutate("immuno_FV_p_mill_UR_33" = n/126610000*1000000*33) %>% mutate("immuno_FV_p_mill_UR_100" = n/126610000*1000000*100) %>% mutate("immuno_FV_p_mill_UR_200" = n/126610000*1000000*1000)
+#DEAD_2021_count
+
+I_2021_plot_FV_p__mill_day <- ggplot(data = I_2021_count, aes(x = ONSET_DATE, y = immuno_FV_p_mill)) + geom_point(data = I_2021_count, aes(ONSET_DATE, immuno_FV_p_mill), colour = "red", size = 1) + ylab("Number of IAEs per million people") + labs(title = "DEATHS FOR 2021", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+#I_2021_plot_FV_p__mill_day
 ```
 HEATMAP showing correlation between Vaccine Date and Onset Date for Immunological Adverse Events
 ```{r}
@@ -652,6 +676,8 @@ MERGED_SYM_DAT_VAX_05_28_21_172100kb_FRI_new_VD_OD <- FRI_new %>% mutate("diff_i
 
 CAUSATION_FRI_new_plot <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED FRI AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "Female Reproductive Issues post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_FRI_new_plot
+CAUSATION_FRI_new_plot_closeup <- ggplot() + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED FRI AEs") + geom_line(data = MERGED_SYM_DAT_VAX_05_28_21_172100kb_FRI_new_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "Female Reproductive Issues post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ylim(0,7)
+CAUSATION_FRI_new_plot_closeup
 ```
 ```{r}
 MERGED_SYM_DAT_VAX_05_28_21_172100kb_FEM <- MERGED_SYM_DAT_VAX_05_28_21_172100kb %>% filter(SEX == "F") 
