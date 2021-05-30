@@ -40,4 +40,6 @@ Jessica Rose is a Research Fellow.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR SIMONE GOLD.pdf" "newtab" >}}summary letter for America's Frontline Doctors{{< /staticref >}}.
 
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR THE KIDS.pdf" "newtab" >}}summary letter for The Kids{{< /staticref >}}.
+
 FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
