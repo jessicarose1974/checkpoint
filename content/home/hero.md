@@ -15,6 +15,8 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Causation in the face of the Psycho-logic.pdf" "newtab" >}}summary letter for The Kids{{< /staticref >}}.
+
 <font size="5" color = "yellow"> Feel free to visit my youtube channel to see my findings summarized.</font>
 
 <font size ="4">**https://www.youtube.com/watch?v=bMY2tdFNkRU**</font>
