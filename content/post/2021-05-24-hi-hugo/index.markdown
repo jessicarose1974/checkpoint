@@ -1,14 +1,14 @@
 ---
 title: VAERS IDs (absolute count versus date of update)
 author: Admin
-date: '2021-05-24'
+date: '2021-06-02'
 slug: hi-hugo
 categories: []
 tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2021-05-24T16:41:59+03:00'
+lastmod: '2021-06-02'
 featured: no
 image:
   caption: ''
