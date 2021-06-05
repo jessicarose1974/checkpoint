@@ -34,7 +34,7 @@ title: Dr. Jessica Rose
 
 Jessica Rose is a Research Fellow.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/CV_Dr_Jessica_Rose.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Curriculum Vitae June 2021.pdf" "newtab" >}}resumé{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
 
