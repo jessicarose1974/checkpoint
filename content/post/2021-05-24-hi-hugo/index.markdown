@@ -1,5 +1,5 @@
 ---
-title: VAERS IDs (absolute count versus date of update)
+title: VAERS IDs normalized/million U.S. Fully Injected
 author: Admin
 date: '2021-06-02'
 slug: hi-hugo
