@@ -22,3 +22,7 @@ advanced:
 <font size="5" color = "yellow"> or on Rumble... when they take down my youtube channel.</font>
 
 <font size ="4">**https://rumble.com/vhjgqz-vaers-analysis-summary-of-major-findings.html**</font>
+
+<font size="5" color = "yellow"> and here's my video on the RAAS, spike and SARS. You saw it here first.</font>
+
+<font size ="4">**https://www.bitchute.com/video/31nextKrNG4S/**</font>
