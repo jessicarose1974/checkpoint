@@ -30,3 +30,5 @@ https://jameslyonsweiler.com/2021/05/17/study-finds-patterns-in-vaers-data-that-
 https://www.facebook.com/watch/live/?v=945296642962613&ref=watch_permalink
 
 https://www.slideshare.net/enave2609/letter-for-simone-goldjessica-rose
+
+https://www.youtube.com/watch?v=KrBzzSHZpnY&fbclid=IwAR2gODvx3B0ClvM_xpQM7zDwCehOBcN5RhiKCdIKYz_YYyNhMldm8jwqL18
