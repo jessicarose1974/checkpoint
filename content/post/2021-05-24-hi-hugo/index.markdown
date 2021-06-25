@@ -1,14 +1,14 @@
 ---
-title: VAERS IDs normalized/million U.S. Fully Injected
+title: VAERS IDs (absolute count versus date of update)
 author: Admin
-date: '2021-06-02'
+date: '2021-05-24'
 slug: hi-hugo
 categories: []
 tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2021-06-02'
+lastmod: '2021-05-24T16:41:59+03:00'
 featured: no
 image:
   caption: ''
@@ -19,4 +19,5 @@ projects: []
 
 
 
-<img src="Figs/unnamed-chunk-2-1.png" width="672" />
+
+<img src="Figs/unnamed-chunk-3-1.png" width="672" />

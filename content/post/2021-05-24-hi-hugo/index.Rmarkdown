@@ -22,6 +22,17 @@ knitr::opts_chunk$set(fig.width=7, fig.height=5, fig.path='Figs/',
                       echo=FALSE, warning=FALSE, message=FALSE)
 ```
 ```{r}
+library("readr")
+library("tidyverse")
+library("dplyr")
+library("ggplot2")
+library("stringr")
+library("DT")
+library("reshape2")
+library("data.table")
+library("plotly")
+```
+```{r}
 Table_IDs_percent <- data.frame(
   DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21"), "%m/%d/%y"),
   IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162")),
@@ -42,6 +53,6 @@ Table_IDs_percent <- data.frame(
 #Table_IDs_percent
 ```
 ```{r}
-Table_IDs_plot_norm_FV <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "yellow", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "yellow", size = 5) + xlab("DATE") +  ylab("IDs normalized/million FV popln") + labs(title = "VAERS AES normalized/million U.S. population Fully Injected", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent_normalized_FV$DATE), max(Table_IDs_percent_normalized_FV$DATE), by = 10),0.1)) 
-Table_IDs_plot_norm_FV
+Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Cumulative VAERS AEs", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) 
+Table_IDs_plot
 ```
