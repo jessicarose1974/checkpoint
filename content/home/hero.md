@@ -3,7 +3,7 @@ widget: hero
 headless: true
 weight: 10
 title: Jessica's World
-hero_media: hio2.png
+hero_media: hio3.png
 
 design:
   background:
