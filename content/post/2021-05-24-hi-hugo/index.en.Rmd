@@ -1,13 +1,11 @@
 ---
-title: "The R Markdown document for VAERS analysis"
-author: "Dr. Jessica Rose"
-date: "2021-05-21"
-output: html_document
+title: "The Markdown File"
+author: "Jessica Rose"
+date: 2021-05-01T21:13:14-05:00
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
 ---
 
-This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.
-
-I start by coalescing the .csv files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
 ```{r}
 install.packages("readr")
 install.packages("tidyverse")
@@ -69,6 +67,7 @@ nrow(MERGED_07_02_21_418000kb)
 ```
 ```{r}
 D_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
+DEAD_07_02_21_418000kb <- subset(D_07_02_21_418000kb, !duplicated(subset(D_07_02_21_418000kb, select=c(VAERS_ID))))
 nrow(DEAD_07_02_21_418000kb)
 ```
 ```{r}
@@ -238,7 +237,7 @@ pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAK
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 pie_AGE_GROUPS_COVID_dead
 ```
-MAKE HISTOGRAMS FOR Female Reproductive Issues (FRI)
+MAKE HISTOGRAMS FOR ANAP AND SA
 ```{r}
 FRI_CASES_ID <- FRI_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
 FRI_CASES_ID_plot <- ggplot(FRI_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Female Reproductive Issues") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of Female Reproductive Issues -> VAERS IDs vs AGE YEARS") + xlim(0,100)
@@ -256,7 +255,7 @@ FRI HEATMAP
 ```{r}
 FRI_CASES_VD_OD_TILE_count <- data.frame(FRI_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
 
-FRI_CASES_VD_DD_TILE_plot <- ggplot(FRI_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs FRI AE ONSET DATE") 
+FRI_CASES_VD_DD_TILE_plot <- ggplot(FRI_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs CARDIOVASCULAR AE ONSET DATE") 
 FRI_CASES_VD_DD_TILE_plot 
 ggsave("FRI_CASES_VD_DD_TILE_plot.png")
 
@@ -308,6 +307,14 @@ ggsave("CAUSATION_DEATH_plot.png")
 HOW ABOUT HEATMAPS?
 ```{r}
 VD_DD_TILE_count <- MERGED_07_02_21_418000kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+
+#png("VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
+
+VD_DD_TILE_plot <- ggplot(VD_DD_TILE_count, aes(VAX_DATE, DATEDIED)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("DATE OF DEATH") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + ggtitle("VACCINE DATE vs DEATH DATE OF AEs") 
+VD_DD_TILE_plot 
+ggsave("VD_DD_TILE_plot.png")
+
+VD_DD_TILE_count <- MERGED_SYM_DAT_VAX_07_02_21_418000kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
 #png("VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
 
@@ -495,28 +502,9 @@ ggsave("Table_IDs_FV_per_million.png")
 ```
 ```{r}
 MERGED_07_02_21_418000kb_12_18 <- MERGED_07_02_21_418000kb %>% filter(AGE_YRS >=12 & AGE_YRS <=18)
+MERGED_07_02_21_418000kb_12_18
+MERGED_07_02_21_418000kb_12_18_female <- MERGED_07_02_21_418000kb_12_18 %>% group_by(SEX) %>% count(SEX) %>% mutate("PERC_FEMALE" = n/nrow(MERGED_SYM_DAT_VAX_06_25_21_396000kb_12_18)*100)
+MERGED_07_02_21_418000kb_12_18_female
+MERGED_07_02_21_418000kb_12_18
 nrow(MERGED_07_02_21_418000kb_12_18)
-
-MERGED_07_02_21_418000kb_12_18_1 <- MERGED_07_02_21_418000kb_12_18 %>% distinct(VAERS_ID, .keep_all = TRUE)
-YOUTH_CASES <- MERGED_07_02_21_418000kb_12_18_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
-
-YOUTH_CASES_ID <- YOUTH_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-YOUTH_CASES_ID_plot <- ggplot(YOUTH_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of YOUTH CASES") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of AEs in the young -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
-YOUTH_CASES_ID_plot
-ggsave("YOUTH_CASES_ID_plot.png")
-
-YOUTH_CASES <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
-YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_CASES)*100)
-#head(YOUTH_CASES_VD_OD)
-
-#chisq.test(YOUTH_CASES_VD_OD$OBSERVED)
-```
-FRI HEATMAP
-```{r}
-YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
-
-YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs YOUTH CASES AE ONSET DATE") 
-YOUTH_CASES_VD_DD_TILE_plot 
-ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
-```
 ```
