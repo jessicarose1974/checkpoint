@@ -15,7 +15,7 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
-<font size="5" color = "yellow">**Don't forget about OPEN Vaers:**</font> https://www.openvaers.com
+<font size="5" color = "yellow">**Don't forget about OPENVaers:**</font> https://www.openvaers.com
 
 <font size="5" color = "yellow">**And the VAERS Wayback Machine!**</font> https://medalerts.org/vaersdb/wayback/
 
