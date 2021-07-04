@@ -9,17 +9,6 @@ This is an R Markdown sheet generated from the VAERS data. I included some code 
 
 I start by coalescing the .csv files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
 ```{r}
-install.packages("readr")
-install.packages("tidyverse")
-install.packages("dplyr")
-install.packages("ggplot2")
-install.packages("stringr")
-install.packages("DT")
-install.packages("reshape2")  
-install.packages("data.table")
-install.packages("plotly")
-install.packages("lubridate")
-
 library("readr")
 library("tidyverse")
 library("dplyr")
@@ -59,17 +48,8 @@ MERGED_07_02_21_418000kb$RECVDATE <- as.Date(MERGED_07_02_21_418000kb$RECVDATE, 
 nrow(MERGED_07_02_21_418000kb)
 ```
 ```{r}
-#MERGED_07_02_21_418000kb_0_50 <- MERGED_07_02_21_418000kb %>% filter(AGE_YRS < 50) %>% arrange(desc(AGE_YRS))
-#D_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
-#HOSPITAL_07_02_21_418000kb  <- MERGED_07_02_21_418000kb  %>% group_by(VAERS_ID, HOSPITAL) %>% filter(HOSPITAL == "Y")
-#ER_ED_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
-#nrow(D_07_02_21_418000kb)
-#nrow(HOSPITAL_07_02_21_418000kb)
-#nrow(ER_ED_07_02_21_418000kb)
-```
-```{r}
 D_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
-nrow(DEAD_07_02_21_418000kb)
+nrow(D_07_02_21_418000kb)
 ```
 ```{r}
 HOSPITAL_07_02_21_418000kb  <- MERGED_07_02_21_418000kb  %>% group_by(VAERS_ID, HOSPITAL) %>% filter(HOSPITAL == "Y")
