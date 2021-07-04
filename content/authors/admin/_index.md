@@ -42,4 +42,8 @@ Jessica Rose is a Research Fellow.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR THE KIDS.pdf" "newtab" >}}summary letter for The Kids{{< /staticref >}}.
 
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Letter for the infants.pdf" "newtab" >}}short analysis for mothers{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis{{< /staticref >}}.
+
 FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
