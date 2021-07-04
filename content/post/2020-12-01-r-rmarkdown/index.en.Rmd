@@ -46,6 +46,55 @@ MERGED_07_02_21_418000kb$RECVDATE <- as.Date(MERGED_07_02_21_418000kb$RECVDATE, 
 nrow(MERGED_07_02_21_418000kb)
 ```
 ```{r}
+AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
+  if(AGE_YRS >= 0 & AGE_YRS <10) {
+    AGE_GROUP = "A. 0-10"
+    } else if(AGE_YRS >= 10 & AGE_YRS <20) {
+      AGE_GROUP = "B. 10-20"
+      } else if(AGE_YRS >= 20 & AGE_YRS <30) {
+        AGE_GROUP = "C. 20-30"
+        } else if(AGE_YRS >= 30 & AGE_YRS <40) {
+          AGE_GROUP = "D. 30-40"
+          } else if(AGE_YRS >= 40 & AGE_YRS <50) {
+            AGE_GROUP = "E. 40-50"
+            } else if(AGE_YRS >= 50 & AGE_YRS <60) {
+              AGE_GROUP = "F. 50-60"
+              } else if(AGE_YRS >= 60 & AGE_YRS <70) {
+                AGE_GROUP = "G. 60-70"
+                } else if(AGE_YRS >= 70 & AGE_YRS <80) {
+                  AGE_GROUP = "H.70-80"
+                  } else if(AGE_YRS >= 80 & AGE_YRS <90) {
+                    AGE_GROUP = "I. 80-90"
+                    } else if(AGE_YRS >= 90 & AGE_YRS <100) {
+                      AGE_GROUP = "J. 90-100"
+                      } else if(AGE_YRS >= 100 & AGE_YRS <110) {
+                        AGE_GROUP = "K. 100-110"
+                        }
+  else {
+    AGE_GROUP = "NA"
+    }
+  return(AGE_GROUP)
+}
+```
+```{r}
+MERGED_07_02_21_418000kb_AG <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+MERGED_07_02_21_418000kb_AG_count <- MERGED_07_02_21_418000kb_AG %>% count(AGE_GROUP)
+MERGED_07_02_21_418000kb_count_plot <- ggplot(MERGED_07_02_21_418000kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
+MERGED_07_02_21_418000kb_count_plot
+ggsave("MERGED_07_02_21_418000kb_count_plot.png")
+
+MERGED_07_02_21_418000kb_AGE_count <- MERGED_07_02_21_418000kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+MERGED_07_02_21_418000kb_AGE_count <- data.frame(MERGED_07_02_21_418000kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+MERGED_07_02_21_418000kb_AGE_count
+```
+```{r}
+MERGED_07_02_21_418000kb_doses <- MERGED_07_02_21_418000kb %>% group_by(VAX_DOSE_SERIES) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
+MERGED_07_02_21_418000kb_doses
+MERGED_07_02_21_418000kb_doses_VM <- MERGED_07_02_21_418000kb %>% group_by(VAX_DOSE_SERIES, VAX_MANU) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2 & VAX_MANU != "UNKNOWN MANUFACTURER") %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n)) 
+MERGED_07_02_21_418000kb_doses_n <- MERGED_07_02_21_418000kb_doses %>% mutate("SUM" = sum(MERGED_07_02_21_418000kb_doses$n)) %>% mutate("PERCENT" = n/SUM*100)
+MERGED_07_02_21_418000kb_doses_n
+```
+```{r}
 D_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
 nrow(D_07_02_21_418000kb)
 ```
@@ -169,44 +218,27 @@ FRI_CASES <- MERGED_07_02_21_418000kb_FRI_Total
 #nrow(FRI_CASES)/nrow(MERGED_07_02_21_418000kb)*100
 ```
 
-```{r}
-AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
-  if(AGE_YRS >= 0 & AGE_YRS <10) {
-    AGE_GROUP = "A. 0-10"
-    } else if(AGE_YRS >= 10 & AGE_YRS <20) {
-      AGE_GROUP = "B. 10-20"
-      } else if(AGE_YRS >= 20 & AGE_YRS <30) {
-        AGE_GROUP = "C. 20-30"
-        } else if(AGE_YRS >= 30 & AGE_YRS <40) {
-          AGE_GROUP = "D. 30-40"
-          } else if(AGE_YRS >= 40 & AGE_YRS <50) {
-            AGE_GROUP = "E. 40-50"
-            } else if(AGE_YRS >= 50 & AGE_YRS <60) {
-              AGE_GROUP = "F. 50-60"
-              } else if(AGE_YRS >= 60 & AGE_YRS <70) {
-                AGE_GROUP = "G. 60-70"
-                } else if(AGE_YRS >= 70 & AGE_YRS <80) {
-                  AGE_GROUP = "H.70-80"
-                  } else if(AGE_YRS >= 80 & AGE_YRS <90) {
-                    AGE_GROUP = "I. 80-90"
-                    } else if(AGE_YRS >= 90 & AGE_YRS <100) {
-                      AGE_GROUP = "J. 90-100"
-                      } else if(AGE_YRS >= 100 & AGE_YRS <110) {
-                        AGE_GROUP = "K. 100-110"
-                        }
-  else {
-    AGE_GROUP = "NA"
-    }
-  return(AGE_GROUP)
-}
-```
+
 
 ```{r}
 AGE_GROUPS_COVID <- COVID_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
 #AGE_GROUPS_COVID_dead
 ```
-
+```{r}
+no_COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_07_02_21_418000kb))*100) %>% mutate("Round" = round(PERC, 2))
+#no_COVID_CASES_count_VM
+COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(COVID_CASES))*100) %>% mutate("Round" = round(PERC, 2))
+COVID_CASES_count_VM <- data.frame(COVID_CASES_count_VM, stringsAsFactors = FALSE) 
+#COVID_CASES_count_VM
+```
+```{r}
+pie_VM <- plot_ly(COVID_CASES_count_VM, labels = ~VAX_MANU, values = ~Round, type = 'pie')
+pie_VM <- pie_VM %>% layout(title = 'BREAKTHROUGH COVID-19 CASES BY MANUFACTURER',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+pie_VM
+```
 ```{r}
 pie_AGE_GROUPS_COVID_dead <- plot_ly(AGE_GROUPS_COVID_dead, labels = ~AGE_GROUP, values = ~Round, type = 'pie')
 pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP',
@@ -357,25 +389,6 @@ AGE_GROUPS_ER_ALL_ID_plot
 ggsave("AGE_GROUPS_ER_ALL_ID_plot.png")
 #AGE_GROUPS_ER_ALL_ID_skew <- data.frame(AGE_GROUPS_ER_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_ER_ALL_ID_skew
-```
-
-```{r}
-MERGED_07_02_21_418000kb_AG <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-MERGED_07_02_21_418000kb_AG_count <- MERGED_07_02_21_418000kb_AG %>% count(AGE_GROUP)
-MERGED_07_02_21_418000kb_count_plot <- ggplot(MERGED_07_02_21_418000kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
-MERGED_07_02_21_418000kb_count_plot
-ggsave("MERGED_07_02_21_418000kb_count_plot.png")
-
-MERGED_07_02_21_418000kb_AGE_count <- MERGED_07_02_21_418000kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-MERGED_07_02_21_418000kb_AGE_count <- data.frame(MERGED_07_02_21_418000kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-MERGED_07_02_21_418000kb_AGE_count
-```
-```{r}
-MERGED_07_02_21_418000kb_doses <- MERGED_07_02_21_418000kb %>% group_by(VAX_DOSE_SERIES) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
-MERGED_07_02_21_418000kb_doses
-MERGED_07_02_21_418000kb_doses_VM <- MERGED_07_02_21_418000kb %>% group_by(VAX_DOSE_SERIES, VAX_MANU) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2 & VAX_MANU != "UNKNOWN MANUFACTURER") %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n)) 
-MERGED_07_02_21_418000kb_doses_n <- MERGED_07_02_21_418000kb_doses %>% mutate("SUM" = sum(MERGED_07_02_21_418000kb_doses$n)) %>% mutate("PERCENT" = n/SUM*100)
-MERGED_07_02_21_418000kb_doses_n
 ```
 
 ```{r}

@@ -19,35 +19,7 @@ output: html_document
 <p>This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.</p>
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
 <pre><code>## [1] 388900</code></pre>
-<pre><code>## [1] 5163</code></pre>
-<pre><code>## [1] 22612</code></pre>
-<pre><code>## [1] 52399</code></pre>
-<pre><code>## [1] 66769</code></pre>
-<pre><code>## [1] 17.16868</code></pre>
-<p>BAR PLOT FOR SAE COMPARISON TO STANDARD</p>
-<pre><code>##   Percent_SAE   SAE PERC
-## 1    Standard 58000   15
-## 2      Actual 66769   17</code></pre>
-<p><img src="Figs/unnamed-chunk-7-1.png" width="672" />
-BREAKTHROUGH COVID19 CASES</p>
-<pre><code>## [1] 9442</code></pre>
-<p><img src="Figs/unnamed-chunk-10-1.png" width="672" /></p>
-<pre><code>## [1] 5351</code></pre>
-<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"100aa28dc1534":["function () ","plotlyVisDat"]},"cur_data":"100aa28dc1534","attrs":{"100aa28dc1534":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.12,0.36,0.97,1.51,2,0.88,0.1],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p><img src="Figs/unnamed-chunk-19-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-21-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-22-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-23-1.png" width="672" />
-<img src="Figs/unnamed-chunk-24-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-26-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-27-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-29-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-30-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-32-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-33-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-35-1.png" width="672" /><img src="Figs/unnamed-chunk-35-2.png" width="672" /><img src="Figs/unnamed-chunk-35-3.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-5-1.png" width="672" /></p>
 <pre><code>##     AGE_YRS    n     skew
 ## 1      0.00    1 1.524048
 ## 2      0.08   20 1.524048
@@ -202,11 +174,41 @@ BREAKTHROUGH COVID19 CASES</p>
 ##   &lt;chr&gt;            &lt;int&gt;  &lt;int&gt;   &lt;dbl&gt;
 ## 1 1               206282 319302    64.6
 ## 2 2               113020 319302    35.4</code></pre>
-<p><img src="Figs/unnamed-chunk-46-1.png" width="672" />
-<img src="Figs/unnamed-chunk-47-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-48-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-49-1.png" width="672" /></p>
-<pre><code>## [1] 14828</code></pre>
+<pre><code>## [1] 5163</code></pre>
+<pre><code>## [1] 22612</code></pre>
+<pre><code>## [1] 52399</code></pre>
+<pre><code>## [1] 66769</code></pre>
+<pre><code>## [1] 17.16868</code></pre>
+<p>BAR PLOT FOR SAE COMPARISON TO STANDARD</p>
+<pre><code>##   Percent_SAE   SAE PERC
+## 1    Standard 58000   15
+## 2      Actual 66769   17</code></pre>
+<p><img src="Figs/unnamed-chunk-10-1.png" width="672" />
+BREAKTHROUGH COVID19 CASES</p>
+<pre><code>## [1] 9442</code></pre>
+<p><img src="Figs/unnamed-chunk-13-1.png" width="672" /></p>
+<pre><code>## [1] 5351</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"108f57dbb5ed3":["function () ","plotlyVisDat"]},"cur_data":"108f57dbb5ed3","attrs":{"108f57dbb5ed3":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.37,22.98,69.11],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"108f555cbeda5":["function () ","plotlyVisDat"]},"cur_data":"108f555cbeda5","attrs":{"108f555cbeda5":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.12,0.36,0.97,1.51,2,0.88,0.1],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p><img src="Figs/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-27-1.png" width="672" />
+<img src="Figs/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-39-1.png" width="672" /><img src="Figs/unnamed-chunk-39-2.png" width="672" /><img src="Figs/unnamed-chunk-39-3.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-48-1.png" width="672" />
+<img src="Figs/unnamed-chunk-49-1.png" width="672" /></p>
 <p><img src="Figs/unnamed-chunk-50-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-51-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-51-1.png" width="672" /></p>
+<pre><code>## [1] 14828</code></pre>
+<p><img src="Figs/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-53-1.png" width="672" />
 ```</p>
