@@ -162,6 +162,7 @@ COVID_CASES <- COVID_CASES_Total_ID
 #nrow(COVID_CASES)/nrow(MERGED_07_02_21_418000kb)*100
 ```
 ```{r}
+AGE_GROUPS_COVID <- COVID_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_count <- AGE_GROUPS_COVID %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
 AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS")
 AGE_GROUPS_COVID_plot
@@ -238,7 +239,6 @@ FRI_CASES <- MERGED_07_02_21_418000kb_FRI_Total
 ```
 
 ```{r}
-AGE_GROUPS_COVID <- COVID_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
 #AGE_GROUPS_COVID_dead
 ```
