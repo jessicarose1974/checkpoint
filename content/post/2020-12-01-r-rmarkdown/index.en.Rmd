@@ -424,7 +424,7 @@ Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DE
 
 ```{r} 
 IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_02_21_418000kb)*100)
-#IDs_normalized_total_IDs
+IDs_normalized_total_IDs
 ```
 
 ```{r}
@@ -465,6 +465,11 @@ Table_IDs_plot
 ggsave("Table_IDs_plot.png")
 ```
 
+```{r}
+Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS IDs per million FV") + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot_FV_p_mill
+ggsave("Table_IDs_plot_FV_p_mill.png")
+```
 ```{r}
 Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
 Table_IDs_percent_plot
