@@ -40,10 +40,10 @@ Jessica Rose is a Research Fellow.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR SIMONE GOLD.pdf" "newtab" >}}summary letter for America's Frontline Doctors{{< /staticref >}}.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR THE KIDS.pdf" "newtab" >}}summary letter for The Kids{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/LETTER FOR THE KIDS.pdf" "newtab" >}}summary letter for The Kids for Ella Nave{{< /staticref >}}.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Letter for the infants.pdf" "newtab" >}}short analysis for mothers{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Letter for the infants.pdf" "newtab" >}}short analysis for mothers for Dr. Peter McCullough{{< /staticref >}}.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis for Steve Kirsch{{< /staticref >}}.
 
 FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
