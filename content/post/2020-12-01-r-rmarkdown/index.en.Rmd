@@ -424,7 +424,7 @@ Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DE
 
 ```{r} 
 IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_02_21_418000kb)*100)
-IDs_normalized_total_IDs
+#IDs_normalized_total_IDs
 ```
 
 ```{r}
@@ -506,5 +506,44 @@ YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE
 YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs YOUTH CASES 12-15 y/o AE ONSET DATE") 
 YOUTH_CASES_VD_DD_TILE_plot 
 ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
+```
+```{r}
+MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1)
+MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo2 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo2)
+MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo3 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo3)
+MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo4 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo4)
+MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5)
+myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo2,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo3,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo4,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5)
+myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
+nrow(myo_Total)
+nrow(myo_Total)/nrow(MERGED_07_02_21_418000kb)*100
+#myo_Total
+myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
+#myo_Total_count
+
+myo_Total_ID <- myo_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
+
+myo_Total_ENTRY <- myo_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+
+#nrow(myo_Total)
+#nrow(myo_Total_ENTRY)
+
+myo_Total_doses_all <- myo_Total  %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
+#myo_Total_doses_all
+
+myo_Total_doses_1_2 <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
+#myo_Total_doses_1_2
+
+myo_Total_doses_1_2_age <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% group_by(AGE_YRS) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
+#myo_Total_doses_1_2_age 
+```
+```{r}
+AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) #+ ylim(0,20)  
+AGE_YEARS_myo_Total_plot
 ```
 ```
