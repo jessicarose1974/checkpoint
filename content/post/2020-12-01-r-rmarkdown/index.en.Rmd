@@ -95,6 +95,10 @@ MERGED_07_02_21_418000kb_doses_n <- MERGED_07_02_21_418000kb_doses %>% mutate("S
 #MERGED_07_02_21_418000kb_doses_n
 ```
 ```{r}
+BD_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(BIRTH_DEFECT == 1)
+nrow(BD_07_02_21_418000kb)
+```
+```{r}
 D_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
 nrow(D_07_02_21_418000kb)
 ```
