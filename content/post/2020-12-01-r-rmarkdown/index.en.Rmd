@@ -34,7 +34,7 @@ MERGED_SYM_DAT_VAX_07_02_21_418000kb <- full_join(MERGED_SYM_DAT_07_02_21_418000
 MERGED_07_02_21_418000kb_1 <- MERGED_SYM_DAT_VAX_07_02_21_418000kb %>% distinct(VAERS_ID, .keep_all = TRUE)
 MERGED_07_02_21_418000kb <- MERGED_07_02_21_418000kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 
-write.csv(MERGED_07_02_21_418000kb, "/Users/admin/Desktop/07_02_21_418000kb.csv")
+write.csv(MERGED_07_02_21_418000kb, "/Users/admin/Desktop/MERGED_07_02_21_418000kb.csv")
 ```
 ```{r}
 MERGED_07_02_21_418000kb$VAX_DATE <- as.Date(MERGED_07_02_21_418000kb$VAX_DATE, "%m/%d/%y") 
@@ -110,14 +110,36 @@ ER_ED_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, ER_ED
 nrow(ER_ED_07_02_21_418000kb)
 ```
 ```{r}
-DEAD_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(DIED) %>% filter(DIED == "Y")
-HOSPITAL_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(HOSPITAL) %>% filter(HOSPITAL == "Y")
-ER_ED_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
-SAES_07_02_21_418000kb <- rbind(DEAD_Y_07_02_21_418000kb, HOSPITAL_Y_07_02_21_418000kb, ER_ED_Y_07_02_21_418000kb) 
+DEAD_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(DIED == "Y")
+HOSPITAL_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(HOSPITAL == "Y")
+ER_ED_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(ER_ED_VISIT == "Y")
+L_THREAT_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(L_THREAT == "Y")
+DISABLE_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(DISABLE == "Y")
+BIRTH_DEFECT_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(BIRTH_DEFECT == TRUE)
+
+nrow(DEAD_Y_07_02_21_418000kb)
+nrow(HOSPITAL_Y_07_02_21_418000kb)
+nrow(ER_ED_Y_07_02_21_418000kb)
+nrow(L_THREAT_Y_07_02_21_418000kb)
+nrow(DISABLE_Y_07_02_21_418000kb)
+nrow(BIRTH_DEFECT_Y_07_02_21_418000kb)
+
+SAES_07_02_21_418000kb <- rbind(DEAD_Y_07_02_21_418000kb, HOSPITAL_Y_07_02_21_418000kb, ER_ED_Y_07_02_21_418000kb, L_THREAT_Y_07_02_21_418000kb, DISABLE_Y_07_02_21_418000kb, BIRTH_DEFECT_Y_07_02_21_418000kb)
+
 SAES_no_dups_07_02_21_418000kb <- subset(SAES_07_02_21_418000kb, !duplicated(subset(SAES_07_02_21_418000kb, select=c(VAERS_ID))))
 nrow(SAES_no_dups_07_02_21_418000kb)
 Percent = nrow(SAES_no_dups_07_02_21_418000kb)/nrow(MERGED_07_02_21_418000kb)*100
 Percent
+```
+```{r}
+SAES_no_dups_07_02_21_418000kb_AG <- SAES_no_dups_07_02_21_418000kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+SAES_no_dups_07_02_21_418000kb_AG_count <- SAES_no_dups_07_02_21_418000kb_AG %>% count(AGE_GROUP)
+SAES_no_dups_07_02_21_418000kb_count_plot <- ggplot(SAES_no_dups_07_02_21_418000kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("SEVERE ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL SAEs -> Distribution of AGE GROUPS")
+SAES_no_dups_07_02_21_418000kb_count_plot
+ggsave("SAES_no_dups_07_02_21_418000kb_count_plot.png")
+
+#MERGED_07_02_21_418000kb_AGE_count <- data.frame(MERGED_07_02_21_418000kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#MERGED_07_02_21_418000kb_AGE_count
 ```
 BAR PLOT FOR SAE COMPARISON TO STANDARD
 ```{r}
