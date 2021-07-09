@@ -1,5 +1,5 @@
 ---
-title: Dose matters with myocariditis...
+title: Dose matters with Myocarditis...
 author: Admin
 date: '2021-05-24'
 slug: hi-hugo
@@ -11,7 +11,7 @@ authors: []
 lastmod: '2021-05-24T16:41:59+03:00'
 featured: no
 image:
-  caption: ''
+  caption: 'myo.png'
   focal_point: ''
   preview_only: no
 projects: []
