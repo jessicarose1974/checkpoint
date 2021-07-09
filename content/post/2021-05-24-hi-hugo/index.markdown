@@ -1,5 +1,5 @@
 ---
-title: VAERS IDs (absolute count versus date of update)
+title: Dose matters with myocariditis...
 author: Admin
 date: '2021-05-24'
 slug: hi-hugo
@@ -20,4 +20,12 @@ projects: []
 
 
 
-<img src="Figs/unnamed-chunk-3-1.png" width="672" />
+
+```
+## [1] 499
+```
+
+```
+## [1] 0.1283106
+```
+<img src="Figs/unnamed-chunk-4-1.png" width="672" />

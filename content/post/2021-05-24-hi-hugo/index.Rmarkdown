@@ -33,6 +33,16 @@ library("data.table")
 library("plotly")
 ```
 ```{r}
+VAERSSYM_07_02_21_418000kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_02_21_418000kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSDATA_07_02_21_418000kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_02_21_418000kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSVAX_07_02_21_418000kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_02_21_418000kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+RV_VAX_07_02_21_418000kb <- VAERSVAX_07_02_21_418000kb %>% filter(VAX_TYPE == "COVID19")
+MERGED_SYM_DAT_07_02_21_418000kb <- full_join(VAERSSYM_07_02_21_418000kb, VAERSDATA_07_02_21_418000kb, by = c("VAERS_ID"))
+MERGED_SYM_DAT_VAX_07_02_21_418000kb <- full_join(MERGED_SYM_DAT_07_02_21_418000kb, RV_VAX_07_02_21_418000kb, by = c("VAERS_ID"))
+MERGED_07_02_21_418000kb_1 <- MERGED_SYM_DAT_VAX_07_02_21_418000kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+MERGED_07_02_21_418000kb <- MERGED_07_02_21_418000kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+```
+```{r}
 MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
 #nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1)
 MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo2 <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
