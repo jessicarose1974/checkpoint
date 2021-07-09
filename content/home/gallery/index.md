@@ -36,3 +36,5 @@ https://www.youtube.com/watch?v=KrBzzSHZpnY&fbclid=IwAR2gODvx3B0ClvM_xpQM7zDwCeh
 https://newsvoice.se/2021/06/dr-jessica-rose-the-harms-of-covid-vaccines-may-be-monumental/
 
 https://www.podomatic.com/podcasts/rvtheory6/episodes/2021-06-09T07_58_36-07_00
+
+https://rumble.com/vjhf65-false-positv-episode-10.3-vaers-analysis-dr.-jessica-rose.html

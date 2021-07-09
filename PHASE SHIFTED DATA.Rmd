@@ -57,6 +57,127 @@ VD_Dead_2021_07_02_21_418000kb_count_week_count <- VD_Dead_2021_07_02_21_418000k
 VD_Dead_2021_07_02_21_418000kb_count_week_count
 write_csv(VD_Dead_2021_07_02_21_418000kb_count_week_count, "/Users/admin/Desktop/VD_Dead_2021_07_02_21_418000kb_count_week_25_count.csv")
 ```
+WEEK 20
+```{r}
+MERGED_11_06_21_214900kb$VAX_DATE <- as.Date(MERGED_11_06_21_214900kb$VAX_DATE, "%m/%d/%y") 
+MERGED_11_06_21_214900kb$ONSET_DATE <- as.Date(MERGED_11_06_21_214900kb$ONSET_DATE, "%m/%d/%y")
+MERGED_11_06_21_214900kb$DATEDIED <- as.Date(MERGED_11_06_21_214900kb$DATEDIED, "%m/%d/%y")
+MERGED_11_06_21_214900kb$TODAYS_DATE <- as.Date(MERGED_11_06_21_214900kb$TODAYS_DATE, "%m/%d/%y")
+MERGED_11_06_21_214900kb$RECVDATE <- as.Date(MERGED_11_06_21_214900kb$RECVDATE, "%m/%d/%y")
+
+MERGED_11_06_21_214900kb_Dead <- MERGED_11_06_21_214900kb %>% filter(DIED == "Y")
+
+nrow(MERGED_11_06_21_214900kb_Dead)
+
+Dead_2021_11_06_21_214900kb <- MERGED_11_06_21_214900kb_Dead %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(TODAYS_DATE) <= 2021 & year(TODAYS_DATE) >= 2021) %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% filter(year(RECVDATE) <= 2021 & year(RECVDATE) >= 2021) 
+```
+```{r}
+OD_Dead_2021_11_06_21_214900kb_count <- Dead_2021_11_06_21_214900kb %>% group_by(ONSET_DATE, DIED) %>% count(DIED) %>% arrange(desc(ONSET_DATE)) 
+
+OD_Dead_2021_11_06_21_214900kb_count_week <- OD_Dead_2021_11_06_21_214900kb_count
+OD_Dead_2021_11_06_21_214900kb_count_week$week <- week(OD_Dead_2021_11_06_21_214900kb_count_week$ONSET_DATE)
+OD_Dead_2021_11_06_21_214900kb_count_week_count <- OD_Dead_2021_11_06_21_214900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+OD_Dead_2021_11_06_21_214900kb_count_week_count
+write_csv(OD_Dead_2021_11_06_21_214900kb_count_week_count, "/Users/admin/Desktop/OD_Dead_2021_11_06_21_214900kb_count_week_25_count.csv")
+
+TD_Dead_2021_11_06_21_214900kb_count <- Dead_2021_11_06_21_214900kb %>% group_by(TODAYS_DATE, DIED) %>% count(DIED) %>% arrange(desc(TODAYS_DATE)) 
+
+TD_Dead_2021_11_06_21_214900kb_count_week <- TD_Dead_2021_11_06_21_214900kb_count
+TD_Dead_2021_11_06_21_214900kb_count_week$week <- week(TD_Dead_2021_11_06_21_214900kb_count_week$TODAYS_DATE)
+TD_Dead_2021_11_06_21_214900kb_count_week_count <- TD_Dead_2021_11_06_21_214900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+TD_Dead_2021_11_06_21_214900kb_count_week_count
+write_csv(TD_Dead_2021_11_06_21_214900kb_count_week_count, "/Users/admin/Desktop/TD_Dead_2021_11_06_21_214900kb_count_week_25_count.csv")
+
+DD_Dead_2021_11_06_21_214900kb_count <- Dead_2021_11_06_21_214900kb %>% group_by(DATEDIED, DIED) %>% count(DIED) %>% arrange(desc(DATEDIED)) 
+
+DD_Dead_2021_11_06_21_214900kb_count_week <- DD_Dead_2021_11_06_21_214900kb_count
+DD_Dead_2021_11_06_21_214900kb_count_week$week <- week(DD_Dead_2021_11_06_21_214900kb_count_week$DATEDIED)
+DD_Dead_2021_11_06_21_214900kb_count_week_count <- DD_Dead_2021_11_06_21_214900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+DD_Dead_2021_11_06_21_214900kb_count_week_count
+write_csv(DD_Dead_2021_11_06_21_214900kb_count_week_count, "/Users/admin/Desktop/DD_Dead_2021_11_06_21_214900kb_count_week_25_count.csv")
+
+RD_Dead_2021_11_06_21_214900kb_count <- Dead_2021_11_06_21_214900kb %>% group_by(RECVDATE, DIED) %>% count(DIED) %>% arrange(desc(RECVDATE)) 
+
+RD_Dead_2021_11_06_21_214900kb_count_week <- RD_Dead_2021_11_06_21_214900kb_count
+RD_Dead_2021_11_06_21_214900kb_count_week$week <- week(RD_Dead_2021_11_06_21_214900kb_count_week$RECVDATE)
+RD_Dead_2021_11_06_21_214900kb_count_week_count <- RD_Dead_2021_11_06_21_214900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+RD_Dead_2021_11_06_21_214900kb_count_week_count
+write_csv(RD_Dead_2021_11_06_21_214900kb_count_week_count, "/Users/admin/Desktop/RD_Dead_2021_11_06_21_214900kb_count_week_25_count.csv")
+
+VD_Dead_2021_11_06_21_214900kb_count <- Dead_2021_11_06_21_214900kb %>% group_by(VAX_DATE, DIED) %>% count(DIED) %>% arrange(desc(VAX_DATE)) 
+
+VD_Dead_2021_11_06_21_214900kb_count_week <- VD_Dead_2021_11_06_21_214900kb_count
+VD_Dead_2021_11_06_21_214900kb_count_week$week <- week(VD_Dead_2021_11_06_21_214900kb_count_week$VAX_DATE)
+VD_Dead_2021_11_06_21_214900kb_count_week_count <- VD_Dead_2021_11_06_21_214900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+VD_Dead_2021_11_06_21_214900kb_count_week_count
+write_csv(VD_Dead_2021_11_06_21_214900kb_count_week_count, "/Users/admin/Desktop/VD_Dead_2021_11_06_21_214900kb_count_week_25_count.csv")
+```
+week 15
+```{r}
+MERGED_05_07_21_15900kb$VAX_DATE <- as.Date(MERGED_05_07_21_15900kb$VAX_DATE, "%m/%d/%y") 
+MERGED_05_07_21_15900kb$ONSET_DATE <- as.Date(MERGED_05_07_21_15900kb$ONSET_DATE, "%m/%d/%y")
+MERGED_05_07_21_15900kb$DATEDIED <- as.Date(MERGED_05_07_21_15900kb$DATEDIED, "%m/%d/%y")
+MERGED_05_07_21_15900kb$TODAYS_DATE <- as.Date(MERGED_05_07_21_15900kb$TODAYS_DATE, "%m/%d/%y")
+MERGED_05_07_21_15900kb$RECVDATE <- as.Date(MERGED_05_07_21_15900kb$RECVDATE, "%m/%d/%y")
+
+MERGED_05_07_21_15900kb_Dead <- MERGED_05_07_21_15900kb %>% filter(DIED == "Y")
+
+nrow(MERGED_05_07_21_15900kb_Dead)
+
+Dead_2021_05_07_21_15900kb <- MERGED_05_07_21_15900kb_Dead %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(TODAYS_DATE) <= 2021 & year(TODAYS_DATE) >= 2021) %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% filter(year(RECVDATE) <= 2021 & year(RECVDATE) >= 2021) 
+```
+```{r}
+OD_Dead_2021_05_07_21_15900kb_count <- Dead_2021_05_07_21_15900kb %>% group_by(ONSET_DATE, DIED) %>% count(DIED) %>% arrange(desc(ONSET_DATE)) 
+
+OD_Dead_2021_05_07_21_15900kb_count_week <- OD_Dead_2021_05_07_21_15900kb_count
+OD_Dead_2021_05_07_21_15900kb_count_week$week <- week(OD_Dead_2021_05_07_21_15900kb_count_week$ONSET_DATE)
+OD_Dead_2021_05_07_21_15900kb_count_week_count <- OD_Dead_2021_05_07_21_15900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+OD_Dead_2021_05_07_21_15900kb_count_week_count
+write_csv(OD_Dead_2021_05_07_21_15900kb_count_week_count, "/Users/admin/Desktop/OD_Dead_2021_05_07_21_15900kb_count_week_15_count.csv")
+
+TD_Dead_2021_05_07_21_15900kb_count <- Dead_2021_05_07_21_15900kb %>% group_by(TODAYS_DATE, DIED) %>% count(DIED) %>% arrange(desc(TODAYS_DATE)) 
+
+TD_Dead_2021_05_07_21_15900kb_count_week <- TD_Dead_2021_05_07_21_15900kb_count
+TD_Dead_2021_05_07_21_15900kb_count_week$week <- week(TD_Dead_2021_05_07_21_15900kb_count_week$TODAYS_DATE)
+TD_Dead_2021_05_07_21_15900kb_count_week_count <- TD_Dead_2021_05_07_21_15900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+TD_Dead_2021_05_07_21_15900kb_count_week_count
+write_csv(TD_Dead_2021_05_07_21_15900kb_count_week_count, "/Users/admin/Desktop/TD_Dead_2021_05_07_21_15900kb_count_week_15_count.csv")
+
+DD_Dead_2021_05_07_21_15900kb_count <- Dead_2021_05_07_21_15900kb %>% group_by(DATEDIED, DIED) %>% count(DIED) %>% arrange(desc(DATEDIED)) 
+DD_Dead_2021_05_07_21_15900kb_count
+
+DD_Dead_2021_05_07_21_15900kb_count_week <- DD_Dead_2021_05_07_21_15900kb_count
+DD_Dead_2021_05_07_21_15900kb_count_week$week <- week(DD_Dead_2021_05_07_21_15900kb_count_week$DATEDIED)
+DD_Dead_2021_05_07_21_15900kb_count_week_count <- DD_Dead_2021_05_07_21_15900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+DD_Dead_2021_05_07_21_15900kb_count_week_count
+write_csv(DD_Dead_2021_05_07_21_15900kb_count_week_count, "/Users/admin/Desktop/DD_Dead_2021_05_07_21_15900kb_count_week_15_count.csv")
+
+RD_Dead_2021_05_07_21_15900kb_count <- Dead_2021_05_07_21_15900kb %>% group_by(RECVDATE, DIED) %>% count(DIED) %>% arrange(desc(RECVDATE)) 
+
+RD_Dead_2021_05_07_21_15900kb_count_week <- RD_Dead_2021_05_07_21_15900kb_count
+RD_Dead_2021_05_07_21_15900kb_count_week$week <- week(RD_Dead_2021_05_07_21_15900kb_count_week$RECVDATE)
+RD_Dead_2021_05_07_21_15900kb_count_week_count <- RD_Dead_2021_05_07_21_15900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+RD_Dead_2021_05_07_21_15900kb_count_week_count
+write_csv(RD_Dead_2021_05_07_21_15900kb_count_week_count, "/Users/admin/Desktop/RD_Dead_2021_05_07_21_15900kb_count_week_25_count.csv")
+
+VD_Dead_2021_05_07_21_15900kb_count <- Dead_2021_05_07_21_15900kb %>% group_by(VAX_DATE, DIED) %>% count(DIED) %>% arrange(desc(VAX_DATE)) 
+
+VD_Dead_2021_05_07_21_15900kb_count_week <- VD_Dead_2021_05_07_21_15900kb_count
+VD_Dead_2021_05_07_21_15900kb_count_week$week <- week(VD_Dead_2021_05_07_21_15900kb_count_week$VAX_DATE)
+VD_Dead_2021_05_07_21_15900kb_count_week_count <- VD_Dead_2021_05_07_21_15900kb_count_week %>% group_by(week) %>% mutate("week_sum" = sum(n))
+VD_Dead_2021_05_07_21_15900kb_count_week_count
+write_csv(VD_Dead_2021_05_07_21_15900kb_count_week_count, "/Users/admin/Desktop/VD_Dead_2021_05_07_21_15900kb_count_week_25_count.csv")
+```
+```{r}
+#DD_Dead_2021_05_07_21_15900kb_count_week_count
+#DD_Dead_2021_11_06_21_214900kb_count_week_count
+#DD_Dead_2021_07_02_21_418000kb_count_week_count
+```
+```{r}
+MERGED_plot <- ggplot() + geom_smooth(data = DD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "red", size = 2) + geom_smooth(data = DD_Dead_2021_05_07_21_15900kb_count_week_count, aes(week, n), colour = "blue", size = 2) + geom_smooth(data = DD_Dead_2021_11_06_21_214900kb_count_week_count, aes(week, n), colour = "yellow", size = 2) + xlab("WEEK") +  ylab("NUMBER OF deaths FOLLOWING INJECTION") + labs(title = "NUMBER OF DEATHS FOR WEEKS 1, 15 AND 25", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+MERGED_plot
+ggsave("MERGED_plot.png")
+```
 week 24
 ```{r}
 MERGED_06_25_21_396000kb$VAX_DATE <- as.Date(MERGED_06_25_21_396000kb$VAX_DATE, "%m/%d/%y") 
@@ -145,5 +266,4 @@ OD_Dead_2021_06_18_21_235900kb_count_week_count
 MERGED_plot <- ggplot() + geom_smooth(data = OD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "red", size = 2) + geom_smooth(data = DD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "orange", size = 2) + geom_smooth(data = RD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "green", size = 2) + geom_smooth(data = VD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "purple", size = 2)+ xlab("WEEK") +  ylab("NUMBER OF deaths FOLLOWING INJECTION") + labs(title = "NUMBER OF deaths per week OD (R), DD (O), RD (G), VD (P)", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + xlim(0,25) # + geom_smooth(data = TD_Dead_2021_07_02_21_418000kb_count_week_count, aes(week, n), colour = "blue", size = 2)
 MERGED_plot
 ggsave("MERGED_plot.png")
-
 ```
