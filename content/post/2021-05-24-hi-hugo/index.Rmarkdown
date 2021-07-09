@@ -55,8 +55,8 @@ MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5 <- MERGED_07_02_21_418000kb %>% group_
 #nrow(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5)
 myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo1,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo2,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo3,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo4,MERGED_SYM_DAT_VAX_07_02_21_418000kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
-nrow(myo_Total)
-nrow(myo_Total)/nrow(MERGED_07_02_21_418000kb)*100
+#nrow(myo_Total)
+#nrow(myo_Total)/nrow(MERGED_07_02_21_418000kb)*100
 #myo_Total
 myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
 #myo_Total_count

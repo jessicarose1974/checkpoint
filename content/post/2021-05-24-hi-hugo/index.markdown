@@ -21,11 +21,4 @@ projects: []
 
 
 
-```
-## [1] 499
-```
-
-```
-## [1] 0.1283106
-```
 <img src="Figs/unnamed-chunk-4-1.png" width="672" />
