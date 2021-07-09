@@ -1,5 +1,5 @@
 ---
-title: "The R Markdown document for VAERS analysis"
+title: "This is where you can find the VAERS analysis stuff"
 author: "Dr. Jessica Rose"
 date: "2021-05-21"
 output: html_document
@@ -48,9 +48,9 @@ nrow(MERGED_07_02_21_418000kb)
 The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)
 ```{r}
 Table <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21"), "%m/%d/%y"),
+  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21"), "%m/%d/%y"),
   IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900")),
-  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "147760000", "147760000", "155880000")),
+  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000")),
   DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163")),
   HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612")), 
   ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399")),
@@ -62,7 +62,98 @@ Table <- data.frame(
 )
 Table
 ```
+```{r}
+Table_IDs_percent <- data.frame(
+  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21"), "%m/%d/%y"),
+  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900")),
+  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000")),
+  US_population = as.numeric(c("330175152" , "330175733" , "330176314", "330176895", "330177476", "330178057", "330178638", "330179219", "330179800", "330180381", "330193928", "330209443", "330244315", "330239326", "330757983", "332700813", "332738974", "332371755", "332393075", "332414436", "332888350", "332888350", "332962963", "333000250")),
+  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163")),
+  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612")), 
+  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399")),
+  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941")),
+  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442")), 
+  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351")),
+  
+  stringsAsFactors = FALSE
+)
+#Table_IDs_percent
+```
 
+```{r}
+SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) %>% mutate("SAE_p_mill_doses" = SAE_p_FV/(2.1)) #cum num of doses/FV population = 328150000/155880000 = 2.1
+#SAE_calculations
+```
+
+```{r}
+IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900"))
+#(diff(IDs)/(IDs))*100
+```
+
+```{r}
+Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DEATH/IDs*100) %>% mutate("H_PERCENT_ID" = HOSPITAL/IDs*100) %>% mutate("ER_PERCENT_ID" = ER/IDs*100) %>% mutate("SAE_PERCENT_ID" = SAE/IDs*100) %>% mutate("COVID_PERCENT_ID" = COVID/IDs*100) %>%  mutate("DEATH_PERCENT_FV" = DEATH/FV*100) %>% mutate("H_PERCENT_FV" = HOSPITAL/FV*100) %>% mutate("ER_PERCENT_FV" = ER/FV*100) %>% mutate("SAE_PERCENT_FV" = SAE/FV*100) %>% mutate("COVID_PERCENT_FV" = COVID/FV*100) %>% mutate("FRI_PERCENT_FV" = FRI/FV*100)
+#Table_IDs_percent_FV_IDs
+```
+
+```{r} 
+IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_02_21_418000kb)*100)
+#IDs_normalized_total_IDs
+```
+
+```{r}
+Table_IDs_percent_normalized_US_pop <- Table_IDs_percent_FV_IDs %>% mutate("IDs_norm_US_pop" = IDs/(US_population/1000000)) 
+#Table_IDs_percent_normalized_US_pop
+
+Table_IDs_percent_normalized_FV <- Table_IDs_percent_FV_IDs %>% mutate("IDs_norm_FV" = IDs/(FV/1000000)) 
+#Table_IDs_percent_normalized_FV
+
+Table_AEs_percent_normalized_per_million <- Table_IDs_percent_FV_IDs %>% mutate("Death_norm_per_million" = DEATH/(FV/1000000)) %>% mutate("Hospital_norm_per_million" = HOSPITAL/(FV/1000000)) %>% mutate("ER_norm_per_million" = ER/(FV/1000000)) %>% mutate("SAE_norm_per_million" = SAE/(FV/1000000)) %>% mutate("COVID_norm_per_million" = COVID/(FV/1000000)) %>% mutate("FRI_norm_per_million" = FRI/(FV/1000000))
+#Table_AEs_percent_normalized_per_million
+```
+
+```{r}
+Table_IDs_all_VAERS <- data.frame(
+  DATE = as.double(c("1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021")),
+  IDs = as.numeric(c("2787", "16657", "18392", "17655", "18441", "17794", "17592", "17247", "15997", "20072", "23113", "25492", "26852", "31248", "28663", "28664", "31353", "48349", "51019", "50524", "49601", "41200", "41149", "43335", "47165", "57224", "60450", "52751", "62305", "61204", "55833", "62000")),
+  US_Pop = as.numeric(c("252120309", "254539370", "256990613", "259532129", "262241196", "265163745", "268335003" ,"271713635", "275175301", "278548150", "281710909", "284607993", "287279318", "289815562", "292354658", "294993511", "297758969", "300608429", "303486012", "306307567", "309011475", "311584047", "314043885", "316400538", "318673411", "320878310" ,"323015995", "325084756", "327096265", "329064917", "331002651", "332915073")),
+  
+  stringsAsFactors = FALSE
+)
+Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop/1000000))
+#head(Table_IDs_all_VAERS)
+```
+```{r}
+Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
+#Table_IDs_all_VAERS_plot
+#ggsave("Table_IDs_all_VAERS_plot.png")
+```
+```{r}
+Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(title = "VAERS ID counts for the past 30 years", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
+Table_IDs_all_VAERS_plot_norm_US
+ggsave("Table_IDs_all_VAERS_plot_norm_US.png")
+```
+```{r}
+Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "VAERS ID absolute number counts (N))", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot
+ggsave("Table_IDs_plot.png")
+```
+
+```{r}
+Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS IDs per million FV") + labs(title = "VAERS ID per million Fully Injected)", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot_FV_p_mill
+ggsave("Table_IDs_plot_FV_p_mill.png")
+```
+```{r}
+Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Absolute counts for selected Variables (N))", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
+Table_IDs_percent_plot
+ggsave("Table_IDs_percent_plot.png")
+```
+
+```{r}
+Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("AEs/million") + labs(title = "Selected Variables per million Fully Injected", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, SAE_norm_per_million, colour = "SAE"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, COVID_norm_per_million, colour = "COVID"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, FRI_norm_per_million, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
+Table_IDs_FV_per_million
+ggsave("Table_IDs_FV_per_million.png")
+```
 ```{r}
 AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
   if(AGE_YRS >= 0 & AGE_YRS <10) {
@@ -130,7 +221,7 @@ nrow(HOSPITAL_07_02_21_418000kb)
 ER_ED_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% group_by(VAERS_ID, ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
 nrow(ER_ED_07_02_21_418000kb)
 ```
-These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect. 
+These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs. 
 ```{r}
 DEAD_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(DIED == "Y")
 HOSPITAL_Y_07_02_21_418000kb <- MERGED_07_02_21_418000kb %>% filter(HOSPITAL == "Y")
@@ -153,6 +244,7 @@ nrow(SAES_no_dups_07_02_21_418000kb)
 Percent = nrow(SAES_no_dups_07_02_21_418000kb)/nrow(MERGED_07_02_21_418000kb)*100
 Percent
 ```
+Histogram showing distribution of SAEs according to age group
 ```{r}
 SAES_no_dups_07_02_21_418000kb_AG <- SAES_no_dups_07_02_21_418000kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 SAES_no_dups_07_02_21_418000kb_AG_count <- SAES_no_dups_07_02_21_418000kb_AG %>% count(AGE_GROUP)
@@ -190,15 +282,15 @@ COVID_CASES <- function(SYMPTOM) {
     return(COVID19)
 }
 COVID_CASES1 <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM1)) %>% filter(COVID_CASES != "NA")
-nrow(COVID_CASES1)
+#nrow(COVID_CASES1)
 COVID_CASES2 <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM2)) %>% filter(COVID_CASES != "NA")
-nrow(COVID_CASES2)
+#nrow(COVID_CASES2)
 COVID_CASES3 <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM3)) %>% filter(COVID_CASES != "NA")
-nrow(COVID_CASES3)
+#nrow(COVID_CASES3)
 COVID_CASES4 <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM4)) %>% filter(COVID_CASES != "NA")
-nrow(COVID_CASES4)
+#nrow(COVID_CASES4)
 COVID_CASES5 <- MERGED_07_02_21_418000kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM5)) %>% filter(COVID_CASES != "NA")
-nrow(COVID_CASES5)
+#nrow(COVID_CASES5)
 
 COVID_CASES_Total <- rbind(COVID_CASES1,COVID_CASES2,COVID_CASES3,COVID_CASES4,COVID_CASES5)
 COVID_CASES_Total <- data.frame(COVID_CASES_Total, stringsAsFactors = FALSE)
@@ -248,6 +340,31 @@ COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %
 COVID_CASES_count_VM <- data.frame(COVID_CASES_count_VM, stringsAsFactors = FALSE) 
 #COVID_CASES_count_VM
 ```
+```{r}
+AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
+#AGE_GROUPS_COVID_dead
+```
+```{r}
+no_COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_07_02_21_418000kb))*100) %>% mutate("Round" = round(PERC, 2))
+#no_COVID_CASES_count_VM
+COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(COVID_CASES))*100) %>% mutate("Round" = round(PERC, 2))
+COVID_CASES_count_VM <- data.frame(COVID_CASES_count_VM, stringsAsFactors = FALSE) 
+#COVID_CASES_count_VM
+```
+```{r}
+pie_VM <- plot_ly(COVID_CASES_count_VM, labels = ~VAX_MANU, values = ~Round, type = 'pie')
+pie_VM <- pie_VM %>% layout(title = 'BREAKTHROUGH COVID-19 CASES BY MANUFACTURER',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+pie_VM
+```
+```{r}
+pie_AGE_GROUPS_COVID_dead <- plot_ly(AGE_GROUPS_COVID_dead, labels = ~AGE_GROUP, values = ~Round, type = 'pie')
+pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+pie_AGE_GROUPS_COVID_dead
+```
 Female Reproductive Events count
 ```{r}
 strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female sex hormone level", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Female sex hormone level", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
@@ -293,33 +410,7 @@ MERGED_07_02_21_418000kb_FRI_Total_ENTRY <- data.frame(MERGED_07_02_21_418000kb_
 FRI_CASES <- MERGED_07_02_21_418000kb_FRI_Total
 #nrow(FRI_CASES)/nrow(MERGED_07_02_21_418000kb)*100
 ```
-
-```{r}
-AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) %>% group_by(AGE_GROUP, DIED) %>% filter(DIED == "Y") %>% count(DIED) %>% mutate("SUM" = as.numeric(sum(n))) %>% mutate("Perc_D_tot" = as.numeric(n/(nrow(AGE_GROUPS_COVID))*100)) %>% mutate("Round" = round(Perc_D_tot, 2))
-#AGE_GROUPS_COVID_dead
-```
-```{r}
-no_COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_07_02_21_418000kb))*100) %>% mutate("Round" = round(PERC, 2))
-#no_COVID_CASES_count_VM
-COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(COVID_CASES))*100) %>% mutate("Round" = round(PERC, 2))
-COVID_CASES_count_VM <- data.frame(COVID_CASES_count_VM, stringsAsFactors = FALSE) 
-#COVID_CASES_count_VM
-```
-```{r}
-pie_VM <- plot_ly(COVID_CASES_count_VM, labels = ~VAX_MANU, values = ~Round, type = 'pie')
-pie_VM <- pie_VM %>% layout(title = 'BREAKTHROUGH COVID-19 CASES BY MANUFACTURER',
-         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-pie_VM
-```
-```{r}
-pie_AGE_GROUPS_COVID_dead <- plot_ly(AGE_GROUPS_COVID_dead, labels = ~AGE_GROUP, values = ~Round, type = 'pie')
-pie_AGE_GROUPS_COVID_dead <- pie_AGE_GROUPS_COVID_dead %>% layout(title = 'BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP',
-         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-pie_AGE_GROUPS_COVID_dead
-```
-
+Histogram showing distribution of Female Reproductive Issues by age group
 ```{r}
 FRI_CASES_ID <- FRI_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
 FRI_CASES_ID_plot <- ggplot(FRI_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Female Reproductive Issues") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of Female Reproductive Issues -> VAERS IDs vs AGE YEARS") + xlim(0,100)
@@ -337,7 +428,7 @@ FRI_CASES_VD_OD <- FRI_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VA
 
 #chisq.test(FRI_CASES_VD_OD$OBSERVED)
 ```
-
+Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points. 
 ```{r}
 FRI_CASES_VD_OD_TILE_count <- data.frame(FRI_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
 
@@ -351,7 +442,7 @@ CAUSATION_FRI_CASES_plot <- ggplot() + geom_line(data = FRI_CASES_VD_OD, aes(dif
 CAUSATION_FRI_CASES_plot 
 ggsave("CAUSATION_FRI_CASES_plot.png")
 ```
-Cardiac Event Count
+Cardiac Events Count
 ```{r}
 strings_CV <- c("Myocarditis", "Pericarditis", "Endocaraditis", "Cardiac arrest", "Chest pain", "Myocardial infarction", "Pericardial effusion", "Aneurysm", "Blood fibrinogen", "Blood fibrinogen increased", "Circulatory collapse", "C-reactive protein decreased", "C-reactive protein increased", "Deep vein thrombosis", "Dizziness", "Fatigue", "Fibrin D dimer increased", "Microembolism", "Platelet count decreased", "Platelet count increased", "Red blood cell count abnormal", "Red blood cell count decreased", "Red blood cell count increased", "Red blood cell rouleaux formation present", "Red blood cell schistocytes present", "Syncope", "Troponin", "Troponin increased", "Troponin I", "Troponin I increased", "Troponin T increased", "Thrombosis", "C-reactive protein decreased", "C-reactive protein increased")
 Cardiack <- function(SYMPTOM) {
@@ -452,6 +543,20 @@ ggsave("AGE_GROUPS_IAE_plot.png")
 #AGE_GROUPS_Cardiack_plot_skew
 ```
 ```{r}
+AGE_GROUPS_D <- D %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+AGE_GROUPS_H <- H %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+AGE_GROUPS_ER <- ER %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+```
+
+```{r}
+AGE_GROUPS_D_ALL_ID <- AGE_GROUPS_D %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
+AGE_GROUPS_D_ALL_ID_plot <- ggplot(AGE_GROUPS_D_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF DEATHS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Death -> VAERS IDs vs AGE GROUPS")
+AGE_GROUPS_D_ALL_ID_plot
+ggsave("AGE_GROUPS_D_ALL_ID_plot.png")
+#AGE_GROUPS_D_ALL_ID_skew <- data.frame(AGE_GROUPS_D_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#AGE_GROUPS_D_ALL_ID_skew
+```
+```{r}
 D <- MERGED_07_02_21_418000kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
 MERGED_07_02_21_418000kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
 #head(MERGED_07_02_21_418000kb_VD_DD)
@@ -475,6 +580,14 @@ VD_DD_TILE_plot
 ggsave("VD_DD_TILE_plot.png")
 ```
 ```{r}
+AGE_GROUPS_H_ALL_ID <- AGE_GROUPS_H %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
+AGE_GROUPS_H_ALL_ID_plot <- ggplot(AGE_GROUPS_H_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF HOSPITALIZATIONS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Hospital -> VAERS IDs vs AGE GROUPS")
+AGE_GROUPS_H_ALL_ID_plot
+ggsave("AGE_GROUPS_H_ALL_ID_plot.png")
+#AGE_GROUPS_H_ALL_ID_skew <- data.frame(AGE_GROUPS_H_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#AGE_GROUPS_H_ALL_ID_skew
+```
+```{r}
 H <- MERGED_07_02_21_418000kb %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
 MERGED_07_02_21_418000kb_H_VD_OD <- H %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n)  %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(H)*100)
 #head(MERGED_07_02_21_418000kb_H_VD_OD)
@@ -496,6 +609,14 @@ H_VD_DD_TILE_plot
 ggsave("H_VD_DD_TILE_plot.png")
 ```
 ```{r}
+AGE_GROUPS_ER_ALL_ID <- AGE_GROUPS_ER %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
+AGE_GROUPS_ER_ALL_ID_plot <- ggplot(AGE_GROUPS_ER_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF EMERGENCY DOCTOR VISITS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ER -> VAERS IDs vs AGE GROUPS")
+AGE_GROUPS_ER_ALL_ID_plot
+ggsave("AGE_GROUPS_ER_ALL_ID_plot.png")
+#AGE_GROUPS_ER_ALL_ID_skew <- data.frame(AGE_GROUPS_ER_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#AGE_GROUPS_ER_ALL_ID_skew
+```
+```{r}
 ER <- MERGED_07_02_21_418000kb %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
 MERGED_07_02_21_418000kb_ER_VD_OD <- ER %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(ER)*100)
 #head(MERGED_07_02_21_418000kb_ER_VD_OD)
@@ -515,130 +636,6 @@ ER_VD_OD_TILE_count <- MERGED_07_02_21_418000kb %>% group_by(ER_ED_VISIT, ONSET_
 ER_VD_DD_TILE_plot <- ggplot(ER_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs ER visit DATE") 
 ER_VD_DD_TILE_plot 
 ggsave("ER_VD_DD_TILE_plot.png")
-```
-
-```{r}
-AGE_GROUPS_D <- D %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-AGE_GROUPS_H <- H %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-AGE_GROUPS_ER <- ER %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-```
-
-```{r}
-AGE_GROUPS_D_ALL_ID <- AGE_GROUPS_D %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_D_ALL_ID_plot <- ggplot(AGE_GROUPS_D_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF DEATHS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Death -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_D_ALL_ID_plot
-ggsave("AGE_GROUPS_D_ALL_ID_plot.png")
-#AGE_GROUPS_D_ALL_ID_skew <- data.frame(AGE_GROUPS_D_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#AGE_GROUPS_D_ALL_ID_skew
-```
-```{r}
-AGE_GROUPS_H_ALL_ID <- AGE_GROUPS_H %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_H_ALL_ID_plot <- ggplot(AGE_GROUPS_H_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF HOSPITALIZATIONS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Hospital -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_H_ALL_ID_plot
-ggsave("AGE_GROUPS_H_ALL_ID_plot.png")
-#AGE_GROUPS_H_ALL_ID_skew <- data.frame(AGE_GROUPS_H_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#AGE_GROUPS_H_ALL_ID_skew
-```
-```{r}
-AGE_GROUPS_ER_ALL_ID <- AGE_GROUPS_ER %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_ER_ALL_ID_plot <- ggplot(AGE_GROUPS_ER_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF EMERGENCY DOCTOR VISITS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ER -> VAERS IDs vs AGE GROUPS")
-AGE_GROUPS_ER_ALL_ID_plot
-ggsave("AGE_GROUPS_ER_ALL_ID_plot.png")
-#AGE_GROUPS_ER_ALL_ID_skew <- data.frame(AGE_GROUPS_ER_ALL_ID, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#AGE_GROUPS_ER_ALL_ID_skew
-```
-
-```{r}
-Table_IDs_percent <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21"), "%m/%d/%y"),
-  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900")),
-  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "147760000", "147760000", "155880000")),
-  US_population = as.numeric(c("330175152" , "330175733" , "330176314", "330176895", "330177476", "330178057", "330178638", "330179219", "330179800", "330180381", "330193928", "330209443", "330244315", "330239326", "330757983", "332700813", "332738974", "332371755", "332393075", "332414436", "332888350", "332888350", "332962963")),
-  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163")),
-  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612")), 
-  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399")),
-  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941")),
-  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442")), 
-  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351")),
-  
-  stringsAsFactors = FALSE
-)
-#Table_IDs_percent
-```
-
-```{r}
-SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) %>% mutate("SAE_p_mill_doses" = SAE_p_FV/(2.1)) #cum num of doses/FV population = 328150000/155880000 = 2.1
-#SAE_calculations
-```
-
-```{r}
-IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900"))
-#(diff(IDs)/(IDs))*100
-```
-
-```{r}
-Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DEATH/IDs*100) %>% mutate("H_PERCENT_ID" = HOSPITAL/IDs*100) %>% mutate("ER_PERCENT_ID" = ER/IDs*100) %>% mutate("SAE_PERCENT_ID" = SAE/IDs*100) %>% mutate("COVID_PERCENT_ID" = COVID/IDs*100) %>%  mutate("DEATH_PERCENT_FV" = DEATH/FV*100) %>% mutate("H_PERCENT_FV" = HOSPITAL/FV*100) %>% mutate("ER_PERCENT_FV" = ER/FV*100) %>% mutate("SAE_PERCENT_FV" = SAE/FV*100) %>% mutate("COVID_PERCENT_FV" = COVID/FV*100) %>% mutate("FRI_PERCENT_FV" = FRI/FV*100)
-#Table_IDs_percent_FV_IDs
-```
-
-```{r} 
-IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_02_21_418000kb)*100)
-#IDs_normalized_total_IDs
-```
-
-```{r}
-Table_IDs_percent_normalized_US_pop <- Table_IDs_percent_FV_IDs %>% mutate("IDs_norm_US_pop" = IDs/(US_population/1000000)) 
-#Table_IDs_percent_normalized_US_pop
-
-Table_IDs_percent_normalized_FV <- Table_IDs_percent_FV_IDs %>% mutate("IDs_norm_FV" = IDs/(FV/1000000)) 
-#Table_IDs_percent_normalized_FV
-
-Table_AEs_percent_normalized_per_million <- Table_IDs_percent_FV_IDs %>% mutate("Death_norm_per_million" = DEATH/(FV/1000000)) %>% mutate("Hospital_norm_per_million" = HOSPITAL/(FV/1000000)) %>% mutate("ER_norm_per_million" = ER/(FV/1000000)) %>% mutate("SAE_norm_per_million" = SAE/(FV/1000000)) %>% mutate("COVID_norm_per_million" = COVID/(FV/1000000)) %>% mutate("FRI_norm_per_million" = FRI/(FV/1000000))
-#Table_AEs_percent_normalized_per_million
-```
-
-```{r}
-Table_IDs_all_VAERS <- data.frame(
-  DATE = as.double(c("1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021")),
-  IDs = as.numeric(c("2787", "16657", "18392", "17655", "18441", "17794", "17592", "17247", "15997", "20072", "23113", "25492", "26852", "31248", "28663", "28664", "31353", "48349", "51019", "50524", "49601", "41200", "41149", "43335", "47165", "57224", "60450", "52751", "62305", "61204", "55833", "62000")),
-  US_Pop = as.numeric(c("252120309", "254539370", "256990613", "259532129", "262241196", "265163745", "268335003" ,"271713635", "275175301", "278548150", "281710909", "284607993", "287279318", "289815562", "292354658", "294993511", "297758969", "300608429", "303486012", "306307567", "309011475", "311584047", "314043885", "316400538", "318673411", "320878310" ,"323015995", "325084756", "327096265", "329064917", "331002651", "332915073")),
-  
-  stringsAsFactors = FALSE
-)
-Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop/1000000))
-#head(Table_IDs_all_VAERS)
-```
-```{r}
-Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
-#Table_IDs_all_VAERS_plot
-#ggsave("Table_IDs_all_VAERS_plot.png")
-```
-```{r}
-Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to U.S. popln/million") + labs(title = "VAERS ID counts for the past 30 years", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
-Table_IDs_all_VAERS_plot_norm_US
-ggsave("Table_IDs_all_VAERS_plot_norm_US.png")
-```
-```{r}
-Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "VAERS ID absolute number counts (N))", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
-Table_IDs_plot
-ggsave("Table_IDs_plot.png")
-```
-
-```{r}
-Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS IDs per million FV") + labs(title = "VAERS ID per million Fully Injected)", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
-Table_IDs_plot_FV_p_mill
-ggsave("Table_IDs_plot_FV_p_mill.png")
-```
-```{r}
-Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Absolute counts for selected Variables (N))", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
-Table_IDs_percent_plot
-ggsave("Table_IDs_percent_plot.png")
-```
-
-```{r}
-Table_IDs_FV_per_million <- ggplot() + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Death_norm_per_million, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("AEs/million") + labs(title = "Selected Variables per million Fully Injected", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, Hospital_norm_per_million, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, ER_norm_per_million, colour = "ER"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, SAE_norm_per_million, colour = "SAE"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, COVID_norm_per_million, colour = "COVID"), size = 2) + geom_line(data = Table_AEs_percent_normalized_per_million, aes(DATE, FRI_norm_per_million, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm"))
-Table_IDs_FV_per_million
-ggsave("Table_IDs_FV_per_million.png")
 ```
 ```{r}
 MERGED_07_02_21_418000kb_12_18 <- MERGED_07_02_21_418000kb %>% filter(AGE_YRS >=12 & AGE_YRS <=18)
@@ -704,5 +701,4 @@ myo_Total_doses_1_2_age <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% group
 ```{r}
 AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
-```
 ```
