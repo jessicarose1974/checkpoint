@@ -5,7 +5,7 @@ date: "2021-05-21"
 output: html_document
 ---
 
-This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.
+This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. ALso included is some stuff on kids and Myocarditis.
 
 I start by coalescing the .csv files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
 
