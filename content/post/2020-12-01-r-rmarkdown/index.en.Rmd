@@ -23,6 +23,7 @@ library("DT")
 library("reshape2")
 library("data.table")
 library("plotly")
+library("xtable")
 ```
 ```{r}
 VAERSSYM_07_09_21_279100kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_09_21_279100kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
@@ -132,13 +133,13 @@ Table_IDs_all_VAERS_plot_norm_US
 ggsave("Table_IDs_all_VAERS_plot_norm_US.png")
 ```
 ```{r}
-Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "VAERS ID absolute number counts (N))", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "VAERS ID absolute number counts (N))", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 8)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot
 ggsave("Table_IDs_plot.png")
 ```
 
 ```{r}
-Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS IDs per million FV") + labs(title = "VAERS ID per million Fully Injected)", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 10)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("VAERS ID rate normalized to FV popln/million") + labs(title = "VAERS ID per million Fully Injected", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 8)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot_FV_p_mill
 ggsave("Table_IDs_plot_FV_p_mill.png")
 ```
@@ -211,6 +212,7 @@ This is the number of deaths.
 ```{r}
 D_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
 nrow(D_07_09_21_279100kb)
+nrow(D_07_09_21_279100kb)/nrow(MERGED_07_09_21_279100kb)*100
 ```
 These are the number of hospitalizations and emergency doctor visits. 
 ```{r}
@@ -444,7 +446,7 @@ ggsave("CAUSATION_FRI_CASES_plot.png")
 ```
 Cardiac Events Count
 ```{r}
-strings_CV <- c("Myocarditis", "Pericarditis", "Endocaraditis", "Cardiac arrest", "Chest pain", "Myocardial infarction", "Pericardial effusion", "Aneurysm", "Blood fibrinogen", "Blood fibrinogen increased", "Circulatory collapse", "C-reactive protein decreased", "C-reactive protein increased", "Deep vein thrombosis", "Dizziness", "Fatigue", "Fibrin D dimer increased", "Microembolism", "Platelet count decreased", "Platelet count increased", "Red blood cell count abnormal", "Red blood cell count decreased", "Red blood cell count increased", "Red blood cell rouleaux formation present", "Red blood cell schistocytes present", "Syncope", "Troponin", "Troponin increased", "Troponin I", "Troponin I increased", "Troponin T increased", "Thrombosis", "C-reactive protein decreased", "C-reactive protein increased")
+strings_CV <- c("Arrhythmia", "Myocarditis", "Pericarditis", "Endocarditis", "Cardiac arrest", "Chest pain", "Myocardial infarction", "Pericardial effusion", "Aneurysm", "Blood fibrinogen", "Blood fibrinogen increased", "Circulatory collapse", "C-reactive protein decreased", "C-reactive protein increased", "Deep vein thrombosis", "Dizziness", "Fatigue", "Fibrin D dimer increased", "Irregular breathing", "Ischaemia", "Microembolism", "Pallor", "Palpitations", "Platelet count decreased", "Platelet count increased", "Red blood cell count abnormal", "Red blood cell count decreased", "Red blood cell count increased", "Red blood cell rouleaux formation present", "Red blood cell schistocytes present", "Syncope", "Troponin", "Troponin increased", "Troponin I", "Troponin I increased", "Troponin T increased", "Thrombosis")
 Cardiack <- function(SYMPTOM) {
   if(str_detect(SYMPTOM, paste(strings_CV, collapse = "|"))) {
       CV = "Cardiac_event"
@@ -661,15 +663,15 @@ YOUTH_CASES_VD_DD_TILE_plot
 ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
 ```
 ```{r}
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1 <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM1 == "Myocarditis") 
 #nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2 <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM2 == "Myocarditis") 
 #nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3 <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM3 == "Myocarditis") 
 #nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4 <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM4 == "Myocarditis")
 #nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5 <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM5 == "Myocarditis") 
 #nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5)
 myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
@@ -696,6 +698,6 @@ myo_Total_doses_1_2_age <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% group
 #myo_Total_doses_1_2_age 
 ```
 ```{r}
-AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) #+ ylim(0,20)  
+AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
 ```
