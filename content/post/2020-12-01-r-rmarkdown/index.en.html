@@ -1,5 +1,5 @@
 ---
-title: "The R Markdown document for VAERS analysis"
+title: "This is where you can find some VAERS analysis - lots of pretty pictures..."
 author: "Dr. Jessica Rose"
 date: "2021-05-21"
 output: html_document
@@ -18,7 +18,7 @@ output: html_document
 
 <p>This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Spontaneous abortions, Breakthrough COVID-19 infections and Cardiovascular, Neurological and Immunological adverse events.</p>
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
-<pre><code>## [1] 388900</code></pre>
+<pre><code>## [1] 397262</code></pre>
 <p>The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)</p>
 <pre><code>##          DATE    IDs        FV DEATH HOSPITAL    ER   SAE COVID  FRI
 ## 1  2021-01-16   1431   4582089   137      338   338   690   194    4
@@ -41,75 +41,75 @@ output: html_document
 ## 18 2021-05-28 252523 132770000  4372    14977 32547 44860  4285 1067
 ## 19 2021-06-04 284041 136640000  4547    17520 37184 51068  4850 1421
 ## 20 2021-06-11 316929 141580000  4700    19354 41937 57073  5497 1967
-## 21 2021-06-18 346967 147760000  4825    20571 45952 61917  6151 2460
-## 22 2021-06-25 368162 147760000  4931    21636 49511 66255  6414 2940
-## 23 2021-07-02 388900 155880000  5163    22612 52399 69941  9442 5351</code></pre>
-<p><img src="Figs/unnamed-chunk-6-1.png" width="672" />
+## 21 2021-06-18 346967 148460000  4825    20571 45952 61917  6151 2460
+## 22 2021-06-25 368162 151620000  4931    21636 49511 66255  6414 2940
+## 23 2021-07-02 388900 155880000  5163    22612 52399 69941  9442 5351
+## 24 2021-07-09 397262 158290000  5375    23441 53789 71963  9721 5557</code></pre>
+<p><img src="Figs/unnamed-chunk-13-1.png" width="672" />
+<img src="Figs/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-15-1.png" width="672" />
+<img src="Figs/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-19-1.png" width="672" />
 This is the number of birth defects.</p>
-<pre><code>## [1] 203</code></pre>
+<pre><code>## [1] 217</code></pre>
 <p>This is the number of deaths.</p>
-<pre><code>## [1] 5163</code></pre>
+<pre><code>## [1] 5375</code></pre>
+<pre><code>## [1] 1.353011</code></pre>
 <p>These are the number of hospitalizations and emergency doctor visits.</p>
-<pre><code>## [1] 22612</code></pre>
-<pre><code>## [1] 52399</code></pre>
-<p>These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect.</p>
-<pre><code>## [1] 5163</code></pre>
-<pre><code>## [1] 22612</code></pre>
-<pre><code>## [1] 52399</code></pre>
-<pre><code>## [1] 6567</code></pre>
-<pre><code>## [1] 5534</code></pre>
-<pre><code>## [1] 203</code></pre>
-<pre><code>## [1] 69941</code></pre>
-<pre><code>## [1] 17.98431</code></pre>
-<p><img src="Figs/unnamed-chunk-12-1.png" width="672" />
+<pre><code>## [1] 23441</code></pre>
+<pre><code>## [1] 53789</code></pre>
+<p>These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs.</p>
+<pre><code>## [1] 5375</code></pre>
+<pre><code>## [1] 23441</code></pre>
+<pre><code>## [1] 53789</code></pre>
+<pre><code>## [1] 6783</code></pre>
+<pre><code>## [1] 5754</code></pre>
+<pre><code>## [1] 217</code></pre>
+<pre><code>## [1] 71963</code></pre>
+<pre><code>## [1] 18.11475</code></pre>
+<p>Histogram showing distribution of SAEs according to age group
+<img src="Figs/unnamed-chunk-25-1.png" width="672" />
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
 <pre><code>##   Percent_SAE   SAE PERC
 ## 1    Standard 58000   15
 ## 2      Actual 69941   18</code></pre>
-<p><img src="Figs/unnamed-chunk-13-1.png" width="672" />
-Breakthrough COVID-19 case count</p>
-<pre><code>## [1] 6858</code></pre>
-<pre><code>## [1] 3116</code></pre>
-<pre><code>## [1] 1450</code></pre>
-<pre><code>## [1] 812</code></pre>
-<pre><code>## [1] 626</code></pre>
-<pre><code>## [1] 9442</code></pre>
-<p><img src="Figs/unnamed-chunk-17-1.png" width="672" />
-<img src="Figs/unnamed-chunk-18-1.png" width="672" />
-<img src="Figs/unnamed-chunk-19-1.png" width="672" /></p>
-<p>Female Reproductive Events count</p>
-<pre><code>## [1] 5351</code></pre>
+<p><img src="Figs/unnamed-chunk-26-1.png" width="672" />
+Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
+<pre><code>## [1] 9721</code></pre>
+<pre><code>## [1] 2.447</code></pre>
+<p><img src="Figs/unnamed-chunk-30-1.png" width="672" />
+<img src="Figs/unnamed-chunk-31-1.png" width="672" />
+<img src="Figs/unnamed-chunk-32-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"1544a23df4d9b":["function () ","plotlyVisDat"]},"cur_data":"1544a23df4d9b","attrs":{"1544a23df4d9b":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.37,22.98,69.11],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"94b0435a4995":["function () ","plotlyVisDat"]},"cur_data":"94b0435a4995","attrs":{"94b0435a4995":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.5,22.94,69.04],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"1544a71172078":["function () ","plotlyVisDat"]},"cur_data":"1544a71172078","attrs":{"1544a71172078":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.12,0.36,0.97,1.51,2,0.88,0.1],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p><img src="Figs/unnamed-chunk-29-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-31-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-32-1.png" width="672" />
-Cardiac Event Count</p>
-<pre><code>## [1] 112684</code></pre>
-<p><img src="Figs/unnamed-chunk-36-1.png" width="672" />
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"94b038150a6e":["function () ","plotlyVisDat"]},"cur_data":"94b038150a6e","attrs":{"94b038150a6e":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.13,0.35,1.09,1.62,2.23,0.96,0.09],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Female Reproductive Events count</p>
+<pre><code>## [1] 5557</code></pre>
+<p>Histogram showing distribution of Female Reproductive Issues by age group
+<img src="Figs/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
+<img src="Figs/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-45-1.png" width="672" />
+Cardiac Events Count</p>
+<pre><code>## [1] 119265</code></pre>
+<p><img src="Figs/unnamed-chunk-49-1.png" width="672" />
 Immunological Adverse Effects Count</p>
-<pre><code>## [1] 132938</code></pre>
-<p><img src="Figs/unnamed-chunk-40-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-42-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-43-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-45-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-46-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-48-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-49-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-51-1.png" width="672" />
-<img src="Figs/unnamed-chunk-52-1.png" width="672" />
-<img src="Figs/unnamed-chunk-53-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-62-1.png" width="672" />
-<img src="Figs/unnamed-chunk-63-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-64-1.png" width="672" />
-<img src="Figs/unnamed-chunk-65-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-66-1.png" width="672" /></p>
-<pre><code>## [1] 14828</code></pre>
+<pre><code>## [1] 134878</code></pre>
+<p><img src="Figs/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-55-1.png" width="672" />
+<img src="Figs/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-57-1.png" width="672" />
+<img src="Figs/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-60-1.png" width="672" />
+<img src="Figs/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-63-1.png" width="672" /></p>
+<pre><code>## [1] 15600</code></pre>
+<p><img src="Figs/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-65-1.png" width="672" /></p>
+<pre><code>## [1] 559</code></pre>
+<pre><code>## [1] 0.1407132</code></pre>
 <p><img src="Figs/unnamed-chunk-67-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-68-1.png" width="672" /></p>
-<pre><code>## [1] 499</code></pre>
-<pre><code>## [1] 0.1283106</code></pre>
-<p><img src="Figs/unnamed-chunk-70-1.png" width="672" />
-```</p>
