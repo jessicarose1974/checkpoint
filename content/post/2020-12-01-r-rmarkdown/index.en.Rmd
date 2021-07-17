@@ -5,7 +5,7 @@ date: "2021-05-21"
 output: html_document
 ---
 
-This is an R Markdown sheet generated from the VAERS data. I included some code but for the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. ALso included is some stuff on kids and Myocarditis.
+This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. ALso included is some stuff on kids and Myocarditis.
 
 I start by coalescing the .csv files downloaded from the VAERS website: https://vaers.hhs.gov/data/datasets.html
 
@@ -25,55 +25,58 @@ library("data.table")
 library("plotly")
 library("xtable")
 ```
+This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ
 ```{r}
-VAERSSYM_07_09_21_279100kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_09_21_279100kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSDATA_07_09_21_279100kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_09_21_279100kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSVAX_07_09_21_279100kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_09_21_279100kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
-RV_VAX_07_09_21_279100kb <- VAERSVAX_07_09_21_279100kb %>% filter(VAX_TYPE == "COVID19")
-MERGED_SYM_DAT_07_09_21_279100kb <- full_join(VAERSSYM_07_09_21_279100kb, VAERSDATA_07_09_21_279100kb, by = c("VAERS_ID"))
-MERGED_SYM_DAT_VAX_07_09_21_279100kb <- full_join(MERGED_SYM_DAT_07_09_21_279100kb, RV_VAX_07_09_21_279100kb, by = c("VAERS_ID"))
-MERGED_07_09_21_279100kb_1 <- MERGED_SYM_DAT_VAX_07_09_21_279100kb %>% distinct(VAERS_ID, .keep_all = TRUE)
-MERGED_07_09_21_279100kb <- MERGED_07_09_21_279100kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+VAERSSYM_07_16_21_284800kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_16_21_284800kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSDATA_07_16_21_284800kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_16_21_284800kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSVAX_07_16_21_284800kb <- read_csv("/Users/admin/Downloads/2021VAERSData_07_16_21_284800kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+RV_VAX_07_16_21_284800kb <- VAERSVAX_07_16_21_284800kb %>% filter(VAX_TYPE == "COVID19")
+MERGED_SYM_DAT_07_16_21_284800kb <- full_join(VAERSSYM_07_16_21_284800kb, VAERSDATA_07_16_21_284800kb, by = c("VAERS_ID"))
+MERGED_SYM_DAT_VAX_07_16_21_284800kb <- full_join(MERGED_SYM_DAT_07_16_21_284800kb, RV_VAX_07_16_21_284800kb, by = c("VAERS_ID"))
+MERGED_07_16_21_284800kb_1 <- MERGED_SYM_DAT_VAX_07_16_21_284800kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+MERGED_07_16_21_284800kb <- MERGED_07_16_21_284800kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 
-write.csv(MERGED_07_09_21_279100kb, "/Users/admin/Desktop/MERGED_07_09_21_279100kb.csv")
+write.csv(MERGED_07_16_21_284800kb, "/Users/admin/Desktop/MERGED_07_16_21_284800kb.csv")
 ```
 ```{r}
-MERGED_07_09_21_279100kb$VAX_DATE <- as.Date(MERGED_07_09_21_279100kb$VAX_DATE, "%m/%d/%y") 
-MERGED_07_09_21_279100kb$ONSET_DATE <- as.Date(MERGED_07_09_21_279100kb$ONSET_DATE, "%m/%d/%y")
-MERGED_07_09_21_279100kb$DATEDIED <- as.Date(MERGED_07_09_21_279100kb$DATEDIED, "%m/%d/%y")
-MERGED_07_09_21_279100kb$TODAYS_DATE <- as.Date(MERGED_07_09_21_279100kb$TODAYS_DATE, "%m/%d/%y")
-MERGED_07_09_21_279100kb$RECVDATE <- as.Date(MERGED_07_09_21_279100kb$RECVDATE, "%m/%d/%y")
+MERGED_07_16_21_284800kb$VAX_DATE <- as.Date(MERGED_07_16_21_284800kb$VAX_DATE, "%m/%d/%y") 
+MERGED_07_16_21_284800kb$ONSET_DATE <- as.Date(MERGED_07_16_21_284800kb$ONSET_DATE, "%m/%d/%y")
+MERGED_07_16_21_284800kb$DATEDIED <- as.Date(MERGED_07_16_21_284800kb$DATEDIED, "%m/%d/%y")
+MERGED_07_16_21_284800kb$TODAYS_DATE <- as.Date(MERGED_07_16_21_284800kb$TODAYS_DATE, "%m/%d/%y")
+MERGED_07_16_21_284800kb$RECVDATE <- as.Date(MERGED_07_16_21_284800kb$RECVDATE, "%m/%d/%y")
 
-nrow(MERGED_07_09_21_279100kb)
+nrow(MERGED_07_16_21_284800kb)
+MERGED_07_16_21_284800kb_count_sym1 <- MERGED_07_16_21_284800kb %>% count(SYMPTOM1) %>% arrange(desc(n))
+MERGED_07_16_21_284800kb_count_sym1
 ```
 The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)
 ```{r}
-Table1 <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21"), "%m/%d/%y"),
-  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262")),
-  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000")),
-  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375")),
-  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441")), 
-  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789")),
-  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963")),
-  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442", "9721")), 
-  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351", "5557")),
+Table <- data.frame(
+  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21", "7/16/21"), "%m/%d/%y"),
+  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335")),
+  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000", "160410000")),
+  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375", "5508")),
+  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441", "24087")), 
+  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789", "55016")),
+  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963", "73645")),
+  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442", "9721", "9939")), 
+  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351", "5557", "5723")),
   
   stringsAsFactors = FALSE
 )
-Table1
+Table
 ```
 ```{r}
 Table_IDs_percent <- data.frame(
-  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21"), "%m/%d/%y"),
-  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262")),
-  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000")),
-  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375")),
-  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441")), 
-  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789")),
-  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963")),
-  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442", "9721")), 
-  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351", "5557")),
+  DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21", "7/16/21"), "%m/%d/%y"),
+  IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335")),
+  FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000", "160410000")),
+  DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375", "5508")),
+  HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441", "24087")), 
+  ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789", "55016")),
+  SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963", "73645")),
+  COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6414", "9442", "9721", "9939")), 
+  FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "5351", "5557", "5723")),
   
   stringsAsFactors = FALSE
 )
@@ -86,7 +89,7 @@ SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) 
 ```
 
 ```{r}
-IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262"))
+IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335"))
 #(diff(IDs)/(IDs))*100
 ```
 
@@ -96,7 +99,7 @@ Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DE
 ```
 
 ```{r} 
-IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_09_21_279100kb)*100)
+IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_07_16_21_284800kb)*100)
 #IDs_normalized_total_IDs
 ```
 
@@ -123,8 +126,8 @@ Table_IDs_all_VAERS <- Table_IDs_all_VAERS %>% mutate("NORMALIZED" = IDs/(US_Pop
 #head(Table_IDs_all_VAERS)
 ```
 ```{r}
-Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
-#Table_IDs_all_VAERS_plot
+Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") + ylab("ABSOLUTE NUMBER OF VAERS IDs (N)") + labs(title = "Change in absolute number of VAERS IDs per year", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "#000000", size = 14)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + ylim(0,400000) #+ geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1))
+Table_IDs_all_VAERS_plot
 #ggsave("Table_IDs_all_VAERS_plot.png")
 ```
 ```{r}
@@ -147,6 +150,11 @@ ggsave("Table_IDs_plot_FV_p_mill.png")
 Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("Absolute number of VAERS IDs (N)") + labs(title = "Absolute counts for selected Variables (N))", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
 Table_IDs_percent_plot
 ggsave("Table_IDs_percent_plot.png")
+```
+```{r}
+Table_IDs_percent_plot_FRI <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI), colour = "red", colour = "red", size = 5) + labs(caption = "Data source: VAERS; Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
+Table_IDs_percent_plot_FRI
+ggsave("Table_IDs_percent_plot_FRI.png")
 ```
 
 ```{r}
@@ -186,85 +194,85 @@ AGE_GROUPED_BY_DECADE <- function(AGE_YRS) {
 }
 ```
 ```{r}
-MERGED_07_09_21_279100kb_AG <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-MERGED_07_09_21_279100kb_AG_count <- MERGED_07_09_21_279100kb_AG %>% count(AGE_GROUP)
-MERGED_07_09_21_279100kb_count_plot <- ggplot(MERGED_07_09_21_279100kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
-MERGED_07_09_21_279100kb_count_plot
-ggsave("MERGED_07_09_21_279100kb_count_plot.png")
+MERGED_07_16_21_284800kb_AG <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+MERGED_07_16_21_284800kb_AG_count <- MERGED_07_16_21_284800kb_AG %>% count(AGE_GROUP)
+MERGED_07_16_21_284800kb_count_plot <- ggplot(MERGED_07_16_21_284800kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL AEs -> Distribution of AGE GROUPS")
+MERGED_07_16_21_284800kb_count_plot
+ggsave("MERGED_07_16_21_284800kb_count_plot.png")
 
-MERGED_07_09_21_279100kb_AGE_count <- MERGED_07_09_21_279100kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-#MERGED_07_09_21_279100kb_AGE_count <- data.frame(MERGED_07_09_21_279100kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#MERGED_07_09_21_279100kb_AGE_count
+MERGED_07_16_21_284800kb_AGE_count <- MERGED_07_16_21_284800kb %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+#MERGED_07_16_21_284800kb_AGE_count <- data.frame(MERGED_07_16_21_284800kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#MERGED_07_16_21_284800kb_AGE_count
 ```
 This is the number of birth defects.
 ```{r}
-MERGED_07_09_21_279100kb_doses <- MERGED_07_09_21_279100kb %>% group_by(VAX_DOSE_SERIES) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
-#MERGED_07_09_21_279100kb_doses
-MERGED_07_09_21_279100kb_doses_VM <- MERGED_07_09_21_279100kb %>% group_by(VAX_DOSE_SERIES, VAX_MANU) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2 & VAX_MANU != "UNKNOWN MANUFACTURER") %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n)) 
-MERGED_07_09_21_279100kb_doses_n <- MERGED_07_09_21_279100kb_doses %>% mutate("SUM" = sum(MERGED_07_09_21_279100kb_doses$n)) %>% mutate("PERCENT" = n/SUM*100)
-#MERGED_07_09_21_279100kb_doses_n
+MERGED_07_16_21_284800kb_doses <- MERGED_07_16_21_284800kb %>% group_by(VAX_DOSE_SERIES) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
+#MERGED_07_16_21_284800kb_doses
+MERGED_07_16_21_284800kb_doses_VM <- MERGED_07_16_21_284800kb %>% group_by(VAX_DOSE_SERIES, VAX_MANU) %>% filter(VAX_DOSE_SERIES >= 0 & VAX_DOSE_SERIES <= 2 & VAX_MANU != "UNKNOWN MANUFACTURER") %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n)) 
+MERGED_07_16_21_284800kb_doses_n <- MERGED_07_16_21_284800kb_doses %>% mutate("SUM" = sum(MERGED_07_16_21_284800kb_doses$n)) %>% mutate("PERCENT" = n/SUM*100)
+#MERGED_07_16_21_284800kb_doses_n
 ```
 ```{r}
-BD_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(BIRTH_DEFECT == TRUE)
-nrow(BD_07_09_21_279100kb)
+BD_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(BIRTH_DEFECT == TRUE)
+nrow(BD_07_16_21_284800kb)
 ```
-This is the number of deaths. 
+This is the number of deaths and the percentage per total AEs.
 ```{r}
-D_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
-nrow(D_07_09_21_279100kb)
-nrow(D_07_09_21_279100kb)/nrow(MERGED_07_09_21_279100kb)*100
+D_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% group_by(VAERS_ID, DIED) %>% filter(DIED == "Y")
+nrow(D_07_16_21_284800kb)
+nrow(D_07_16_21_284800kb)/nrow(MERGED_07_16_21_284800kb)*100
 ```
 These are the number of hospitalizations and emergency doctor visits. 
 ```{r}
-HOSPITAL_07_09_21_279100kb  <- MERGED_07_09_21_279100kb  %>% group_by(VAERS_ID, HOSPITAL) %>% filter(HOSPITAL == "Y")
-nrow(HOSPITAL_07_09_21_279100kb)
+HOSPITAL_07_16_21_284800kb  <- MERGED_07_16_21_284800kb  %>% group_by(VAERS_ID, HOSPITAL) %>% filter(HOSPITAL == "Y")
+nrow(HOSPITAL_07_16_21_284800kb)
 
-ER_ED_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% group_by(VAERS_ID, ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
-nrow(ER_ED_07_09_21_279100kb)
+ER_ED_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% group_by(VAERS_ID, ER_ED_VISIT) %>% filter(ER_ED_VISIT == "Y")
+nrow(ER_ED_07_16_21_284800kb)
 ```
 These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs. 
 ```{r}
-DEAD_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(DIED == "Y")
-HOSPITAL_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(HOSPITAL == "Y")
-ER_ED_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(ER_ED_VISIT == "Y")
-L_THREAT_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(L_THREAT == "Y")
-DISABLE_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(DISABLE == "Y")
-BIRTH_DEFECT_Y_07_09_21_279100kb <- MERGED_07_09_21_279100kb %>% filter(BIRTH_DEFECT == TRUE)
+DEAD_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(DIED == "Y")
+HOSPITAL_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(HOSPITAL == "Y")
+ER_ED_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(ER_ED_VISIT == "Y")
+L_THREAT_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(L_THREAT == "Y")
+DISABLE_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(DISABLE == "Y")
+BIRTH_DEFECT_Y_07_16_21_284800kb <- MERGED_07_16_21_284800kb %>% filter(BIRTH_DEFECT == TRUE)
 
-nrow(DEAD_Y_07_09_21_279100kb)
-nrow(HOSPITAL_Y_07_09_21_279100kb)
-nrow(ER_ED_Y_07_09_21_279100kb)
-nrow(L_THREAT_Y_07_09_21_279100kb)
-nrow(DISABLE_Y_07_09_21_279100kb)
-nrow(BIRTH_DEFECT_Y_07_09_21_279100kb)
+nrow(DEAD_Y_07_16_21_284800kb)
+nrow(HOSPITAL_Y_07_16_21_284800kb)
+nrow(ER_ED_Y_07_16_21_284800kb)
+nrow(L_THREAT_Y_07_16_21_284800kb)
+nrow(DISABLE_Y_07_16_21_284800kb)
+nrow(BIRTH_DEFECT_Y_07_16_21_284800kb)
 
-SAES_07_09_21_279100kb <- rbind(DEAD_Y_07_09_21_279100kb, HOSPITAL_Y_07_09_21_279100kb, ER_ED_Y_07_09_21_279100kb, L_THREAT_Y_07_09_21_279100kb, DISABLE_Y_07_09_21_279100kb, BIRTH_DEFECT_Y_07_09_21_279100kb)
+SAES_07_16_21_284800kb <- rbind(DEAD_Y_07_16_21_284800kb, HOSPITAL_Y_07_16_21_284800kb, ER_ED_Y_07_16_21_284800kb, L_THREAT_Y_07_16_21_284800kb, DISABLE_Y_07_16_21_284800kb, BIRTH_DEFECT_Y_07_16_21_284800kb)
 
-SAES_no_dups_07_09_21_279100kb <- subset(SAES_07_09_21_279100kb, !duplicated(subset(SAES_07_09_21_279100kb, select=c(VAERS_ID))))
-nrow(SAES_no_dups_07_09_21_279100kb)
-Percent = nrow(SAES_no_dups_07_09_21_279100kb)/nrow(MERGED_07_09_21_279100kb)*100
+SAES_no_dups_07_16_21_284800kb <- subset(SAES_07_16_21_284800kb, !duplicated(subset(SAES_07_16_21_284800kb, select=c(VAERS_ID))))
+nrow(SAES_no_dups_07_16_21_284800kb)
+Percent = nrow(SAES_no_dups_07_16_21_284800kb)/nrow(MERGED_07_16_21_284800kb)*100
 Percent
 ```
 Histogram showing distribution of SAEs according to age group
 ```{r}
-SAES_no_dups_07_09_21_279100kb_AG <- SAES_no_dups_07_09_21_279100kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
-SAES_no_dups_07_09_21_279100kb_AG_count <- SAES_no_dups_07_09_21_279100kb_AG %>% count(AGE_GROUP)
-SAES_no_dups_07_09_21_279100kb_count_plot <- ggplot(SAES_no_dups_07_09_21_279100kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("SEVERE ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL SAEs -> Distribution of AGE GROUPS")
-SAES_no_dups_07_09_21_279100kb_count_plot
-ggsave("SAES_no_dups_07_09_21_279100kb_count_plot.png")
+SAES_no_dups_07_16_21_284800kb_AG <- SAES_no_dups_07_16_21_284800kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
+SAES_no_dups_07_16_21_284800kb_AG_count <- SAES_no_dups_07_16_21_284800kb_AG %>% count(AGE_GROUP)
+SAES_no_dups_07_16_21_284800kb_count_plot <- ggplot(SAES_no_dups_07_16_21_284800kb_AG_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("SEVERE ADVERSE EVENTS (N)") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ALL SAEs -> Distribution of AGE GROUPS")
+SAES_no_dups_07_16_21_284800kb_count_plot
+ggsave("SAES_no_dups_07_16_21_284800kb_count_plot.png")
 
-#MERGED_07_09_21_279100kb_AGE_count <- data.frame(MERGED_07_09_21_279100kb_AGE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
-#MERGED_07_09_21_279100kb_AGE_count
+#MERGED_07_16_21_284800kb_AGE_count <- data.frame(SAES_no_dups_07_16_21_284800kb_AG_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
+#MERGED_07_16_21_284800kb_AGE_count
 ```
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage
 ```{r}
 Table_SAEs <- data.frame(
   Percent_SAE = c("Standard", "Actual"),
-  SAE = as.numeric(c("58000", "69941")), #the first number is the SAE/total AE
+  SAE = as.numeric(c("62000", "73645")), #the first number is the SAE/total AE
   
   stringsAsFactors = FALSE
 )
-Table_SAEs_perc <- Table_SAEs %>% mutate("PERC" = round(SAE/(nrow(MERGED_07_09_21_279100kb))*100))
+Table_SAEs_perc <- Table_SAEs %>% mutate("PERC" = round(SAE/(nrow(MERGED_07_16_21_284800kb))*100))
 head(Table_SAEs_perc)
 
 Table_SAEs_perc_plot <- ggplot(Table_SAEs_perc, aes(Percent_SAE, PERC, fill = Percent_SAE)) + geom_bar(stat = 'identity') + geom_text(aes(label = PERC)) + ylab("% VAERS SAE REPORTS") + theme(axis.text.y = element_text(colour = "#000000", size = 12)) + theme(axis.text.x = element_text(angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "none") + ggtitle("SAEs -> Comparison of Standard versus actual % reports")
@@ -282,15 +290,15 @@ COVID_CASES <- function(SYMPTOM) {
       }
     return(COVID19)
 }
-COVID_CASES1 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM1)) %>% filter(COVID_CASES != "NA")
+COVID_CASES1 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM1)) %>% filter(COVID_CASES != "NA")
 #nrow(COVID_CASES1)
-COVID_CASES2 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM2)) %>% filter(COVID_CASES != "NA")
+COVID_CASES2 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM2)) %>% filter(COVID_CASES != "NA")
 #nrow(COVID_CASES2)
-COVID_CASES3 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM3)) %>% filter(COVID_CASES != "NA")
+COVID_CASES3 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM3)) %>% filter(COVID_CASES != "NA")
 #nrow(COVID_CASES3)
-COVID_CASES4 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM4)) %>% filter(COVID_CASES != "NA")
+COVID_CASES4 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM4)) %>% filter(COVID_CASES != "NA")
 #nrow(COVID_CASES4)
-COVID_CASES5 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM5)) %>% filter(COVID_CASES != "NA")
+COVID_CASES5 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("COVID_CASES" = COVID_CASES(SYMPTOM5)) %>% filter(COVID_CASES != "NA")
 #nrow(COVID_CASES5)
 
 COVID_CASES_Total <- rbind(COVID_CASES1,COVID_CASES2,COVID_CASES3,COVID_CASES4,COVID_CASES5)
@@ -303,13 +311,13 @@ COVID_CASES_Total_ID <- COVID_CASES_Total %>% distinct(VAERS_ID, .keep_all = TRU
 
 COVID_CASES_Total_ENTRY <- COVID_CASES_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 nrow(COVID_CASES_Total_ENTRY)
-nrow(COVID_CASES_Total_ENTRY)/nrow(MERGED_07_09_21_279100kb)*100
+nrow(COVID_CASES_Total_ENTRY)/nrow(MERGED_07_16_21_284800kb)*100
 ```
 ```{r}
 #nrow(COVID_CASES_Total)
 #nrow(COVID_CASES_Total_ID)
 COVID_CASES <- COVID_CASES_Total_ENTRY
-#nrow(COVID_CASES)/nrow(MERGED_07_09_21_279100kb)*100
+#nrow(COVID_CASES)/nrow(MERGED_07_16_21_284800kb)*100
 ```
 ```{r}
 AGE_GROUPS_COVID <- COVID_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -347,7 +355,7 @@ AGE_GROUPS_COVID_dead <- data.frame(AGE_GROUPS_COVID, stringsAsFactors = FALSE) 
 #AGE_GROUPS_COVID_dead
 ```
 ```{r}
-no_COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_07_09_21_279100kb))*100) %>% mutate("Round" = round(PERC, 2))
+no_COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(MERGED_07_16_21_284800kb))*100) %>% mutate("Round" = round(PERC, 2))
 #no_COVID_CASES_count_VM
 COVID_CASES_count_VM <- COVID_CASES %>% group_by(VAX_MANU) %>% count(VAX_MANU) %>% filter(VAX_MANU != "NA" & VAX_MANU != "UNKNOWN MANUFACTURER") %>% mutate("PERC" = n/(nrow(COVID_CASES))*100) %>% mutate("Round" = round(PERC, 2))
 COVID_CASES_count_VM <- data.frame(COVID_CASES_count_VM, stringsAsFactors = FALSE) 
@@ -369,7 +377,8 @@ pie_AGE_GROUPS_COVID_dead
 ```
 Female Reproductive Events count
 ```{r}
-strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female sex hormone level", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Female sex hormone level", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
+strings_FRI <- c("Abnormal uterine bleeding", "Afterbirth pain", "Dysmenorrhoea", "Female reproductive tract disorder", "Female reproductive tract disorder", "Alpha 1 foetoprotein abnormal", "Heavy menstrual bleeding", "Intermenstrual bleeding", "Intra-uterine contraceptive device removal", "Menstrual disorder", "Menstruation delayed", "Menstruation irregular", "Premenstrual syndrome", "Abortion spontaneous", "Abortion spontaneous incomplete", "Uterine leiomyoma", "Uterine haemorrhage", "Uterine spasm", "Bradycardia foetal", "Biopsy foetal", "Bradycardia foetal", "Foetal cystic hygroma", "Foetal death", "Foetal exposure during pregnancy", "Foetal heart rate abnormal", "Foetal hypokinesia", "Foetal non-stress test abnormal", "Amenorrhoea", "Hypomenorrhoea", "Menopause", "Menorrhagia", "Oligomenorrhoea", "Polymenorrhoea", "Postmenopausal haemorrhage", "Postmenopause", "Vaginal discharge", "Vaginal disorder", "Vaginal erosion", "Vaginal haemorrhage", "Vaginal lesion", "Vaginal infection", "Vulvovaginal mycotic infection", "Vulval ulceration", "Vulval abscess", "Vulva cyst", "Cervix inflammation", "Adenocarcinoma of the cervix", "Cervix carcinoma", "Amniorrhoea", "Amniotic cavity infection", "Amniotic membrane rupture test positive", "Amniotic fluid index decreased")
+#strings_FRI
 ```
 ```{r}
 FRI <- function(SYMPTOM) {
@@ -381,41 +390,52 @@ FRI <- function(SYMPTOM) {
       }
     return(FRI)
 }
-MERGED_07_09_21_279100kb_FRI1 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM1)) %>% filter(Female_Reprod_Issues != "NA")
-MERGED_07_09_21_279100kb_FRI2 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM2)) %>% filter(Female_Reprod_Issues != "NA")
-MERGED_07_09_21_279100kb_FRI3 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM3)) %>% filter(Female_Reprod_Issues != "NA")
-MERGED_07_09_21_279100kb_FRI4 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM4)) %>% filter(Female_Reprod_Issues != "NA")
-MERGED_07_09_21_279100kb_FRI5 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM5)) %>% filter(Female_Reprod_Issues != "NA")
+MERGED_07_16_21_284800kb_FRI1 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM1)) %>% filter(Female_Reprod_Issues != "NA")
+MERGED_07_16_21_284800kb_FRI2 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM2)) %>% filter(Female_Reprod_Issues != "NA")
+MERGED_07_16_21_284800kb_FRI3 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM3)) %>% filter(Female_Reprod_Issues != "NA")
+MERGED_07_16_21_284800kb_FRI4 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM4)) %>% filter(Female_Reprod_Issues != "NA")
+MERGED_07_16_21_284800kb_FRI5 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Female_Reprod_Issues" = FRI(SYMPTOM5)) %>% filter(Female_Reprod_Issues != "NA")
 
-MERGED_07_09_21_279100kb_FRI_Total <- rbind(MERGED_07_09_21_279100kb_FRI1,MERGED_07_09_21_279100kb_FRI2,MERGED_07_09_21_279100kb_FRI3,MERGED_07_09_21_279100kb_FRI4,MERGED_07_09_21_279100kb_FRI5)
-MERGED_07_09_21_279100kb_FRI_Total <- data.frame(MERGED_07_09_21_279100kb_FRI_Total, stringsAsFactors = FALSE)
+MERGED_07_16_21_284800kb_FRI_Total <- rbind(MERGED_07_16_21_284800kb_FRI1,MERGED_07_16_21_284800kb_FRI2,MERGED_07_16_21_284800kb_FRI3,MERGED_07_16_21_284800kb_FRI4,MERGED_07_16_21_284800kb_FRI5)
+MERGED_07_16_21_284800kb_FRI_Total <- data.frame(MERGED_07_16_21_284800kb_FRI_Total, stringsAsFactors = FALSE)
 
-MERGED_07_09_21_279100kb_FRI_Total_ID <- MERGED_07_09_21_279100kb_FRI_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
-nrow(MERGED_07_09_21_279100kb_FRI_Total_ID)
+MERGED_07_16_21_284800kb_FRI_Total_ID <- MERGED_07_16_21_284800kb_FRI_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
 
-MERGED_07_09_21_279100kb_FRI_Total_ENTRY <- MERGED_07_09_21_279100kb_FRI_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+MERGED_07_16_21_284800kb_FRI_Total_ENTRY <- MERGED_07_16_21_284800kb_FRI_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 
-#nrow(MERGED_07_09_21_279100kb_FRI_Total_ENTRY)
-MERGED_07_09_21_279100kb_FRI_Total_ENTRY <- data.frame(MERGED_07_09_21_279100kb_FRI_Total_ENTRY, stringsAsFactors = FALSE)
+#nrow(MERGED_07_16_21_284800kb_FRI_Total_ENTRY)
+MERGED_07_16_21_284800kb_FRI_Total_ENTRY <- data.frame(MERGED_07_16_21_284800kb_FRI_Total_ENTRY, stringsAsFactors = FALSE)
 ```
 ```{r}
-#nrow(MERGED_07_09_21_279100kb_FRI1)
-#nrow(MERGED_07_09_21_279100kb_FRI2)
-#nrow(MERGED_07_09_21_279100kb_FRI3)
-#nrow(MERGED_07_09_21_279100kb_FRI4)
-#nrow(MERGED_07_09_21_279100kb_FRI5)
-#MERGED_07_09_21_279100kb_FRI_Total
+#nrow(MERGED_07_16_21_284800kb_FRI1)
+#nrow(MERGED_07_16_21_284800kb_FRI2)
+#nrow(MERGED_07_16_21_284800kb_FRI3)
+#nrow(MERGED_07_16_21_284800kb_FRI4)
+#nrow(MERGED_07_16_21_284800kb_FRI5)
+#MERGED_07_16_21_284800kb_FRI_Total
 ```
 ```{r}
-#nrow(MERGED_07_09_21_279100kb_FRI_Total)
-#nrow(MERGED_07_09_21_279100kb_FRI_Total_ID)
-FRI_CASES <- MERGED_07_09_21_279100kb_FRI_Total
-#nrow(FRI_CASES)/nrow(MERGED_07_09_21_279100kb)*100
+#nrow(MERGED_07_16_21_284800kb_FRI_Total)
+#nrow(MERGED_07_16_21_284800kb_FRI_Total_ID)
+FRI_CASES <- MERGED_07_16_21_284800kb_FRI_Total_ENTRY
+nrow(FRI_CASES)
+nrow(FRI_CASES)/nrow(MERGED_07_16_21_284800kb)*100
+
+#FRI_CASES_amenor1 <- FRI_CASES %>% filter(SYMPTOM1 == "Amenorrhoea") %>% count("SYMPTOM1")
+#FRI_CASES_amenor2 <- FRI_CASES %>% filter(SYMPTOM2 == "Amenorrhoea") %>% count("SYMPTOM2")
+#FRI_CASES_amenor3 <- FRI_CASES %>% filter(SYMPTOM3 == "Amenorrhoea") %>% count("SYMPTOM3")
+#FRI_CASES_amenor4 <- FRI_CASES %>% filter(SYMPTOM4 == "Amenorrhoea") %>% count("SYMPTOM4")
+#FRI_CASES_amenor5 <- FRI_CASES %>% filter(SYMPTOM5 == "Amenorrhoea") %>% count("SYMPTOM5")
+#FRI_CASES_amenor1
+#FRI_CASES_amenor2
+#FRI_CASES_amenor3
+#FRI_CASES_amenor4
+#FRI_CASES_amenor5
 ```
 Histogram showing distribution of Female Reproductive Issues by age group
 ```{r}
 FRI_CASES_ID <- FRI_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-FRI_CASES_ID_plot <- ggplot(FRI_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Female Reproductive Issues") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of Female Reproductive Issues -> VAERS IDs vs AGE YEARS") + xlim(0,100)
+FRI_CASES_ID_plot <- ggplot(FRI_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Women with Female Reproductive Issues") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of Female Reproductive Issues -> VAERS IDs vs AGE YEARS") + xlim(0,100)
 FRI_CASES_ID_plot
 ggsave("FRI_CASES_ID_plot.png")
 ```
@@ -428,15 +448,15 @@ FRI_CASES <- data.frame(FRI_CASES, stringsAsFactors = FALSE) %>% filter(year(ONS
 FRI_CASES_VD_OD <- FRI_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_CASES)*100)
 #head(FRI_CASES_VD_OD)
 
-#chisq.test(FRI_CASES_VD_OD$OBSERVED)
+chisq.test(FRI_CASES_VD_OD$OBSERVED)
 ```
 Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points. 
 ```{r}
 FRI_CASES_VD_OD_TILE_count <- data.frame(FRI_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
 
-FRI_CASES_VD_DD_TILE_plot <- ggplot(FRI_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs FRI AE ONSET DATE") 
-FRI_CASES_VD_DD_TILE_plot 
-ggsave("FRI_CASES_VD_DD_TILE_plot.png")
+FRI_CASES_VD_OD_TILE_plot <- ggplot(FRI_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs FRI AE ONSET DATE") 
+FRI_CASES_VD_OD_TILE_plot 
+ggsave("FRI_CASES_VD_OD_TILE_plot.png")
 ```
 
 ```{r}
@@ -446,7 +466,7 @@ ggsave("CAUSATION_FRI_CASES_plot.png")
 ```
 Cardiac Events Count
 ```{r}
-strings_CV <- c("Arrhythmia", "Myocarditis", "Pericarditis", "Endocarditis", "Cardiac arrest", "Chest pain", "Myocardial infarction", "Pericardial effusion", "Aneurysm", "Blood fibrinogen", "Blood fibrinogen increased", "Circulatory collapse", "C-reactive protein decreased", "C-reactive protein increased", "Deep vein thrombosis", "Dizziness", "Fatigue", "Fibrin D dimer increased", "Irregular breathing", "Ischaemia", "Microembolism", "Pallor", "Palpitations", "Platelet count decreased", "Platelet count increased", "Red blood cell count abnormal", "Red blood cell count decreased", "Red blood cell count increased", "Red blood cell rouleaux formation present", "Red blood cell schistocytes present", "Syncope", "Troponin", "Troponin increased", "Troponin I", "Troponin I increased", "Troponin T increased", "Thrombosis")
+strings_CV <- c("Arrhythmia", "Myocarditis", "Pericarditis", "Endocarditis", "Cardiac arrest", "Chest pain", "Myocardial infarction", "Pericardial effusion", "Aneurysm", "Blood fibrinogen", "Blood fibrinogen increased", "Circulatory collapse", "C-reactive protein decreased", "C-reactive protein increased", "Deep vein thrombosis", "Dizziness", "Fatigue", "Fibrin D dimer increased", "Irregular breathing", "Ischaemia", "Microembolism", "Pallor", "Palpitations", "Platelet count decreased", "Platelet count increased", "Red blood cell count abnormal", "Red blood cell count decreased", "Red blood cell count increased", "Red blood cell rouleaux formation present", "Red blood cell schistocytes present", "Syncope", "Troponin", "Troponin increased", "Troponin I", "Troponin I increased", "Troponin T increased", "Thrombosis", "Echocardiogram abnormal", "Dyspnoea")
 Cardiack <- function(SYMPTOM) {
   if(str_detect(SYMPTOM, paste(strings_CV, collapse = "|"))) {
       CV = "Cardiac_event"
@@ -456,15 +476,15 @@ Cardiack <- function(SYMPTOM) {
       }
     return(CV)
 }
-Cardiack1 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM1)) %>% filter(Cardiack != "NA")
+Cardiack1 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM1)) %>% filter(Cardiack != "NA")
 #nrow(Cardiack1)
-Cardiack2 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM2)) %>% filter(Cardiack != "NA")
+Cardiack2 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM2)) %>% filter(Cardiack != "NA")
 #nrow(Cardiack2)
-Cardiack3 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM3)) %>% filter(Cardiack != "NA")
+Cardiack3 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM3)) %>% filter(Cardiack != "NA")
 #nrow(Cardiack3)
-Cardiack4 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM4)) %>% filter(Cardiack != "NA")
+Cardiack4 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM4)) %>% filter(Cardiack != "NA")
 #nrow(Cardiack4)
-Cardiack5 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM5)) %>% filter(Cardiack != "NA")
+Cardiack5 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Cardiack" = Cardiack(SYMPTOM5)) %>% filter(Cardiack != "NA")
 #nrow(Cardiack5)
 
 Cardiack_Total <- rbind(Cardiack1,Cardiack2,Cardiack3,Cardiack4,Cardiack5)
@@ -482,7 +502,7 @@ nrow(Cardiack_Total_ENTRY)
 #nrow(Cardiack_Total)
 #nrow(Cardiack_Total_ID)
 Cardiack <- Cardiack_Total_ENTRY
-#nrow(Cardiack)/nrow(MERGED_07_09_21_279100kb)*100
+#nrow(Cardiack)/nrow(MERGED_07_16_21_284800kb)*100
 ```
 ```{r}
 AGE_GROUPS_Cardiack <- Cardiack %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -493,6 +513,39 @@ ggsave("AGE_GROUPS_Cardiack_plot.png")
 
 #AGE_GROUPS_Cardiack_plot_skew <- data.frame(AGE_GROUPS_Cardiack_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_Cardiack_plot_skew
+```
+```{r}
+MERGED_07_16_21_284800kb_12_18 <- MERGED_07_16_21_284800kb %>% filter(AGE_YRS >=12 & AGE_YRS <=18)
+nrow(MERGED_07_16_21_284800kb_12_18)
+
+MERGED_07_16_21_284800kb_12_18_1 <- MERGED_07_16_21_284800kb_12_18 %>% distinct(VAERS_ID, .keep_all = TRUE)
+YOUTH_CASES <- MERGED_07_16_21_284800kb_12_18_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+
+YOUTH_CASES_ID <- YOUTH_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+YOUTH_CASES_ID_plot <- ggplot(YOUTH_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of YOUTH 12-15 y/o CASES") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of AEs in 12-15 y/os  -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
+YOUTH_CASES_ID_plot
+ggsave("YOUTH_CASES_ID_plot.png")
+
+YOUTH_CASES <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
+YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_CASES)*100)
+#head(YOUTH_CASES_VD_OD)
+
+#chisq.test(YOUTH_CASES_VD_OD$OBSERVED)
+
+nrow(YOUTH_CASES)/nrow(MERGED_07_16_21_284800kb)*100
+```
+
+```{r}
+YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
+
+YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs YOUTH CASES 12-15 y/o AE ONSET DATE") 
+YOUTH_CASES_VD_DD_TILE_plot 
+ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
+```
+```{r}
+Cardiack_12_15 <- Cardiack %>% filter(AGE_YRS >=12 & AGE_YRS <=15)
+nrow(Cardiack_12_15)/nrow(YOUTH_CASES)*100
+nrow(YOUTH_CASES)/nrow(Cardiack)*100
 ```
 Immunological Adverse Effects Count
 ```{r}
@@ -506,15 +559,15 @@ IAE <- function(SYMPTOM) {
       }
     return(IAE)
 }
-IAE1 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("IAE" = IAE(SYMPTOM1)) %>% filter(IAE != "NA")
+IAE1 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("IAE" = IAE(SYMPTOM1)) %>% filter(IAE != "NA")
 #nrow(IAE1)
-IAE2 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("IAE" = IAE(SYMPTOM2)) %>% filter(IAE != "NA")
+IAE2 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("IAE" = IAE(SYMPTOM2)) %>% filter(IAE != "NA")
 #nrow(IAE2)
-IAE3 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("IAE" = IAE(SYMPTOM3)) %>% filter(IAE != "NA")
+IAE3 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("IAE" = IAE(SYMPTOM3)) %>% filter(IAE != "NA")
 #nrow(IAE3)
-IAE4 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("IAE" = IAE(SYMPTOM4)) %>% filter(IAE != "NA")
+IAE4 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("IAE" = IAE(SYMPTOM4)) %>% filter(IAE != "NA")
 #nrow(IAE4)
-IAE5 <- MERGED_07_09_21_279100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("IAE" = IAE(SYMPTOM5)) %>% filter(IAE != "NA")
+IAE5 <- MERGED_07_16_21_284800kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("IAE" = IAE(SYMPTOM5)) %>% filter(IAE != "NA")
 #nrow(IAE5)
 
 IAE_Total <- rbind(IAE1,IAE2,IAE3,IAE4,IAE5)
@@ -532,7 +585,7 @@ nrow(IAE_Total_ENTRY)
 #nrow(IAE_Total)
 #nrow(IAE_Total_ID)
 IAE_CASES <- IAE_Total_ENTRY
-#nrow(IAE)/nrow(MERGED_07_09_21_279100kb)*100
+#nrow(IAE)/nrow(MERGED_07_16_21_284800kb)*100
 ```
 ```{r}
 AGE_GROUPS_IAE <- IAE_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -545,23 +598,23 @@ ggsave("AGE_GROUPS_IAE_plot.png")
 #AGE_GROUPS_Cardiack_plot_skew
 ```
 ```{r}
-D <- MERGED_07_09_21_279100kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
-MERGED_07_09_21_279100kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
-#head(MERGED_07_09_21_279100kb_VD_DD)
+D <- MERGED_07_16_21_284800kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
+MERGED_07_16_21_284800kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
+#head(MERGED_07_16_21_284800kb_VD_DD)
 
-#chisq.test(MERGED_07_09_21_279100kb_VD_DD$OBSERVED)
+#chisq.test(MERGED_07_16_21_284800kb_VD_DD$OBSERVED)
 
-H <- MERGED_07_09_21_279100kb %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
-MERGED_07_09_21_279100kb_H_VD_OD <- H %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n)  %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(H)*100)
-#head(MERGED_07_09_21_279100kb_H_VD_OD)
+H <- MERGED_07_16_21_284800kb %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
+MERGED_07_16_21_284800kb_H_VD_OD <- H %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n)  %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(H)*100)
+#head(MERGED_07_16_21_284800kb_H_VD_OD)
 
-#chisq.test(MERGED_07_09_21_279100kb_H_VD_OD$OBSERVED)
+#chisq.test(MERGED_07_16_21_284800kb_H_VD_OD$OBSERVED)
 
-ER <- MERGED_07_09_21_279100kb %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
-MERGED_07_09_21_279100kb_ER_VD_OD <- ER %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(ER)*100)
-#head(MERGED_07_09_21_279100kb_ER_VD_OD)
+ER <- MERGED_07_16_21_284800kb %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020)
+MERGED_07_16_21_284800kb_ER_VD_OD <- ER %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n))  %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = mean(n)) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(ER)*100)
+#head(MERGED_07_16_21_284800kb_ER_VD_OD)
 
-#chisq.test(MERGED_07_09_21_279100kb_ER_VD_OD$OBSERVED)
+#chisq.test(MERGED_07_16_21_284800kb_ER_VD_OD$OBSERVED)
 
 
 AGE_GROUPS_D <- D %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
@@ -578,13 +631,13 @@ ggsave("AGE_GROUPS_D_ALL_ID_plot.png")
 #AGE_GROUPS_D_ALL_ID_skew
 ```
 ```{r}
-CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_07_09_21_279100kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_07_09_21_279100kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_07_16_21_284800kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_07_16_21_284800kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
 CAUSATION_DEATH_plot 
 ggsave("CAUSATION_DEATH_plot.png")
 ```
 
 ```{r}
-VD_DD_TILE_count <- MERGED_07_09_21_279100kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+VD_DD_TILE_count <- MERGED_07_16_21_284800kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
 #png("VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
 
@@ -602,13 +655,13 @@ ggsave("AGE_GROUPS_H_ALL_ID_plot.png")
 ```
 
 ```{r}
-CAUSATION_HOSP_plot <- ggplot() + geom_line(data = MERGED_07_09_21_279100kb_H_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED HOSPITALIZATIONS") + geom_line(data = MERGED_07_09_21_279100kb_H_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "HOSPITALIZATIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+CAUSATION_HOSP_plot <- ggplot() + geom_line(data = MERGED_07_16_21_284800kb_H_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED HOSPITALIZATIONS") + geom_line(data = MERGED_07_16_21_284800kb_H_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "HOSPITALIZATIONS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_HOSP_plot
 ggsave("CAUSATION_HOSP_plot.png")
 ```
 
 ```{r}
-H_VD_OD_TILE_count <- MERGED_07_09_21_279100kb %>% group_by(HOSPITAL, ONSET_DATE, VAX_DATE) %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+H_VD_OD_TILE_count <- MERGED_07_16_21_284800kb %>% group_by(HOSPITAL, ONSET_DATE, VAX_DATE) %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
 H_VD_DD_TILE_plot <- ggplot(H_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs HOSPITALIZATION DATE") 
 H_VD_DD_TILE_plot 
@@ -624,59 +677,34 @@ ggsave("AGE_GROUPS_ER_ALL_ID_plot.png")
 ```
 
 ```{r}
-CAUSATION_ER_plot <- ggplot() + geom_line(data = MERGED_07_09_21_279100kb_ER_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED ER VISITS") + geom_line(data = MERGED_07_09_21_279100kb_ER_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "ER VISITS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+CAUSATION_ER_plot <- ggplot() + geom_line(data = MERGED_07_16_21_284800kb_ER_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + xlab("NUMBER OF DAYS FOLLOWING INJECTION") +  ylab("PERCENTAGE OF REPORTED ER VISITS") + geom_line(data = MERGED_07_16_21_284800kb_ER_VD_OD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "ER VISITS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_ER_plot 
 ggsave("CAUSATION_ER_plot.png")
 ```
 
 ```{r}
-ER_VD_OD_TILE_count <- MERGED_07_09_21_279100kb %>% group_by(ER_ED_VISIT, ONSET_DATE, VAX_DATE) %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+ER_VD_OD_TILE_count <- MERGED_07_16_21_284800kb %>% group_by(ER_ED_VISIT, ONSET_DATE, VAX_DATE) %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
 
 ER_VD_DD_TILE_plot <- ggplot(ER_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs ER visit DATE") 
 ER_VD_DD_TILE_plot 
 ggsave("ER_VD_DD_TILE_plot.png")
 ```
-```{r}
-MERGED_07_09_21_279100kb_12_18 <- MERGED_07_09_21_279100kb %>% filter(AGE_YRS >=12 & AGE_YRS <=18)
-nrow(MERGED_07_09_21_279100kb_12_18)
-
-MERGED_07_09_21_279100kb_12_18_1 <- MERGED_07_09_21_279100kb_12_18 %>% distinct(VAERS_ID, .keep_all = TRUE)
-YOUTH_CASES <- MERGED_07_09_21_279100kb_12_18_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
-
-YOUTH_CASES_ID <- YOUTH_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-YOUTH_CASES_ID_plot <- ggplot(YOUTH_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of YOUTH 12-15 y/o CASES") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of AEs in 12-15 y/os  -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
-YOUTH_CASES_ID_plot
-ggsave("YOUTH_CASES_ID_plot.png")
-
-YOUTH_CASES <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
-YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_CASES)*100)
-#head(YOUTH_CASES_VD_OD)
-
-#chisq.test(YOUTH_CASES_VD_OD$OBSERVED)
-```
 
 ```{r}
-YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
-
-YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs YOUTH CASES 12-15 y/o AE ONSET DATE") 
-YOUTH_CASES_VD_DD_TILE_plot 
-ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
-```
-```{r}
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM1 == "Myocarditis") 
-#nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM2 == "Myocarditis") 
-#nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM3 == "Myocarditis") 
-#nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM4 == "Myocarditis")
-#nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4)
-MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5 <- MERGED_07_09_21_279100kb %>% filter(SYMPTOM5 == "Myocarditis") 
-#nrow(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5)
-myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo1,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo2,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo3,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo4,MERGED_SYM_DAT_VAX_07_09_21_279100kb_myo5)
+MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo1 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM1 == "Myocarditis") 
+#nrow(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo1)
+MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo2 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM2 == "Myocarditis") 
+#nrow(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo2)
+MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo3 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM3 == "Myocarditis") 
+#nrow(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo3)
+MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo4 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM4 == "Myocarditis")
+#nrow(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo4)
+MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo5 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM5 == "Myocarditis") 
+#nrow(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo5)
+myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo1,MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo2,MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo3,MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo4,MERGED_SYM_DAT_VAX_07_16_21_284800kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 nrow(myo_Total)
-nrow(myo_Total)/nrow(MERGED_07_09_21_279100kb)*100
+nrow(myo_Total)/nrow(MERGED_07_16_21_284800kb)*100
 #myo_Total
 myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
 #myo_Total_count
@@ -698,6 +726,39 @@ myo_Total_doses_1_2_age <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% group
 #myo_Total_doses_1_2_age 
 ```
 ```{r}
-AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
+AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
+```
+```{r}
+#MERGED_07_16_21_284800kb_death_1 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM1 == "Death") 
+#nrow(MERGED_07_16_21_284800kb_death_1)
+#MERGED_07_16_21_284800kb_death_2 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM2 == "Death") 
+#nrow(MERGED_07_16_21_284800kb_death_2)
+#MERGED_07_16_21_284800kb_death_3 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM3 == "Death") 
+#nrow(MERGED_07_16_21_284800kb_death_3)
+#MERGED_07_16_21_284800kb_death_4 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM4 == "Death")
+#nrow(MERGED_07_16_21_284800kb_death_4)
+#MERGED_07_16_21_284800kb_death_5 <- MERGED_07_16_21_284800kb %>% filter(SYMPTOM5 == "Death") 
+#nrow(MERGED_07_16_21_284800kb_death_5)
+#death_Total <- rbind(MERGED_07_16_21_284800kb_death_1,MERGED_07_16_21_284800kb_death_2,MERGED_07_16_21_284800kb_death_3,MERGED_07_16_21_284800kb_death_4,MERGED_07_16_21_284800kb_death_5)
+#death_Total <- data.frame(death_Total, stringsAsFactors = FALSE)
+#nrow(death_Total)
+#nrow(death_Total)/nrow(MERGED_07_16_21_284800kb)*100
+#death_Total
+#death_Total_count <- death_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
+#death_Total_count
+
+#death_Total_ID <- death_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
+
+#death_Total_ENTRY <- death_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+```
+```{r}
+#MERGED_07_16_21_284800kb_Death <- MERGED_07_16_21_284800kb %>% filter(DIED == "Y") %>% count(DIED)
+#MERGED_07_16_21_284800kb_Death
+
+#MERGED_SYM_DAT_VAX_07_16_21_284800kb_Death <- MERGED_SYM_DAT_VAX_07_16_21_284800kb %>% filter(DIED == "Y") %>% count(DIED)
+#MERGED_SYM_DAT_VAX_07_16_21_284800kb_Death
+
+#MERGED_07_16_21_284800kb_1_Death <- MERGED_07_16_21_284800kb_1 %>% filter(DIED == "Y") %>% count(DIED)
+#MERGED_07_16_21_284800kb_1_Death
 ```
