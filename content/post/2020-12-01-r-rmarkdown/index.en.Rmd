@@ -524,15 +524,18 @@ MERGED_07_16_21_284800kb_12_18 <- MERGED_07_16_21_284800kb %>% filter(AGE_YRS >=
 nrow(MERGED_07_16_21_284800kb_12_18)
 
 MERGED_07_16_21_284800kb_12_18_1 <- MERGED_07_16_21_284800kb_12_18 %>% distinct(VAERS_ID, .keep_all = TRUE)
+
 YOUTH_CASES <- MERGED_07_16_21_284800kb_12_18_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 
 YOUTH_CASES_ID <- YOUTH_CASES %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-YOUTH_CASES_ID_plot <- ggplot(YOUTH_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of YOUTH 12-15 y/o CASES") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of AEs in 12-15 y/os  -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
+YOUTH_CASES_ID_plot <- ggplot(YOUTH_CASES_ID, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of YOUTH 12-18 y/o CASES") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14))  + theme(legend.position = "none") + ggtitle("Number of AEs in 12-18 y/os  -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
 YOUTH_CASES_ID_plot
 ggsave("YOUTH_CASES_ID_plot.png")
+```
+```{r}
+YOUTH_CASES <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021)
 
-YOUTH_CASES <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2020) 
-YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(FRI_CASES)*100)
+YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(YOUTH_CASES)*100)
 #head(YOUTH_CASES_VD_OD)
 
 #chisq.test(YOUTH_CASES_VD_OD$OBSERVED)
@@ -549,8 +552,10 @@ ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
 ```
 ```{r}
 Cardiack_12_15 <- Cardiack %>% filter(AGE_YRS >=12 & AGE_YRS <=15)
+
 nrow(Cardiack_12_15)/nrow(YOUTH_CASES)*100
 nrow(YOUTH_CASES)/nrow(Cardiack)*100
+nrow(Cardiack_12_15)/nrow(Cardiack)*100
 ```
 Immunological Adverse Effects Count
 ```{r}
