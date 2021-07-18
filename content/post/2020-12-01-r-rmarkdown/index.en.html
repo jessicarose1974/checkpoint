@@ -20,20 +20,6 @@ output: html_document
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
 <p>This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ</p>
 <pre><code>## [1] 403335</code></pre>
-<pre><code>## # A tibble: 4,036 x 2
-##    SYMPTOM1                    n
-##    &lt;chr&gt;                   &lt;int&gt;
-##  1 Chills                  35513
-##  2 Arthralgia              22527
-##  3 Dizziness               21452
-##  4 Injection site erythema 13959
-##  5 Fatigue                 13732
-##  6 Asthenia                12213
-##  7 Headache                10791
-##  8 Erythema                 8984
-##  9 COVID-19                 6460
-## 10 Rash                     5264
-## # … with 4,026 more rows</code></pre>
 <p>The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)</p>
 <pre><code>##          DATE    IDs        FV DEATH HOSPITAL    ER   SAE COVID  FRI
 ## 1  2021-01-16   1431   4582089   137      338   338   690   194    4
@@ -61,14 +47,19 @@ output: html_document
 ## 23 2021-07-02 388900 155880000  5163    22612 52399 69941  9442 5351
 ## 24 2021-07-09 397262 158290000  5375    23441 53789 71963  9721 5557
 ## 25 2021-07-16 403335 160410000  5508    24087 55016 73645  9939 5723</code></pre>
-<p><img src="Figs/unnamed-chunk-12-1.png" width="672" />
+<p>This is the change in absolute number of VAERS IDs per year.
+<img src="Figs/unnamed-chunk-12-1.png" width="672" />
+These are the VAERS ID counts for the past 30 years normalized to U.S. population per million. The blue line is the best fit line - you can use it to imagine where we might have been number-wise at the end of 2021 if anything was even remotely typical.
 <img src="Figs/unnamed-chunk-13-1.png" width="672" />
-<img src="Figs/unnamed-chunk-14-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-15-1.png" width="672" />
+This is the cumulative number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products.
+<img src="Figs/unnamed-chunk-14-1.png" width="672" />
+This is the number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products normalized to FULLY INJECTED population per million.
+<img src="Figs/unnamed-chunk-15-1.png" width="672" />
+These are the trajectories of cumulative data for the respective groups.
 <img src="Figs/unnamed-chunk-16-1.png" width="672" />
+These are the trajectories of normalized data for the respective groups (normalized to US FULLY INJECTED population per million).
 <img src="Figs/unnamed-chunk-17-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-18-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-20-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-19-1.png" width="672" />
 This is the number of birth defects.</p>
 <pre><code>## [1] 226</code></pre>
 <p>This is the number of deaths and the percentage per total AEs.</p>
@@ -87,33 +78,35 @@ This is the number of birth defects.</p>
 <pre><code>## [1] 73645</code></pre>
 <pre><code>## [1] 18.25902</code></pre>
 <p>Histogram showing distribution of SAEs according to age group
-<img src="Figs/unnamed-chunk-26-1.png" width="672" />
+<img src="Figs/unnamed-chunk-25-1.png" width="672" />
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
 <pre><code>##   Percent_SAE   SAE PERC
 ## 1    Standard 62000   15
 ## 2      Actual 73645   18</code></pre>
-<p><img src="Figs/unnamed-chunk-27-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-26-1.png" width="672" />
 Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
 <pre><code>## [1] 9939</code></pre>
 <pre><code>## [1] 2.464205</code></pre>
-<p><img src="Figs/unnamed-chunk-31-1.png" width="672" />
-<img src="Figs/unnamed-chunk-32-1.png" width="672" />
-<img src="Figs/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-30-1.png" width="672" />
+<img src="Figs/unnamed-chunk-31-1.png" width="672" />
+<img src="Figs/unnamed-chunk-32-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"8647557496aa":["function () ","plotlyVisDat"]},"cur_data":"8647557496aa","attrs":{"8647557496aa":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.57,22.74,69.17],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"cd0d567f0ff7":["function () ","plotlyVisDat"]},"cur_data":"cd0d567f0ff7","attrs":{"cd0d567f0ff7":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.57,22.74,69.17],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"86477a3df324":["function () ","plotlyVisDat"]},"cur_data":"86477a3df324","attrs":{"86477a3df324":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.13,0.34,1.08,1.65,2.37,1,0.12],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"cd0db16a3c9":["function () ","plotlyVisDat"]},"cur_data":"cd0db16a3c9","attrs":{"cd0db16a3c9":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.07,0.13,0.34,1.08,1.65,2.37,1,0.12],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Female Reproductive Events count</p>
 <pre><code>## [1] 5722</code></pre>
 <pre><code>## [1] 1.418672</code></pre>
 <p>Histogram showing distribution of Female Reproductive Issues by age group
-<img src="Figs/unnamed-chunk-43-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-42-1.png" width="672" /></p>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  FRI_CASES_VD_OD$OBSERVED
 ## X-squared = 15562, df = 50, p-value &lt; 2.2e-16</code></pre>
-<p>Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
+<p>Cumulative FRI cases as per update - rates increasing.
+<img src="Figs/unnamed-chunk-44-1.png" width="672" />
+Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
 <img src="Figs/unnamed-chunk-45-1.png" width="672" /></p>
 <p><img src="Figs/unnamed-chunk-46-1.png" width="672" />
 Cardiac Events Count</p>
