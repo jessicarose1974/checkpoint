@@ -3,7 +3,7 @@ widget: hero
 headless: true
 weight: 10
 title: Jessica's World
-hero_media: hio3.png
+hero_media: hio4.png
 
 design:
   background:
@@ -15,15 +15,14 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
-<font size="5" color = "yellow">**Don't forget about OPENVaers:**</font> https://www.openvaers.com
+<font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
+
+<font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
 
 <font size="5" color = "yellow">**And the VAERS Wayback Machine!**</font> https://medalerts.org/vaersdb/wayback/
 
 <font size="5" color = "yellow"> Feel free to visit my youtube channel to see my findings summarized.</font>
-<font size ="4">**https://www.youtube.com/watch?v=bMY2tdFNkRU**</font>
+<font size ="4">**https://www.youtube.com/watch?v=bMY2tdFNkRU**</font> or <font size ="4">**https://www.bitchute.com/video/NqedH2RNS3zQ/**</font>
 
 <font size="5" color = "yellow"> and here's my video on the RAAS, spike and SARS. You saw it here first.</font>
 <font size ="4">**https://www.bitchute.com/video/31nextKrNG4S/**</font>
-
-<font size="5" color = "yellow"> or on BITCHUTE... when they take down my youtube channel.</font>
-<font size ="4">**https://www.bitchute.com/video/NqedH2RNS3zQ/**</font>
