@@ -49,7 +49,7 @@ nrow(MERGED_07_23_21_290300kb)
 MERGED_07_23_21_290300kb_count_sym1 <- MERGED_07_23_21_290300kb %>% count(SYMPTOM1) %>% arrange(desc(n))
 #nrow(MERGED_07_23_21_290300kb_count_sym1)
 ```
-Percent of reports fimade by Females
+Percent of VAERS reports made by Females
 ```{r}
 MERGED_07_23_21_290300kb_SEX_no_U <- MERGED_07_23_21_290300kb %>% filter(SEX != "U")
 MERGED_07_23_21_290300kb_SEX_no_U_F <- MERGED_07_23_21_290300kb_SEX_no_U %>% filter(SEX == "F")
@@ -526,6 +526,7 @@ ggsave("AGE_GROUPS_Cardiack_plot.png")
 #AGE_GROUPS_Cardiack_plot_skew <- data.frame(AGE_GROUPS_Cardiack_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_Cardiack_plot_skew
 ```
+This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage of the total AEs reported and a histogram showing age group distribution.
 ```{r}
 MERGED_07_23_21_290300kb_12_18 <- MERGED_07_23_21_290300kb %>% filter(AGE_YRS >=12 & AGE_YRS <=18)
 nrow(MERGED_07_23_21_290300kb_12_18)
@@ -549,7 +550,7 @@ YOUTH_CASES_VD_OD <- YOUTH_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE
 nrow(YOUTH_CASES)
 nrow(YOUTH_CASES)/nrow(MERGED_07_23_21_290300kb)*100
 ```
-
+And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
 ```{r}
 YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=25) %>% count(diff_in_days) %>% arrange(desc(n))  
 
@@ -557,6 +558,7 @@ YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE
 YOUTH_CASES_VD_DD_TILE_plot 
 ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
 ```
+Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the totoal cardiac AEs. 
 ```{r}
 Cardiack_12_15 <- Cardiack %>% filter(AGE_YRS >=12 & AGE_YRS <=15)
 
@@ -595,7 +597,9 @@ IAE_Total <- data.frame(IAE_Total, stringsAsFactors = FALSE)
 ```{r}
 IAE_Total_ID <- IAE_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
 #nrow(IAE_Total_ID)
-
+```
+Here we have the total AE count for immunological adverse events as per the list above. This is a very short list as compared with the total number of immunological AEs. It is merely a representation. 
+```{r}
 IAE_Total_ENTRY <- IAE_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 nrow(IAE_Total_ENTRY)
 ```
@@ -615,6 +619,7 @@ ggsave("AGE_GROUPS_IAE_plot.png")
 #AGE_GROUPS_IAE_plot_skew <- data.frame(AGE_GROUPS_IAE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_Cardiack_plot_skew
 ```
+This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -> perfect correlation (look for red on diagonal).
 ```{r}
 D <- MERGED_07_23_21_290300kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
 MERGED_07_23_21_290300kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
@@ -663,6 +668,7 @@ VD_DD_TILE_plot <- ggplot(VD_DD_TILE_count, aes(VAX_DATE, DATEDIED)) + geom_tile
 VD_DD_TILE_plot 
 ggsave("VD_DD_TILE_plot.png")
 ```
+This is a histogram showing hospitalization distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and hospitalization date. R=1 -> perfect correlation (look for red on diagonal).
 ```{r}
 AGE_GROUPS_H_ALL_ID <- AGE_GROUPS_H %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
 AGE_GROUPS_H_ALL_ID_plot <- ggplot(AGE_GROUPS_H_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF HOSPITALIZATIONS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Hospital -> VAERS IDs vs AGE GROUPS")
@@ -685,6 +691,7 @@ H_VD_DD_TILE_plot <- ggplot(H_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geo
 H_VD_DD_TILE_plot 
 ggsave("H_VD_DD_TILE_plot.png")
 ```
+This is a histogram showing ER distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and ER date. R=1 -> perfect correlation (look for red on diagonal).
 ```{r}
 AGE_GROUPS_ER_ALL_ID <- AGE_GROUPS_ER %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
 AGE_GROUPS_ER_ALL_ID_plot <- ggplot(AGE_GROUPS_ER_ALL_ID, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF EMERGENCY DOCTOR VISITS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("ER -> VAERS IDs vs AGE GROUPS")
@@ -707,7 +714,7 @@ ER_VD_DD_TILE_plot <- ggplot(ER_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + g
 ER_VD_DD_TILE_plot 
 ggsave("ER_VD_DD_TILE_plot.png")
 ```
-
+And hey! What would this analysis be without myocarditis? This is the count of myocarditis cases and the percentage of the total count for cardiac cases and for the total AE count. 
 ```{r}
 MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo1 <- MERGED_07_23_21_290300kb %>% filter(SYMPTOM1 == "Myocarditis") 
 #nrow(MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo1)
@@ -722,6 +729,7 @@ MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo5 <- MERGED_07_23_21_290300kb %>% filter
 myo_Total <- rbind(MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo1,MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo2,MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo3,MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo4,MERGED_SYM_DAT_VAX_07_23_21_290300kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 nrow(myo_Total)
+nrow(myo_Total)/nrow(Cardiack)*100
 nrow(myo_Total)/nrow(MERGED_07_23_21_290300kb)*100
 #myo_Total
 myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
@@ -743,10 +751,17 @@ myo_Total_doses_1_2 <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% count(VAX
 myo_Total_doses_1_2_age <- myo_Total  %>% filter(VAX_DOSE_SERIES <= 2) %>% group_by(AGE_YRS) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(n))
 #myo_Total_doses_1_2_age 
 ```
+And this plot shows age versus dose data for myocarditis cases. Notice how many young people. Hmm what's that now? Dose 2 is causing moycarditis in young males? Hmm
 ```{r}
 AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,62) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
 ggsave("AGE_YEARS_myo_Total_plot.png")
+```
+```{r}
+myo_Total_ENTRY_VDS <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES != "NA" & VAX_DOSE_SERIES != "UNK") %>% filter(SEX != "U") %>% filter(VAX_MANU != "JANSSEN")
+myo_Total_ENTRY_count_VDS_plot <- ggplot(myo_Total_ENTRY_VDS, aes(VAX_DOSE_SERIES, AGE_YRS, fill = SEX)) + geom_boxplot(outlier.colour="black", outlier.shape=16,outlier.size=1) + facet_wrap(~ VAX_MANU, scale = "free") + xlab("DOSE NUMBER") + ylab("AGE IN YEARS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "right") + ggtitle("MYOCARDITIS -> VAERS IDs vs AGE_YRS") 
+myo_Total_ENTRY_count_VDS_plot
+ggsave("myo_Total_ENTRY_count_VDS_plot.png")
 ```
 ```{r}
 #MERGED_07_23_21_290300kb_death_1 <- MERGED_07_23_21_290300kb %>% filter(SYMPTOM1 == "Death") 
