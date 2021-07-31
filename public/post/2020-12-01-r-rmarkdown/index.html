@@ -1,0 +1,1514 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Dr. Jessica Rose" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2020-12-01-r-rmarkdown/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.ddb2a9c79d7760a321f1b5392a04566a.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/2020-12-01-r-rmarkdown/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="/post/2020-12-01-r-rmarkdown/" />
+  <meta property="og:title" content="This is where you can find some VAERS analysis - lots of pretty pictures... | Academic" />
+  <meta property="og:description" content="This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events." /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-05-21T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-05-21T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/2020-12-01-r-rmarkdown/"
+  },
+  "headline": "This is where you can find some VAERS analysis - lots of pretty pictures...",
+  
+  "datePublished": "2021-05-21T00:00:00Z",
+  "dateModified": "2021-05-21T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Jessica Rose"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>This is where you can find some VAERS analysis - lots of pretty pictures... | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="bf1eb249db79f10ace7d22321494165a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.f16be01fc8fb2b5885dd67ce942d1185.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Demo</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>This is where you can find some VAERS analysis - lots of pretty pictures...</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 21, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/header-attrs/header-attrs.js"></script>
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/plotly-binding/plotly.js"></script>
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/typedarray/typedarray.min.js"></script>
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/jquery/jquery.min.js"></script>
+<link href="/post/2020-12-01-r-rmarkdown/index.en_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="/post/2020-12-01-r-rmarkdown/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/post/2020-12-01-r-rmarkdown/index.en_files/plotly-main/plotly-latest.min.js"></script>
+
+
+<p>This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. ALso included is some stuff on kids and Myocarditis.</p>
+<p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
+<p>This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ</p>
+<pre><code>## [1] 409924</code></pre>
+<p>Percent of VAERS reports made by Females</p>
+<pre><code>## [1] 70.32279</code></pre>
+<p>The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)</p>
+<pre><code>##          DATE    IDs        FV DEATH HOSPITAL    ER   SAE COVID  FRI
+## 1  2021-01-16   1431   4582089   137      338   338   690   194    4
+## 2  2021-01-23   2160   7664179   281      607   576  1207   254    7
+## 3  2021-01-30   2946  11037313   456      953   847  1806   326    8
+## 4  2021-02-13   5351  18895522   810     1747  1493  3221   619   24
+## 5  2021-02-27   9286  27167910   984     2195  2187  4291   717   34
+## 6  2021-03-05  14701  31720149  1162     2676  2980  5535   776   43
+## 7  2021-03-12  20586  35000000  1419     3412  3855  7065   943   67
+## 8  2021-03-19  27955  44145522  1561     3913  4763  8470  1057   77
+## 9  2021-03-26  34121  48700000  1957     4387  5529  9796  1169   88
+## 10 2021-04-02  40348  57980000  2149     4758  6329 10930  1267   98
+## 11 2021-04-09  46163  64420000  2240     4906  6983 11724  1375  105
+## 12 2021-04-16  57641  80610000  2500     5009  8084 13057  1404  123
+## 13 2021-04-23  75370  89250000  3084     6215 10375 16478  1587  165
+## 14 2021-04-30 108191  99670000  3442     8099 14553 22145  1930  287
+## 15 2021-05-07 146622 108930000  3731    10648 19620 29024  2776  436
+## 16 2021-05-14 182559 118990000  4015    11557 23641 33791  3317  597
+## 17 2021-05-21 217716 126610000  4169    12625 27774 38650  3742  774
+## 18 2021-05-28 252523 132770000  4372    14977 32547 44860  4285 1067
+## 19 2021-06-04 284041 136640000  4547    17520 37184 51068  4850 1421
+## 20 2021-06-11 316929 141580000  4700    19354 41937 57073  5497 1967
+## 21 2021-06-18 346967 148460000  4825    20571 45952 61917  6151 2460
+## 22 2021-06-25 368162 151620000  4931    21636 49511 66255  6414 2940
+## 23 2021-07-02 388900 155880000  5163    22612 52399 69941  9442 5351
+## 24 2021-07-09 397262 158290000  5375    23441 53789 71963  9721 5557
+## 25 2021-07-16 403335 160410000  5508    24087 55016 73645  9939 5723
+## 26 2021-07-23 409924 162170000  5604    24778 56357 75536 10212 5946</code></pre>
+<p>This is the change in absolute number of VAERS IDs per year.
+<img src="Figs/unnamed-chunk-13-1.png" width="672" />
+These are the VAERS ID counts for the past 30 years normalized to U.S. population per million. The blue line is the best fit line - you can use it to imagine where we might have been number-wise at the end of 2021 if anything was even remotely typical.</p>
+<p>This is the cumulative number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products.
+<img src="Figs/unnamed-chunk-15-1.png" width="672" />
+This is the number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products normalized to FULLY INJECTED population per million.
+<img src="Figs/unnamed-chunk-16-1.png" width="672" />
+These are the trajectories of cumulative data for the respective groups.
+<img src="Figs/unnamed-chunk-17-1.png" width="672" />
+These are the trajectories of normalized data for the respective groups (normalized to US FULLY INJECTED population per million).
+<img src="Figs/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-20-1.png" width="672" />
+This is the number of birth defects.</p>
+<pre><code>## [1] 234</code></pre>
+<p>This is the number of deaths and the percentage per total AEs.</p>
+<pre><code>## [1] 5604</code></pre>
+<pre><code>## [1] 1.367083</code></pre>
+<p>These are the number of hospitalizations and emergency doctor visits.</p>
+<pre><code>## [1] 24778</code></pre>
+<pre><code>## [1] 56357</code></pre>
+<p>These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs.</p>
+<pre><code>## [1] 5604</code></pre>
+<pre><code>## [1] 24778</code></pre>
+<pre><code>## [1] 56357</code></pre>
+<pre><code>## [1] 7143</code></pre>
+<pre><code>## [1] 6287</code></pre>
+<pre><code>## [1] 234</code></pre>
+<pre><code>## [1] 75536</code></pre>
+<pre><code>## [1] 18.42683</code></pre>
+<p>Histogram showing distribution of SAEs according to age group
+<img src="Figs/unnamed-chunk-26-1.png" width="672" />
+Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
+<pre><code>##   Percent_SAE   SAE PERC
+## 1    Standard 63500   15
+## 2      Actual 75536   18</code></pre>
+<p><img src="Figs/unnamed-chunk-27-1.png" width="672" />
+Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
+<pre><code>## [1] 10212</code></pre>
+<pre><code>## [1] 2.491193</code></pre>
+<p><img src="Figs/unnamed-chunk-31-1.png" width="672" />
+<img src="Figs/unnamed-chunk-32-1.png" width="672" />
+<img src="Figs/unnamed-chunk-33-1.png" width="672" /></p>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"ae4c4541d0af":["function () ","plotlyVisDat"]},"cur_data":"ae4c4541d0af","attrs":{"ae4c4541d0af":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[7.72,22.89,68.85],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"ae4c7a33ec2":["function () ","plotlyVisDat"]},"cur_data":"ae4c7a33ec2","attrs":{"ae4c7a33ec2":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["D. 30-40","E. 40-50","F. 50-60","G. 60-70","H.70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.06,0.13,0.35,1.08,1.64,2.32,0.97,0.11],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Female Reproductive Events count</p>
+<pre><code>##  [1] &quot;Abnormal uterine bleeding&quot;                 
+##  [2] &quot;Afterbirth pain&quot;                           
+##  [3] &quot;Dysmenorrhoea&quot;                             
+##  [4] &quot;Female reproductive tract disorder&quot;        
+##  [5] &quot;Female reproductive tract disorder&quot;        
+##  [6] &quot;Alpha 1 foetoprotein abnormal&quot;             
+##  [7] &quot;Heavy menstrual bleeding&quot;                  
+##  [8] &quot;Intermenstrual bleeding&quot;                   
+##  [9] &quot;Intra-uterine contraceptive device removal&quot;
+## [10] &quot;Menstrual disorder&quot;                        
+## [11] &quot;Menstruation delayed&quot;                      
+## [12] &quot;Menstruation irregular&quot;                    
+## [13] &quot;Premenstrual syndrome&quot;                     
+## [14] &quot;Abortion spontaneous&quot;                      
+## [15] &quot;Abortion spontaneous incomplete&quot;           
+## [16] &quot;Uterine leiomyoma&quot;                         
+## [17] &quot;Uterine haemorrhage&quot;                       
+## [18] &quot;Uterine spasm&quot;                             
+## [19] &quot;Bradycardia foetal&quot;                        
+## [20] &quot;Biopsy foetal&quot;                             
+## [21] &quot;Bradycardia foetal&quot;                        
+## [22] &quot;Foetal cystic hygroma&quot;                     
+## [23] &quot;Foetal death&quot;                              
+## [24] &quot;Foetal exposure during pregnancy&quot;          
+## [25] &quot;Foetal heart rate abnormal&quot;                
+## [26] &quot;Foetal hypokinesia&quot;                        
+## [27] &quot;Foetal non-stress test abnormal&quot;           
+## [28] &quot;Amenorrhoea&quot;                               
+## [29] &quot;Hypomenorrhoea&quot;                            
+## [30] &quot;Menopause&quot;                                 
+## [31] &quot;Menorrhagia&quot;                               
+## [32] &quot;Oligomenorrhoea&quot;                           
+## [33] &quot;Polymenorrhoea&quot;                            
+## [34] &quot;Postmenopausal haemorrhage&quot;                
+## [35] &quot;Postmenopause&quot;                             
+## [36] &quot;Vaginal discharge&quot;                         
+## [37] &quot;Vaginal disorder&quot;                          
+## [38] &quot;Vaginal erosion&quot;                           
+## [39] &quot;Vaginal haemorrhage&quot;                       
+## [40] &quot;Vaginal lesion&quot;                            
+## [41] &quot;Vaginal infection&quot;                         
+## [42] &quot;Vulvovaginal mycotic infection&quot;            
+## [43] &quot;Vulval ulceration&quot;                         
+## [44] &quot;Vulval abscess&quot;                            
+## [45] &quot;Vulva cyst&quot;                                
+## [46] &quot;Cervix inflammation&quot;                       
+## [47] &quot;Adenocarcinoma of the cervix&quot;              
+## [48] &quot;Cervix carcinoma&quot;                          
+## [49] &quot;Amniorrhoea&quot;                               
+## [50] &quot;Amniotic cavity infection&quot;                 
+## [51] &quot;Amniotic membrane rupture test positive&quot;   
+## [52] &quot;Amniotic fluid index decreased&quot;</code></pre>
+<pre><code>## [1] 5946</code></pre>
+<pre><code>## [1] 1.450513</code></pre>
+<p>Histogram showing distribution of Female Reproductive Issues by age group
+<img src="Figs/unnamed-chunk-43-1.png" width="672" /></p>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  FRI_CASES_VD_OD$OBSERVED
+## X-squared = 15916, df = 50, p-value &lt; 2.2e-16</code></pre>
+<p>Cumulative FRI cases as per update - rates increasing.
+<img src="Figs/unnamed-chunk-45-1.png" width="672" />
+Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
+<img src="Figs/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-47-1.png" width="672" />
+Cardiac Events Count</p>
+<pre><code>##  [1] &quot;Arrhythmia&quot;                               
+##  [2] &quot;Myocarditis&quot;                              
+##  [3] &quot;Pericarditis&quot;                             
+##  [4] &quot;Endocarditis&quot;                             
+##  [5] &quot;Cardiac arrest&quot;                           
+##  [6] &quot;Chest pain&quot;                               
+##  [7] &quot;Myocardial infarction&quot;                    
+##  [8] &quot;Pericardial effusion&quot;                     
+##  [9] &quot;Aneurysm&quot;                                 
+## [10] &quot;Blood fibrinogen&quot;                         
+## [11] &quot;Blood fibrinogen increased&quot;               
+## [12] &quot;Circulatory collapse&quot;                     
+## [13] &quot;C-reactive protein decreased&quot;             
+## [14] &quot;C-reactive protein increased&quot;             
+## [15] &quot;Deep vein thrombosis&quot;                     
+## [16] &quot;Dizziness&quot;                                
+## [17] &quot;Fatigue&quot;                                  
+## [18] &quot;Fibrin D dimer increased&quot;                 
+## [19] &quot;Irregular breathing&quot;                      
+## [20] &quot;Ischaemia&quot;                                
+## [21] &quot;Microembolism&quot;                            
+## [22] &quot;Pallor&quot;                                   
+## [23] &quot;Palpitations&quot;                             
+## [24] &quot;Platelet count decreased&quot;                 
+## [25] &quot;Platelet count increased&quot;                 
+## [26] &quot;Red blood cell count abnormal&quot;            
+## [27] &quot;Red blood cell count decreased&quot;           
+## [28] &quot;Red blood cell count increased&quot;           
+## [29] &quot;Red blood cell rouleaux formation present&quot;
+## [30] &quot;Red blood cell schistocytes present&quot;      
+## [31] &quot;Syncope&quot;                                  
+## [32] &quot;Troponin&quot;                                 
+## [33] &quot;Troponin increased&quot;                       
+## [34] &quot;Troponin I&quot;                               
+## [35] &quot;Troponin I increased&quot;                     
+## [36] &quot;Troponin T increased&quot;                     
+## [37] &quot;Thrombosis&quot;                               
+## [38] &quot;Echocardiogram abnormal&quot;                  
+## [39] &quot;Dyspnoea&quot;</code></pre>
+<pre><code>## [1] 133412</code></pre>
+<p><img src="Figs/unnamed-chunk-51-1.png" width="672" />
+This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage of the total AEs reported and a histogram showing age group distribution.</p>
+<pre><code>## [1] 16939</code></pre>
+<p><img src="Figs/unnamed-chunk-52-1.png" width="672" /></p>
+<pre><code>## [1] 16565</code></pre>
+<pre><code>## [1] 4.040993</code></pre>
+<p>And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
+<img src="Figs/unnamed-chunk-54-1.png" width="672" />
+Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the totoal cardiac AEs.</p>
+<pre><code>## [1] 14.20465</code></pre>
+<pre><code>## [1] 12.41642</code></pre>
+<pre><code>## [1] 1.763709</code></pre>
+<p>Immunological Adverse Effects Count</p>
+<pre><code>##  [1] &quot;Anaphylactic reaction&quot;                                
+##  [2] &quot;Anaphylactic shock&quot;                                   
+##  [3] &quot;Anaphylactoid reaction&quot;                               
+##  [4] &quot;Autoimmune demyelinating disease&quot;                     
+##  [5] &quot;Autoimmune disorder&quot;                                  
+##  [6] &quot;Autoimmune thyroiditis&quot;                               
+##  [7] &quot;Chills&quot;                                               
+##  [8] &quot;Cytokine storm&quot;                                       
+##  [9] &quot;Drug reaction with eosinophilia and systemic symptoms&quot;
+## [10] &quot;Dysgeusia&quot;                                            
+## [11] &quot;Dysphagia&quot;                                            
+## [12] &quot;Encephalomyelitis&quot;                                    
+## [13] &quot;Erythema&quot;                                             
+## [14] &quot;Febrile neutropenia&quot;                                  
+## [15] &quot;Fungal infection&quot;                                     
+## [16] &quot;Genital rash&quot;                                         
+## [17] &quot;Guillain-Barre syndrome&quot;                              
+## [18] &quot;Haemorrhage subepidermal&quot;                             
+## [19] &quot;Hepatitis&quot;                                            
+## [20] &quot;Hepatitis acute&quot;                                      
+## [21] &quot;Herpes simplex&quot;                                       
+## [22] &quot;Herpes simplex encephalitis&quot;                          
+## [23] &quot;Herpes simplex reactivation&quot;                          
+## [24] &quot;Herpes virus infection&quot;                               
+## [25] &quot;Herpes zoster&quot;                                        
+## [26] &quot;Herpes zoster cutaneous disseminated&quot;                 
+## [27] &quot;Hyperpyrexia&quot;                                         
+## [28] &quot;Immediate post-injection reaction&quot;                    
+## [29] &quot;Immune thrombocytopenia&quot;                              
+## [30] &quot;Inflammation&quot;                                         
+## [31] &quot;Leukopenia&quot;                                           
+## [32] &quot;Lymphadenitis&quot;                                        
+## [33] &quot;Lymphadenopathy&quot;                                      
+## [34] &quot;Malaise&quot;                                              
+## [35] &quot;May-Thurner syndrome&quot;                                 
+## [36] &quot;Meningitis&quot;                                           
+## [37] &quot;Meningitis aseptic&quot;                                   
+## [38] &quot;Meningitis viral&quot;                                     
+## [39] &quot;Myelitis&quot;                                             
+## [40] &quot;Multiple sclerosis relapse&quot;                           
+## [41] &quot;Multiple allergies&quot;                                   
+## [42] &quot;Myelitis transverse&quot;                                  
+## [43] &quot;Neuritis&quot;                                             
+## [44] &quot;Noninfective encephalitis&quot;                            
+## [45] &quot;Ophthalmic herpes simplex&quot;                            
+## [46] &quot;Oral herpes&quot;                                          
+## [47] &quot;Oral viral infection&quot;                                 
+## [48] &quot;Pancreatitis&quot;                                         
+## [49] &quot;Pancreatitis acute&quot;                                   
+## [50] &quot;Parkinsonism&quot;                                         
+## [51] &quot;Peptostreptococcus infection&quot;                         
+## [52] &quot;Periarthritis&quot;                                        
+## [53] &quot;Pneumonia viral&quot;                                      
+## [54] &quot;Pruritus&quot;                                             
+## [55] &quot;Rash&quot;                                                 
+## [56] &quot;Rash erythematous&quot;                                    
+## [57] &quot;Rash macular&quot;                                         
+## [58] &quot;Rash maculo-papular&quot;                                  
+## [59] &quot;Rash morbilliform&quot;                                    
+## [60] &quot;Rash papular&quot;                                         
+## [61] &quot;Rash pruritic&quot;                                        
+## [62] &quot;Rash pustular&quot;                                        
+## [63] &quot;Rash vesicular&quot;                                       
+## [64] &quot;Reaction to excipient&quot;                                
+## [65] &quot;Rheumatoid arthritis&quot;                                 
+## [66] &quot;Butterfly rash&quot;                                       
+## [67] &quot;Necrosis&quot;                                             
+## [68] &quot;Stevens-Johnson syndrome&quot;                             
+## [69] &quot;Systemic lupus erythematosus&quot;                         
+## [70] &quot;Systemic lupus erythematosus rash&quot;                    
+## [71] &quot;Systemic scleroderma&quot;                                 
+## [72] &quot;Thrombophlebitis&quot;                                     
+## [73] &quot;Type III immune complex mediated reaction&quot;            
+## [74] &quot;Urticaria&quot;                                            
+## [75] &quot;Varicella zoster virus infection&quot;                     
+## [76] &quot;Vestibular neuronitis&quot;                                
+## [77] &quot;Viral cardiomyopathy&quot;                                 
+## [78] &quot;Viral infection&quot;                                      
+## [79] &quot;Viral pericarditis&quot;                                   
+## [80] &quot;Viral rash&quot;                                           
+## [81] &quot;Systemic scleroderma&quot;</code></pre>
+<p>Here we have the total AE count for immunological adverse events as per the list above. This is a very short list as compared with the total number of immunological AEs. It is merely a representation.</p>
+<pre><code>## [1] 137614</code></pre>
+<p><img src="Figs/unnamed-chunk-60-1.png" width="672" />
+This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -&gt; perfect correlation (look for red on diagonal).</p>
+<p><img src="Figs/unnamed-chunk-62-1.png" width="672" />
+<img src="Figs/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-64-1.png" width="672" />
+This is a histogram showing hospitalization distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and hospitalization date. R=1 -&gt; perfect correlation (look for red on diagonal).
+<img src="Figs/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-67-1.png" width="672" />
+This is a histogram showing ER distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and ER date. R=1 -&gt; perfect correlation (look for red on diagonal).
+<img src="Figs/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-70-1.png" width="672" />
+And hey! What would this analysis be without myocarditis? This is the count of myocarditis cases and the percentage of the total count for cardiac cases and for the total AE count.</p>
+<pre><code>## [1] 622</code></pre>
+<pre><code>## [1] 0.4662249</code></pre>
+<pre><code>## [1] 0.1517354</code></pre>
+<p>And this plot shows age versus dose data for myocarditis cases. Notice how many young people. Hmm what’s that now? Dose 2 is causing moycarditis in young males? Hmm
+<img src="Figs/unnamed-chunk-72-1.png" width="672" />
+<img src="Figs/unnamed-chunk-73-1.png" width="672" /></p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2020-12-01-r-rmarkdown/&amp;text=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures..." target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2020-12-01-r-rmarkdown/&amp;t=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures..." target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures...&amp;body=/post/2020-12-01-r-rmarkdown/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2020-12-01-r-rmarkdown/&amp;title=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures..." target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures...%20/post/2020-12-01-r-rmarkdown/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2020-12-01-r-rmarkdown/&amp;title=This%20is%20where%20you%20can%20find%20some%20VAERS%20analysis%20-%20lots%20of%20pretty%20pictures..." target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/dr.-jessica-rose/avatar_hu756ae419dca872ecfcac293f58082c63_18940_270x270_fill_q75_lanczos_center.jpg" alt="Dr. Jessica Rose">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Dr. Jessica Rose</h5>
+      <h6 class="card-subtitle">Post Doctoral Researcher</h6>
+      <p class="card-text">My research interests include bioinformatics, applied mathematics, immunology, virology, computational biology, molecular biology and biochemistry.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/jessicarose1974" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.71e713848164e269bc250f377042949d.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
