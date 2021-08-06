@@ -137,7 +137,7 @@ Table_IDs_all_VAERS_plot <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, IDs, co
 Table_IDs_all_VAERS_plot
 #ggsave("Table_IDs_all_VAERS_plot.png")
 ```
-These are the VAERS ID counts for the past 30 years normalized to U.S. population per million. The blue line is the best fit line - you can use it to imagine where we might have been number-wise at the end of 2021 if anything was even remotely typical. 
+These are the VAERS ID counts for the past 30 years (absolute counts).
 ```{r}
 #Table_IDs_all_VAERS_plot_norm_US <- ggplot(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED")) + geom_line(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 2) + geom_point(data = Table_IDs_all_VAERS, aes(DATE, NORMALIZED, colour = "NORMALIZED"), colour = "red", size = 5) + xlab("DATE") +  ylab("RATE NORMALIZED TO U.S. POPLN/MILLION") + labs(title = "VAERS ID COUNTS FOR THE PAST 30 YEARS", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + geom_smooth(method = "lm", se=FALSE, color="blue", aes(group=1)) #+ geom_text(aes(label = IDs), color = "white", size = 4) 
 #Table_IDs_all_VAERS_plot_norm_US
