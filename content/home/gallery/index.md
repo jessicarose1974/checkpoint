@@ -37,4 +37,9 @@ https://newsvoice.se/2021/06/dr-jessica-rose-the-harms-of-covid-vaccines-may-be-
 
 https://www.podomatic.com/podcasts/rvtheory6/episodes/2021-06-09T07_58_36-07_00
 
+https://trialsitenews.com/vaccine-truth-cdc/
+
 https://rumble.com/vjhf65-false-positv-episode-10.3-vaers-analysis-dr.-jessica-rose.html
+
+https://rokfin.com/stream/7847/Union-of-the-Unwanted--31--Doctors-Roundtable-With-Special-Guest-Dr-Robert-Malone?jwsource=cl
+

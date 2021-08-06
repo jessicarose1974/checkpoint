@@ -34,6 +34,8 @@ title: Dr. Jessica Rose
 
 Jessica Rose is a Research Fellow at the Institute for Pure and Applied Knowledge.
 
+FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
+
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Curriculum Vitae June 2021.pdf" "newtab" >}}resumé{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
@@ -45,5 +47,3 @@ Jessica Rose is a Research Fellow at the Institute for Pure and Applied Knowledg
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Letter for the infants.pdf" "newtab" >}}short analysis for mothers for Dr. Peter McCullough{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis for Steve Kirsch{{< /staticref >}}.
-
-FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
