@@ -1,5 +1,5 @@
 ---
-title: Kids are not doing so well...
+title: And the kids...
 author: Admin
 date: '2021-05-24'
 slug: hi-hugo
