@@ -43,3 +43,5 @@ https://rumble.com/vjhf65-false-positv-episode-10.3-vaers-analysis-dr.-jessica-r
 
 https://rokfin.com/stream/7847/Union-of-the-Unwanted--31--Doctors-Roundtable-With-Special-Guest-Dr-Robert-Malone?jwsource=cl
 
+https://youtu.be/_oPJuGKtxJg
+
