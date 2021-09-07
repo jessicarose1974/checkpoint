@@ -18,6 +18,9 @@ advanced:
 <font size="5" color = "yellow"> Feel free to visit my youtube channel to see my findings summarized.</font>
 <font size ="4">**https://www.youtube.com/watch?v=bMY2tdFNkRU**</font> or <font size ="4">**https://www.bitchute.com/video/NqedH2RNS3zQ/**</font>
 
+<font size="5" color = "yellow"> And my updated findings summarized!</font>
+<font size ="4">**https://www.youtube.com/watch?v=Y4MViwU3XOo**</font>
+
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
 <font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
