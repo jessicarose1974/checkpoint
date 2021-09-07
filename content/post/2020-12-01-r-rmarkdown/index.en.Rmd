@@ -571,7 +571,7 @@ ggsave("FYOUTH_CASES_VD_DD_TILE_plot.png")
 
 YOUTH_CASES_VD_OD_TILE_count
 ```
-Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the totoal cardiac AEs. 
+Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the total cardiac AEs. 
 ```{r}
 Cardiack_12_15 <- Cardiack %>% filter(AGE_YRS >=12 & AGE_YRS <=15)
 

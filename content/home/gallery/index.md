@@ -39,9 +39,13 @@ https://www.podomatic.com/podcasts/rvtheory6/episodes/2021-06-09T07_58_36-07_00
 
 https://trialsitenews.com/vaccine-truth-cdc/
 
+https://vaccineimpact.com/2021/study-analysis-of-vaers-shows-the-covid-shots-are-likely-cause-of-deaths-spontaneous-abortions-cardiovascular-neurological-and-immunological-adverse-events/
+
 https://rumble.com/vjhf65-false-positv-episode-10.3-vaers-analysis-dr.-jessica-rose.html
 
 https://rokfin.com/stream/7847/Union-of-the-Unwanted--31--Doctors-Roundtable-With-Special-Guest-Dr-Robert-Malone?jwsource=cl
 
 https://youtu.be/_oPJuGKtxJg
+
+https://trialsitenews.com/canadian-researcher-analyzes-cdc-vaers-data-for-covid-19-vaccine-safety-pov-but-is-the-other-side-of-risk-calculated/
 
