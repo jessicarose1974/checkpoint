@@ -49,3 +49,5 @@ https://youtu.be/_oPJuGKtxJg
 
 https://trialsitenews.com/canadian-researcher-analyzes-cdc-vaers-data-for-covid-19-vaccine-safety-pov-but-is-the-other-side-of-risk-calculated/
 
+https://normanpilon.com/2021/09/09/vaers-update-for-ccca-canadian-covid-care-alliance-dr-jessica-rose/
+

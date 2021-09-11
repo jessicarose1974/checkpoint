@@ -1,14 +1,14 @@
 ---
 title: And what's the deal with myocarditis? And dose relationship? To age... hmmm
 author: Admin
-date: '2021-05-24'
+date: '2021-09-03'
 slug: hi-hugo
 categories: []
 tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2021-05-24T16:41:59+03:00'
+lastmod: '2021-09-03'
 featured: no
 image:
   caption: 'myo.png'
