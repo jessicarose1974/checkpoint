@@ -21,6 +21,9 @@ advanced:
 <font size="5" color = "yellow"> And my updated findings summarized!</font>
 <font size ="4">**https://www.youtube.com/watch?v=Y4MViwU3XOo**</font>
 
+<font size ="5" color = "orange"> Open Public Hearing Session for the 167th meeting of FDA/CBER/VRBPAC <font>
+<font size ="5">**https://www.bitchute.com/video/YVT0OXbARG7t/**</font>
+
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
 <font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
