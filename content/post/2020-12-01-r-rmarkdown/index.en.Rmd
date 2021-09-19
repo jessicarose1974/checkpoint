@@ -24,6 +24,7 @@ library("reshape2")
 library("data.table")
 library("plotly")
 library("xtable")
+library("blogdown")
 ```
 This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ
 ```{r}
@@ -162,7 +163,7 @@ ggsave("Table_IDs_plot_FV_p_mill.png")
 ```
 These are the trajectories of cumulative data for the respective groups. 
 ```{r}
-Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("NUMBER OF VAERS IDs (N)") + labs(title = "CUMULATIVE CHANGES (N) FOR SELECTED VARIABLES", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) 
+Table_IDs_percent_plot <- ggplot() + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, DEATH, colour = "DEATH"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, HOSPITAL, colour = "HOSPITAL"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, ER, colour = "ER"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, SAE, colour = "SAE"), size = 2) + xlab("DATE") +  ylab("NUMBER OF VAERS IDs (N)") + labs(title = "CUMULATIVE CHANGES (N) FOR SELECTED VARIABLES", caption = "Data source: VAERS", size = 12) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, COVID, colour = "COVID"), size = 2) + geom_line(data = Table_IDs_percent_FV_IDs, aes(DATE, FRI, colour = "FRI"), size = 2) + labs(caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + theme(panel.background = element_rect(fill = "#100000")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + theme(legend.background = element_rect(fill = "white"), legend.key = element_rect(fill = "black", color = NA), legend.key.size = unit(0.5, "cm"), legend.key.width = unit(0.5,"cm")) + ylim(0,100000)
 Table_IDs_percent_plot
 ggsave("Table_IDs_percent_plot.png")
 ```
@@ -566,7 +567,7 @@ nrow(YOUTH_CASES)/nrow(MERGED_09_17_21_465500kb)*100
 ```
 And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
 ```{r}
-YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=150) %>% count(diff_in_days) %>% arrange(desc(n))  
+YOUTH_CASES_VD_OD_TILE_count <- data.frame(YOUTH_CASES, stringsAsFactors = FALSE) %>% group_by(VAX_DATE, ONSET_DATE) %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=350) %>% count(diff_in_days) %>% arrange(desc(n))  
 
 YOUTH_CASES_VD_DD_TILE_plot <- ggplot(YOUTH_CASES_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs YOUTH CASES 12-15 y/o AE ONSET DATE") 
 YOUTH_CASES_VD_DD_TILE_plot 
@@ -676,7 +677,7 @@ CAUSATION_DEATH_plot
 ggsave("CAUSATION_DEATH_plot.png")
 ```
 ```{r}
-VD_DD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+VD_DD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=350) %>% count(diff_in_days) 
 
 #png("VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
 
@@ -701,7 +702,7 @@ ggsave("CAUSATION_HOSP_plot.png")
 ```
 
 ```{r}
-H_VD_OD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(HOSPITAL, ONSET_DATE, VAX_DATE) %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+H_VD_OD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(HOSPITAL, ONSET_DATE, VAX_DATE) %>% filter(HOSPITAL == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=350) %>% count(diff_in_days) 
 
 H_VD_DD_TILE_plot <- ggplot(H_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs HOSPITALIZATION DATE") 
 H_VD_DD_TILE_plot 
@@ -724,7 +725,7 @@ ggsave("CAUSATION_ER_plot.png")
 ```
 
 ```{r}
-ER_VD_OD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(ER_ED_VISIT, ONSET_DATE, VAX_DATE) %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) 
+ER_VD_OD_TILE_count <- MERGED_09_17_21_465500kb %>% group_by(ER_ED_VISIT, ONSET_DATE, VAX_DATE) %>% filter(ER_ED_VISIT == "Y") %>% filter(year(ONSET_DATE) <= 2021 & year(ONSET_DATE) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021)%>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=350) %>% count(diff_in_days) 
 
 ER_VD_DD_TILE_plot <- ggplot(ER_VD_OD_TILE_count, aes(VAX_DATE, ONSET_DATE)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("ONSET OF AEs") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.x = element_text(colour = "#000000", size = 14)) + theme(axis.text.y = element_text(colour = "#000000", size = 14), axis.text.x=element_text(angle=0,vjust=0.5,hjust=0.5)) + ggtitle("VACCINE DATE vs ER visit DATE") 
 ER_VD_DD_TILE_plot 
