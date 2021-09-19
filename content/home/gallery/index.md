@@ -51,3 +51,5 @@ https://trialsitenews.com/canadian-researcher-analyzes-cdc-vaers-data-for-covid-
 
 https://normanpilon.com/2021/09/09/vaers-update-for-ccca-canadian-covid-care-alliance-dr-jessica-rose/
 
+https://open.spotify.com/episode/1ZWO1p6IOrgutpVHJdWIrR?si=ce0da08a5e374ade&nd=1
+
