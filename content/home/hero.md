@@ -27,8 +27,3 @@ advanced:
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
 <font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
-
-<font size="5" color = "yellow">**And the VAERS Wayback Machine!**</font> https://medalerts.org/vaersdb/wayback/
-
-<font size="5" color = "yellow"> and here's my video on the RAAS, spike and SARS. You saw it here first.</font>
-<font size ="4">**https://www.bitchute.com/video/31nextKrNG4S/**</font>
