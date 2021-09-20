@@ -56,3 +56,5 @@ https://open.spotify.com/episode/1ZWO1p6IOrgutpVHJdWIrR?si=ce0da08a5e374ade&nd=1
 https://www.bitchute.com/video/YVT0OXbARG7t/
 
 https://covexit.com/vaers-what-do-the-data-tell-us/
+
+https://podcastaddict.com.episode/128703916
