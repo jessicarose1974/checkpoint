@@ -57,4 +57,6 @@ https://www.bitchute.com/video/YVT0OXbARG7t/
 
 https://covexit.com/vaers-what-do-the-data-tell-us/
 
+https://childrenshealthdefense.org/defender/fda-vaccines-harm-people-nih-boosters-will-be-approved/?utm_source=salsa&eType=EmailBlastContent&eId=9dfa304a-ce47-46ea-aa62-be37e94f4835&fbclid=IwAR0beLNvtq_43dy7HAuwwYN_xQ_EYci1ny7R16cIzSwpweBjTQe9skXHut0
+
 
