@@ -47,3 +47,5 @@ FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellows
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Letter for the infants.pdf" "newtab" >}}short analysis for mothers for Dr. Peter McCullough{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis for Steve Kirsch{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Testimonial_AFLDS_Jessica_Rose.pdf" "newtab" >}}US District Court Declaration testimony for Dr. Richard Amerling{{< /staticref >}}.
