@@ -59,4 +59,5 @@ https://covexit.com/vaers-what-do-the-data-tell-us/
 
 https://childrenshealthdefense.org/defender/fda-vaccines-harm-people-nih-boosters-will-be-approved/?utm_source=salsa&eType=EmailBlastContent&eId=9dfa304a-ce47-46ea-aa62-be37e94f4835&fbclid=IwAR0beLNvtq_43dy7HAuwwYN_xQ_EYci1ny7R16cIzSwpweBjTQe9skXHut0
 
+https://theexpose.uk/2021/09/20/covid-19-vaccines-have-killed-at-least-150000-people-in-the-usa/
 
