@@ -61,3 +61,4 @@ https://childrenshealthdefense.org/defender/fda-vaccines-harm-people-nih-booster
 
 https://theexpose.uk/2021/09/20/covid-19-vaccines-have-killed-at-least-150000-people-in-the-usa/
 
+https://docs.google.com/document/d/1stq2nHFjAcMHhxJhWiXa33wl6x0Ga1qdIxodZnFixRw/edit#heading=h.nhrmgigidnti
