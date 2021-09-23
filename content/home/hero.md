@@ -22,7 +22,7 @@ advanced:
 <font size ="4">**https://www.youtube.com/watch?v=Y4MViwU3XOo**</font>
 
 <font size ="5" color = "orange"> Open Public Hearing Session for the 167th meeting of FDA/CBER/VRBPAC <font>
-<font size ="5">**https://www.bitchute.com/video/YVT0OXbARG7t/**</font>
+<font size ="5">**https://www.bitchute.com/video/yFkId7HaKTNG/**</font>
 
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
