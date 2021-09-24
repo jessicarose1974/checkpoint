@@ -64,3 +64,5 @@ https://theexpose.uk/2021/09/20/covid-19-vaccines-have-killed-at-least-150000-pe
 https://docs.google.com/document/d/1stq2nHFjAcMHhxJhWiXa33wl6x0Ga1qdIxodZnFixRw/edit#heading=h.nhrmgigidnti
 
 https://tessa.substack.com/p/love-depite-darkness
+
+https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--355:3?r=3Ev51nP6sZxhVosGu4nTiotfQjstF1Kd
