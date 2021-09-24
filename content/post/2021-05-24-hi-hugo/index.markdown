@@ -23,9 +23,6 @@ projects: []
 
 
 <img src="Figs/unnamed-chunk-5-1.png" width="672" />
+This is the number of children aged 0-12 who have reported an AE to VAERS along with a plot by specific age. 
 
-```
-## [1] 4134
-```
 
-<img src="Figs/unnamed-chunk-6-1.png" width="672" />

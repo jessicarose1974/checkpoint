@@ -88,11 +88,14 @@ myo_Total_doses_1_2_age_sex_count_M <- myo_Total %>% filter(VAX_DOSE_SERIES <= 2
 AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(caption = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,102) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
 ```
+This is the number of children aged 0-12 who have reported an AE to VAERS along with a plot by specific age. 
 ```{r}
-MERGED_09_24_21_478300kb_0_12 <- MERGED_09_24_21_478300kb %>% filter(AGE_YRS <=12)
-nrow(MERGED_09_24_21_478300kb_0_12)
-MERGED_09_24_21_478300kb_0_12_count <- MERGED_09_24_21_478300kb_0_12 %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-MERGED_09_24_21_478300kb_0_12_count_plot <- ggplot(MERGED_09_24_21_478300kb_0_12_count, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Children aged 0-12") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=45,vjust=0.5,hjust=0.5, size = 12))  + theme(legend.position = "none") + ggtitle("Number of Children 0-12 y/o -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
-MERGED_09_24_21_478300kb_0_12_count_plot
-ggsave("MERGED_09_24_21_478300kb_0_12_count_plot.png")
+#MERGED_09_24_21_478300kb_0_12 <- MERGED_09_24_21_478300kb %>% filter(AGE_YRS <=12)
+```
+```{r}
+#nrow(MERGED_09_24_21_478300kb_0_12)
+#MERGED_09_24_21_478300kb_0_12_count <- MERGED_09_24_21_478300kb_0_12 %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+#MERGED_09_24_21_478300kb_0_12_count_plot <- ggplot(MERGED_09_24_21_478300kb_0_12_count, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Children aged 0-12") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=45,vjust=0.5,hjust=0.5, size = 12))  + theme(legend.position = "none") + ggtitle("Number of Children 0-12 y/o -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
+#MERGED_09_24_21_478300kb_0_12_count_plot
+#ggsave("MERGED_09_24_21_478300kb_0_12_count_plot.png")
 ```
