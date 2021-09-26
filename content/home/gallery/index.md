@@ -66,3 +66,5 @@ https://docs.google.com/document/d/1stq2nHFjAcMHhxJhWiXa33wl6x0Ga1qdIxodZnFixRw/
 https://tessa.substack.com/p/love-depite-darkness
 
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--355:3?r=3Ev51nP6sZxhVosGu4nTiotfQjstF1Kd
+
+https://rumble.com/vmz97q-dr-jessica-rose-says-theres-no-logical-reason-to-be-vaccinated.-maddie-de-g.html
