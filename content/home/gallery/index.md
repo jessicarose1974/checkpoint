@@ -74,3 +74,5 @@ https://rumble.com/vn0dwq-dr-jessica-rose-whats-the-point-of-getting-vaccinated-
 https://rumble.com/vmzze8-dr.-jessica-rose-more-vaers-death-reports-in-2021-than-last-10-years-combin.html
 
 https://youtu.be/HPDIfjESF5Q
+
+https://trialsitenews.com/why-are-the-fda-and-cdc-advisory-panel-members-so-afraid-to-debate-covid-vaccine-safety/
