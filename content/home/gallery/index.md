@@ -67,10 +67,6 @@ https://tessa.substack.com/p/love-depite-darkness
 
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--355:3?r=3Ev51nP6sZxhVosGu4nTiotfQjstF1Kd
 
-https://rumble.com/vmz97q-dr-jessica-rose-says-theres-no-logical-reason-to-be-vaccinated.-maddie-de-g.html
-
-https://rumble.com/vn0dwq-dr-jessica-rose-whats-the-point-of-getting-vaccinated-if-it-doesnt-work.html
-
 https://rumble.com/vmzze8-dr.-jessica-rose-more-vaers-death-reports-in-2021-than-last-10-years-combin.html
 
 https://youtu.be/HPDIfjESF5Q
