@@ -11,6 +11,8 @@ weight: 66
 
 title: List of Recent Publications
 subtitle: Please feel free to download!
+
+hero_media: hio2.png
 ---
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A.pdf" "newtab" >}}Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A{{< /staticref >}}.
@@ -30,7 +32,6 @@ subtitle: Please feel free to download!
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/The highly synergistic, broad spectrum, antibacterial activity of organic acids and transition metals.pdf" "newtab" >}}The highly synergistic, broad spectrum, antibacterial activity of organic acids and transition metals{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Human cytomegalovirus kinetics following institution of artesunate after hematopoietic stem cell transplantation.pdf" "newtab" >}}Human cytomegalovirus kinetics following institution of artesunate after hematopoietic stem cell transplantation{{< /staticref >}}.
-
 
 {{< gallery >}}
 

@@ -11,7 +11,7 @@ design:
     gradient_start: '#1976d2'
     text_color_light: true
 advanced:
-  css_class: fullscreen
+  css_class: fullscreen 
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
