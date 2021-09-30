@@ -13,9 +13,6 @@ title: List of Recent Publications
 subtitle: Please feel free to download!
 ---
 
-{{< figure src="image.jpg" id="wowchemy" >}}
----
-
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A.pdf" "newtab" >}}Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on the US VAERS of the COVID mRNA Biologicals.pdf" "newtab" >}}A Report on the US VAERS of the COVID mRNA Biologicals{{< /staticref >}}.
