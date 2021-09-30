@@ -9,7 +9,7 @@ headless: true
 # Order that this section appears on the page.
 weight: 66
 
-title: Publications
+title: List of Recent Publications
 subtitle:
 ---
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A.pdf" "newtab" >}}Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A{{< /staticref >}}.
