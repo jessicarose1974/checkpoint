@@ -33,30 +33,30 @@ library("data.table")
 library("plotly")
 ```
 ```{r}
-VAERSSYM_09_24_21_475800kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_09_24_21_475800kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSDATA_09_24_21_475800kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_09_24_21_475800kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSVAX_09_24_21_475800kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_09_24_21_475800kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
-RV_VAX_09_24_21_475800kb <- VAERSVAX_09_24_21_475800kb %>% filter(VAX_TYPE == "COVID19")
-MERGED_SYM_DAT_09_24_21_475800kb <- full_join(VAERSSYM_09_24_21_475800kb, VAERSDATA_09_24_21_475800kb, by = c("VAERS_ID"))
-MERGED_SYM_DAT_VAX_09_24_21_475800kb <- full_join(MERGED_SYM_DAT_09_24_21_475800kb, RV_VAX_09_24_21_475800kb, by = c("VAERS_ID"))
-MERGED_09_24_21_475800kb_1 <- MERGED_SYM_DAT_VAX_09_24_21_475800kb %>% distinct(VAERS_ID, .keep_all = TRUE)
-MERGED_09_24_21_475800kb <- MERGED_09_24_21_475800kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+VAERSSYM_01_10_21_490500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_01_10_21_490500kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSDATA_01_10_21_490500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_01_10_21_490500kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+VAERSVAX_01_10_21_490500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_01_10_21_490500kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+RV_VAX_01_10_21_490500kb <- VAERSVAX_01_10_21_490500kb %>% filter(VAX_TYPE == "COVID19")
+MERGED_SYM_DAT_01_10_21_490500kb <- full_join(VAERSSYM_01_10_21_490500kb, VAERSDATA_01_10_21_490500kb, by = c("VAERS_ID"))
+MERGED_SYM_DAT_VAX_01_10_21_490500kb <- full_join(MERGED_SYM_DAT_01_10_21_490500kb, RV_VAX_01_10_21_490500kb, by = c("VAERS_ID"))
+MERGED_01_10_21_490500kb_1 <- MERGED_SYM_DAT_VAX_01_10_21_490500kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+MERGED_01_10_21_490500kb <- MERGED_01_10_21_490500kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 ```
 ```{r}
-MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo1 <- MERGED_09_24_21_475800kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo1)
-MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo2 <- MERGED_09_24_21_475800kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo2)
-MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo3 <- MERGED_09_24_21_475800kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo3)
-MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo4 <- MERGED_09_24_21_475800kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo4)
-MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo5 <- MERGED_09_24_21_475800kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo5)
-myo_Total <- rbind(MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo1,MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo2,MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo3,MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo4,MERGED_SYM_DAT_VAX_09_24_21_475800kb_myo5)
+MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo1 <- MERGED_01_10_21_490500kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo1)
+MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo2 <- MERGED_01_10_21_490500kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo2)
+MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo3 <- MERGED_01_10_21_490500kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo3)
+MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo4 <- MERGED_01_10_21_490500kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo4)
+MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo5 <- MERGED_01_10_21_490500kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo5)
+myo_Total <- rbind(MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo1,MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo2,MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo3,MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo4,MERGED_SYM_DAT_VAX_01_10_21_490500kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 #nrow(myo_Total)
-#nrow(myo_Total)/nrow(MERGED_09_24_21_475800kb)*100
+#nrow(myo_Total)/nrow(MERGED_01_10_21_490500kb)*100
 #myo_Total
 myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
 #myo_Total_count
@@ -89,12 +89,12 @@ AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill
 AGE_YEARS_myo_Total_plot
 ```
 ```{r}
-#MERGED_09_24_21_475800kb_0_12 <- MERGED_09_24_21_475800kb %>% filter(AGE_YRS <=12)
+#MERGED_01_10_21_490500kb_0_12 <- MERGED_01_10_21_490500kb %>% filter(AGE_YRS <=12)
 ```
 ```{r}
-#nrow(MERGED_09_24_21_475800kb_0_12)
-#MERGED_09_24_21_475800kb_0_12_count <- MERGED_09_24_21_475800kb_0_12 %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
-#MERGED_09_24_21_475800kb_0_12_count_plot <- ggplot(MERGED_09_24_21_475800kb_0_12_count, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Children aged 0-12") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=45,vjust=0.5,hjust=0.5, size = 12))  + theme(legend.position = "none") + ggtitle("Number of Children 0-12 y/o -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
-#MERGED_09_24_21_475800kb_0_12_count_plot
-#ggsave("MERGED_09_24_21_475800kb_0_12_count_plot.png")
+#nrow(MERGED_01_10_21_490500kb_0_12)
+#MERGED_01_10_21_490500kb_0_12_count <- MERGED_01_10_21_490500kb_0_12 %>% group_by(AGE_YRS) %>% filter(AGE_YRS != "NA") %>% count(AGE_YRS)
+#MERGED_01_10_21_490500kb_0_12_count_plot <- ggplot(MERGED_01_10_21_490500kb_0_12_count, aes(AGE_YRS, n, fill = AGE_YRS)) + geom_bar(stat = "Identity") + xlab("AGE YEARS") + ylab("Number of Children aged 0-12") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=45,vjust=0.5,hjust=0.5, size = 12))  + theme(legend.position = "none") + ggtitle("Number of Children 0-12 y/o -> VAERS IDs vs AGE YEARS") #+ xlim(0,100)
+#MERGED_01_10_21_490500kb_0_12_count_plot
+#ggsave("MERGED_01_10_21_490500kb_0_12_count_plot.png")
 ```
