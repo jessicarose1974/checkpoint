@@ -92,3 +92,5 @@ https://rumble.com/vmzze8-dr.-jessica-rose-more-vaers-death-reports-in-2021-than
 https://youtu.be/HPDIfjESF5Q
 
 https://trialsitenews.com/why-are-the-fda-and-cdc-advisory-panel-members-so-afraid-to-debate-covid-vaccine-safety/
+
+https://popularrationalism.substack.com/p/the-vaccine-safety-signals-everyone
