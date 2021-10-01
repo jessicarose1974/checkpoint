@@ -49,5 +49,3 @@ FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellows
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Preliminary reports of various Adverse Events to VAERS after mRNA COVID.pdf" "newtab" >}}short dose-wise analysis for Steve Kirsch{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Testimonial_AFLDS_Jessica_Rose.pdf" "newtab" >}}US District Court Declaration testimony for Dr. Richard Amerling{{< /staticref >}}.
-
-#{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Declaration_Jessica_Rose_for_Steven_Joncus_Law_PC.pdf" "newtab" >}}US testimony for Stephen Joncus PC{{< /staticref >}}.
