@@ -96,3 +96,5 @@ https://youtu.be/HPDIfjESF5Q
 https://trialsitenews.com/why-are-the-fda-and-cdc-advisory-panel-members-so-afraid-to-debate-covid-vaccine-safety/
 
 https://popularrationalism.substack.com/p/the-vaccine-safety-signals-everyone
+
+https://www.americaoutloud.com/vaccine-pharmacovigilance-and-failure-of-early-warning-systems-to-limit-death-and-disability/ 
