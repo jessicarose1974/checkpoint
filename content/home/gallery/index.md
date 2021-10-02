@@ -19,7 +19,7 @@ hero_media: hio2.png
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A.pdf" "newtab" >}}Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A{{< /staticref >}}.
 
-{{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on the US VAERS of the COVID mRNA Biologicals.pdf" "newtab" >}}A Report on the US VAERS of the COVID mRNA Biologicals{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on the US VAERS of the COVID mRNA Biologicals.pdf" "newtab" >}}A Report on the U.S. Vaccine Adverse Events Reporting System (VAERS) of the COVID-19 Messenger Ribonucleic Acid (mRNA) Biologicals{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Distinct Allosteric Networks Underlie Mechanistic Speciation of ABC Transporters.pdf" "newtab" >}}Distinct Allosteric Networks Underlie Mechanistic Speciation of ABC Transporters{{< /staticref >}}.
 
