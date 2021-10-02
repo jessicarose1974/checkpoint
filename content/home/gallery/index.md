@@ -15,6 +15,8 @@ subtitle: Please feel free to download!
 hero_media: hio2.png
 ---
 
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Pharmacovigilance VAERS paper FINAL_OCT_1_2021.pdf" "newtab" >}}Critical Appraisal of VAERS Pharmacovigilance: Is the U.S. Vaccine Adverse Events Reporting System (VAERS) a Functioning Pharmacovigilance System?{{< /staticref >}}.
+
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A.pdf" "newtab" >}}Titratable transmembrane residues and a hydrophobic plug are essential for manganese import via the Bacillus anthracis ABC transporter MntBC-A{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on the US VAERS of the COVID mRNA Biologicals.pdf" "newtab" >}}A Report on the US VAERS of the COVID mRNA Biologicals{{< /staticref >}}.
