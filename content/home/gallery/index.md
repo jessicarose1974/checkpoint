@@ -98,3 +98,5 @@ https://trialsitenews.com/why-are-the-fda-and-cdc-advisory-panel-members-so-afra
 https://popularrationalism.substack.com/p/the-vaccine-safety-signals-everyone
 
 https://www.americaoutloud.com/vaccine-pharmacovigilance-and-failure-of-early-warning-systems-to-limit-death-and-disability/
+
+https://podcasts.apple.com/us/podcast/dr-ben-edwards-youre-the-cure/id1266700954?i=1000536771062
