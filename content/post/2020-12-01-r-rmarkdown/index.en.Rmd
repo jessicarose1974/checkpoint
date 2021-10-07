@@ -652,7 +652,7 @@ ggsave("AGE_GROUPS_D_ALL_ID_plot.png")
 ```
 Here is a plot showing clustering of reports around 0 and 1 in the context of death. 
 ```{r}
-CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_01_10_21_490500kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_01_10_21_490500kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+CAUSATION_DEATH_plot <- ggplot() + geom_line(data = MERGED_01_10_21_490500kb_VD_DD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED DEATHS") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + geom_line(data = MERGED_01_10_21_490500kb_VD_DD, aes(diff_in_days, Percentage_EXPECTED), colour = "yellow", size = 2) + labs(title = "DEATHS post injection", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 CAUSATION_DEATH_plot 
 ggsave("CAUSATION_DEATH_plot.png")
 ```
