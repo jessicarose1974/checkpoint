@@ -27,3 +27,5 @@ advanced:
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
 <font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
+
+<font size="5" color = "yellow">**An Article written by G. Vanden Bossche, DVM, PhD**</font> https://jessicar.substack.com/p/coming-soon
