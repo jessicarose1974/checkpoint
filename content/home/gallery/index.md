@@ -11,8 +11,6 @@ weight: 66
 
 title: List of Recent Publications
 subtitle: Please feel free to download!
-
-hero_media: hio2.png
 ---
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on Myocarditis Adverse Events in the U.S. Vaccine AdverseEvents Reporting System (VAERS) in Association with COVID19 Injectable Biological Products.pdf" "newtab" >}}A Report on Myocarditis Adverse Events in the U.S. Vaccine Adverse Events Reporting System (VAERS) in Association with COVID-19 Injectable Biological Products{{< /staticref >}}.
