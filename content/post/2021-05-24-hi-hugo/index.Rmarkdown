@@ -3,10 +3,6 @@ title: And what's the deal with myocarditis? And dose relationship? To age... hm
 author: Admin
 slug: hi-hugo
 image: 'myo.png'
-  caption: 'myo.png'
-  focal_point: ''
-  preview_only: no
-projects: []
 ---
 
 ```{r global-options, include=FALSE}
