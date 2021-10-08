@@ -2,7 +2,7 @@
 cms_exclude: true
 header:
   caption: ""
-  image: "myo.png"
+  image: ""
 title: Posts
 view: 2
 ---
