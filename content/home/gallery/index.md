@@ -104,3 +104,5 @@ https://podcasts.apple.com/us/podcast/dr-ben-edwards-youre-the-cure/id1266700954
 https://rumble.com/vnbv86-winning-the-war-against-therapeutic-nihilism-and-trusted-treatments-vs-unte.html
 
 https://www.americaoutloud.com/boosters-could-mean-regular-injections-are-part-of-your-life-forever/
+
+https://americasfrontlinedoctors.org/2/frontlinenews/interview-dr-jessica-rose-and-ilana-rachel-daniel-on-whats-happening-in-israel/
