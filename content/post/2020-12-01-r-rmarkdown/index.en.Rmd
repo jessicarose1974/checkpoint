@@ -270,7 +270,10 @@ nrow(SAES_no_dups_08_10_21_502100kb)
 Percent = nrow(SAES_no_dups_08_10_21_502100kb)/nrow(MERGED_08_10_21_502100kb)*100
 Percent
 ```
-
+```{r}
+SAES_no_dups_08_10_21_502100kb_fizer <- SAES_no_dups_08_10_21_502100kb %>% filter(VAX_MANU == "PFIZER\\BIONTECH")
+nrow(SAES_no_dups_08_10_21_502100kb_fizer)
+```
 Histogram showing distribution of SAEs according to age group
 ```{r}
 SAES_no_dups_08_10_21_502100kb_AG <- SAES_no_dups_08_10_21_502100kb %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
