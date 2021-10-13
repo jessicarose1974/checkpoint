@@ -17,7 +17,7 @@ advanced:
 
 <font size ="5" color = "yellow">**Testimonials from Israel - the movie - and a place to tell your own story.**</font> https://www.vaxtestimonies.org/en/
 
-<font size ="5" color = "yellow">**World Council for Health Presentation**</font> https://worldcouncilforhealth.org/newsroom/
+<font size ="5" color = "yellow">**World Council for Health Presentation**</font> https://share.descript.com/view/IdlOTdAoCg4
 
 <font size="5" color = "yellow"> Feel free to visit my youtube channel to see my findings summarized.</font>
 <font size ="4">**https://www.youtube.com/watch?v=bMY2tdFNkRU**</font> or <font size ="4">**https://www.bitchute.com/video/NqedH2RNS3zQ/**</font>
