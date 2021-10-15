@@ -61,7 +61,46 @@ output: html_document
 ## 35 2021-09-24 551836 182590000  8091    33172 70166  97147 19953 8646
 ## 36 2021-10-01 565282 184340000  8342    34288 71831  99838 21042 9153
 ## 37 2021-10-08 577804 186920000  8606    35484 73308 102373 22155 9467
-## 38 2021-10-15 591934 188280000  8879    36702 74997 105130 23358 9716</code></pre>
+## 38 2021-10-15 591934 188280000  8879    36702 74997 105130 23358 9716
+##    COVID_deaths
+## 1         38694
+## 2        109630
+## 3        131892
+## 4        170988
+## 5        198287
+## 6        209042
+## 7        218469
+## 8        226014
+## 9        232899
+## 10       238917
+## 11       245843
+## 12       249289
+## 13       253959
+## 14       259751
+## 15       263832
+## 16       269044
+## 17       272431
+## 18       277845
+## 19       280390
+## 20       282889
+## 21       285210
+## 22       287735
+## 23       289963
+## 24       290463
+## 25       292672
+## 26       294419
+## 27       295971
+## 28       299877
+## 29       302694
+## 30       307669
+## 31       316829
+## 32       326638
+## 33       339140
+## 34       354557
+## 35       365749
+## 36       374992
+## 37       389782
+## 38       406120</code></pre>
 <p>This is the change in absolute number of VAERS IDs per year.
 <img src="Figs/unnamed-chunk-16-1.png" width="672" />
 These are the VAERS ID counts for the past 30 years (absolute counts).</p>
@@ -72,8 +111,10 @@ These are the VAERS ID counts for the past 30 years (absolute counts).</p>
 These are the trajectories of cumulative data for the respective groups.
 <img src="Figs/unnamed-chunk-20-1.png" width="672" />
 These are the trajectories of normalized data for the respective groups (normalized to US FULLY INJECTED population per million).
-<img src="Figs/unnamed-chunk-21-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-23-1.png" width="672" />
+<img src="Figs/unnamed-chunk-21-1.png" width="672" />
+These are the trajectories of cumulative data for Deaths from VAERS and COVID deaths from OWID.
+<img src="Figs/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-24-1.png" width="672" />
 This is the number of birth defects.</p>
 <pre><code>## [1] 359</code></pre>
 <p>This is the number of deaths and the percentage per total AEs.</p>
@@ -93,22 +134,22 @@ This is the number of birth defects.</p>
 <pre><code>## [1] 17.76043</code></pre>
 <pre><code>## [1] 51585</code></pre>
 <p>Histogram showing distribution of SAEs according to age group
-<img src="Figs/unnamed-chunk-31-1.png" width="672" />
+<img src="Figs/unnamed-chunk-32-1.png" width="672" />
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
 <pre><code>##   Percent_SAE    SAE PERC
 ## 1    Standard  90000   15
 ## 2      Actual 105130   18</code></pre>
-<p><img src="Figs/unnamed-chunk-32-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-33-1.png" width="672" />
 Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
 <pre><code>## [1] 23358</code></pre>
 <pre><code>## [1] 3.946048</code></pre>
-<p><img src="Figs/unnamed-chunk-36-1.png" width="672" />
-<img src="Figs/unnamed-chunk-37-1.png" width="672" />
-<img src="Figs/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-37-1.png" width="672" />
+<img src="Figs/unnamed-chunk-38-1.png" width="672" />
+<img src="Figs/unnamed-chunk-39-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"13bbfed7db55":["function () ","plotlyVisDat"]},"cur_data":"13bbfed7db55","attrs":{"13bbfed7db55":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[9.34,31.86,58.15],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"15f72635bc8e2":["function () ","plotlyVisDat"]},"cur_data":"15f72635bc8e2","attrs":{"15f72635bc8e2":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[9.34,31.86,58.15],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"13bbfbe89028":["function () ","plotlyVisDat"]},"cur_data":"13bbfbe89028","attrs":{"13bbfbe89028":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.07,0.16,0.45,1.25,1.91,2.29,0.82,0.07],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"15f726ee91512":["function () ","plotlyVisDat"]},"cur_data":"15f726ee91512","attrs":{"15f726ee91512":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.07,0.16,0.45,1.25,1.91,2.29,0.82,0.07],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Female Reproductive Events count</p>
 <pre><code>##  [1] &quot;Abnormal uterine bleeding&quot;                 
 ##  [2] &quot;Afterbirth pain&quot;                           
@@ -165,17 +206,17 @@ Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
 <pre><code>## [1] 9716</code></pre>
 <pre><code>## [1] 1.641399</code></pre>
 <p>Histogram showing distribution of Female Reproductive Issues by age group
-<img src="Figs/unnamed-chunk-47-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-48-1.png" width="672" /></p>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  FRI_CASES_VD_OD$OBSERVED
 ## X-squared = 23737, df = 50, p-value &lt; 2.2e-16</code></pre>
 <p>Cumulative FRI cases as per update - rates increasing.
-<img src="Figs/unnamed-chunk-50-1.png" width="672" />
+<img src="Figs/unnamed-chunk-51-1.png" width="672" />
 Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
-<img src="Figs/unnamed-chunk-51-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-52-1.png" width="672" />
+<img src="Figs/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-53-1.png" width="672" />
 Cardiac Events Count</p>
 <pre><code>##  [1] &quot;Arrhythmia&quot;                               
 ##  [2] &quot;Myocarditis&quot;                              
@@ -217,14 +258,14 @@ Cardiac Events Count</p>
 ## [38] &quot;Echocardiogram abnormal&quot;                  
 ## [39] &quot;Dyspnoea&quot;</code></pre>
 <pre><code>## [1] 180265</code></pre>
-<p><img src="Figs/unnamed-chunk-56-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-57-1.png" width="672" />
 This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage of the total AEs reported and a histogram showing age group distribution.</p>
 <pre><code>## [1] 25843</code></pre>
-<p><img src="Figs/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-58-1.png" width="672" /></p>
 <pre><code>## [1] 25023</code></pre>
 <pre><code>## [1] 4.227329</code></pre>
 <p>And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
-<img src="Figs/unnamed-chunk-59-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-60-1.png" width="672" /></p>
 <pre><code>## # A tibble: 2,763 × 4
 ## # Groups:   VAX_DATE, ONSET_DATE [2,763]
 ##    VAX_DATE   ONSET_DATE diff_in_days     n
@@ -328,25 +369,25 @@ This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage
 ## [81] &quot;Systemic scleroderma&quot;</code></pre>
 <p>Here we have the total AE count for immunological adverse events as per the list above. This is a very short list as compared with the total number of immunological AEs. It is merely a representation.</p>
 <pre><code>## [1] 185299</code></pre>
-<p><img src="Figs/unnamed-chunk-65-1.png" width="672" />
+<p><img src="Figs/unnamed-chunk-66-1.png" width="672" />
 This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -&gt; perfect correlation (look for red on diagonal).</p>
 <p>Here is a histogram showing death distribution by age group.
-<img src="Figs/unnamed-chunk-67-1.png" width="672" />
-Here is a plot showing clustering of reports around 0 and 1 in the context of death.
 <img src="Figs/unnamed-chunk-68-1.png" width="672" />
+Here is a plot showing clustering of reports around 0 and 1 in the context of death.
 <img src="Figs/unnamed-chunk-69-1.png" width="672" />
+<img src="Figs/unnamed-chunk-70-1.png" width="672" />
 This is a histogram showing hospitalization distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and hospitalization date. R=1 -&gt; perfect correlation (look for red on diagonal).
-<img src="Figs/unnamed-chunk-70-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-71-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-72-1.png" width="672" />
+<img src="Figs/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-73-1.png" width="672" />
 This is a histogram showing ER distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and ER date. R=1 -&gt; perfect correlation (look for red on diagonal).
-<img src="Figs/unnamed-chunk-73-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-74-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-75-1.png" width="672" />
+<img src="Figs/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-76-1.png" width="672" />
 And hey! What would this analysis be without myocarditis? This is the count of myocarditis cases and the percentage of the total count for cardiac cases and for the total AE count.</p>
 <pre><code>## [1] 953</code></pre>
 <pre><code>## [1] 0.5286661</code></pre>
 <pre><code>## [1] 0.1609977</code></pre>
 <p>And this plot shows age versus dose data for myocarditis cases. Notice how many young people. Hmm what’s that now? Dose 2 is causing moycarditis in young males? Hmm
-<img src="Figs/unnamed-chunk-77-1.png" width="672" />
-<img src="Figs/unnamed-chunk-78-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-78-1.png" width="672" />
+<img src="Figs/unnamed-chunk-79-1.png" width="672" /></p>
