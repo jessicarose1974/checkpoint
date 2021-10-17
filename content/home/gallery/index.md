@@ -110,3 +110,7 @@ https://americasfrontlinedoctors.org/2/frontlinenews/interview-dr-jessica-rose-a
 https://normanpilon.com/2021/09/09/vaers-update-for-ccca-canadian-covid-care-alliance-dr-jessica-rose/
 
 https://rumble.com/vnu35r-episode-3-interview-with-dr.-jessica-rose.html
+
+https://roundingtheearth.substack.com/p/what-ive-been-reading-whats-been
+
+https://www.youtube.com/watch?v=5Rbl8PGUxow
