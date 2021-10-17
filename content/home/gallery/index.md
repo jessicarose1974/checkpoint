@@ -109,4 +109,4 @@ https://americasfrontlinedoctors.org/2/frontlinenews/interview-dr-jessica-rose-a
 
 https://normanpilon.com/2021/09/09/vaers-update-for-ccca-canadian-covid-care-alliance-dr-jessica-rose/
 
-https://freeworldnews.tv/watch?id=616a183cc903d74a70bd2604
+https://youtu.be/HdrTRlt2hk8
