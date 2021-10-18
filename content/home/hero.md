@@ -25,6 +25,9 @@ advanced:
 <font size="5" color = "yellow"> And my updated findings summarized!</font>
 <font size ="4">**https://www.youtube.com/watch?v=Y4MViwU3XOo**</font>
 
+<font size="5" color = "yellow"> And my RAAS video that explains everything!</font>
+<font size ="4">**https://www.youtube.com/watch?v=AsmwQzlYTho**</font>
+
 <font size ="5" color = "orange"> Open Public Hearing Session for the 167th meeting of FDA/CBER/VRBPAC <font>
 <font size ="5">**https://www.bitchute.com/video/yFkId7HaKTNG/**</font>
 
