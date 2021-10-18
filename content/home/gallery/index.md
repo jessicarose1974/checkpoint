@@ -118,3 +118,5 @@ https://roundingtheearth.substack.com/p/what-ive-been-reading-whats-been
 https://www.youtube.com/watch?v=5Rbl8PGUxow
 
 https://retractionwatch.com/
+
+https://www.buzzsprout.com/1423192/9390392
