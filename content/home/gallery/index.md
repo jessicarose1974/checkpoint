@@ -116,3 +116,5 @@ https://rumble.com/vnu35r-episode-3-interview-with-dr.-jessica-rose.html
 https://roundingtheearth.substack.com/p/what-ive-been-reading-whats-been
 
 https://www.youtube.com/watch?v=5Rbl8PGUxow
+
+https://retractionwatch.com/
