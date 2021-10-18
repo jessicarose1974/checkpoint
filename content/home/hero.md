@@ -37,4 +37,6 @@ advanced:
 
 <font size="5" color = "yellow">**An Article written by G. Vanden Bossche, DVM, PhD**</font> https://jessicar.substack.com/p/coming-soon
 
+<font size="5" color = "yellow">**How a Mandelbrot set arises from Newton’s work.**</font>https://www.youtube.com/watch?v=LqbZpur38nw
+
 <font size ="6">**You can report an AE in South Africa using SAVAERS.**</font>https://savaers.co.za/
