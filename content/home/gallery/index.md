@@ -121,4 +121,6 @@ https://retractionwatch.com/
 
 https://www.buzzsprout.com/1423192/9390392
 
-https://uncoverdc.com/2021/10/18/critical-peer-reviewed-study-on-myocarditis-temporarily-removed/ 
+https://uncoverdc.com/2021/10/18/critical-peer-reviewed-study-on-myocarditis-temporarily-removed/
+
+https://live.childrenshealthdefense.org/shows/doctors-and-scientists-with-brian-hooker-phd
