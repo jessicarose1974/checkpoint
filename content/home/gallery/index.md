@@ -120,3 +120,5 @@ https://www.youtube.com/watch?v=5Rbl8PGUxow
 https://retractionwatch.com/
 
 https://www.buzzsprout.com/1423192/9390392
+
+https://uncoverdc.com/2021/10/18/critical-peer-reviewed-study-on-myocarditis-temporarily-removed/ 
