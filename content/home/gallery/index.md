@@ -124,3 +124,5 @@ https://uncoverdc.com/2021/10/18/critical-peer-reviewed-study-on-myocarditis-tem
 https://live.childrenshealthdefense.org/shows/doctors-and-scientists-with-brian-hooker-phd
 
 https://themedicalprogress.com/2021/10/18/paper-links-covid-vaccines-to-myocarditis-is-temporarily-removed/
+
+https://prn.fm/progressive-commentary-hour-dr-jessica-rose/
