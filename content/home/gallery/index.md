@@ -126,3 +126,5 @@ https://live.childrenshealthdefense.org/shows/doctors-and-scientists-with-brian-
 https://themedicalprogress.com/2021/10/18/paper-links-covid-vaccines-to-myocarditis-is-temporarily-removed/
 
 https://prn.fm/progressive-commentary-hour-dr-jessica-rose/
+
+https://odysee.com/@VSRF:d/VSRFWebinar001:4?r=2MovGru8pCVQhasXZ7UFWaaZhLpmWjjh
