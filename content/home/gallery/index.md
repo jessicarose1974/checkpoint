@@ -132,3 +132,5 @@ https://odysee.com/@VSRF:d/VSRFWebinar001:4?r=2MovGru8pCVQhasXZ7UFWaaZhLpmWjjh
 https://retractionwatch.com/2021/10/25/covid-19-vaccine-myocarditis-paper-to-be-permanently-removed-elsevier/
 
 https://childrenshealthdefense.org/defender/fda-endorses-pfizer-covid-vaccine-children/
+
+https://beckernews.com/new-dr-jessica-rose-unloads-on-fda-advisery-panel-after-voting-to-authorize-vaccines-for-young-children-42716/
