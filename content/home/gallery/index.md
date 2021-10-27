@@ -134,3 +134,5 @@ https://retractionwatch.com/2021/10/25/covid-19-vaccine-myocarditis-paper-to-be-
 https://childrenshealthdefense.org/defender/fda-endorses-pfizer-covid-vaccine-children/
 
 https://beckernews.com/new-dr-jessica-rose-unloads-on-fda-advisery-panel-after-voting-to-authorize-vaccines-for-young-children-42716/
+
+https://beckernews.com/fda-advisery-meeting-breaks-out-into-conflict-after-vote-to-authorize-covid-vaccines-for-young-children-42714/
