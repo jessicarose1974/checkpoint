@@ -31,6 +31,9 @@ advanced:
 <font size ="5" color = "orange"> Open Public Hearing Session for the 167th meeting of FDA/CBER/VRBPAC <font>
 <font size ="5">**https://www.bitchute.com/video/yFkId7HaKTNG/**</font>
 
+<font size ="5" color = "orange"> Open Public Hearing Session for the 170th meeting of FDA/CBER/VRBPAC <font>
+<font size ="5">**https://m.youtube.com/watch?t=17213&v=laaL0_xKmmA&feature=youtu.be**</font> 
+
 <font size ="6">**Try these pants on for size...**</font> http://www.kathydopp.info/COVIDinfo/Vaccines/Doses1and2
 
 <font size="5" color = "yellow">**Don't forget about OpenVAERS:**</font> https://www.openvaers.com
