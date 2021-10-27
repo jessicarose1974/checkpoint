@@ -128,3 +128,7 @@ https://themedicalprogress.com/2021/10/18/paper-links-covid-vaccines-to-myocardi
 https://prn.fm/progressive-commentary-hour-dr-jessica-rose/
 
 https://odysee.com/@VSRF:d/VSRFWebinar001:4?r=2MovGru8pCVQhasXZ7UFWaaZhLpmWjjh
+
+https://retractionwatch.com/2021/10/25/covid-19-vaccine-myocarditis-paper-to-be-permanently-removed-elsevier/
+
+https://childrenshealthdefense.org/defender/fda-endorses-pfizer-covid-vaccine-children/
