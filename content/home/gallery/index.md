@@ -138,3 +138,5 @@ https://beckernews.com/new-dr-jessica-rose-unloads-on-fda-advisery-panel-after-v
 https://beckernews.com/fda-advisery-meeting-breaks-out-into-conflict-after-vote-to-authorize-covid-vaccines-for-young-children-42714/
 
 https://www.youtube.com/watch?v=SUmicxBfWuo
+
+https://www.dropbox.com/s/2df6b5l0ttrrzjt/asifas%20c19%20ch.mp4?dl=0
