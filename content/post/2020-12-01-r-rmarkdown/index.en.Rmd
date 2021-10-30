@@ -72,7 +72,7 @@ Table <- data.frame(
   SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963", "73645", "75536", "78186", "80011", "81937", "84137", "86209", "88768", "91839", "94740", "97147", "99838", "102373", "105130", "107542", "110045")),
   COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6927", "8324", "9139", "9671", "10199", "10728", "11381", "12174", "13117", "14448", "15979", "17626", "18917", "19953", "21042", "22155", "23358", "24432", "25393")), 
   FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "4145", "4934", "5723", "6130", "6538", "6639", "6841", "6904", "7105", "7405", "7722", "8303", "8646", "9153", "9467", "9716" ,"9915", "10194")),
-  COVID_deaths = as.numeric(c("38694", "109630", "131892", "170988", "198287", "209042", "218469", "226014", "232899", "238917", "245843", "249289", "253959", "259751", "263832", "269044", "272431", "277845", "280390", "282889", "285210", "287735", "289963", "290463", "292672", "294419", "295971", "299877", "302694", "307669", "316829", "326638", "339140", "354557", "365749", "374992", "389782", "406120", "415867", "426135")),
+  COVID_deaths = as.numeric(c("38694", "109630", "131892", "170988", "198287", "209042", "218469", "226014", "232899", "238917", "245843", "249289", "253959", "259751", "263832", "269044", "272431", "277845", "280390", "282889", "285210", "287735", "289963", "290463", "292672", "294419", "295971", "299877", "302694", "307669", "316829", "326638", "339140", "354557", "365749", "374992", "389782", "406120", "415867", "426139")),
   
   stringsAsFactors = FALSE
 )
@@ -89,7 +89,7 @@ Table_IDs_percent <- data.frame(
   SAE = as.numeric(c("690", "1207", "1806", "3221", "4291", "5535", "7065", "8470", "9796", "10930", "11724", "13057", "16478", "22145", "29024", "33791", "38650", "44860", "51068", "57073", "61917", "66255", "69941", "71963", "73645", "75536", "78186", "80011", "81937", "84137", "86209", "88768", "91839", "94740", "97147", "99838", "102373", "105130", "107542", "110045")),
   COVID = as.numeric(c("194", "254", "326", "619", "717", "776", "943", "1057", "1169", "1267", "1375", "1404", "1587", "1930", "2776", "3317", "3742", "4285", "4850", "5497", "6151", "6927", "8324", "9139", "9671", "10199", "10728", "11381", "12174", "13117", "14448", "15979", "17626", "18917", "19953", "21042", "22155", "23358", "24432", "25393")), 
   FRI = as.numeric(c("4", "7", "8", "24", "34", "43", "67", "77", "88", "98", "105", "123", "165", "287", "436", "597", "774", "1067", "1421", "1967", "2460", "2940", "4145", "4934", "5723", "6130", "6538", "6639", "6841", "6904", "7105", "7405", "7722", "8303", "8646", "9153", "9467", "9716" ,"9915", "10194")),
-  COVID_deaths = as.numeric(c("38694", "109630", "131892", "170988", "198287", "209042", "218469", "226014", "232899", "238917", "245843", "249289", "253959", "259751", "263832", "269044", "272431", "277845", "280390", "282889", "285210", "287735", "289963", "290463", "292672", "294419", "295971", "299877", "302694", "307669", "316829", "326638", "339140", "354557", "365749", "374992", "389782", "406120", "415867", "426135")),
+  COVID_deaths = as.numeric(c("38694", "109630", "131892", "170988", "198287", "209042", "218469", "226014", "232899", "238917", "245843", "249289", "253959", "259751", "263832", "269044", "272431", "277845", "280390", "282889", "285210", "287735", "289963", "290463", "292672", "294419", "295971", "299877", "302694", "307669", "316829", "326638", "339140", "354557", "365749", "374992", "389782", "406120", "415867", "426139")),
   
   stringsAsFactors = FALSE
 )
@@ -152,7 +152,7 @@ These are the VAERS ID counts for the past 30 years (absolute counts).
 ```
 This is the cumulative number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products.
 ```{r}
-Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF VAERS IDs (N)") + labs(title = "CUMULATIVE CHANGES IN VAERS IDs (N)", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 5)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot <- ggplot(data = Table_IDs_percent, aes(x = DATE, y = IDs)) + geom_line(data = Table_IDs_percent, aes(x = DATE, y = IDs, colour = "IDs"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent, aes(DATE, IDs, colour = "IDs"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF VAERS IDs (N)") + labs(title = "CUMULATIVE CHANGES IN VAERS IDs (N)", caption = "Data source: VAERS domestic dataset/Analysis: Dr. Jessica Rose", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 5)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot
 ggsave("Table_IDs_plot.png")
 ```
@@ -350,7 +350,7 @@ COVID_CASES <- COVID_CASES_Total_ENTRY
 ```{r}
 AGE_GROUPS_COVID <- COVID_CASES %>% rowwise() %>% filter(AGE_YRS != "NA") %>% mutate("AGE_GROUP" = AGE_GROUPED_BY_DECADE(AGE_YRS))
 AGE_GROUPS_COVID_count <- AGE_GROUPS_COVID %>% group_by(AGE_GROUP) %>% filter(AGE_GROUP != "NA") %>% count(AGE_GROUP)
-AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS")
+AGE_GROUPS_COVID_plot <- ggplot(AGE_GROUPS_COVID_count, aes(AGE_GROUP, n, fill = AGE_GROUP)) + geom_bar(stat = "Identity") + geom_text(aes(label = n)) + xlab("AGE GROUPS") + ylab("NUMBER OF COVID-19 BREAKTHROUGH INFECTIONS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "none") + ggtitle("Breakthough Covid-19 Infections -> VAERS IDs vs AGE GROUPS") + labs(caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose")
 AGE_GROUPS_COVID_plot
 ggsave("AGE_GROUPS_COVID_plot.png")
 
@@ -365,7 +365,7 @@ Table_IDs_COVID_percent <- data.frame(
   
   stringsAsFactors = FALSE
 )
-Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(title = "ABSOLUTE NUMBER OF BREAKTHROUGH INFECTIONS (CUMULATIVE)", caption = "Data source: VAERS") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 6)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
+Table_IDs_COVID_plot <- ggplot(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID)) + geom_line(data = Table_IDs_COVID_percent, aes(x = DATE, y = COVID, colour = "COVID"), colour = "red", size = 2) + geom_point(data = Table_IDs_COVID_percent, aes(DATE, COVID, colour = "COVID"), colour = "red", size = 5) + xlab("DATE") +  ylab("NUMBER OF BREAKTHROUGH INFECTIONS") + labs(title = "ABSOLUTE NUMBER OF BREAKTHROUGH INFECTIONS (CUMULATIVE)", caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 4)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_COVID_percent$DATE), max(Table_IDs_COVID_percent$DATE), by = 10),0.1))
 Table_IDs_COVID_plot
 ggsave("Table_IDs_COVID_plot.png")
 ```
@@ -450,15 +450,15 @@ FRI_CASES_AG_count_plot
 ggsave("FRI_CASES_AG_count_plot.png")
 ```
 ```{r}
-#FRI_CASES_90_100 <- FRI_CASES %>% filter(AGE_YRS >= 90 & AGE_YRS <= 100)
-#FRI_CASES_90_100
+FRI_CASES_90_100 <- FRI_CASES %>% filter(AGE_YRS >= 90 & AGE_YRS <= 100)
+FRI_CASES_90_100
 #Number of Spontaneous abortions
-#FRI_CASES_SA1 <- FRI_CASES %>% filter(SYMPTOM1 == "Abortion spontaneous") 
-#FRI_CASES_SA2 <- FRI_CASES %>% filter(SYMPTOM2 == "Abortion spontaneous") 
-#FRI_CASES_SA3 <- FRI_CASES %>% filter(SYMPTOM3 == "Abortion spontaneous") 
-#FRI_CASES_SA4 <- FRI_CASES %>% filter(SYMPTOM4 == "Abortion spontaneous") 
-#FRI_CASES_SA5 <- FRI_CASES %>% filter(SYMPTOM5 == "Abortion spontaneous") 
-#sum(nrow(FRI_CASES_SA1),nrow(FRI_CASES_SA2),nrow(FRI_CASES_SA3),nrow(FRI_CASES_SA4),nrow(FRI_CASES_SA5))
+FRI_CASES_SA1 <- FRI_CASES %>% filter(SYMPTOM1 == "Abortion spontaneous") 
+FRI_CASES_SA2 <- FRI_CASES %>% filter(SYMPTOM2 == "Abortion spontaneous") 
+FRI_CASES_SA3 <- FRI_CASES %>% filter(SYMPTOM3 == "Abortion spontaneous") 
+FRI_CASES_SA4 <- FRI_CASES %>% filter(SYMPTOM4 == "Abortion spontaneous") 
+FRI_CASES_SA5 <- FRI_CASES %>% filter(SYMPTOM5 == "Abortion spontaneous") 
+sum(nrow(FRI_CASES_SA1),nrow(FRI_CASES_SA2),nrow(FRI_CASES_SA3),nrow(FRI_CASES_SA4),nrow(FRI_CASES_SA5))
 ```
 ```{r}
 FRI_CASES$ONSET_DATE <- as.Date(FRI_CASES$ONSET_DATE, "%m/%d/%y")
