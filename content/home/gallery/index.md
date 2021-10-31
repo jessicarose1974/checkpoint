@@ -143,4 +143,5 @@ https://www.dropbox.com/s/2df6b5l0ttrrzjt/asifas%20c19%20ch.mp4?dl=0
 
 https://theparadise.ng/dr-jessica-rose-unloads-on-fda-advisory-panel-after-it-votes-to-authorize-vaccines-for-young-children/
 
+https://www.youtube.com/watch?v=z1vVPysGiuY
 

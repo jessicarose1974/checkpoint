@@ -450,15 +450,15 @@ FRI_CASES_AG_count_plot
 ggsave("FRI_CASES_AG_count_plot.png")
 ```
 ```{r}
-FRI_CASES_90_100 <- FRI_CASES %>% filter(AGE_YRS >= 90 & AGE_YRS <= 100)
-FRI_CASES_90_100
+#FRI_CASES_90_100 <- FRI_CASES %>% filter(AGE_YRS >= 90 & AGE_YRS <= 100)
+#FRI_CASES_90_100
 #Number of Spontaneous abortions
-FRI_CASES_SA1 <- FRI_CASES %>% filter(SYMPTOM1 == "Abortion spontaneous") 
-FRI_CASES_SA2 <- FRI_CASES %>% filter(SYMPTOM2 == "Abortion spontaneous") 
-FRI_CASES_SA3 <- FRI_CASES %>% filter(SYMPTOM3 == "Abortion spontaneous") 
-FRI_CASES_SA4 <- FRI_CASES %>% filter(SYMPTOM4 == "Abortion spontaneous") 
-FRI_CASES_SA5 <- FRI_CASES %>% filter(SYMPTOM5 == "Abortion spontaneous") 
-sum(nrow(FRI_CASES_SA1),nrow(FRI_CASES_SA2),nrow(FRI_CASES_SA3),nrow(FRI_CASES_SA4),nrow(FRI_CASES_SA5))
+#FRI_CASES_SA1 <- FRI_CASES %>% filter(SYMPTOM1 == "Abortion spontaneous") 
+#FRI_CASES_SA2 <- FRI_CASES %>% filter(SYMPTOM2 == "Abortion spontaneous") 
+#FRI_CASES_SA3 <- FRI_CASES %>% filter(SYMPTOM3 == "Abortion spontaneous") 
+#FRI_CASES_SA4 <- FRI_CASES %>% filter(SYMPTOM4 == "Abortion spontaneous") 
+#FRI_CASES_SA5 <- FRI_CASES %>% filter(SYMPTOM5 == "Abortion spontaneous") 
+#sum(nrow(FRI_CASES_SA1),nrow(FRI_CASES_SA2),nrow(FRI_CASES_SA3),nrow(FRI_CASES_SA4),nrow(FRI_CASES_SA5))
 ```
 ```{r}
 FRI_CASES$ONSET_DATE <- as.Date(FRI_CASES$ONSET_DATE, "%m/%d/%y")
