@@ -145,3 +145,5 @@ https://theparadise.ng/dr-jessica-rose-unloads-on-fda-advisory-panel-after-it-vo
 
 https://www.youtube.com/watch?v=z1vVPysGiuY
 
+https://podtail.se/podcast/trish-wood-is-critical/vaccine-researcher-jessica-rose-and-dr-peter-mccul/
+
