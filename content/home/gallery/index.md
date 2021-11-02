@@ -147,3 +147,7 @@ https://www.youtube.com/watch?v=z1vVPysGiuY
 
 https://podtail.se/podcast/trish-wood-is-critical/vaccine-researcher-jessica-rose-and-dr-peter-mccul/
 
+https://www.redvoicemedia.com/2021/10/fda-torched-over-child-covid-vaccine-advisory-panel-vote-by-dr-jessica-rose/
+
+https://www.nutritruth.org/single-post/a-report-on-myocarditis-adverse-events-in-the-u-s-vaccine-adverse-events-reporting-system-vaers-i
+
