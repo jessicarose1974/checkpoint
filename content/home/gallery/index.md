@@ -151,3 +151,9 @@ https://www.redvoicemedia.com/2021/10/fda-torched-over-child-covid-vaccine-advis
 
 https://jessicar.substack.com/p/a-report-on-myocarditis-adverse-events
 
+https://www.youtube.com/watch?v=Xp4Cs0qtAao&t=204s
+
+https://www.youtube.com/watch?v=n2nrQztwxqs&t=9s
+
+
+
