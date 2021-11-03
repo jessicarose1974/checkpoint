@@ -159,5 +159,6 @@ https://www.youtube.com/watch?v=4_kW7_9azxI
 
 https://www.youtube.com/watch?v=UcfxlAbYcKI
 
+https://trialsitenews.com/are-the-scientific-journals-censoring-the-science-part-1-the-removal-of-the-report-on-myocarditis-adverse-events-in-vaers-by-elsevier-and-current-problems-in-cardiology/
 
 
