@@ -241,9 +241,12 @@ D_29_10_21_543700kb <- MERGED_29_10_21_543700kb %>% group_by(VAERS_ID, DIED) %>%
 #nrow(D_29_10_21_543700kb)/nrow(MERGED_29_10_21_543700kb)*100
 ```
 ```{r}
-DEAD_MERGED_29_10_21_543700kb <- MERGED_29_10_21_543700kb %>% filter(DIED == "Y")
+#DEAD_MERGED_29_10_21_543700kb <- MERGED_29_10_21_543700kb %>% filter(DIED == "Y")
 nrow(DEAD_MERGED_29_10_21_543700kb)
 nrow(DEAD_MERGED_29_10_21_543700kb)/nrow(MERGED_29_10_21_543700kb)*100
+
+#DEAD_MERGED_29_10_21_543700kb_VL <- DEAD_MERGED_29_10_21_543700kb %>% group_by(VAX_MANU, VAX_LOT) %>% count(VAX_LOT) %>% arrange(desc(n))
+#DEAD_MERGED_29_10_21_543700kb_VL
 ```
 These are the number of hospitalizations and emergency doctor visits. 
 ```{r}
