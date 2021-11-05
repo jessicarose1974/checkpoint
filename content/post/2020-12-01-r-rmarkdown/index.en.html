@@ -19,9 +19,9 @@ output: html_document
 <p>This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. Also included is some stuff on kids and Myocarditis.</p>
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
 <p>This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ</p>
-<pre><code>## [1] 618548</code></pre>
+<pre><code>## [1] 632823</code></pre>
 <p>Percent of VAERS reports made by Females</p>
-<pre><code>## [1] 68.37174</code></pre>
+<pre><code>## [1] 68.2284</code></pre>
 <p>The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)</p>
 <pre><code>##          DATE    IDs        FV DEATH HOSPITAL    ER    SAE COVID   FRI
 ## 1  2021-01-16   1431   4582089   137      338   338    690   194     4
@@ -64,6 +64,7 @@ output: html_document
 ## 38 2021-10-15 591934 188280000  8879    36702 74997 105130 23358  9716
 ## 39 2021-10-22 603738 189920000  9077    37769 76423 107542 24432  9915
 ## 40 2021-10-29 618548 190990000  9315    38758 78060 110045 25393 10194
+## 41 2021-11-05 632823 191820000  9538    39625 79418 112192 26240 10588
 ##    COVID_deaths
 ## 1         38694
 ## 2        109630
@@ -104,7 +105,8 @@ output: html_document
 ## 37       389782
 ## 38       406120
 ## 39       415867
-## 40       426139</code></pre>
+## 40       426139
+## 41       434981</code></pre>
 <p>This is the change in absolute number of VAERS IDs per year.
 <img src="Figs/unnamed-chunk-16-1.png" width="672" />
 These are the VAERS ID counts for the past 30 years (absolute counts).</p>
@@ -120,40 +122,61 @@ These are the trajectories of cumulative data for Deaths from VAERS and COVID de
 <img src="Figs/unnamed-chunk-22-1.png" width="672" /></p>
 <p><img src="Figs/unnamed-chunk-24-1.png" width="672" />
 This is the number of birth defects.</p>
-<pre><code>## [1] 377</code></pre>
+<pre><code>## [1] 383</code></pre>
 <p>This is the number of deaths and the percentage per total AEs.</p>
-<pre><code>## [1] 9315</code></pre>
-<pre><code>## [1] 1.505946</code></pre>
+<pre><code>## [1] 9538</code></pre>
+<pre><code>## [1] 1.507214</code></pre>
+<pre><code>## # A tibble: 75 × 52
+##    VAERS_ID SYMPTOM1          SYMPTOMVERSION1 SYMPTOM2  SYMPTOMVERSION2 SYMPTOM3
+##       &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;   
+##  1   942246 Autopsy                      23.1 Blood gl…            23.1 Blood g…
+##  2   958443 Completed suicide            23.1 Death                23.1 Gun sho…
+##  3  1006029 Death                        23.1 Syncope              23.1 Unrespo…
+##  4  1012692 Autopsy                      23.1 Death                23.1 Sudden …
+##  5  1068793 Autopsy                      23.1 Cardiac …            23.1 Death   
+##  6  1078352 Chest pain                   24   Death                24   Fatigue 
+##  7  1080840 Autopsy                      24   Cyanosis             24   Death   
+##  8  1095634 Blood test                   24   Death                24   Magneti…
+##  9  1105115 Abscess limb                 24   Death                24   Decreas…
+## 10  1116157 Death                        24   &lt;NA&gt;                 NA   &lt;NA&gt;    
+## # … with 65 more rows, and 46 more variables: SYMPTOMVERSION3 &lt;dbl&gt;,
+## #   SYMPTOM4 &lt;chr&gt;, SYMPTOMVERSION4 &lt;dbl&gt;, SYMPTOM5 &lt;chr&gt;,
+## #   SYMPTOMVERSION5 &lt;dbl&gt;, RECVDATE &lt;date&gt;, STATE &lt;chr&gt;, AGE_YRS &lt;dbl&gt;,
+## #   CAGE_YR &lt;dbl&gt;, CAGE_MO &lt;dbl&gt;, SEX &lt;chr&gt;, RPT_DATE &lt;chr&gt;,
+## #   SYMPTOM_TEXT &lt;chr&gt;, DIED &lt;chr&gt;, DATEDIED &lt;date&gt;, L_THREAT &lt;chr&gt;,
+## #   ER_VISIT &lt;lgl&gt;, HOSPITAL &lt;chr&gt;, HOSPDAYS &lt;dbl&gt;, X_STAY &lt;lgl&gt;,
+## #   DISABLE &lt;chr&gt;, RECOVD &lt;chr&gt;, VAX_DATE &lt;date&gt;, ONSET_DATE &lt;date&gt;, …</code></pre>
+<pre><code>## [1] 0.7863284</code></pre>
 <p>These are the number of hospitalizations and emergency doctor visits.</p>
-<pre><code>## [1] 38758</code></pre>
-<pre><code>## [1] 78060</code></pre>
+<pre><code>## [1] 39625</code></pre>
+<pre><code>## [1] 79418</code></pre>
 <p>These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs.</p>
-<pre><code>## [1] 9315</code></pre>
-<pre><code>## [1] 38758</code></pre>
-<pre><code>## [1] 78060</code></pre>
-<pre><code>## [1] 9755</code></pre>
-<pre><code>## [1] 10119</code></pre>
-<pre><code>## [1] 377</code></pre>
-<pre><code>## [1] 110045</code></pre>
-<pre><code>## [1] 17.79086</code></pre>
-<pre><code>## [1] 54072</code></pre>
+<pre><code>## [1] 9538</code></pre>
+<pre><code>## [1] 39625</code></pre>
+<pre><code>## [1] 79418</code></pre>
+<pre><code>## [1] 9933</code></pre>
+<pre><code>## [1] 10364</code></pre>
+<pre><code>## [1] 383</code></pre>
+<pre><code>## [1] 112192</code></pre>
+<pre><code>## [1] 17.72881</code></pre>
+<pre><code>## [1] 55245</code></pre>
 <p>Histogram showing distribution of SAEs according to age group
-<img src="Figs/unnamed-chunk-32-1.png" width="672" />
+<img src="Figs/unnamed-chunk-33-1.png" width="672" />
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
 <pre><code>##   Percent_SAE    SAE PERC
-## 1    Standard  95000   15
-## 2      Actual 110045   18</code></pre>
-<p><img src="Figs/unnamed-chunk-33-1.png" width="672" />
+## 1    Standard  97000   15
+## 2      Actual 112192   18</code></pre>
+<p><img src="Figs/unnamed-chunk-34-1.png" width="672" />
 Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
-<pre><code>## [1] 25393</code></pre>
-<pre><code>## [1] 4.105259</code></pre>
-<p><img src="Figs/unnamed-chunk-37-1.png" width="672" />
-<img src="Figs/unnamed-chunk-38-1.png" width="672" />
-<img src="Figs/unnamed-chunk-39-1.png" width="672" /></p>
+<pre><code>## [1] 26240</code></pre>
+<pre><code>## [1] 4.146499</code></pre>
+<p><img src="Figs/unnamed-chunk-38-1.png" width="672" />
+<img src="Figs/unnamed-chunk-39-1.png" width="672" />
+<img src="Figs/unnamed-chunk-40-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"f04d6037944d":["function () ","plotlyVisDat"]},"cur_data":"f04d6037944d","attrs":{"f04d6037944d":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[9.61,32,57.49],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"240b50166f11":["function () ","plotlyVisDat"]},"cur_data":"240b50166f11","attrs":{"240b50166f11":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[9.69,32.22,57.18],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"f04df20a41":["function () ","plotlyVisDat"]},"cur_data":"f04df20a41","attrs":{"f04df20a41":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0,0.02,0.08,0.18,0.48,1.38,2.05,2.23,0.85,0.07],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"240b6d074145":["function () ","plotlyVisDat"]},"cur_data":"240b6d074145","attrs":{"240b6d074145":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0,0.02,0.08,0.18,0.48,1.4,2.08,2.26,0.87,0.06],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Female Reproductive Events count</p>
 <pre><code>##  [1] &quot;Abnormal uterine bleeding&quot;                 
 ##  [2] &quot;Afterbirth pain&quot;                           
@@ -207,20 +230,20 @@ Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
 ## [50] &quot;Amniotic cavity infection&quot;                 
 ## [51] &quot;Amniotic membrane rupture test positive&quot;   
 ## [52] &quot;Amniotic fluid index decreased&quot;</code></pre>
-<pre><code>## [1] 10194</code></pre>
-<pre><code>## [1] 1.648053</code></pre>
+<pre><code>## [1] 10588</code></pre>
+<pre><code>## [1] 1.673138</code></pre>
 <p>Histogram showing distribution of Female Reproductive Issues by age group
-<img src="Figs/unnamed-chunk-48-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-49-1.png" width="672" /></p>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  FRI_CASES_VD_OD$OBSERVED
-## X-squared = 24871, df = 50, p-value &lt; 2.2e-16</code></pre>
+## X-squared = 26040, df = 50, p-value &lt; 2.2e-16</code></pre>
 <p>Cumulative FRI cases as per update - rates increasing.
-<img src="Figs/unnamed-chunk-51-1.png" width="672" />
+<img src="Figs/unnamed-chunk-52-1.png" width="672" />
 Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
-<img src="Figs/unnamed-chunk-52-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-53-1.png" width="672" />
+<img src="Figs/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-54-1.png" width="672" />
 Cardiac Events Count</p>
 <pre><code>##  [1] &quot;Arrhythmia&quot;                               
 ##  [2] &quot;Myocarditis&quot;                              
@@ -261,34 +284,34 @@ Cardiac Events Count</p>
 ## [37] &quot;Thrombosis&quot;                               
 ## [38] &quot;Echocardiogram abnormal&quot;                  
 ## [39] &quot;Dyspnoea&quot;</code></pre>
-<pre><code>## [1] 186690</code></pre>
-<p><img src="Figs/unnamed-chunk-57-1.png" width="672" />
+<pre><code>## [1] 190010</code></pre>
+<p><img src="Figs/unnamed-chunk-58-1.png" width="672" />
 This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage of the total AEs reported and a histogram showing age group distribution.</p>
-<pre><code>## [1] 26980</code></pre>
-<p><img src="Figs/unnamed-chunk-58-1.png" width="672" /></p>
-<pre><code>## [1] 26077</code></pre>
-<pre><code>## [1] 4.215841</code></pre>
+<pre><code>## [1] 27577</code></pre>
+<p><img src="Figs/unnamed-chunk-59-1.png" width="672" /></p>
+<pre><code>## [1] 26636</code></pre>
+<pre><code>## [1] 4.209076</code></pre>
 <p>And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
-<img src="Figs/unnamed-chunk-60-1.png" width="672" /></p>
-<pre><code>## # A tibble: 2,921 × 4
-## # Groups:   VAX_DATE, ONSET_DATE [2,921]
+<img src="Figs/unnamed-chunk-61-1.png" width="672" /></p>
+<pre><code>## # A tibble: 3,005 × 4
+## # Groups:   VAX_DATE, ONSET_DATE [3,005]
 ##    VAX_DATE   ONSET_DATE diff_in_days     n
 ##    &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;       &lt;int&gt;
-##  1 2021-05-19 2021-05-19 0 days         246
-##  2 2021-05-14 2021-05-14 0 days         245
-##  3 2021-05-15 2021-05-15 0 days         214
+##  1 2021-05-14 2021-05-14 0 days         249
+##  2 2021-05-19 2021-05-19 0 days         247
+##  3 2021-05-15 2021-05-15 0 days         216
 ##  4 2021-05-13 2021-05-13 0 days         206
-##  5 2021-05-18 2021-05-18 0 days         201
-##  6 2021-04-07 2021-04-07 0 days         200
+##  5 2021-05-18 2021-05-18 0 days         202
+##  6 2021-04-07 2021-04-07 0 days         201
 ##  7 2021-05-21 2021-05-21 0 days         186
-##  8 2021-04-06 2021-04-06 0 days         183
-##  9 2021-04-09 2021-04-09 0 days         179
-## 10 2021-05-20 2021-05-20 0 days         176
-## # … with 2,911 more rows</code></pre>
+##  8 2021-04-06 2021-04-06 0 days         185
+##  9 2021-04-09 2021-04-09 0 days         182
+## 10 2021-04-08 2021-04-08 0 days         179
+## # … with 2,995 more rows</code></pre>
 <p>Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the total cardiac AEs.</p>
-<pre><code>## [1] 14.81766</code></pre>
-<pre><code>## [1] 13.96808</code></pre>
-<pre><code>## [1] 2.069741</code></pre>
+<pre><code>## [1] 14.71317</code></pre>
+<pre><code>## [1] 14.01821</code></pre>
+<pre><code>## [1] 2.062523</code></pre>
 <p>Immunological Adverse Effects Count</p>
 <pre><code>##  [1] &quot;Anaphylactic reaction&quot;                                
 ##  [2] &quot;Anaphylactic shock&quot;                                   
@@ -372,26 +395,26 @@ This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage
 ## [80] &quot;Viral rash&quot;                                           
 ## [81] &quot;Systemic scleroderma&quot;</code></pre>
 <p>Here we have the total AE count for immunological adverse events as per the list above. This is a very short list as compared with the total number of immunological AEs. It is merely a representation.</p>
-<pre><code>## [1] 192090</code></pre>
-<p><img src="Figs/unnamed-chunk-66-1.png" width="672" />
+<pre><code>## [1] 195736</code></pre>
+<p><img src="Figs/unnamed-chunk-67-1.png" width="672" />
 This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -&gt; perfect correlation (look for red on diagonal).</p>
 <p>Here is a histogram showing death distribution by age group.
-<img src="Figs/unnamed-chunk-68-1.png" width="672" />
-Here is a plot showing clustering of reports around 0 and 1 in the context of death.
 <img src="Figs/unnamed-chunk-69-1.png" width="672" />
+Here is a plot showing clustering of reports around 0 and 1 in the context of death.
 <img src="Figs/unnamed-chunk-70-1.png" width="672" />
+<img src="Figs/unnamed-chunk-71-1.png" width="672" />
 This is a histogram showing hospitalization distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and hospitalization date. R=1 -&gt; perfect correlation (look for red on diagonal).
-<img src="Figs/unnamed-chunk-71-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-72-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-73-1.png" width="672" />
+<img src="Figs/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-74-1.png" width="672" />
 This is a histogram showing ER distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and ER date. R=1 -&gt; perfect correlation (look for red on diagonal).
-<img src="Figs/unnamed-chunk-74-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-75-1.png" width="672" /></p>
-<p><img src="Figs/unnamed-chunk-76-1.png" width="672" />
+<img src="Figs/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="Figs/unnamed-chunk-77-1.png" width="672" />
 And hey! What would this analysis be without myocarditis? This is the count of myocarditis cases and the percentage of the total count for cardiac cases and for the total AE count.</p>
-<pre><code>## [1] 990</code></pre>
-<pre><code>## [1] 0.5302909</code></pre>
-<pre><code>## [1] 0.1600523</code></pre>
+<pre><code>## [1] 1012</code></pre>
+<pre><code>## [1] 0.5326035</code></pre>
+<pre><code>## [1] 0.1599183</code></pre>
 <p>And this plot shows age versus dose data for myocarditis cases. Notice how many young people. Hmm what’s that now? Dose 2 is causing moycarditis in young males? Hmm
-<img src="Figs/unnamed-chunk-78-1.png" width="672" />
-<img src="Figs/unnamed-chunk-79-1.png" width="672" /></p>
+<img src="Figs/unnamed-chunk-79-1.png" width="672" />
+<img src="Figs/unnamed-chunk-80-1.png" width="672" /></p>
