@@ -163,4 +163,8 @@ https://trialsitenews.com/are-the-scientific-journals-censoring-the-science-part
 
 https://rumble.com/vok8dv-dr.-mccullough-on-myocarditis-in-adolescents-after-covid-vaccine.html
 
+https://m.facebook.com/story.php?story_fbid=4428580037231127&id=177621142281988&m_entstream_source=timeline
+
+https://rumble.com/vouo1t-gal-shalev-interview-with-dr.-jessica-rose-interview-vaers-data.html
+
 

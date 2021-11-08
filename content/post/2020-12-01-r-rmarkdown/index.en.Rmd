@@ -653,7 +653,7 @@ This is a histogram showing death distribution according to age group. We also h
 ```{r}
 D <- MERGED_05_11_21_562200kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
 MERGED_05_11_21_562200kb_VD_DD <- D %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=50) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(D)*100)
-#head(MERGED_05_11_21_562200kb_VD_DD)
+#MERGED_05_11_21_562200kb_VD_DD
 
 #chisq.test(MERGED_05_11_21_562200kb_VD_DD$OBSERVED)
 
