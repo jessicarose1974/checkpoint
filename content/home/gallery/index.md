@@ -167,4 +167,6 @@ https://m.facebook.com/story.php?story_fbid=4428580037231127&id=177621142281988&
 
 https://rumble.com/vouo1t-gal-shalev-interview-with-dr.-jessica-rose-interview-vaers-data.html
 
+https://vimeo.com/643179421
+
 
