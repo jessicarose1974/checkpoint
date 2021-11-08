@@ -251,9 +251,9 @@ nrow(DEAD_MERGED_05_11_21_562200kb)/nrow(MERGED_05_11_21_562200kb)*100
 ```
 ```{r}
 #let's calculate %age of kids <20 who died
-DEAD_MERGED_05_11_21_562200kb_0_19 <- DEAD_MERGED_05_11_21_562200kb %>% filter(AGE_YRS <= 19)
-DEAD_MERGED_05_11_21_562200kb_0_19
-nrow(DEAD_MERGED_05_11_21_562200kb_0_19)/nrow(DEAD_MERGED_05_11_21_562200kb)*100
+#DEAD_MERGED_05_11_21_562200kb_0_19 <- DEAD_MERGED_05_11_21_562200kb %>% filter(AGE_YRS <= 19)
+#DEAD_MERGED_05_11_21_562200kb_0_19
+#nrow(DEAD_MERGED_05_11_21_562200kb_0_19)/nrow(DEAD_MERGED_05_11_21_562200kb)*100
 ```
 These are the number of hospitalizations and emergency doctor visits. 
 ```{r}
