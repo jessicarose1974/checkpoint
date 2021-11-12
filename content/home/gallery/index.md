@@ -169,4 +169,10 @@ https://rumble.com/vouo1t-gal-shalev-interview-with-dr.-jessica-rose-interview-v
 
 https://vimeo.com/643179421
 
+https://watch.ivoryhecker.com/webtv-v3/
+
+https://watch.ivoryhecker.com/webtv-v3/program-group/bbf9b014a0234ea8baf91bba49e6f350/program/8c4ff21260641c6f3d0e67e32b8cce21
+
+https://podcasts.apple.com/us/podcast/conservative-review-with-daniel-horowitz/id1065050908
+
 
