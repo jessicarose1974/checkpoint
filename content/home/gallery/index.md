@@ -175,4 +175,6 @@ https://watch.ivoryhecker.com/webtv-v3/program-group/bbf9b014a0234ea8baf91bba49e
 
 https://podcasts.apple.com/us/podcast/conservative-review-with-daniel-horowitz/id1065050908
 
+https://www.youtube.com/watch?v=6htH45ICtkE
 
+https://trialsitenews.com/catalyst-vaers-data-and-the-ethics-of-health/

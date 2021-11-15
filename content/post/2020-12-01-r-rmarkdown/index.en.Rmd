@@ -66,6 +66,7 @@ Table <- data.frame(
   DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21", "7/16/21", "7/23/21", "7/30/21", "8/6/21", "8/13/21", "8/20/21", "8/27/21", "9/3/21", "9/10/21", "9/17/21", "9/24/21", "10/1/21", "10/08/21", "10/15/21", "10/22/21", "10/29/21", "11/05/21", "11/12/21"), "%m/%d/%y"),
   IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335", "409924", "419295", "427831", "436175", "450602", "473722", "499779", "521667", "541594", "551836", "565282", "577804", "591934", "603738", "618548", "632823", "642994")),
   FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000", "160410000", "162170000", "163870000", "165640000", "167350000", "169590000", "172170000", "174120000", "177430000", "180570000", "182590000", "184340000", "186920000", "188280000", "189920000", "190990000", "191820000", "192940000")),
+  Dose_1 = as.numeric(c("15840000", "22360000", "29330000", "43170000", "55570000", "64490000", "76320000", "88480000", "100810000", "113530000", "126920000", "138040000", "146410000", "149980000", "158290000", "162850000", "168980000", "173240000", "175910000", "178450000", "180620000", "182600000", "184430000", "186010000", "187820000", "190170000", "193150000", "196470000", "199700000", "202730000", "205600000", "208210000", "210240000", "212270000", "213950000", "215810000", "217410000", "218850000", "220230000", "222160000", "224030000", "224660000")),
   DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375", "5508", "5604", "6538", "6639", "6841", "7018", "7149", "7344", "7662", "7859", "8091", "8342", "8606", "8879", "9077", "9315", "9538", "9721")),
   HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441", "24087", "24778", "25634", "26402", "27160", "27913", "28651", "29577", "31041", "32024", "33172", "34288", "35484", "36702", "37769", "38758", "39625", "40465")), 
   ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789", "55016", "56357", "57820", "59061", "60317", "61754", "63115", "64893", "66657", "68692", "70166", "71831", "73308", "74997", "76423", "78060", "79418", "80584")),
@@ -83,6 +84,7 @@ Table_IDs_percent <- data.frame(
   DATE = as.Date(c("1/16/21", "1/23/21", "1/30/21", "2/13/21", "2/27/21", "3/5/21", "3/12/21", "3/19/21", "3/26/21", "4/2/21", "4/9/21", "4/16/21", "4/23/21", "4/30/21", "5/7/21", "5/14/21", "5/21/21", "5/28/21", "6/4/21", "6/11/21", "6/18/21", "6/25/21", "7/2/21", "7/9/21", "7/16/21", "7/23/21", "7/30/21", "8/6/21", "8/13/21", "8/20/21", "8/27/21", "9/3/21", "9/10/21", "9/17/21", "9/24/21", "10/1/21", "10/08/21", "10/15/21", "10/22/21", "10/29/21", "11/05/21", "11/12/21"), "%m/%d/%y"),
   IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335", "409924", "419295", "427831", "436175", "450602", "473722", "499779", "521667", "541594", "551836", "565282", "577804", "591934", "603738", "618548", "632823", "642994")),
   FV = as.numeric(c("4582089", "7664179", "11037313", "18895522", "27167910", "31720149", "35000000", "44145522", "48700000", "57980000", "64420000", "80610000", "89250000", "99670000", "108930000", "118990000", "126610000", "132770000", "136640000", "141580000", "148460000", "151620000", "155880000", "158290000", "160410000", "162170000", "163870000", "165640000", "167350000", "169590000", "172170000", "174120000", "177430000", "180570000", "182590000", "184340000", "186920000", "188280000", "189920000", "190990000", "191820000", "192940000")),
+  Dose_1 = as.numeric(c("15840000", "22360000", "29330000", "43170000", "55570000", "64490000", "76320000", "88480000", "100810000", "113530000", "126920000", "138040000", "146410000", "149980000", "158290000", "162850000", "168980000", "173240000", "175910000", "178450000", "180620000", "182600000", "184430000", "186010000", "187820000", "190170000", "193150000", "196470000", "199700000", "202730000", "205600000", "208210000", "210240000", "212270000", "213950000", "215810000", "217410000", "218850000", "220230000", "222160000", "224030000", "224660000")),
   DEATH = as.numeric(c("137", "281", "456", "810", "984", "1162", "1419", "1561", "1957", "2149", "2240", "2500", "3084", "3442", "3731", "4015", "4169", "4372", "4547", "4700", "4825", "4931", "5163", "5375", "5508", "5604", "6538", "6639", "6841", "7018", "7149", "7344", "7662", "7859", "8091", "8342", "8606", "8879", "9077", "9315", "9538", "9721")),
   HOSPITAL = as.numeric(c("338", "607", "953", "1747", "2195", "2676", "3412", "3913", "4387", "4758", "4906", "5009", "6215", "8099", "10648", "11557", "12625", "14977", "17520", "19354", "20571", "21636", "22612", "23441", "24087", "24778", "25634", "26402", "27160", "27913", "28651", "29577", "31041", "32024", "33172", "34288", "35484", "36702", "37769", "38758", "39625", "40465")), 
   ER = as.numeric(c("338", "576", "847", "1493", "2187", "2980", "3855", "4763", "5529", "6329", "6983", "8084", "10375", "14553", "19620", "23641", "27774", "32547", "37184", "41937", "45952", "49511", "52399", "53789", "55016", "56357", "57820", "59061", "60317", "61754", "63115", "64893", "66657", "68692", "70166", "71831", "73308", "74997", "76423", "78060", "79418", "80584")),
@@ -97,12 +99,12 @@ Table_IDs_percent <- data.frame(
 ```
 
 ```{r}
-SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) %>% mutate("SAE_p_mill_doses" = SAE_p_FV/(2.1)) #cum num of doses/FV population = 331650000/158290000 = 2.1
+#SAE_calculations <- Table_IDs_percent %>% mutate("SAE_p_FV" = SAE/(FV/1000000)) %>% mutate("SAE_p_mill_doses" = SAE_p_FV/(2.1)) #cum num of doses/FV population = 331650000/158290000 = 2.1
 #SAE_calculations
 ```
 
 ```{r}
-IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335", "409024", "419295", "427831", "436175", "450602", "473721", "499779", "521667", "541594", "551836", "565282", "577804", "591934", "603738", "618548", "632823", "642994"))
+#IDs = as.numeric(c("1431", "2160", "2946", "5351", "9286", "14701", "20586", "27955", "34121", "40348", "46163", "57641", "75370", "108191", "146622", "182559", "217716", "252523", "284041", "316929", "346967", "368162", "388900", "397262", "403335", "409024", "419295", "427831", "436175", "450602", "473721", "499779", "521667", "541594", "551836", "565282", "577804", "591934", "603738", "618548", "632823", "642994"))
 #(diff(IDs)/(IDs))*100
 ```
 
@@ -112,7 +114,7 @@ Table_IDs_percent_FV_IDs <- Table_IDs_percent %>% mutate("DEATH_PERCENT_ID" = DE
 ```
 
 ```{r} 
-IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_12_11_21_572000kb)*100)
+#IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/nrow(MERGED_12_11_21_572000kb)*100)
 #IDs_normalized_total_IDs
 ```
 
@@ -122,6 +124,15 @@ IDs_normalized_total_IDs <- Table_IDs_percent %>% mutate("IDs_normal_ID" = IDs/n
 
 Table_IDs_percent_normalized_FV <- Table_IDs_percent_FV_IDs %>% mutate("IDs_norm_FV" = IDs/(FV/1000000)) 
 #Table_IDs_percent_normalized_FV
+
+Table_IDs_permill_normalized_Dose_1 <- Table_IDs_percent %>% mutate("IDs_norm_Dose_1" = IDs/(Dose_1/1000000)) 
+#Table_IDs_percent_normalized_Dose_1
+
+Table_deaths_percent_normalized_FV <- Table_IDs_percent_FV_IDs %>% mutate("deaths_norm_FV" = DEATH/(FV/1000000)) 
+#Table_deaths_percent_normalized_FV
+
+Table_deaths_permill_normalized_Dose_1 <- Table_IDs_percent %>% mutate("deaths_norm_Dose_1" = DEATH/(Dose_1/1000000)) 
+#Table_deaths_percent_normalized_Dose_1
 
 Table_AEs_percent_normalized_per_million <- Table_IDs_percent_FV_IDs %>% mutate("Death_norm_per_million" = DEATH/(FV/1000000)) %>% mutate("Hospital_norm_per_million" = HOSPITAL/(FV/1000000)) %>% mutate("ER_norm_per_million" = ER/(FV/1000000)) %>% mutate("SAE_norm_per_million" = SAE/(FV/1000000)) %>% mutate("COVID_norm_per_million" = COVID/(FV/1000000)) %>% mutate("FRI_norm_per_million" = FRI/(FV/1000000))
 #Table_AEs_percent_normalized_per_million
@@ -159,9 +170,14 @@ ggsave("Table_IDs_plot.png")
 
 This is the number of VAERS IDs (N) so far for 2021 in the context of the COVID-19 products normalized to FULLY INJECTED population per million.
 ```{r}
-Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + xlab("DATE") +  ylab("RATE NORMALIZED TO U.S. FV POPLN/MILLION") + labs(title = "CHANGING RATES NORMALIZED TO U.S. FV POPLN/MILLION", caption = "Data source: VAERS", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 5)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+Table_IDs_plot_FV_p_mill <- ggplot(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV)) + geom_line(data = Table_IDs_percent_normalized_FV, aes(x = DATE, y = IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_IDs_percent_normalized_FV, aes(DATE, IDs_norm_FV, colour = "IDs_norm_FV"), colour = "red", size = 5) + geom_line(data = Table_IDs_permill_normalized_Dose_1, aes(x = DATE, y = IDs_norm_Dose_1, colour = "IDs_norm_Dose_1"), colour = "blue", size = 2) + geom_point(data = Table_IDs_permill_normalized_Dose_1, aes(DATE, IDs_norm_Dose_1, colour = "IDs_norm_Dose_1"), colour = "blue", size = 5) + xlab("DATE") +  ylab("RATE NORMALIZED POPLN/MILLION") + labs(title = "RATES NORMALIZED TO U.S. DOSE 1 (blue) AND FV (red) POPLNS/MILLION", caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 5)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
 Table_IDs_plot_FV_p_mill
 ggsave("Table_IDs_plot_FV_p_mill.png")
+```
+```{r}
+#Table_IDs_plot_FV_p_mill <- ggplot(data = Table_deaths_percent_normalized_FV, aes(x = DATE, y = deaths_norm_FV)) + geom_line(data = Table_deaths_percent_normalized_FV, aes(x = DATE, y = deaths_norm_FV, colour = "deaths_norm_FV"), colour = "red", size = 2) + geom_point(data = Table_deaths_percent_normalized_FV, aes(DATE, deaths_norm_FV, colour = "deaths_norm_FV"), colour = "red", size = 5) + geom_line(data = Table_deaths_permill_normalized_Dose_1, aes(x = DATE, y = deaths_norm_Dose_1, colour = "deaths_norm_Dose_1"), colour = "blue", size = 2) + geom_point(data = Table_deaths_permill_normalized_Dose_1, aes(DATE, deaths_norm_Dose_1, colour = "deaths_norm_Dose_1"), colour = "blue", size = 5) + xlab("DATE") +  ylab("RATE NORMALIZED POPLN/MILLION") + labs(title = "RATES NORMALIZED TO U.S. DOSE 1 (blue) AND FV (red) POPLNS/MILLION", caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose", size = 12) + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=15,vjust=0.5,hjust=0.5, size = 5)) + theme(panel.background = element_rect(fill = "black")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + theme(legend.title=element_blank()) + scale_x_continuous(breaks = round(seq(min(Table_IDs_percent$DATE), max(Table_IDs_percent$DATE), by = 10),0.1)) #+ ylim(0,200000)
+#Table_IDs_plot_FV_p_mill
+#ggsave("Table_IDs_plot_FV_p_mill.png")
 ```
 These are the trajectories of cumulative data for the respective groups. 
 ```{r}
@@ -791,4 +807,19 @@ ggsave("AGE_YEARS_myo_Total_plot.png")
 myo_Total_ENTRY_VDS <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES != "NA" & VAX_DOSE_SERIES != "UNK") %>% filter(SEX != "U") %>% filter(VAX_MANU != "JANSSEN")
 myo_Total_ENTRY_count_VDS_plot <- ggplot(myo_Total_ENTRY_VDS, aes(VAX_DOSE_SERIES, AGE_YRS, fill = SEX)) + geom_boxplot(outlier.colour="black", outlier.shape=16,outlier.size=1) + facet_wrap(~ VAX_MANU, scale = "free") + xlab("DOSE NUMBER") + ylab("AGE IN YEARS") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=25,vjust=0.5,hjust=0.5, size = 8)) + theme(legend.position = "right") + ggtitle("MYOCARDITIS -> VAERS IDs vs AGE_YRS") 
 myo_Total_ENTRY_count_VDS_plot
+```
+Are particular VAX LOTS being distributed to partuclar states? And are they more highly associated with death? Myocarditis? 
+```{r}
+#MERGED_12_11_21_572000kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_12_11_21_572000kb_Y.csv")
+#MERGED_12_11_21_572000kb <- MERGED_12_11_21_572000kb_Y
+```
+```{r}
+#MERGED_12_11_21_572000kb_STATE <- MERGED_12_11_21_572000kb %>% count(STATE)
+#MERGED_12_11_21_572000kb_STATE
+```
+LET'S LOOK AT DEATHS
+```{r}
+#MERGED_12_11_21_572000kb_dead <- MERGED_12_11_21_572000kb %>% filter(DIED == "Y")
+#MERGED_12_11_21_572000kb_dead_state <- MERGED_12_11_21_572000kb_dead %>% count(STATE) %>% mutate("GT_50" = n >= 50) %>% filter(STATE != "NA") %>% filter(GT_50 == TRUE) %>% arrange(desc(n))
+#MERGED_12_11_21_572000kb_dead_state
 ```
