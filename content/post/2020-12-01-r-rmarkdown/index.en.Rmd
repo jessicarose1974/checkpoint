@@ -28,14 +28,14 @@ library("blogdown")
 ```
 This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ
 ```{r}
-VAERSSYM_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSDATA_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
-VAERSVAX_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
-RV_VAX_12_11_21_572000kb <- VAERSVAX_12_11_21_572000kb %>% filter(VAX_TYPE == "COVID19")
-MERGED_SYM_DAT_12_11_21_572000kb <- full_join(VAERSSYM_12_11_21_572000kb, VAERSDATA_12_11_21_572000kb, by = c("VAERS_ID"))
-MERGED_SYM_DAT_VAX_12_11_21_572000kb <- full_join(MERGED_SYM_DAT_12_11_21_572000kb, RV_VAX_12_11_21_572000kb, by = c("VAERS_ID"))
-MERGED_12_11_21_572000kb_1 <- MERGED_SYM_DAT_VAX_12_11_21_572000kb %>% distinct(VAERS_ID, .keep_all = TRUE)
-MERGED_12_11_21_572000kb <- MERGED_12_11_21_572000kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+#VAERSSYM_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSDATA_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSVAX_12_11_21_572000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_12_11_21_572000kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+#RV_VAX_12_11_21_572000kb <- VAERSVAX_12_11_21_572000kb %>% filter(VAX_TYPE == "COVID19")
+#MERGED_SYM_DAT_12_11_21_572000kb <- full_join(VAERSSYM_12_11_21_572000kb, VAERSDATA_12_11_21_572000kb, by = c("VAERS_ID"))
+#MERGED_SYM_DAT_VAX_12_11_21_572000kb <- full_join(MERGED_SYM_DAT_12_11_21_572000kb, RV_VAX_12_11_21_572000kb, by = c("VAERS_ID"))
+#MERGED_12_11_21_572000kb_1 <- MERGED_SYM_DAT_VAX_12_11_21_572000kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+#MERGED_12_11_21_572000kb <- MERGED_12_11_21_572000kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 ```
 ```{r}
 #write.csv(MERGED_12_11_21_572000kb, "/Users/jessicarose/Desktop/MERGED_12_11_21_572000kb.csv")
