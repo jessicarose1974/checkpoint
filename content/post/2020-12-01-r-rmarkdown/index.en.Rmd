@@ -708,6 +708,8 @@ ggsave("CAUSATION_DEATH_plot.png")
 ```{r}
 VD_DD_TILE_count <- MERGED_12_11_21_572000kb %>% group_by(DIED, DATEDIED, VAX_DATE) %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2021) %>% filter(year(VAX_DATE) <= 2021 & year(VAX_DATE) >= 2021) %>% mutate("diff_in_days" = difftime(DATEDIED, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=350) %>% count(diff_in_days) 
 
+VD_DD_TILE_count
+
 #png("VD_DD_TILE_plot ", width = 4, height = 4, units = 'in', res = 100)
 
 VD_DD_TILE_plot <- ggplot(VD_DD_TILE_count, aes(VAX_DATE, DATEDIED)) + geom_tile(aes(fill = n)) + scale_fill_gradient('n', low = "blue", high = "red") + theme(panel.background = element_rect(fill = "black", color = 'black')) + ylab("DATE OF DEATH") + xlab("VACCINE DATE") + theme(panel.grid=element_blank()) + theme(axis.text.y = element_text(colour = "black", size = 14)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 14)) + ggtitle("VACCINE DATE vs DEATH DATE OF AEs") 
@@ -817,7 +819,6 @@ Are particular VAX LOTS being distributed to partuclar states? And are they more
 #MERGED_12_11_21_572000kb_STATE <- MERGED_12_11_21_572000kb %>% count(STATE)
 #MERGED_12_11_21_572000kb_STATE
 ```
-LET'S LOOK AT DEATHS
 ```{r}
 #MERGED_12_11_21_572000kb_dead <- MERGED_12_11_21_572000kb %>% filter(DIED == "Y")
 #MERGED_12_11_21_572000kb_dead_state <- MERGED_12_11_21_572000kb_dead %>% count(STATE) %>% mutate("GT_50" = n >= 50) %>% filter(STATE != "NA") %>% filter(GT_50 == TRUE) %>% arrange(desc(n))
