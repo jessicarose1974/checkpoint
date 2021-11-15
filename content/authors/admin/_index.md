@@ -33,7 +33,8 @@ title: Dr. Jessica Rose
 ---
 
 Jessica Rose is a Research Fellow at the Institute for Pure and Applied Knowledge.
-PLEASE FEEL FREE TO DONATE TO MY RESEARCH: paypal.me/JeesicaRose
+
+PLEASE FEEL FREE TO DONATE TO MY RESEARCH: https://www.paypal.com/paypalme/JeesicaRose
 
 FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
 
