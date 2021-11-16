@@ -178,3 +178,7 @@ https://podcasts.apple.com/us/podcast/conservative-review-with-daniel-horowitz/i
 https://www.youtube.com/watch?v=6htH45ICtkE
 
 https://trialsitenews.com/catalyst-vaers-data-and-the-ethics-of-health/
+
+https://vimeo.com/646454306
+
+https://rumble.com/vp9r23-episode-7-dr.-janci-lindsay-dr.-alicia-mcauliffe-fogarty-and-dr.-jessica-ro.html
