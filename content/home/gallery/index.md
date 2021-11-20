@@ -186,3 +186,5 @@ https://rumble.com/vp9r23-episode-7-dr.-janci-lindsay-dr.-alicia-mcauliffe-fogar
 https://podcasts.apple.com/us/podcast/ep-994-how-faulty-reporting-has-covered-up-safety-concerns/id1065050908?i=1000542125211
 
 https://rumble.com/vpdw2j-international-legal-alliance-for-health-14-nov-2021.html
+
+https://www.lifesitenews.com/blogs/dr-mccullough-sues-medical-journal-for-refusing-to-publish-papers-showing-covid-shot-risks-in-children/
