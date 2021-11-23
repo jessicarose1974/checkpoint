@@ -13,6 +13,8 @@ title: List of Recent Publications
 subtitle: Please feel free to download!
 ---
 
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/The copper-linked E. coli AZY operon- Structure, metal binding, and a possible physiological role in copper delivery.pdf" "newtab" >}}The copper-linked E. coli AZY operon- Structure, metal binding, and a possible physiological role in copper delivery.pdf{{< /staticref >}}.
+
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/A Report on Myocarditis Adverse Events in the U.S. Vaccine AdverseEvents Reporting System (VAERS) in Association with COVID19 Injectable Biological Products.pdf" "newtab" >}}A Report on Myocarditis Adverse Events in the U.S. Vaccine Adverse Events Reporting System (VAERS) in Association with COVID-19 Injectable Biological Products{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Pharmacovigilance VAERS paper FINAL_OCT_1_2021.pdf" "newtab" >}}Critical Appraisal of VAERS Pharmacovigilance: Is the U.S. Vaccine Adverse Events Reporting System (VAERS) a Functioning Pharmacovigilance System?{{< /staticref >}}.
