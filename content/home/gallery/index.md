@@ -190,3 +190,7 @@ https://podcasts.apple.com/us/podcast/ep-994-how-faulty-reporting-has-covered-up
 https://rumble.com/vpdw2j-international-legal-alliance-for-health-14-nov-2021.html
 
 https://www.lifesitenews.com/blogs/dr-mccullough-sues-medical-journal-for-refusing-to-publish-papers-showing-covid-shot-risks-in-children/
+
+https://rumble.com/vphwly-mathew-crawford-the-vaccines-are-useless.html
+
+https://anchor.fm/rfkjr/episodes/VAERS-Problems-with-Dr-Jessica-Rose-e1anv10
