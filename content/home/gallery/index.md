@@ -193,4 +193,4 @@ https://www.lifesitenews.com/blogs/dr-mccullough-sues-medical-journal-for-refusi
 
 https://rumble.com/vphwly-mathew-crawford-the-vaccines-are-useless.html
 
-https://anchor.fm/rfkjr/episodes/VAERS-Problems-with-Dr-Jessica-Rose-e1anv10
+https://open.spotify.com/episode/1JTwVcKJxylwgoMjBy8Grp
