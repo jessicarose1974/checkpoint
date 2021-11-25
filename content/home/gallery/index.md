@@ -39,6 +39,7 @@ subtitle: Please feel free to download!
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dynamical Systems Analysis of HIV Immunopathogenesis and the Effects of Antiretroviral Treatment Interruption.pdf" "newtab" >}}Dynamical Systems Analysis of HIV Immunopathogenesis and the Effects of Antiretroviral Treatment Interruption{{< /staticref >}}.
 
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Kinetics of Chronic Human Viruses - Comparative Analysis of Bio-Mathematical Models and their Clinical Implications.pdf" "newtab" >}}Kinetics of Chronic Human Viruses - Comparative Analysis of Bio-Mathematical Models and their Clinical Implications{{< /staticref >}}.
 {{< gallery >}}
 
 <font size ="6">**Here are some links to articles related to what I am doing.**</font>
