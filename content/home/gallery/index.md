@@ -197,3 +197,9 @@ https://www.lifesitenews.com/blogs/dr-mccullough-sues-medical-journal-for-refusi
 https://rumble.com/vphwly-mathew-crawford-the-vaccines-are-useless.html
 
 https://open.spotify.com/episode/1JTwVcKJxylwgoMjBy8Grp
+
+https://www.redvoicemedia.com/2021/11/ticking-time-bomb-expert-says-bioweapons-injections-are-destroying-immune-system/
+
+https://vimeo.com/650602077
+
+https://www.brighteon.com/ba8da26a-4cf4-409b-b0ad-95b688777437
