@@ -205,3 +205,7 @@ https://vimeo.com/650602077
 https://www.brighteon.com/ba8da26a-4cf4-409b-b0ad-95b688777437
 
 https://www.youtube.com/watch?v=QwomL0ye-4M
+
+https://www.youtube.com/watch?v=Cv1hem_KvkE
+
+https://rumble.com/vpym9n-behind-the-curtain-with-dr.-jessica-rose-episode-90.html
