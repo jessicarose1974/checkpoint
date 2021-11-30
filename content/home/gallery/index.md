@@ -211,3 +211,13 @@ https://www.youtube.com/watch?v=Cv1hem_KvkE
 https://rumble.com/vpym9n-behind-the-curtain-with-dr.-jessica-rose-episode-90.html
 
 https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citizens-push-ags-into-action/
+
+<font size ="6">**Here are the links to David Martin Dossier files.**</font>
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_1.pdf" "newtab" >}}A Timeline of Selected Federal Funding for SARS Coronavirus{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_2.pdf" "newtab" >}}The Fauci/COVID-19 Dossier{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_3.pdf" "newtab" >}}Butterfly of the Week{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_4.pdf" "newtab" >}}The Criminal Conspiracy of Coronavirus{{< /staticref >}}.
