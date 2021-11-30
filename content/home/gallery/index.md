@@ -40,6 +40,9 @@ subtitle: Please feel free to download!
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dynamical Systems Analysis of HIV Immunopathogenesis and the Effects of Antiretroviral Treatment Interruption.pdf" "newtab" >}}Dynamical Systems Analysis of HIV Immunopathogenesis and the Effects of Antiretroviral Treatment Interruption{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Kinetics of Chronic Human Viruses - Comparative Analysis of Bio-Mathematical Models and their Clinical Implications.pdf" "newtab" >}}Kinetics of Chronic Human Viruses - Comparative Analysis of Bio-Mathematical Models and their Clinical Implications{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection.pdf" "newtab" >}}An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection{{< /staticref >}}.
+
 {{< gallery >}}
 
 <font size ="6">**Here are some links to articles related to what I am doing.**</font>
@@ -213,8 +216,6 @@ https://rumble.com/vpym9n-behind-the-curtain-with-dr.-jessica-rose-episode-90.ht
 https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citizens-push-ags-into-action/
 
 <font size ="6">**Here are the links to David Martin Dossier files.**</font>
-
-{{< icon name="download" pack="fas" >}} Download {{< staticref "An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection.pdf" "newtab" >}}An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_1.pdf" "newtab" >}}A Timeline of Selected Federal Funding for SARS Coronavirus{{< /staticref >}}.
 
