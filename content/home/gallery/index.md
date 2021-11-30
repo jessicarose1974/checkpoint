@@ -209,3 +209,5 @@ https://www.youtube.com/watch?v=QwomL0ye-4M
 https://www.youtube.com/watch?v=Cv1hem_KvkE
 
 https://rumble.com/vpym9n-behind-the-curtain-with-dr.-jessica-rose-episode-90.html
+
+https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citizens-push-ags-into-action/
