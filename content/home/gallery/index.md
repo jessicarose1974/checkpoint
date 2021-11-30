@@ -221,3 +221,5 @@ https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citize
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_3.pdf" "newtab" >}}Butterfly of the Week{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/Dossier_4.pdf" "newtab" >}}The Criminal Conspiracy of Coronavirus{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection.pdf" "newtab" >}}An Experimental Model for Dilated Cardiomyopathy after Rabbit Coronavirus Infection{{< /staticref >}}.
