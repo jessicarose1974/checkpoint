@@ -214,3 +214,5 @@ https://rumble.com/vpym9n-behind-the-curtain-with-dr.-jessica-rose-episode-90.ht
 https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citizens-push-ags-into-action/
 
 https://rickyvarandas.com/2021/11/22/the-ripple-effect-podcaast-367-dr-jessica-rose-a-chat-about-current-events-covid-science-knowledge/
+
+https://www.youtube.com/watch?v=xKQKgpGwwbE
