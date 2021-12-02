@@ -19,6 +19,8 @@ advanced:
 
 <font size ="6">**PANDA provides INFORMED CONSENT document.**</font> https://www.pandata.org/informed-consent/
 
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/PANDA_Informed-Consent.pdf" "newtab" >}}PANDA_Informed-Consent.pdf{{< /staticref >}}.
+
 <font size ="5" color = "yellow">**Testimonials from Israel - the movie - and a place to tell your own story.**</font> https://www.vaxtestimonies.org/en/
 
 <font size ="5" color = "yellow">**World Council for Health Presentation**</font> https://share.descript.com/view/IdlOTdAoCg4
