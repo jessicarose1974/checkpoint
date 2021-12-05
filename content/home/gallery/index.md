@@ -216,3 +216,5 @@ https://www.redvoicemedia.com/2021/11/ending-covid-nightmare-thousands-of-citize
 https://rickyvarandas.com/2021/11/22/the-ripple-effect-podcaast-367-dr-jessica-rose-a-chat-about-current-events-covid-science-knowledge/
 
 https://www.youtube.com/watch?v=xKQKgpGwwbE
+
+https://brandnewtube.com/watch/dr-jessica-rose-no-logical-reason-to-be-vaxxed-asia-pacific-today_uCwlhTKAQgbdfFi.html
