@@ -15,7 +15,7 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
-{{< icon name="download" pack="fas" >}} Download {{< staticref "media/5.3.6-postmarketing-experience.pdf" "newtab" >}}Pfizer's adverse event data!{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/5.3.6-postmarketing-experience.pdf" "newtab" >}}Pfizer's adverse event data!{{< /staticref >}}
 
 <font size ="6">**Let's make Canada free again!**</font> https://takingbackourfreedoms.ca/
 
