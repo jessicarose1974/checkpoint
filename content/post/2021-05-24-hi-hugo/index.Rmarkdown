@@ -33,36 +33,36 @@ library("data.table")
 library("plotly")
 ```
 ```{r}
-#VAERSSYM_30_11_21_602500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_30_11_21_602500kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
-#VAERSDATA_30_11_21_602500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_30_11_21_602500kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
-#VAERSVAX_30_11_21_602500kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_30_11_21_602500kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
-#RV_VAX_30_11_21_602500kb <- VAERSVAX_30_11_21_602500kb %>% filter(VAX_TYPE == "COVID19")
-#MERGED_SYM_DAT_30_11_21_602500kb <- full_join(VAERSSYM_30_11_21_602500kb, VAERSDATA_30_11_21_602500kb, by = c("VAERS_ID"))
-#MERGED_SYM_DAT_VAX_30_11_21_602500kb <- full_join(MERGED_SYM_DAT_30_11_21_602500kb, RV_VAX_30_11_21_602500kb, by = c("VAERS_ID"))
-#MERGED_30_11_21_602500kb_1 <- MERGED_SYM_DAT_VAX_30_11_21_602500kb %>% distinct(VAERS_ID, .keep_all = TRUE)
-#MERGED_30_11_21_602500kb <- MERGED_30_11_21_602500kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+#VAERSSYM_03_12_21_609300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_03_12_21_609300kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSDATA_03_12_21_609300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_03_12_21_609300kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSVAX_03_12_21_609300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_03_12_21_609300kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+#RV_VAX_03_12_21_609300kb <- VAERSVAX_03_12_21_609300kb %>% filter(VAX_TYPE == "COVID19")
+#MERGED_SYM_DAT_03_12_21_609300kb <- full_join(VAERSSYM_03_12_21_609300kb, VAERSDATA_03_12_21_609300kb, by = c("VAERS_ID"))
+#MERGED_SYM_DAT_VAX_03_12_21_609300kb <- full_join(MERGED_SYM_DAT_03_12_21_609300kb, RV_VAX_03_12_21_609300kb, by = c("VAERS_ID"))
+#MERGED_03_12_21_609300kb_1 <- MERGED_SYM_DAT_VAX_03_12_21_609300kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+#MERGED_03_12_21_609300kb <- MERGED_03_12_21_609300kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 ```
 ```{r}
-MERGED_30_11_21_602500kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_30_11_21_602500kb_Y.csv")
+MERGED_03_12_21_609300kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_03_12_21_609300kb_Y.csv")
 ```
 ```{r}
-MERGED_30_11_21_602500kb <- MERGED_30_11_21_602500kb_Y
+MERGED_03_12_21_609300kb <- MERGED_03_12_21_609300kb_Y
 ```
 ```{r}
-MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo1 <- MERGED_30_11_21_602500kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo1)
-MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo2 <- MERGED_30_11_21_602500kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo2)
-MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo3 <- MERGED_30_11_21_602500kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo3)
-MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo4 <- MERGED_30_11_21_602500kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo4)
-MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo5 <- MERGED_30_11_21_602500kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
-#nrow(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo5)
-myo_Total <- rbind(MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo1,MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo2,MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo3,MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo4,MERGED_SYM_DAT_VAX_30_11_21_602500kb_myo5)
+MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo1 <- MERGED_03_12_21_609300kb %>% group_by(VAERS_ID, SYMPTOM1) %>% filter(SYMPTOM1 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo1)
+MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo2 <- MERGED_03_12_21_609300kb %>% group_by(VAERS_ID, SYMPTOM2) %>% filter(SYMPTOM2 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo2)
+MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo3 <- MERGED_03_12_21_609300kb %>% group_by(VAERS_ID, SYMPTOM3) %>% filter(SYMPTOM3 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo3)
+MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo4 <- MERGED_03_12_21_609300kb %>% group_by(VAERS_ID, SYMPTOM4) %>% filter(SYMPTOM4 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo4)
+MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo5 <- MERGED_03_12_21_609300kb %>% group_by(VAERS_ID, SYMPTOM5) %>% filter(SYMPTOM5 == "Myocarditis") %>% arrange(desc(AGE_YRS))
+#nrow(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo5)
+myo_Total <- rbind(MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo1,MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo2,MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo3,MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo4,MERGED_SYM_DAT_VAX_03_12_21_609300kb_myo5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 #nrow(myo_Total)
-#nrow(myo_Total)/nrow(MERGED_30_11_21_602500kb)*100
+#nrow(myo_Total)/nrow(MERGED_03_12_21_609300kb)*100
 #myo_Total
 myo_Total_count <- myo_Total %>% count(SYMPTOM1,SYMPTOM2,SYMPTOM3,SYMPTOM4,SYMPTOM5) %>% mutate("SUM" = sum(n)) %>% arrange(desc(n))
 #myo_Total_count
