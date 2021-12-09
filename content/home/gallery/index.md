@@ -220,3 +220,7 @@ https://www.youtube.com/watch?v=xKQKgpGwwbE
 https://brandnewtube.com/watch/dr-jessica-rose-no-logical-reason-to-be-vaxxed-asia-pacific-today_uCwlhTKAQgbdfFi.html
 
 https://rumble.com/vqakgb-the-5th-doctor-ep.-12-computational-biologist-dr.-jessica-rose-reveals-shoc.html
+
+https://www.youtube.com/watch?v=-zg1j7Zquoc
+
+https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--369:3
