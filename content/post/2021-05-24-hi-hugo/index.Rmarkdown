@@ -50,7 +50,7 @@ MERGED_10_12_21_611300kb <- MERGED_10_12_21_611300kb_Y
 ```
 ```{r}
 strings_myocarditis <- c("Myocarditis", "Pericarditis", "Autoimmune myocarditis", "Endocarditis", "Carditis", "Viral pericarditis", "Endocarditis bacterial", "Pericarditis constrictive", "Endocarditis noninfective", "Eosinophilic myocarditis", "Myocardial necrosis marker increased", "Myocardial rupture", "Myocardial ischaemia", "Pericarditis constrictive", "Eosinophilic myocarditis", "Viral myocarditis", "Viral endocarditis", "carditis", "Myopericarditis")
-strings_myocarditis
+#strings_myocarditis
 ```
 ```{r}
 MYO <- function(SYMPTOM) {

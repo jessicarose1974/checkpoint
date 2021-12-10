@@ -23,27 +23,6 @@ projects: []
 
 
 
-```
-##  [1] "Myocarditis"                         
-##  [2] "Pericarditis"                        
-##  [3] "Autoimmune myocarditis"              
-##  [4] "Endocarditis"                        
-##  [5] "Carditis"                            
-##  [6] "Viral pericarditis"                  
-##  [7] "Endocarditis bacterial"              
-##  [8] "Pericarditis constrictive"           
-##  [9] "Endocarditis noninfective"           
-## [10] "Eosinophilic myocarditis"            
-## [11] "Myocardial necrosis marker increased"
-## [12] "Myocardial rupture"                  
-## [13] "Myocardial ischaemia"                
-## [14] "Pericarditis constrictive"           
-## [15] "Eosinophilic myocarditis"            
-## [16] "Viral myocarditis"                   
-## [17] "Viral endocarditis"                  
-## [18] "carditis"                            
-## [19] "Myopericarditis"
-```
 
 
 
