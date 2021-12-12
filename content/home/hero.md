@@ -23,10 +23,6 @@ advanced:
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/PANDA_Informed-Consent.pdf" "newtab" >}}PANDA_Informed-Consent.pdf{{< /staticref >}}.
 
-<font size ="6">**Byram Bridle's fantastic summary for Kids!**</font> https://www.canadiancovidcarealliance.org/
-
-{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Byram_Bridle_CCCA.pdf" "newtab" >}}Byram_Bridle_CCCA.pdf{{< /staticref >}}.
-
 <font size ="5" color = "yellow">**Testimonials from Israel - the movie - and a place to tell your own story.**</font> https://www.vaxtestimonies.org/en/
 
 <font size ="5" color = "yellow">**World Council for Health Presentation**</font> https://share.descript.com/view/IdlOTdAoCg4
