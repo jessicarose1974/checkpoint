@@ -224,3 +224,5 @@ https://rumble.com/vqakgb-the-5th-doctor-ep.-12-computational-biologist-dr.-jess
 https://www.youtube.com/watch?v=-zg1j7Zquoc
 
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--369:3
+
+https://jessicar.substack.com/
