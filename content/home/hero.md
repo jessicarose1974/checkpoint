@@ -15,6 +15,10 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
+<font size ="6">**I have the honour of a new role.**</font> https://takingbackourfreedoms.ca/about-us/
+
+<font size ="6">**I have the honour of another new role.**</font> https://www.voiceforscienceandsolidarity.org/authors/jessica-rose
+
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/5.3.6-postmarketing-experience.pdf" "newtab" >}}Pfizer's adverse event data!{{< /staticref >}}
 
 <font size ="6">**Let's make Canada free again!**</font> https://takingbackourfreedoms.ca/

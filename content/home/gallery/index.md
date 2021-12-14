@@ -226,3 +226,5 @@ https://www.youtube.com/watch?v=-zg1j7Zquoc
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--369:3
 
 https://jessicar.substack.com/
+
+https://pecc-il.org/pdf-doc/position-paper-covid-19-vaccine-for-children/
