@@ -232,3 +232,5 @@ https://jessicar.substack.com/
 https://pecc-il.org/pdf-doc/position-paper-covid-19-vaccine-for-children/
 
 https://open.spotify.com/episode/0aZte37vtFTkYT7b0b04Qz?si=WQDPjoJWRfibZUwAyOXIWw&nd=1#login
+
+https://rumble.com/vqulpk-dr.-peter-mccullough-interview-on-joe-rogan.-1747.html

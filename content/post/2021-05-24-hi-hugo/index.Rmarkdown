@@ -33,20 +33,20 @@ library("data.table")
 library("plotly")
 ```
 ```{r}
-#VAERSSYM_10_12_21_611300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_10_12_21_611300kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
-#VAERSDATA_10_12_21_611300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_10_12_21_611300kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
-#VAERSVAX_10_12_21_611300kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_10_12_21_611300kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
-#RV_VAX_10_12_21_611300kb <- VAERSVAX_10_12_21_611300kb %>% filter(VAX_TYPE == "COVID19")
-#MERGED_SYM_DAT_10_12_21_611300kb <- full_join(VAERSSYM_10_12_21_611300kb, VAERSDATA_10_12_21_611300kb, by = c("VAERS_ID"))
-#MERGED_SYM_DAT_VAX_10_12_21_611300kb <- full_join(MERGED_SYM_DAT_10_12_21_611300kb, RV_VAX_10_12_21_611300kb, by = c("VAERS_ID"))
-#MERGED_10_12_21_611300kb_1 <- MERGED_SYM_DAT_VAX_10_12_21_611300kb %>% distinct(VAERS_ID, .keep_all = TRUE)
-#MERGED_10_12_21_611300kb <- MERGED_10_12_21_611300kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
+#VAERSSYM_17_12_21_621000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_17_12_21_621000kb/2021VAERSSYMPTOMS.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSDATA_17_12_21_621000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_17_12_21_621000kb/2021VAERSDATA.csv", col_types = cols(VAERS_ID = col_double()))
+#VAERSVAX_17_12_21_621000kb <- read_csv("/Users/jessicarose/Desktop/2021VAERSData_17_12_21_621000kb/2021VAERSVAX.csv", col_types = cols(VAERS_ID = col_double()))
+#RV_VAX_17_12_21_621000kb <- VAERSVAX_17_12_21_621000kb %>% filter(VAX_TYPE == "COVID19")
+#MERGED_SYM_DAT_17_12_21_621000kb <- full_join(VAERSSYM_17_12_21_621000kb, VAERSDATA_17_12_21_621000kb, by = c("VAERS_ID"))
+#MERGED_SYM_DAT_VAX_17_12_21_621000kb <- full_join(MERGED_SYM_DAT_17_12_21_621000kb, RV_VAX_17_12_21_621000kb, by = c("VAERS_ID"))
+#MERGED_17_12_21_621000kb_1 <- MERGED_SYM_DAT_VAX_17_12_21_621000kb %>% distinct(VAERS_ID, .keep_all = TRUE)
+#MERGED_17_12_21_621000kb <- MERGED_17_12_21_621000kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 ```
 ```{r}
-MERGED_10_12_21_611300kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_10_12_21_611300kb_Y.csv")
+MERGED_17_12_21_621000kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_17_12_21_621000kb_Y.csv")
 ```
 ```{r}
-MERGED_10_12_21_611300kb <- MERGED_10_12_21_611300kb_Y
+MERGED_17_12_21_621000kb <- MERGED_17_12_21_621000kb_Y
 ```
 ```{r}
 strings_myocarditis <- c("Myocarditis", "Pericarditis", "Autoimmune myocarditis", "Endocarditis", "Carditis", "Viral pericarditis", "Endocarditis bacterial", "Pericarditis constrictive", "Endocarditis noninfective", "Eosinophilic myocarditis", "Myocardial necrosis marker increased", "Myocardial rupture", "Myocardial ischaemia", "Pericarditis constrictive", "Eosinophilic myocarditis", "Viral myocarditis", "Viral endocarditis", "carditis", "Myopericarditis")
@@ -62,13 +62,13 @@ MYO <- function(SYMPTOM) {
       }
     return(Myocarditis)
 }
-MERGED_10_12_21_611300kb_Myocarditis1 <- MERGED_10_12_21_611300kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
-MERGED_10_12_21_611300kb_Myocarditis2 <- MERGED_10_12_21_611300kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
-MERGED_10_12_21_611300kb_Myocarditis3 <- MERGED_10_12_21_611300kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
-MERGED_10_12_21_611300kb_Myocarditis4 <- MERGED_10_12_21_611300kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
-MERGED_10_12_21_611300kb_Myocarditis5 <- MERGED_10_12_21_611300kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
+MERGED_17_12_21_621000kb_Myocarditis1 <- MERGED_17_12_21_621000kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
+MERGED_17_12_21_621000kb_Myocarditis2 <- MERGED_17_12_21_621000kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
+MERGED_17_12_21_621000kb_Myocarditis3 <- MERGED_17_12_21_621000kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
+MERGED_17_12_21_621000kb_Myocarditis4 <- MERGED_17_12_21_621000kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
+MERGED_17_12_21_621000kb_Myocarditis5 <- MERGED_17_12_21_621000kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
 
-myo_Total <- rbind(MERGED_10_12_21_611300kb_Myocarditis1,MERGED_10_12_21_611300kb_Myocarditis2,MERGED_10_12_21_611300kb_Myocarditis3,MERGED_10_12_21_611300kb_Myocarditis4,MERGED_10_12_21_611300kb_Myocarditis5)
+myo_Total <- rbind(MERGED_17_12_21_621000kb_Myocarditis1,MERGED_17_12_21_621000kb_Myocarditis2,MERGED_17_12_21_621000kb_Myocarditis3,MERGED_17_12_21_621000kb_Myocarditis4,MERGED_17_12_21_621000kb_Myocarditis5)
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 myo_Total_ID <- myo_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
 myo_Total_ENTRY <- myo_Total_ID %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
