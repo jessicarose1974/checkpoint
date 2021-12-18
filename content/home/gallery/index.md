@@ -236,3 +236,5 @@ https://open.spotify.com/episode/0aZte37vtFTkYT7b0b04Qz?si=WQDPjoJWRfibZUwAyOXIW
 https://rumble.com/vqulpk-dr.-peter-mccullough-interview-on-joe-rogan.-1747.html
 
 https://banned.video/watch?id=61bc87c3fe1f862718829f5d
+
+https://pulseofisrael.com/2021/11/30/scientist-breaks-down-critical-data-from-us-government-vaccine-system/
