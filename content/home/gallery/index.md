@@ -240,3 +240,5 @@ https://banned.video/watch?id=61bc87c3fe1f862718829f5d
 https://pulseofisrael.com/2021/11/30/scientist-breaks-down-critical-data-from-us-government-vaccine-system/
 
 https://rumble.com/vr0z9r-dr-jessica-rose-interview-why-these-covid-vaccines-may-be-bad-for-us.html
+
+https://collive.com/rabbinical-panel-hears-8-hours-of-anti-vaxx-testimony/
