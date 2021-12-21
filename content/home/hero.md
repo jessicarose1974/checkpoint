@@ -29,6 +29,13 @@ advanced:
 
 <font size ="5" color = "yellow">**Testimonials from Israel - the movie - and a place to tell your own story.**</font> https://www.vaxtestimonies.org/en/
 
+<font size ="5" color = "yellow">**Decision of Rabbinical Court in New York following our testimony.**</font>
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Kol Korei in English final.pdf" "newtab" >}}Kol Korei in English final.pdf{{< /staticref >}}.
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Kol Korei in Hebrew final.pdf" "newtab" >}}Kol Korei in Hebrew final.pdf{{< /staticref >}}.
+
+
 <font size ="5" color = "yellow">**World Council for Health Presentation**</font> https://share.descript.com/view/IdlOTdAoCg4
 
 <font size="5" color = "yellow"> Feel free to visit my youtube channel to see my findings summarized.</font>

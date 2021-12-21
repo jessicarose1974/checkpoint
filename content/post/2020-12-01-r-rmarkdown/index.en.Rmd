@@ -665,6 +665,15 @@ ggsave("AGE_GROUPS_IAE_plot.png")
 #AGE_GROUPS_IAE_plot_skew <- data.frame(AGE_GROUPS_IAE_count, stringsAsFactors = FALSE) %>% mutate("skew" = 3*(mean(n)-median(n))/(sd(n)))
 #AGE_GROUPS_Cardiack_plot_skew
 ```
+```{r}
+IAE_CASES_VD_OD <- IAE_CASES %>% mutate("diff_in_days" = difftime(ONSET_DATE, VAX_DATE, units = "days")) %>% filter(diff_in_days >= 0 & diff_in_days <=20) %>% count(diff_in_days) %>% arrange(desc(n)) %>% mutate("OBSERVED" = n) %>% mutate("Percentage_OBSERVED" = n/sum(n)*100) %>% mutate("EXPECTED" = as.integer(mean(n))) %>% mutate("Percentage_EXPECTED" = EXPECTED/nrow(IAE_CASES)*100)
+IAE_CASES_VD_OD
+#png("CAUSATION_IAE_CASES_plot.png", width = 9, height = 7, units = 'in', res = 300)
+CAUSATION_IAE_CASES_plot <- ggplot() + geom_line(data = IAE_CASES_VD_OD, aes(diff_in_days, Percentage_OBSERVED), colour = "orange", size = 2) + ylab("PERCENTAGE OF REPORTED IMMUNE AEs") + xlab("NUMBER OF DAYS FOLLOWING INJECTION") + labs(title = "IMMUNOLOGICAL AEs post injection", caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(panel.background = element_rect(fill = "#100000", color = "pink")) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + scale_x_continuous(n.breaks = 10) #+ xlim(0,30)
+CAUSATION_IAE_CASES_plot
+ggsave("CAUSATION_IAE_CASES_plot.png")
+#dev.off()
+```
 This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -> perfect correlation (look for red on diagonal).
 ```{r}
 D <- MERGED_17_12_21_621000kb %>% filter(DIED == "Y") %>% filter(year(DATEDIED) <= 2021 & year(DATEDIED) >= 2020) 
