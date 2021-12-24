@@ -250,3 +250,5 @@ https://www.researchgate.net/publication/357300150_Why_limit_contraindication_to
 https://www.youtube.com/watch?v=gACP5LGO134
 
 https://www.youtube.com/watch?v=JcfEknRWlSk
+
+https://www.rebelnews.com/dr_jessica_rose_vaers_myocarditis_to_womens_reproductive_health
