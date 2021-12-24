@@ -244,3 +244,7 @@ https://rumble.com/vr0z9r-dr-jessica-rose-interview-why-these-covid-vaccines-may
 https://collive.com/rabbinical-panel-hears-8-hours-of-anti-vaxx-testimony/
 
 https://rumble.com/vr59ih-tpc-651-dr.-robert-malone-and-dr.-peter-mccullough-omicron-variant.html
+
+https://www.researchgate.net/publication/357300150_Why_limit_contraindication_to_Janssen_Using_same_criteria_revisit_EUABLA_for_all_C19_quasi-vaccines_Transparency_Emergency_ACIP_Meeting_Dec_16_2021_A_second_open_letter_to_Dr_Grace_Lee_ACIP_Chair?channel=doi&linkId=61c55733da5d105e55f237a7&showFulltext=true
+
+

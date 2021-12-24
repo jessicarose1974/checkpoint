@@ -23,8 +23,6 @@ advanced:
 
 <font size ="6">**Let's make Canada free again!**</font> https://takingbackourfreedoms.ca/
 
-<font size ="6">**Comment letter to ACIP**</font> https://www.researchgate.net/publication/357300150_Why_limit_contraindication_to_Janssen_Using_same_criteria_revisit_EUABLA_for_all_C19_quasi-vaccines_Transparency_Emergency_ACIP_Meeting_Dec_16_2021_A_second_open_letter_to_Dr_Grace_Lee_ACIP_Chair?channel=doi&linkId=61c55733da5d105e55f237a7&showFulltext=true
-
 <font size ="6">**PANDA provides INFORMED CONSENT document.**</font> https://www.pandata.org/informed-consent/
 
 {{< icon name="download" pack="fas" >}} Download {{< staticref "media/PANDA_Informed-Consent.pdf" "newtab" >}}PANDA_Informed-Consent.pdf{{< /staticref >}}.
