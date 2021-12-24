@@ -242,3 +242,5 @@ https://pulseofisrael.com/2021/11/30/scientist-breaks-down-critical-data-from-us
 https://rumble.com/vr0z9r-dr-jessica-rose-interview-why-these-covid-vaccines-may-be-bad-for-us.html
 
 https://collive.com/rabbinical-panel-hears-8-hours-of-anti-vaxx-testimony/
+
+https://rumble.com/vr59ih-tpc-651-dr.-robert-malone-and-dr.-peter-mccullough-omicron-variant.html
