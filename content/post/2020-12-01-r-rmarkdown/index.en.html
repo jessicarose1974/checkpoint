@@ -152,6 +152,26 @@ This is the number of birth defects.</p>
 <pre><code>## [1] 451</code></pre>
 <pre><code>## [1] 128095</code></pre>
 <pre><code>## [1] 17.93603</code></pre>
+<pre><code>## # A tibble: 12,180 × 52
+##    VAERS_ID SYMPTOM1    SYMPTOMVERSION1 SYMPTOM2    SYMPTOMVERSION2 SYMPTOM3    
+##       &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       
+##  1   916741 Chills                 23.1 Complex re…            23.1 Fatigue     
+##  2   917549 Headache               23.1 Muscular w…            23.1 Pain in ext…
+##  3   917918 Adverse re…            23.1 Blood test             23.1 Facial para…
+##  4   918431 Asthenia               24   Pain in ex…            23.1 &lt;NA&gt;        
+##  5   918913 Decreased …            23.1 Febrile co…            23.1 Hypersensit…
+##  6   918944 Blood gluc…            23.1 &lt;NA&gt;                   NA   &lt;NA&gt;        
+##  7   918947 Mobility d…            23.1 Pain                   23.1 Pyrexia     
+##  8   918954 Arthralgia             23.1 C-reactive…            23.1 Cardiac ima…
+##  9   918985 Arthralgia             23.1 Back pain              23.1 Inflammation
+## 10   919022 Autoantibo…            23.1 Blindness …            23.1 Computerise…
+## # … with 12,170 more rows, and 46 more variables: SYMPTOMVERSION3 &lt;dbl&gt;,
+## #   SYMPTOM4 &lt;chr&gt;, SYMPTOMVERSION4 &lt;dbl&gt;, SYMPTOM5 &lt;chr&gt;,
+## #   SYMPTOMVERSION5 &lt;dbl&gt;, RECVDATE &lt;date&gt;, STATE &lt;chr&gt;, AGE_YRS &lt;dbl&gt;,
+## #   CAGE_YR &lt;dbl&gt;, CAGE_MO &lt;dbl&gt;, SEX &lt;chr&gt;, RPT_DATE &lt;lgl&gt;,
+## #   SYMPTOM_TEXT &lt;chr&gt;, DIED &lt;chr&gt;, DATEDIED &lt;date&gt;, L_THREAT &lt;chr&gt;,
+## #   ER_VISIT &lt;lgl&gt;, HOSPITAL &lt;chr&gt;, HOSPDAYS &lt;dbl&gt;, X_STAY &lt;lgl&gt;,
+## #   DISABLE &lt;chr&gt;, RECOVD &lt;chr&gt;, VAX_DATE &lt;date&gt;, ONSET_DATE &lt;date&gt;, …</code></pre>
 <pre><code>## [1] 63128</code></pre>
 <p>Histogram showing distribution of SAEs according to age group
 <img src="Figs/unnamed-chunk-34-1.png" width="672" />
@@ -167,9 +187,9 @@ Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
 <img src="Figs/unnamed-chunk-40-1.png" width="672" />
 <img src="Figs/unnamed-chunk-41-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"7cae7c3d0e1a":["function () ","plotlyVisDat"]},"cur_data":"7cae7c3d0e1a","attrs":{"7cae7c3d0e1a":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[10.22,32.65,56.13],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"904c15456f01":["function () ","plotlyVisDat"]},"cur_data":"904c15456f01","attrs":{"904c15456f01":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[10.22,32.65,56.13],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"7cae44bfbb86":["function () ","plotlyVisDat"]},"cur_data":"7cae44bfbb86","attrs":{"7cae44bfbb86":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.08,0.19,0.52,1.48,2.23,2.32,0.89,0.05],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"904c1f2601b2":["function () ","plotlyVisDat"]},"cur_data":"904c1f2601b2","attrs":{"904c1f2601b2":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.08,0.19,0.52,1.48,2.23,2.32,0.89,0.05],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Female Reproductive Events count</p>
 <pre><code>## [1] 12353</code></pre>
 <pre><code>## [1] 1.729683</code></pre>

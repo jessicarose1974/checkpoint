@@ -254,3 +254,7 @@ https://www.youtube.com/watch?v=JcfEknRWlSk
 https://www.rebelnews.com/dr_jessica_rose_vaers_myocarditis_to_womens_reproductive_health
 
 https://chrismasterjohnphd.com/blog/2021/12/27/jessica-rose-adverse-events-reporting-and-much-more
+
+https://worldcouncilforhealth.org/multimedia/jessica-rose-adverse-injury-updates/
+
+https://youtu.be/80zJYf0c9fI

@@ -302,6 +302,8 @@ SAES_no_dups_31_12_21_638000kb <- subset(SAES_31_12_21_638000kb, !duplicated(sub
 nrow(SAES_no_dups_31_12_21_638000kb)
 Percent = nrow(SAES_no_dups_31_12_21_638000kb)/nrow(MERGED_31_12_21_638000kb)*100
 Percent
+
+DISABLE_Y_31_12_21_638000kb
 ```
 ```{r}
 SAES_no_dups_31_12_21_638000kb_fizer <- SAES_no_dups_31_12_21_638000kb %>% filter(VAX_MANU == "PFIZER\\BIONTECH")
