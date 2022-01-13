@@ -259,6 +259,7 @@ https://worldcouncilforhealth.org/multimedia/jessica-rose-adverse-injury-updates
 
 https://youtu.be/80zJYf0c9fI
 
+https://www.bitchute.com/video/1YGFEpDD3XtL/?list=notifications&randomize=false
+
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--378:4
 
-https://www.bitchute.com/video/1YGFEpDD3XtL/?list=notifications&randomize=false
