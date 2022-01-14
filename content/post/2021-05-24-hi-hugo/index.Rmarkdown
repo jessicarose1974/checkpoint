@@ -43,10 +43,21 @@ library("plotly")
 #MERGED_7_1_22_645300kb <- MERGED_7_1_22_645300kb_1 %>% distinct(AGE_YRS, STATE, SEX, VAX_LOT, VAX_SITE, VAX_ROUTE, VAX_DATE, VAX_NAME, VAX_MANU, RECVDATE, CAGE_YR, CAGE_MO, DIED, HOSPITAL, ER_ED_VISIT, ALLERGIES, ONSET_DATE, PRIOR_VAX, VAX_DOSE_SERIES, L_THREAT, DISABLE,	BIRTH_DEFECT, .keep_all = TRUE)
 ```
 ```{r}
-MERGED_7_1_22_645300kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_7_1_22_645300kb_Y.csv")
+#MERGED_7_1_22_645300kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_7_1_22_645300kb_Y.csv")
 ```
 ```{r}
-MERGED_7_1_22_645300kb <- MERGED_7_1_22_645300kb_Y
+#MERGED_7_1_22_645300kb <- MERGED_7_1_22_645300kb_Y
+```
+```{r}
+MERGED_01_14_22_4100kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_01_14_22_4100kb_Y.csv")
+MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge <- read_csv("/Users/jessicarose/Desktop/MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge.csv")
+```
+```{r}
+MERGED_01_14_22_4100kb_merged <- rbind(MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge, MERGED_01_14_22_4100kb_Y)
+```
+```{r}
+MERGED_01_14_22_4100kb <- MERGED_01_14_22_4100kb_merged
+MERGED_01_14_22_4100kb
 ```
 ```{r}
 strings_myocarditis <- c("Myocarditis", "Pericarditis", "Autoimmune myocarditis", "Endocarditis", "Carditis", "Viral pericarditis", "Endocarditis bacterial", "Pericarditis constrictive", "Endocarditis noninfective", "Eosinophilic myocarditis", "Myocardial necrosis marker increased", "Myocardial rupture", "Myocardial ischaemia", "Pericarditis constrictive", "Eosinophilic myocarditis", "Viral myocarditis", "Viral endocarditis", "carditis", "Myopericarditis")
@@ -62,15 +73,15 @@ MYO <- function(SYMPTOM) {
       }
     return(Myocarditis)
 }
-MERGED_7_1_22_645300kb_Myocarditis1 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
-MERGED_7_1_22_645300kb_Myocarditis2 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
-MERGED_7_1_22_645300kb_Myocarditis3 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
-MERGED_7_1_22_645300kb_Myocarditis4 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
-MERGED_7_1_22_645300kb_Myocarditis5 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis1 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis2 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis3 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis4 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis5 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
 
-MERGED_7_1_22_645300kb_Myocarditis6 <- MERGED_7_1_22_645300kb %>% rowwise() %>% filter(SYMPTOM_TEXT != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM_TEXT)) %>% filter(Myocarditis != "NA")
+MERGED_01_14_22_4100kb_Myocarditis6 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM_TEXT != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM_TEXT)) %>% filter(Myocarditis != "NA")
 
-myo_Total <- rbind(MERGED_7_1_22_645300kb_Myocarditis1,MERGED_7_1_22_645300kb_Myocarditis2,MERGED_7_1_22_645300kb_Myocarditis3,MERGED_7_1_22_645300kb_Myocarditis4,MERGED_7_1_22_645300kb_Myocarditis5,MERGED_7_1_22_645300kb_Myocarditis6)
+myo_Total <- rbind(MERGED_01_14_22_4100kb_Myocarditis1,MERGED_01_14_22_4100kb_Myocarditis2,MERGED_01_14_22_4100kb_Myocarditis3,MERGED_01_14_22_4100kb_Myocarditis4,MERGED_01_14_22_4100kb_Myocarditis5,MERGED_01_14_22_4100kb_Myocarditis6)
 
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 myo_Total_ID <- myo_Total %>% distinct(VAERS_ID, .keep_all = TRUE)

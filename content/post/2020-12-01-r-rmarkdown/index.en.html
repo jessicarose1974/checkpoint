@@ -19,9 +19,29 @@ output: html_document
 <p>This is an R Markdown sheet generated from the VAERS data. For the most part, only figures are shown. I decided to show figures pertaining to Death, Female Reproductive Issues, Breakthrough COVID-19 infections and Cardiovascular and Immunological adverse events. Also included is some stuff on kids and Myocarditis.</p>
 <p>I start by coalescing the .csv files downloaded from the VAERS website: <a href="https://vaers.hhs.gov/data/datasets.html" class="uri">https://vaers.hhs.gov/data/datasets.html</a></p>
 <p>This is the total number of adverse events in the context of COVID-19 products from Fizer, Modrna and JJ</p>
-<pre><code>## [1] 721107</code></pre>
+<pre><code>## # A tibble: 726,839 × 52
+##    VAERS_ID SYMPTOM1     SYMPTOMVERSION1 SYMPTOM2    SYMPTOMVERSION2 SYMPTOM3   
+##       &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;      
+##  1   916600 Dysphagia               23.1 Epiglottit…            23.1 &lt;NA&gt;       
+##  2   916601 Anxiety                 23.1 Dyspnoea               23.1 &lt;NA&gt;       
+##  3   916602 Chest disco…            23.1 Dysphagia              23.1 Pain in ex…
+##  4   916603 Dizziness               23.1 Fatigue                23.1 Mobility d…
+##  5   916604 Injection s…            23.1 Injection …            23.1 Injection …
+##  6   916605 Chills                  24   Confusiona…            24   Eye inflam…
+##  7   916606 Pharyngeal …            23.1 &lt;NA&gt;                   NA   &lt;NA&gt;       
+##  8   916607 Abdominal p…            23.1 Chills                 23.1 Sleep diso…
+##  9   916608 Diarrhoea               23.1 Nasal cong…            23.1 &lt;NA&gt;       
+## 10   916609 Vaccination…            23.1 Vaccinatio…            23.1 Vaccinatio…
+## # … with 726,829 more rows, and 46 more variables: SYMPTOMVERSION3 &lt;dbl&gt;,
+## #   SYMPTOM4 &lt;chr&gt;, SYMPTOMVERSION4 &lt;dbl&gt;, SYMPTOM5 &lt;chr&gt;,
+## #   SYMPTOMVERSION5 &lt;dbl&gt;, RECVDATE &lt;chr&gt;, STATE &lt;chr&gt;, AGE_YRS &lt;dbl&gt;,
+## #   CAGE_YR &lt;dbl&gt;, CAGE_MO &lt;dbl&gt;, SEX &lt;chr&gt;, RPT_DATE &lt;lgl&gt;,
+## #   SYMPTOM_TEXT &lt;chr&gt;, DIED &lt;chr&gt;, DATEDIED &lt;chr&gt;, L_THREAT &lt;chr&gt;,
+## #   ER_VISIT &lt;lgl&gt;, HOSPITAL &lt;chr&gt;, HOSPDAYS &lt;dbl&gt;, X_STAY &lt;chr&gt;,
+## #   DISABLE &lt;chr&gt;, RECOVD &lt;chr&gt;, VAX_DATE &lt;chr&gt;, ONSET_DATE &lt;chr&gt;, …</code></pre>
+<pre><code>## [1] 726839</code></pre>
 <p>Percent of VAERS reports made by Females</p>
-<pre><code>## [1] 67.1677</code></pre>
+<pre><code>## [1] 67.11651</code></pre>
 <p>The following table is a summary of some variables in the context of COVID-19 product roll-out including changing fully-injected numbers (FV = Fully Vaccinated; SAE = Severe Adverse Events; ER = Emergency doctor visits; COVID = Breakthrough infections; FRI = Female Reproductive Issues)</p>
 <pre><code>##          DATE    IDs        FV    Dose_1 DEATH HOSPITAL    ER    SAE COVID
 ## 1  2021-01-16   1431   4582089  15840000   137      338   338    690   194
@@ -73,6 +93,7 @@ output: html_document
 ## 47 2021-12-24 705991 203027000 241520000 10856    46202 87586 126418 32039
 ## 48 2021-12-31 714177 203240000 241580000 11013    46933 88549 128095 32636
 ## 49 2022-01-07 721107 205410000 245650000 11166    47743 89406 129701 33449
+## 50 2022-01-14 726839 206940000 247940000 11311    48642 90258 131323 34407
 ##      FRI COVID_deaths
 ## 1      4        38694
 ## 2      7       109630
@@ -122,7 +143,8 @@ output: html_document
 ## 46 12040       490067
 ## 47 12196       496626
 ## 48 12353       501166
-## 49 12470       516675</code></pre>
+## 49 12470       516675
+## 50 12611       529145</code></pre>
 <p>This is the change in absolute number of VAERS IDs per year.
 <img src="Figs/unnamed-chunk-16-1.png" width="672" />
 These are the VAERS ID counts for the past 30 years (absolute counts).</p>
@@ -138,50 +160,50 @@ These are the trajectories of cumulative data for Deaths from VAERS and COVID de
 <img src="Figs/unnamed-chunk-23-1.png" width="672" /></p>
 <p><img src="Figs/unnamed-chunk-25-1.png" width="672" />
 This is the number of birth defects.</p>
-<pre><code>## [1] 459</code></pre>
+<pre><code>## [1] 465</code></pre>
 <p>This is the number of deaths and the percentage per total AEs.</p>
-<pre><code>## [1] 11166</code></pre>
-<pre><code>## [1] 1.548453</code></pre>
+<pre><code>## [1] 11311</code></pre>
+<pre><code>## [1] 1.556191</code></pre>
 <p>These are the number of hospitalizations and emergency doctor visits.</p>
-<pre><code>## [1] 47743</code></pre>
-<pre><code>## [1] 89406</code></pre>
+<pre><code>## [1] 48642</code></pre>
+<pre><code>## [1] 90258</code></pre>
 <p>These are the numbers of Severe Adverse Events (SAEs): Deaths, Hospital, ER, Life threatening, Disabling, Birth defect with the total SAE count and percentage of all AEs.</p>
-<pre><code>## [1] 11166</code></pre>
-<pre><code>## [1] 47743</code></pre>
-<pre><code>## [1] 89406</code></pre>
-<pre><code>## [1] 11351</code></pre>
-<pre><code>## [1] 12353</code></pre>
-<pre><code>## [1] 459</code></pre>
-<pre><code>## [1] 129701</code></pre>
-<pre><code>## [1] 17.98637</code></pre>
-<pre><code>## [1] 63913</code></pre>
+<pre><code>## [1] 11311</code></pre>
+<pre><code>## [1] 48642</code></pre>
+<pre><code>## [1] 90258</code></pre>
+<pre><code>## [1] 11500</code></pre>
+<pre><code>## [1] 12552</code></pre>
+<pre><code>## [1] 465</code></pre>
+<pre><code>## [1] 131323</code></pre>
+<pre><code>## [1] 18.06769</code></pre>
+<pre><code>## [1] 64704</code></pre>
 <p>Histogram showing distribution of SAEs according to age group
 <img src="Figs/unnamed-chunk-34-1.png" width="672" />
 Actual VAERS SAE percentage compared to Standard VAERS SAE percentage</p>
 <pre><code>##   Percent_SAE    SAE PERC
-## 1    Standard 108000   15
-## 2      Actual 129701   18</code></pre>
+## 1    Standard 109000   15
+## 2      Actual 131323   18</code></pre>
 <p><img src="Figs/unnamed-chunk-35-1.png" width="672" />
 Breakthrough COVID-19 case count AND PERCENTAGE of total ID count</p>
-<pre><code>## [1] 33449</code></pre>
-<pre><code>## [1] 4.638563</code></pre>
+<pre><code>## [1] 34407</code></pre>
+<pre><code>## [1] 4.733786</code></pre>
 <p><img src="Figs/unnamed-chunk-39-1.png" width="672" />
 <img src="Figs/unnamed-chunk-40-1.png" width="672" />
 <img src="Figs/unnamed-chunk-41-1.png" width="672" /></p>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"bca71ebad2e5":["function () ","plotlyVisDat"]},"cur_data":"bca71ebad2e5","attrs":{"bca71ebad2e5":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[10.31,32.61,56.06],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"34bb33d73250":["function () ","plotlyVisDat"]},"cur_data":"34bb33d73250","attrs":{"34bb33d73250":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES BY MANUFACTURER","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["JANSSEN","MODERNA","PFIZER\\BIONTECH"],"values":[10.3,32.9,55.79],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"bca761213470":["function () ","plotlyVisDat"]},"cur_data":"bca761213470","attrs":{"bca761213470":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.08,0.19,0.53,1.5,2.27,2.33,0.89,0.05],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"visdat":{"34bb24ae2741":["function () ","plotlyVisDat"]},"cur_data":"34bb24ae2741","attrs":{"34bb24ae2741":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"BREAKTHROUGH COVID-19 CASES RESULTING IN DEATH BY AGE GROUP","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["B. 10-20","C. 20-30","D. 30-40","E. 40-50","F. 50-60","G. 60-70","H. 70-80","I. 80-90","J. 90-100","K. 100-110"],"values":[0.01,0.02,0.07,0.19,0.53,1.49,2.28,2.31,0.87,0.05],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Female Reproductive Events count</p>
-<pre><code>## [1] 12470</code></pre>
-<pre><code>## [1] 1.729286</code></pre>
+<pre><code>## [1] 12611</code></pre>
+<pre><code>## [1] 1.735047</code></pre>
 <p>Histogram showing distribution of Female Reproductive Issues by age group
 <img src="Figs/unnamed-chunk-50-1.png" width="672" /></p>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  FRI_CASES_VD_OD$OBSERVED
-## X-squared = 30063, df = 50, p-value &lt; 2.2e-16</code></pre>
+## X-squared = 30311, df = 50, p-value &lt; 2.2e-16</code></pre>
 <p>Cumulative FRI cases as per update - rates increasing.
 <img src="Figs/unnamed-chunk-53-1.png" width="672" />
 Heatmap showing Female Reproductive Issues wrt VAX DATE and ONSET DATE. Early April shows a clustering of intersecting points.
@@ -227,20 +249,20 @@ Cardiac Events Count</p>
 ## [37] &quot;Thrombosis&quot;                               
 ## [38] &quot;Echocardiogram abnormal&quot;                  
 ## [39] &quot;Dyspnoea&quot;</code></pre>
-<pre><code>## [1] 209599</code></pre>
+<pre><code>## [1] 210915</code></pre>
 <p><img src="Figs/unnamed-chunk-59-1.png" width="672" />
 This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage of the total AEs reported and a histogram showing age group distribution.</p>
-<pre><code>## [1] 32132</code></pre>
+<pre><code>## [1] 32517</code></pre>
 <p><img src="Figs/unnamed-chunk-60-1.png" width="672" /></p>
-<pre><code>## [1] 31025</code></pre>
-<pre><code>## [1] 4.302413</code></pre>
+<pre><code>## [1] 31210</code></pre>
+<pre><code>## [1] 4.293936</code></pre>
 <p>And this is a heatmap showing 1:1 correlation between onset of AE and injection date.
 <img src="Figs/unnamed-chunk-62-1.png" width="672" /></p>
-<pre><code>## # A tibble: 3,614 × 4
-## # Groups:   VAX_DATE, ONSET_DATE [3,614]
+<pre><code>## # A tibble: 3,655 × 4
+## # Groups:   VAX_DATE, ONSET_DATE [3,655]
 ##    VAX_DATE   ONSET_DATE diff_in_days     n
 ##    &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;       &lt;int&gt;
-##  1 2021-05-14 2021-05-14 0 days         250
+##  1 2021-05-14 2021-05-14 0 days         249
 ##  2 2021-05-19 2021-05-19 0 days         248
 ##  3 2021-05-15 2021-05-15 0 days         216
 ##  4 2021-05-13 2021-05-13 0 days         207
@@ -250,11 +272,11 @@ This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage
 ##  8 2021-05-21 2021-05-21 0 days         186
 ##  9 2021-04-09 2021-04-09 0 days         184
 ## 10 2021-04-08 2021-04-08 0 days         183
-## # … with 3,604 more rows</code></pre>
+## # … with 3,645 more rows</code></pre>
 <p>Here we have the percentage of cardiac cases for kids aged 12-15 of the total youth population (12-18) in VAERS, the percentage of cardiac AEs that come from youths and the percentage of cardiac cases in kids aged 12-15 of the total cardiac AEs.</p>
-<pre><code>## [1] 13.7502</code></pre>
-<pre><code>## [1] 14.80207</code></pre>
-<pre><code>## [1] 2.035315</code></pre>
+<pre><code>## [1] 13.75841</code></pre>
+<pre><code>## [1] 14.79743</code></pre>
+<pre><code>## [1] 2.035891</code></pre>
 <p>Immunological Adverse Effects Count</p>
 <pre><code>##  [1] &quot;Anaphylactic reaction&quot;                                
 ##  [2] &quot;Anaphylactic shock&quot;                                   
@@ -338,52 +360,52 @@ This is the number of kids aged 12-18 reported to VAERS with AEs, the percentage
 ## [80] &quot;Viral rash&quot;                                           
 ## [81] &quot;Systemic scleroderma&quot;</code></pre>
 <p>Here we have the total AE count for immunological adverse events as per the list above. This is a very short list as compared with the total number of immunological AEs. It is merely a representation.</p>
-<pre><code>## [1] 214875</code></pre>
+<pre><code>## [1] 216074</code></pre>
 <p><img src="Figs/unnamed-chunk-68-1.png" width="672" /></p>
 <pre><code>##    diff_in_days     n OBSERVED Percentage_OBSERVED EXPECTED Percentage_EXPECTED
-## 1        0 days 77254    77254          42.2259147     8712             4.05445
-## 2        1 days 51812    51812          28.3196869     8712             4.05445
-## 3        2 days 12258    12258           6.7000448     8712             4.05445
-## 4        7 days  6514     6514           3.5604578     8712             4.05445
-## 5        3 days  6150     6150           3.3615007     8712             4.05445
-## 6        8 days  5147     5147           2.8132755     8712             4.05445
-## 7        4 days  3887     3887           2.1245778     8712             4.05445
-## 8        5 days  3349     3349           1.8305148     8712             4.05445
-## 9        6 days  3278     3278           1.7917072     8712             4.05445
-## 10       9 days  2946     2946           1.6102408     8712             4.05445
-## 11      10 days  2159     2159           1.1800781     8712             4.05445
-## 12      11 days  1545     1545           0.8444746     8712             4.05445
-## 13      14 days  1404     1404           0.7674060     8712             4.05445
-## 14      12 days  1236     1236           0.6755797     8712             4.05445
-## 15      13 days  1011     1011           0.5525979     8712             4.05445
-## 16      15 days   688      688           0.3760508     8712             4.05445
-## 17      16 days   540      540           0.2951562     8712             4.05445
-## 18      17 days   525      525           0.2869574     8712             4.05445
-## 19      18 days   433      433           0.2366715     8712             4.05445
-## 20      20 days   414      414           0.2262864     8712             4.05445
-## 21      19 days   404      404           0.2208205     8712             4.05445</code></pre>
+## 1        0 days 77571    77571          42.1664021     8760            4.054167
+## 2        1 days 52088    52088          28.3142354     8760            4.054167
+## 3        2 days 12324    12324           6.6991368     8760            4.054167
+## 4        7 days  6529     6529           3.5490639     8760            4.054167
+## 5        3 days  6189     6189           3.3642452     8760            4.054167
+## 6        8 days  5165     5165           2.8076145     8760            4.054167
+## 7        4 days  3918     3918           2.1297645     8760            4.054167
+## 8        5 days  3363     3363           1.8280751     8760            4.054167
+## 9        6 days  3289     3289           1.7878498     8760            4.054167
+## 10       9 days  2979     2979           1.6193386     8760            4.054167
+## 11      10 days  2201     2201           1.1964297     8760            4.054167
+## 12      11 days  1598     1598           0.8686482     8760            4.054167
+## 13      14 days  1420     1420           0.7718902     8760            4.054167
+## 14      12 days  1272     1272           0.6914396     8760            4.054167
+## 15      13 days  1029     1029           0.5593486     8760            4.054167
+## 16      15 days   693      693           0.3767041     8760            4.054167
+## 17      16 days   544      544           0.2957100     8760            4.054167
+## 18      17 days   529      529           0.2875563     8760            4.054167
+## 19      18 days   441      441           0.2397208     8760            4.054167
+## 20      20 days   416      416           0.2261312     8760            4.054167
+## 21      19 days   406      406           0.2206954     8760            4.054167</code></pre>
 <p><img src="Figs/unnamed-chunk-69-1.png" width="672" />
 This is a histogram showing death distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and death date. R=1 -&gt; perfect correlation (look for red on diagonal).</p>
 <pre><code>## # A tibble: 51 × 6
 ##    diff_in_days     n OBSERVED Percentage_OBSERVED EXPECTED Percentage_EXPECTED
 ##    &lt;drtn&gt;       &lt;int&gt;    &lt;int&gt;               &lt;dbl&gt;    &lt;int&gt;               &lt;dbl&gt;
-##  1 1 days         644      644               11.7       107                1.22
-##  2 2 days         421      421                7.65      107                1.22
-##  3 0 days         315      315                5.72      107                1.22
-##  4 3 days         310      310                5.63      107                1.22
-##  5 4 days         247      247                4.49      107                1.22
-##  6 5 days         222      222                4.03      107                1.22
-##  7 7 days         198      198                3.60      107                1.22
-##  8 6 days         169      169                3.07      107                1.22
-##  9 9 days         157      157                2.85      107                1.22
-## 10 8 days         131      131                2.38      107                1.22
+##  1 1 days         646      646               11.7       108                1.22
+##  2 2 days         422      422                7.62      108                1.22
+##  3 0 days         316      316                5.71      108                1.22
+##  4 3 days         313      313                5.65      108                1.22
+##  5 4 days         247      247                4.46      108                1.22
+##  6 5 days         222      222                4.01      108                1.22
+##  7 7 days         200      200                3.61      108                1.22
+##  8 6 days         171      171                3.09      108                1.22
+##  9 9 days         157      157                2.84      108                1.22
+## 10 8 days         133      133                2.40      108                1.22
 ## # … with 41 more rows</code></pre>
 <p>Here is a histogram showing death distribution by age group.
 <img src="Figs/unnamed-chunk-71-1.png" width="672" />
 Here is a plot showing clustering of reports around 0 and 1 in the context of death.
 <img src="Figs/unnamed-chunk-72-1.png" width="672" /></p>
-<pre><code>## # A tibble: 6,160 × 5
-## # Groups:   DIED, DATEDIED, VAX_DATE [6,160]
+<pre><code>## # A tibble: 6,237 × 5
+## # Groups:   DIED, DATEDIED, VAX_DATE [6,237]
 ##    DIED  DATEDIED   VAX_DATE   diff_in_days     n
 ##    &lt;chr&gt; &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;       &lt;int&gt;
 ##  1 Y     2021-01-02 2021-01-02 0 days           1
@@ -396,7 +418,7 @@ Here is a plot showing clustering of reports around 0 and 1 in the context of de
 ##  8 Y     2021-01-05 2021-01-03 2 days           2
 ##  9 Y     2021-01-05 2021-01-04 1 days           2
 ## 10 Y     2021-01-05 2021-01-05 0 days           4
-## # … with 6,150 more rows</code></pre>
+## # … with 6,227 more rows</code></pre>
 <p><img src="Figs/unnamed-chunk-74-1.png" width="672" />
 This is a histogram showing hospitalization distribution according to age group. We also have a time series plot showing clustering of data around day 1 following injection. And! We have a heatmap confirming strong correlation between injection date and hospitalization date. R=1 -&gt; perfect correlation (look for red on diagonal).
 <img src="Figs/unnamed-chunk-75-1.png" width="672" /></p>
@@ -407,9 +429,9 @@ This is a histogram showing ER distribution according to age group. We also have
 <p><img src="Figs/unnamed-chunk-79-1.png" width="672" /></p>
 <p><img src="Figs/unnamed-chunk-80-1.png" width="672" />
 And hey! What would this analysis be without myocarditis? This is the count of myocarditis cases and the percentage of the total count for cardiac cases and for the total AE count.</p>
-<pre><code>## [1] 1200</code></pre>
-<pre><code>## [1] 0.5725218</code></pre>
-<pre><code>## [1] 0.1664108</code></pre>
+<pre><code>## [1] 1226</code></pre>
+<pre><code>## [1] 0.5812768</code></pre>
+<pre><code>## [1] 0.1686756</code></pre>
 <p>And this plot shows age versus dose data for myocarditis cases using only the MedDRA code ‘myocarditis’. Notice how many young people. Hmm what’s that now? Dose 2 is causing moycarditis in young males? Hmm
 <img src="Figs/unnamed-chunk-82-1.png" width="672" />
 <img src="Figs/unnamed-chunk-83-1.png" width="672" />
