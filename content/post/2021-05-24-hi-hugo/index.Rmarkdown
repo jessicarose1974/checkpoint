@@ -57,7 +57,7 @@ MERGED_01_14_22_4100kb_merged <- rbind(MERGED_7_1_22_645300kb_Y_VL_FIXED_for_mer
 ```
 ```{r}
 MERGED_01_14_22_4100kb <- MERGED_01_14_22_4100kb_merged
-MERGED_01_14_22_4100kb
+#MERGED_01_14_22_4100kb
 ```
 ```{r}
 strings_myocarditis <- c("Myocarditis", "Pericarditis", "Autoimmune myocarditis", "Endocarditis", "Carditis", "Viral pericarditis", "Endocarditis bacterial", "Pericarditis constrictive", "Endocarditis noninfective", "Eosinophilic myocarditis", "Myocardial necrosis marker increased", "Myocardial rupture", "Myocardial ischaemia", "Pericarditis constrictive", "Eosinophilic myocarditis", "Viral myocarditis", "Viral endocarditis", "carditis", "Myopericarditis")
