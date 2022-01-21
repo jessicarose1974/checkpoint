@@ -49,15 +49,14 @@ library("plotly")
 #MERGED_7_1_22_645300kb <- MERGED_7_1_22_645300kb_Y
 ```
 ```{r}
-MERGED_01_14_22_4100kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_01_14_22_4100kb_Y.csv")
-MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge <- read_csv("/Users/jessicarose/Desktop/MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge.csv")
+MERGED_01_21_22_16100kb_Y <- read_csv("/Users/jessicarose/Desktop/MERGED_01_21_22_16100kb_Y.csv")
+MERGED_01_21_22_16100kb_for_update <- read_csv("/Users/jessicarose/Desktop/MERGED_01_21_22_16100kb_for_update.csv")
 ```
 ```{r}
-MERGED_01_14_22_4100kb_merged <- rbind(MERGED_7_1_22_645300kb_Y_VL_FIXED_for_merge, MERGED_01_14_22_4100kb_Y)
+MERGED_01_21_22_16100kb_merged <- rbind(MERGED_01_21_22_16100kb_for_update, MERGED_01_21_22_16100kb_Y)
 ```
 ```{r}
-MERGED_01_14_22_4100kb <- MERGED_01_14_22_4100kb_merged
-write_csv(MERGED_01_14_22_4100kb, "/Users/jessicarose/Desktop/MERGED_01_14_22_4100kb.csv")
+MERGED_01_21_22_16100kb <- MERGED_01_21_22_16100kb_merged
 ```
 ```{r}
 strings_myocarditis <- c("Myocarditis", "Pericarditis", "Autoimmune myocarditis", "Endocarditis", "Carditis", "Viral pericarditis", "Endocarditis bacterial", "Pericarditis constrictive", "Endocarditis noninfective", "Eosinophilic myocarditis", "Myocardial necrosis marker increased", "Myocardial rupture", "Myocardial ischaemia", "Pericarditis constrictive", "Eosinophilic myocarditis", "Viral myocarditis", "Viral endocarditis", "carditis", "Myopericarditis")
@@ -73,15 +72,15 @@ MYO <- function(SYMPTOM) {
       }
     return(Myocarditis)
 }
-MERGED_01_14_22_4100kb_Myocarditis1 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
-MERGED_01_14_22_4100kb_Myocarditis2 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
-MERGED_01_14_22_4100kb_Myocarditis3 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
-MERGED_01_14_22_4100kb_Myocarditis4 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
-MERGED_01_14_22_4100kb_Myocarditis5 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis1 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM1 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM1)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis2 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM2 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM2)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis3 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM3 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM3)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis4 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM4 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM4)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis5 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM5 != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM5)) %>% filter(Myocarditis != "NA")
 
-MERGED_01_14_22_4100kb_Myocarditis6 <- MERGED_01_14_22_4100kb %>% rowwise() %>% filter(SYMPTOM_TEXT != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM_TEXT)) %>% filter(Myocarditis != "NA")
+MERGED_01_21_22_16100kb_Myocarditis6 <- MERGED_01_21_22_16100kb %>% rowwise() %>% filter(SYMPTOM_TEXT != "NA") %>% mutate("Myocarditis" = MYO(SYMPTOM_TEXT)) %>% filter(Myocarditis != "NA")
 
-myo_Total <- rbind(MERGED_01_14_22_4100kb_Myocarditis1,MERGED_01_14_22_4100kb_Myocarditis2,MERGED_01_14_22_4100kb_Myocarditis3,MERGED_01_14_22_4100kb_Myocarditis4,MERGED_01_14_22_4100kb_Myocarditis5,MERGED_01_14_22_4100kb_Myocarditis6)
+myo_Total <- rbind(MERGED_01_21_22_16100kb_Myocarditis1,MERGED_01_21_22_16100kb_Myocarditis2,MERGED_01_21_22_16100kb_Myocarditis3,MERGED_01_21_22_16100kb_Myocarditis4,MERGED_01_21_22_16100kb_Myocarditis5,MERGED_01_21_22_16100kb_Myocarditis6)
 
 myo_Total <- data.frame(myo_Total, stringsAsFactors = FALSE)
 myo_Total_ID <- myo_Total %>% distinct(VAERS_ID, .keep_all = TRUE)
@@ -95,12 +94,12 @@ myo_Total_doses_1_2 <- myo_Total_ENTRY  %>% filter(VAX_DOSE_SERIES <= 2) %>% cou
 #myo_Total_doses_1_2
 ```
 ```{r}
-myo_Total_doses_1_2_age <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 2) %>% group_by(AGE_YRS) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(AGE_YRS))
+myo_Total_doses_1_2_3_age <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 3) %>% group_by(AGE_YRS) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(AGE_YRS))
 #myo_Total_doses_1_2_age
 
-myo_Total_doses_1_2_age_sex <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 2) %>% group_by(AGE_YRS, SEX) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(SEX))
+myo_Total_doses_1_2_age_sex <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 3) %>% group_by(AGE_YRS, SEX) %>% count(VAX_DOSE_SERIES) %>% arrange(desc(SEX))
 #myo_Total_doses_1_2_age_sex 
-myo_Total_doses_1_2_age_sex_count_M <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 2) %>% count(SEX)
+myo_Total_doses_1_2_age_sex_count_M <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIES <= 3) %>% count(SEX)
 #myo_Total_doses_1_2_age_sex_count_M
 #298/(298+80)*100
 ```
@@ -108,7 +107,8 @@ myo_Total_doses_1_2_age_sex_count_M <- myo_Total_ENTRY %>% filter(VAX_DOSE_SERIE
 nrow(myo_Total_ENTRY)
 ```
 ```{r}
-AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(captioxn = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,102) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
+AGE_YEARS_myo_Total_plot <- ggplot(myo_Total_doses_1_2_3_age, aes(AGE_YRS, n, fill = VAX_DOSE_SERIES)) + geom_bar(stat = "identity", position = position_dodge(preserve = 'single')) + xlab("Age of reported patient, years") + ylab("Absolute number of Myocarditis") + labs(captioxn = "Data source: VAERS/Analysis: Dr. Jessica Rose") + theme(axis.text.y = element_text(colour = "black", size = 12)) + theme(axis.text.x = element_text(colour = "black", angle=0,vjust=0.5,hjust=0.5, size = 12)) + theme(legend.position = "right") + ggtitle("Myocarditis in VAERS after mRNA injection by age and dose #") + labs(caption = "Data source: VAERS Domestic Data/Analysis: Dr. Jessica Rose") + theme(legend.text=element_text(size=6), legend.title=element_text(size=6)) + xlim(12,102) + geom_vline(xintercept=c(14.5,16)) #+ ylim(0,20)  
 AGE_YEARS_myo_Total_plot
+ggsave("AGE_YEARS_myo_Total_plot_3.png")
 ```
 
