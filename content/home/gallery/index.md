@@ -264,6 +264,8 @@ https://www.bitchute.com/video/1YGFEpDD3XtL/?list=notifications&randomize=false
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--378:4
 
 https://rumble.com/vpr2tx--1-.html
+https://rumble.com/vpt8k1--2-.html
+https://rumble.com/vq0nh7--3-.html
 
 
 
