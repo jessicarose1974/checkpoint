@@ -15,6 +15,10 @@ advanced:
 ---
 <font size ="6">**Welcome to a place where you can find out about VAERS.**</font> https://vaers.hhs.gov/
 
+<font size = "6">**THEY ARE TRYING TO STOP OUR CONVOY. SOS. PLEASE CONTACT GOFUNDME AND TELL THEM THE TRUTH ABOUT OUR TRUCKERS. THEY ARE FIGHTING FOR ALL OF US AND THEY NEED OUR HELP.**</font>
+
+{{< icon name="download" pack="fas" >}} Download {{< staticref "media/Convoy_SOS.mp4" "newtab" >}}Convoy_SOS.mp4{{< /staticref >}}.
+
 <font size ="6">**I have the honour of a new role.**</font> https://takingbackourfreedoms.ca/about-us/
 
 <font size ="6">**I have the honour of another new role.**</font> https://www.voiceforscienceandsolidarity.org/authors/jessica-rose
