@@ -32,12 +32,6 @@ superuser: true
 title: Dr. Jessica Rose
 ---
 
-Jessica Rose is a Research Fellow at the Institute for Pure and Applied Knowledge.
-
-PLEASE FEEL FREE TO DONATE TO MY RESEARCH: https://www.paypal.com/paypalme/JeesicaRose
-
-FELLOWSHIP donation link: https://ipaknowledge.org/joshua-kuntz-research-fellowship.php
-
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Curriculum Vitae June 2021.pdf" "newtab" >}}resumé{{< /staticref >}}.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
