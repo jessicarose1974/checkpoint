@@ -264,8 +264,15 @@ https://www.bitchute.com/video/1YGFEpDD3XtL/?list=notifications&randomize=false
 https://odysee.com/@therippleeffectpodcast:d/The-Ripple-Effect-Podcast--378:4
 
 https://rumble.com/vpr2tx--1-.html
+
 https://rumble.com/vpt8k1--2-.html
+
 https://rumble.com/vq0nh7--3-.html
 
+https://open.spotify.com/episode/7iVnfPyaccNf2cRuxIvvVg?si=17c6c2330edd4cfe&nd=1
+
+https://www.conservativewoman.co.uk/why-the-vaccine-trance-must-be-broken/
+
+https://mickeyz.substack.com/p/post-woke-15-dr-jessica-rose-on-vaccine
 
 
