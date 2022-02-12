@@ -275,4 +275,10 @@ https://www.conservativewoman.co.uk/why-the-vaccine-trance-must-be-broken/
 
 https://mickeyz.substack.com/p/post-woke-15-dr-jessica-rose-on-vaccine
 
+https://www.youtube.com/watch?v=zqjNkp716jg
+
+https://www.brighteon.com/955ff490-ddfb-433e-9967-e1d49d5daec2
+
+https://www.brasscheck.com/video/the-number-of-covid-vaccine-injuries-is-staggering/
+
 
