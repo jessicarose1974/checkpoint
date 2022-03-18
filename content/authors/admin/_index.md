@@ -31,7 +31,7 @@ social:
 superuser: true
 title: Dr. Jessica Rose
 ---
-Please check out my Substack! https://jessicar.substack.com
+Please check out my Substack! https://jessicar.substack.com and check out my NEW WEBSITE: https://jessicasuniverse.com
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
 
