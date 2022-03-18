@@ -31,9 +31,7 @@ social:
 superuser: true
 title: Dr. Jessica Rose
 ---
-Please check out my Substack!
-
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/Curriculum Vitae June 2021.pdf" "newtab" >}}resumé{{< /staticref >}}.
+Please check out my Substack! https://jessicar.substack.com
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/May2021-Rose-FINAL.pdf" "newtab" >}}most recent publication{{< /staticref >}}.
 
